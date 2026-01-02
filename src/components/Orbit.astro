@@ -111,9 +111,10 @@ const { items } = Astro.props;
 
         // Initialize Positions
         function updatePositions() {
-            if (!isPaused) {
-                angle += 0.002; // Rotation speed
-            }
+            // STOP ROTATION: User requested static
+            // if (!isPaused) {
+            //    angle += 0.002; // Rotation speed
+            // }
             
             const centerX = desktopContainer.offsetWidth / 2;
             const centerY = desktopContainer.offsetHeight / 2;
@@ -133,7 +134,8 @@ const { items } = Astro.props;
                 node.style.transform = `translate(${x}px, ${y}px)`;
             });
 
-            animationFrameId = requestAnimationFrame(updatePositions);
+            // STOP ANIMATION LOOP: Static on first render
+            // animationFrameId = requestAnimationFrame(updatePositions);
         }
 
         // Handle Click on Node

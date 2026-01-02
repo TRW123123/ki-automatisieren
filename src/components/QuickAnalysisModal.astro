@@ -1,0 +1,173 @@
+---
+---
+<!-- Modal Container -->
+<div id="analysis-modal" class="fixed inset-0 z-[100] hidden items-center justify-center">
+    <!-- Backdrop -->
+    <div id="modal-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity opacity-0"></div>
+    
+    <!-- Modal Content -->
+    <div id="modal-content" class="relative z-10 w-full max-w-md bg-[#111827] border border-gray-800 rounded-xl shadow-2xl transform scale-95 opacity-0 transition-all duration-300 p-0 overflow-hidden m-4">
+        
+        <!-- Header -->
+        <div class="p-6 text-center border-b border-gray-800">
+            <h2 class="text-xl font-semibold text-white mb-2">30 Minuten Schnellanalyse</h2>
+            <p class="text-sm text-slate-400">Lassen Sie uns Ihre Geschäftsprozesse analysieren und individuelle Automatisierungsvorschläge teilen.</p>
+            <button id="modal-close-x" class="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+
+        <!-- Form -->
+        <form id="analysis-form" class="p-6 space-y-4">
+            <div class="space-y-2">
+                <label for="name" class="text-sm font-medium text-white">Name *</label>
+                <input type="text" id="name" name="name" required placeholder="Ihr Name" class="w-full bg-[#1F2937] border border-gray-700 rounded-md h-10 px-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-lime-500 transition-all" />
+            </div>
+
+            <div class="space-y-2">
+                <label for="email" class="text-sm font-medium text-white">E-Mail *</label>
+                <input type="email" id="email" name="email" required placeholder="beispiel@firma.de" class="w-full bg-[#1F2937] border border-gray-700 rounded-md h-10 px-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-lime-500 transition-all" />
+            </div>
+
+            <div class="space-y-2">
+                <label for="company" class="text-sm font-medium text-white">Unternehmen *</label>
+                <input type="text" id="company" name="company" required placeholder="Ihr Unternehmensname" class="w-full bg-[#1F2937] border border-gray-700 rounded-md h-10 px-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-lime-500 transition-all" />
+            </div>
+
+            <div class="space-y-2">
+                <label for="message" class="text-sm font-medium text-white">In welchem Bereich wünschen Sie Automatisierung?</label>
+                <textarea id="message" name="message" rows="3" placeholder="Vertrieb, Marketing, Kundenservice, Datenanalyse etc." class="w-full bg-[#1F2937] border border-gray-700 rounded-md p-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-lime-500 transition-all"></textarea>
+            </div>
+
+            <button type="submit" id="submit-btn" class="w-full h-11 bg-lime-500 hover:bg-lime-400 text-black font-bold rounded-md transition-all flex items-center justify-center gap-2 mt-2">
+                <span>Kostenlose Analyse anfordern</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+
+            <p class="text-xs text-center text-slate-500 mt-4">Ihre Daten werden sicher gespeichert. Wir versenden keinen Spam.</p>
+        </form>
+
+        <!-- Success State (Hidden by default) -->
+        <div id="success-state" class="hidden absolute inset-0 bg-[#111827] flex-col items-center justify-center p-8 text-center z-20">
+            <div class="w-16 h-16 rounded-full bg-lime-500/10 flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-lime-500"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Anfrage erhalten!</h3>
+            <p class="text-slate-400 mb-6">Wir senden Ihnen innerhalb von 48 Stunden Ihren persönlichen Analysebericht per E-Mail.</p>
+            <button id="success-close-btn" class="w-full h-11 border border-gray-700 hover:bg-gray-800 text-white font-medium rounded-md transition-all">
+                OK
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // Modal Logic
+    const modal = document.getElementById('analysis-modal');
+    const backdrop = document.getElementById('modal-backdrop');
+    const content = document.getElementById('modal-content');
+    const closeX = document.getElementById('modal-close-x');
+    const form = document.getElementById('analysis-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const successState = document.getElementById('success-state');
+    const successClose = document.getElementById('success-close-btn');
+
+    // N8N Webhook
+    const WEBHOOK_URL = 'https://safakt.app.n8n.cloud/webhook/041dae70-b4dc-4fbb-89e5-3b78274c5ff5';
+
+    function openModal() {
+        if (!modal) return;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        // Trigger animation
+        setTimeout(() => {
+            backdrop?.classList.remove('opacity-0');
+            content?.classList.remove('opacity-0', 'scale-95');
+            content?.classList.add('scale-100');
+        }, 10);
+    }
+
+    function closeModal() {
+        if (!modal) return;
+        backdrop?.classList.add('opacity-0');
+        content?.classList.remove('scale-100');
+        content?.classList.add('opacity-0', 'scale-95');
+        
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            // Reset form on close
+            // @ts-ignore
+            form?.reset();
+            successState?.classList.add('hidden');
+        }, 300);
+    }
+
+    // Expose open function globally
+    // @ts-ignore
+    window.openQuickAnalysis = openModal;
+
+    // Listeners
+    closeX?.addEventListener('click', closeModal);
+    backdrop?.addEventListener('click', closeModal);
+    successClose?.addEventListener('click', closeModal);
+
+    // Form Submit
+    form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Loading state
+        const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
+        if (submitBtn) {
+            submitBtn.innerHTML = 'Wird gesendet...';
+            // @ts-ignore
+            submitBtn.disabled = true;
+        }
+
+        // Collect data
+        const formData = new FormData(e.target as HTMLFormElement);
+        const data = Object.fromEntries(formData.entries());
+        
+        // Add timestamp & source
+        // @ts-ignore
+        data.timestamp = new Date().toISOString();
+        // @ts-ignore
+        data.source = 'quick_analysis_modal';
+
+        try {
+            // Send to N8N (using GET params as per reference code)
+            const params = new URLSearchParams(data as any);
+            await fetch(`${WEBHOOK_URL}?${params.toString()}`, {
+                method: 'GET',
+                mode: 'no-cors', // Important for webhook
+                cache: 'no-cache'
+            });
+
+            // Show success
+            successState?.classList.remove('hidden');
+            
+        } catch (error) {
+            console.error('Submission error:', error);
+            alert('Es gab einen Fehler beim Senden. Bitte versuchen Sie es später erneut.');
+        } finally {
+            // Reset button
+            if (submitBtn) {
+                submitBtn.innerHTML = originalBtnContent;
+                // @ts-ignore
+                submitBtn.disabled = false;
+            }
+        }
+    });
+
+    // Attach to triggers
+    document.addEventListener('DOMContentLoaded', () => {
+        const triggers = document.querySelectorAll('[data-action="open-analysis"]');
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+        });
+    });
+</script>

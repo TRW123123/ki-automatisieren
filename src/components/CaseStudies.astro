@@ -1,0 +1,88 @@
+---
+const cases = [
+  {
+    title: "Car Studio AI",
+    slug: "car-studio-ai",
+    summary: "Aufbau einer nachhaltigen Vertriebsinfrastruktur auf internationalen Märkten ohne Teamvergrößerung durch KI im Vertrieb.",
+    logo: "/logos/carstudio.avif",
+    kpi: "3000+"
+  },
+  {
+    title: "Acilsatis",
+    slug: "acilsatis",
+    summary: "Schnelles Wachstum und organische Traffic-Steigerung im Immobilien- und Automobilsektor durch KI im Marketing.",
+    logo: "/logos/acilsatis.avif",
+    kpi: "5000+"
+  },
+  {
+    title: "Salevium",
+    slug: "salevium",
+    summary: "Vollständige Automatisierung des LinkedIn-Marketing-Prozesses eines gamifizierten Vertriebstrainings-Unternehmens.",
+    logo: "/logos/salevium.avif",
+    kpi: "0%"
+  },
+  {
+    title: "ERPA Teknoloji",
+    slug: "erpa-teknoloji",
+    summary: "Strategischer Eintritt in den europäischen Markt für Stadion-Digitaldisplays mit der TOCHI-Marke durch KI in der Kundengewinnung.",
+    logo: "/logos/erpa.avif",
+    kpi: "Europäische Stadien"
+  },
+  {
+    title: "CemKimsan",
+    slug: "cemkimsan",
+    summary: "Digitale Transformation des Kundenerlebnisses und der Vertriebsprozesse im Chemiesektor durch CRM-Prozessautomatisierung.",
+    logo: "/logos/cemkimsan.avif",
+    kpi: "360° Sicht"
+  },
+  {
+    title: "Coach Bilge",
+    slug: "dkm-coach-bilge",
+    summary: "Automatisierte Terminbuchung und Kundenkommunikation für Business-Coaching durch KI-Kundenservice.",
+    logo: "/logos/coach-bilge.avif",
+    kpi: "+120%"
+  }
+];
+---
+
+<section id="cases" class="py-24 bg-[#0B0F14] relative overflow-hidden">
+  <div class="container mx-auto px-4">
+    <!-- Header -->
+    <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold mb-4 text-white">Erfolgsgeschichten</h2>
+        <p class="text-slate-400 text-lg">Unsere detaillierten Fallstudien ansehen und Erfolgsgeschichten entdecken.</p>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {cases.map((item) => (
+            <div class="group relative bg-[#111827] border border-white/5 rounded-2xl p-8 hover:border-lime-500/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(163,230,53,0.1)] flex flex-col h-full">
+                
+                <!-- Logo -->
+                <div class="h-12 mb-8 flex items-center justify-start">
+                    <img src={item.logo} alt={item.title} class="max-h-full max-w-[150px] object-contain opacity-80 group-hover:opacity-100 transition-opacity" />
+                </div>
+
+                <!-- Title -->
+                <h3 class="text-xl font-bold text-lime-400 mb-4">{item.title}</h3>
+
+                <!-- Summary -->
+                <p class="text-slate-400 leading-relaxed mb-8 flex-grow">
+                    {item.summary}
+                </p>
+
+                <!-- Footer: KPI & Link -->
+                <div class="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
+                    <span class="inline-flex items-center rounded-md bg-lime-400/10 px-2 py-1 text-xs font-medium text-lime-400 ring-1 ring-inset ring-lime-400/20">
+                        {item.kpi}
+                    </span>
+                    <a href={`/losungen/${item.slug}`} class="text-sm font-medium text-slate-300 hover:text-lime-400 transition-colors flex items-center gap-1 group-hover:translate-x-1 duration-300">
+                        Details
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        ))}
+    </div>
+  </div>
+</section>
