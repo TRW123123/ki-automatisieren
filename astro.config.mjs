@@ -11,5 +11,6 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
+  site: 'https://ki-automatisieren.de',
   integrations: [react(), sitemap()]
 });

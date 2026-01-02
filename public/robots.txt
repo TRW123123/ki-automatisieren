@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ki-automatisieren.de/sitemap.xml
+Sitemap: https://ki-automatisieren.de/sitemap-index.xml
