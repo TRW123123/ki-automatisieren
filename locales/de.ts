@@ -6,7 +6,7 @@ export default {
   'nav.pricing': 'Preise',
   'nav.blog': 'Blog',
   'nav.contact': 'Kontakt',
-  
+
   // Hero
   'hero.headline': 'Sie führen das Unternehmen.',
   'hero.headline.highlight': 'Wir bauen die Künstliche Intelligenz.',
@@ -21,7 +21,7 @@ export default {
   // Features
   'features.title': 'KI-gestützte Geschäftslösungen',
   'features.subtitle': 'Umfassende Automatisierungstools, die mit Ihrem Unternehmen mitwachsen',
-  
+
   // Cases
   'cases.title': 'Erfolgsgeschichten',
   'cases.subtitle': 'Echte Ergebnisse von Unternehmen, die mit KI-Automatisierung skaliert haben',
@@ -29,10 +29,10 @@ export default {
   'cases.seo.description': 'Entdecken Sie die Erfolgsgeschichten von Car Studio AI, Acilsatis, Salevium, ERPA Teknoloji und Cemkimsan mit KI und Automatisierung. Internationale Märkte, Vertriebsautomatisierung, B2B-Export und Händlernetzwerk-Expansion mit echten Ergebnissen.',
   'cases.final.title': 'Bereit für Ihre eigene Erfolgsgeschichte?',
   'cases.final.subtitle': 'Lassen Sie uns gemeinsam Ihre Geschäftsprozesse mit KI optimieren.',
-  
+
   // Solutions
-  'solutions.seo.title': 'Lösungen – KI und Automatisierung für durchgängiges Wachstum',
-  'solutions.seo.description': 'Von Lead-Generierung bis Kundenbeziehungen – wir bauen Ihre gesamte Pipeline mit KI und Automatisierung. Mehr Kunden, niedrigere Kosten, nachhaltiges Wachstum.',
+  'solutions.seo.title': 'Lösungen – KI Agentur für Vertrieb & Marketing',
+  'solutions.seo.description': 'Maßgeschneiderte KI-Automatisierung für B2B. Lead-Generierung, CRM-Workflows und intelligenter Kundenservice aus einer Hand.',
 
   // About Page
   'about.seo.title': 'Über uns | KI Automatisieren',
@@ -138,19 +138,19 @@ export default {
   'services.customer-communication.text': 'Erscheint Ihnen die Digitalisierung komplex? Ist KI für Ihr Unternehmen geeignet? Wir bieten Ihnen maßgeschneiderte Lösungen für Ihre Bedürfnisse. Darüber hinaus veranstalten wir leicht verständliche Schulungen, um Ihr Team auf diese Innovationen vorzubereiten.',
   'services.consulting.title': 'Beratung und Schulung',
   'services.consulting.text': 'Wir verwalten Ihre KI-Projekte von der Planungsphase bis zur Implementierung und stellen sicher, dass sie erfolgreich abgeschlossen werden.',
-  
+
   // Pricing
   'pricing.title': 'Einfache, Transparente Preise',
   'pricing.subtitle': 'Wählen Sie den Plan, der zu Ihren Geschäftsanforderungen passt',
-  
+
   // Testimonials
   'testimonials.title': 'Was Unsere Kunden Sagen',
   'testimonials.subtitle': 'Echtes Feedback von Unternehmen, die sich mit unseren KI-Lösungen transformiert haben',
-  
+
   // FAQ
   'faq.title': 'Häufig Gestellte Fragen',
   'faq.subtitle': 'Alles, was Sie über unsere KI-Automatisierungsplattform wissen müssen',
-  
+
   // Footer
   'footer.description': 'KI-gestützte Automatisierung für wachsende Unternehmen.',
   'footer.menu.home': 'Startseite',
@@ -165,9 +165,9 @@ export default {
   'footer.terms': 'Nutzungsbedingungen',
 
   // Index Page
-  'index.seo.title': 'KI Automatisieren – Vertriebs- und Marketingautomatisierung',
-  'index.seo.description': 'Durchgängige KI-Automatisierung vom Lead bis zum Meeting. Steigern Sie Ihren Umsatz mit Outbound & Inbound, Content- und Social-Media-Automatisierung.',
-  
+  'index.seo.title': 'KI Agentur für Vertriebsautomatisierung | n8n & AI',
+  'index.seo.description': 'Skalieren Sie Ihren Vertrieb mit KI & n8n. Wir automatisieren Lead-Qualifizierung, Outreach und CRM-Prozesse. Integrierte Lösungen für Makler, Agenturen & SaaS.',
+
   // Index Features
   'index.features.outbound.title': 'Outbound-Vertriebsautomatisierung',
   'index.features.outbound.description': 'Personalisierte E-Mails und intelligente Nachverfolgung.',
@@ -181,7 +181,7 @@ export default {
   'index.features.analytics.title': 'Datenanalyse',
   'index.features.analytics.description': 'Echtzeit-Einblicke, bessere Entscheidungen.',
   'index.features.analytics.proof': '60% schnellere Entscheidungsfindung',
-  
+
   // Index Cases
   'index.cases.title': 'Erfolgsgeschichten',
   'index.cases.link': 'Unsere detaillierten Fallstudien',
@@ -199,7 +199,7 @@ export default {
   'index.cases.cemkimsan.metric': '6 neue Chancen',
   'index.cases.dkm.result': 'Gamification-Lead-Funnel mit hunderten zusätzlichen Leads.',
   'index.cases.dkm.metric': '+300 Leads',
-  
+
   // Index Testimonials
   'index.testimonials.1.text': 'Unsere Vertriebsprozesse haben sich komplett verändert. Lead-Qualität um 300% gestiegen.',
   'index.testimonials.1.name': 'Mehmet Yılmaz',
@@ -213,7 +213,7 @@ export default {
   'index.testimonials.3.name': 'Can Özkan',
   'index.testimonials.3.company': 'E-Commerce-Experte',
   'index.testimonials.3.metric': '95% Kundenzufriedenheit',
-  
+
   // Index FAQ
   'index.faq.1.question': 'Wie lange dauert die Einrichtung?',
   'index.faq.1.answer': 'Normalerweise 2 Tage. Einfache Integrationen am selben Tag, komplexe Systeme können 1 Woche dauern.',
@@ -225,7 +225,7 @@ export default {
   'index.faq.4.answer': 'Wir bieten maßgeschneiderte Pakete nach Bedarf und Integrationen. Nach kostenloser Analyse erhalten Sie einen klaren Preis.',
   'index.faq.5.question': 'Ist technisches Wissen erforderlich?',
   'index.faq.5.answer': 'Nein. Wir verwalten den gesamten Prozess. Wir müssen nur Ihre Geschäftsprozesse verstehen.',
-  
+
   // Agitate Demo
   'agitate.title': 'Ergebnisse statt KI-Hype.',
   'agitate.subtitle': 'Warum die üblichen Wege nicht funktionieren:',
@@ -278,17 +278,17 @@ export default {
   'cases.cta.button': 'Kostenlose Analyse anfordern',
   'cases.breadcrumb.home': 'Startseite',
   'cases.breadcrumb.cases': 'Fallstudien',
-  
+
   // Website in 3 Tagen Page
   'website3days.seo.title': 'Website in 3 Tagen – KI-Website ohne Risiko',
   'website3days.seo.description': 'Professionelle Website in 3 Werktagen. Erster Entwurf kostenlos. Monatlich kündbar. Perfekt für KMU, Dienstleister & Coaches.',
-  
+
   'website3days.hero.h1': 'Eine Website ist keine Visitenkarte. Sie ist ein Umsatzsystem',
   'website3days.hero.subheadline': 'Wir bauen Ihre Website mit KI gestützten Prozessen in 3 Werktagen. Der erste Entwurf gefällt Ihnen nicht? Dann müssen Sie nichts zahlen.',
   'website3days.hero.cta.primary': 'Ersten Entwurf kostenlos anfragen',
   'website3days.hero.cta.secondary': 'Ablauf & Preise ansehen',
   'website3days.hero.microproof': 'Beliebt bei KMU aus Dienstleistung, Handwerk & Beratung',
-  
+
   'website3days.pricing.title': 'Drei klare Pakete. Monatlich kündbar.',
   'website3days.pricing.starter.name': 'Starter Website',
   'website3days.pricing.starter.price': '150',
@@ -303,7 +303,7 @@ export default {
   'website3days.pricing.fullservice.price': '750',
   'website3days.pricing.fullservice.description': 'Für Unternehmen, die Sichtbarkeit & Content komplett abgeben wollen.',
   'website3days.pricing.fullservice.cta': 'Full-Service wählen',
-  
+
   'website3days.process.title': 'So läuft der 3-Tage-Prozess ab',
   'website3days.process.step1.title': 'Kickstart-Termin',
   'website3days.process.step1.duration': '30–60 Minuten',
@@ -314,38 +314,38 @@ export default {
   'website3days.process.step3.title': 'Prüfung & Go-Live',
   'website3days.process.step3.duration': 'Tag 3',
   'website3days.process.step3.description': 'Sie prüfen den ersten Entwurf. Gefällt er Ihnen nicht, müssen Sie nichts zahlen. Gefällt er Ihnen, geht die Website live.',
-  
+
   'website3days.why.title': 'Warum funktioniert das so schnell?',
   'website3days.why.reason1': 'KI-gestützte Prozesse',
   'website3days.why.reason2': 'Parallel-Workflow',
   'website3days.why.reason3': 'Erprobte Frameworks',
   'website3days.why.reason4': 'Keine Meeting-Schleifen',
-  
+
   'website3days.fit.title': 'Für wen wir perfekt sind – und für wen nicht',
   'website3days.fit.good.title': 'Geeignet für:',
   'website3days.fit.bad.title': 'Nicht geeignet:',
-  
+
   'website3days.guarantee.title': '100 % risikofrei',
   'website3days.guarantee.text': 'Der erste Entwurf gefällt Ihnen nicht? Dann müssen Sie nichts zahlen.',
-  
-    'website3days.faq.title': 'Häufig gestellte Fragen',
-    'website3days.faq.q1': 'Warum funktioniert das so schnell?',
-    'website3days.faq.a1': 'Wir nutzen KI-gestützte Prozesse, parallele Workflows und erprobte Frameworks. Dadurch können wir in 3 Werktagen liefern, was klassische Agenturen in 4-6 Wochen erstellen. Keine Meeting-Schleifen, kein Hin und Her – nur effiziente Umsetzung.',
-    'website3days.faq.q2': 'Was bedeutet "KI-gestützte Prozesse"?',
-    'website3days.faq.a2': 'Wir setzen KI-Tools für Texterstellung, Design-Optimierung und Code-Entwicklung ein. Das beschleunigt den Prozess erheblich und sorgt für professionelle Ergebnisse – ohne Qualitätsverlust.',
-    'website3days.faq.q3': 'Für wen ist dieser Service geeignet?',
-    'website3days.faq.a3': 'Perfekt für KMU & lokale Betriebe, Dienstleister & Handwerker, Coaches & Berater sowie Startups mit klarer Vision. Sie wollen schnell online sein und professionell auftreten – ohne monatelange Projekte.',
-    'website3days.faq.q4': 'Für wen ist dieser Service NICHT geeignet?',
-    'website3days.faq.a4': 'Nicht geeignet für: 10-Runden-Designkunden, Großprojekte mit langen Abstimmungen, Agenturen mit komplexen Anforderungen oder endlose Feedback-Schleifen. Wenn Sie maximale Geschwindigkeit und Effizienz wollen, sind wir perfekt.',
-    'website3days.faq.q5': 'Was passiert nach den 3 Werktagen?',
-    'website3days.faq.a5': 'Sie erhalten den ersten Entwurf zur Prüfung. Gefällt er Ihnen, geht die Website live und Sie zahlen ab dem Folgemonat. Gefällt er nicht, zahlen Sie nichts – keine Verpflichtung.',
-    'website3days.faq.q6': 'Kann ich monatlich kündigen?',
-    'website3days.faq.a6': 'Ja, alle Pakete sind monatlich kündbar. Sie gehen keine langfristige Verpflichtung ein.',
-  
+
+  'website3days.faq.title': 'Häufig gestellte Fragen',
+  'website3days.faq.q1': 'Warum funktioniert das so schnell?',
+  'website3days.faq.a1': 'Wir nutzen KI-gestützte Prozesse, parallele Workflows und erprobte Frameworks. Dadurch können wir in 3 Werktagen liefern, was klassische Agenturen in 4-6 Wochen erstellen. Keine Meeting-Schleifen, kein Hin und Her – nur effiziente Umsetzung.',
+  'website3days.faq.q2': 'Was bedeutet "KI-gestützte Prozesse"?',
+  'website3days.faq.a2': 'Wir setzen KI-Tools für Texterstellung, Design-Optimierung und Code-Entwicklung ein. Das beschleunigt den Prozess erheblich und sorgt für professionelle Ergebnisse – ohne Qualitätsverlust.',
+  'website3days.faq.q3': 'Für wen ist dieser Service geeignet?',
+  'website3days.faq.a3': 'Perfekt für KMU & lokale Betriebe, Dienstleister & Handwerker, Coaches & Berater sowie Startups mit klarer Vision. Sie wollen schnell online sein und professionell auftreten – ohne monatelange Projekte.',
+  'website3days.faq.q4': 'Für wen ist dieser Service NICHT geeignet?',
+  'website3days.faq.a4': 'Nicht geeignet für: 10-Runden-Designkunden, Großprojekte mit langen Abstimmungen, Agenturen mit komplexen Anforderungen oder endlose Feedback-Schleifen. Wenn Sie maximale Geschwindigkeit und Effizienz wollen, sind wir perfekt.',
+  'website3days.faq.q5': 'Was passiert nach den 3 Werktagen?',
+  'website3days.faq.a5': 'Sie erhalten den ersten Entwurf zur Prüfung. Gefällt er Ihnen, geht die Website live und Sie zahlen ab dem Folgemonat. Gefällt er nicht, zahlen Sie nichts – keine Verpflichtung.',
+  'website3days.faq.q6': 'Kann ich monatlich kündigen?',
+  'website3days.faq.a6': 'Ja, alle Pakete sind monatlich kündbar. Sie gehen keine langfristige Verpflichtung ein.',
+
   'website3days.finalcta.title': 'Bereit für Ihre Website in 3 Werktagen?',
   'website3days.finalcta.cta.primary': 'Ersten Entwurf kostenlos anfragen',
   'website3days.finalcta.cta.secondary': 'Ablauf ansehen',
-  
+
   // Website 3 Days Contact Modal
   'website3days.contact.modal.title': 'Ersten Entwurf kostenlos anfragen',
   'website3days.contact.modal.description': 'Füllen Sie das Formular aus und erhalten Sie Ihren ersten Website-Entwurf in 3 Werktagen – völlig unverbindlich.',
@@ -365,9 +365,9 @@ export default {
   'website3days.contact.modal.success.description': 'Wir melden uns innerhalb der nächsten 24 Stunden bei Ihnen und starten mit dem Kickoff-Termin.',
   'website3days.contact.modal.error.title': 'Fehler beim Senden',
   'website3days.contact.modal.error.description': 'Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.',
-  
+
   'website3days.references.title': 'Ergebnisse aus echten Projekten',
-  
+
   // Website 3 Days Thank You Page
   'website3days.thankyou.title': 'Vielen Dank für Ihre Anfrage!',
   'website3days.thankyou.subtitle': 'Wir haben Ihre Anfrage erhalten',
@@ -380,7 +380,7 @@ export default {
   'website3days.thankyou.cta.more': 'Mehr über uns erfahren',
 
   // ========== SOLUTION LANDING PAGES ==========
-  
+
   // Lead Generation KI
   'solutions.leadgen.seo.title': 'KI Leadgenerierung – 30+ B2B Termine automatisiert',
   'solutions.leadgen.seo.description': 'Automatisierte Lead-Recherche, personalisierte Outreach, Follow-ups. Füllen Sie Ihren Kalender mit qualifizierten Terminen.',
