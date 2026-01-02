@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Orbit from "@/components/Orbit.astro";
 
 // Content Constants
 const copy = {
@@ -143,6 +144,9 @@ const copy = {
         </div>
     </div>
   </section>
+
+  <!-- Orbit Section -->
+  <Orbit items={copy.timeline} />
 
   <!-- Solutions Section -->
   <section class="py-24 bg-card/30 border-y border-white/5">
