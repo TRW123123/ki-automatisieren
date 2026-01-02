@@ -1,3 +1,79 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    :root {
+        --bg-1: 203 23% 8%;
+        --bg-2: 215 28% 10%;
+        --text-hi: 210 10% 90%;
+        --text-muted: 215 16% 58%;
+        --lime: 84 81% 56%;
+        --emerald: 158 64% 52%;
+        --border: 220 13% 18%;
+        --card: 220 13% 9%;
+        --overlay: rgba(0, 0, 0, 0.4);
+
+        --background: 203 23% 8%;
+        --foreground: 210 10% 90%;
+
+        --card-foreground: 210 10% 90%;
+        --popover: 220 13% 9%;
+        --popover-foreground: 210 10% 90%;
+        --primary: 84 81% 56%;
+        --primary-foreground: 203 23% 8%;
+        --secondary: 220 13% 9%;
+        --secondary-foreground: 210 10% 90%;
+        --muted: 215 28% 10%;
+        --muted-foreground: 215 16% 58%;
+        --accent: 158 64% 52%;
+        --accent-foreground: 203 23% 8%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 210 10% 90%;
+        --input: 215 28% 10%;
+        --ring: 84 81% 56%;
+        --radius: 0.75rem;
+    }
+
+    .dark {
+        --background: 203 23% 8%;
+        --foreground: 210 10% 90%;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Space Grotesk', system-ui, sans-serif;
+    }
+
+    /* Utilities that were missing */
+    .bg-background {
+        background-color: hsl(var(--bg-1));
+    }
+
+    .text-foreground {
+        color: hsl(var(--text-hi));
+    }
+
+    .text-muted-foreground {
+        color: hsl(var(--text-muted));
+    }
+
+    .bg-card {
+        background-color: hsl(var(--card));
+    }
+
+    .border-border {
+        border-color: hsl(var(--border));
+    }
+
+    /* H1/Headings */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Space Grotesk', system-ui, sans-serif;
+        font-weight: 700;
+    }
+}
