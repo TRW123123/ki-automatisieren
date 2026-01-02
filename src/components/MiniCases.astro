@@ -1,0 +1,105 @@
+---
+const cases = [
+  {
+    company: "Car Studio AI",
+    logo: "/logos/carstudio.avif",
+    width: 200,
+    height: 42,
+    result: "Aufbau einer nachhaltigen Vertriebsinfrastruktur auf internationalen Märkten ohne Teamvergrößerung durch KI im Vertrieb.",
+    metric: "20+ Std./Monat",
+    slug: "car-studio-ai"
+  },
+  {
+    company: "Acilsatis",
+    logo: "/logos/acilsatis.avif",
+    width: 91,
+    height: 42,
+    result: "Schnelles Wachstum und organische Traffic-Steigerung im Immobilien- und Automobilsektor durch KI im Marketing.",
+    metric: "5000+ Plattform-Anzeigen",
+    slug: "acilsatis"
+  },
+  {
+    company: "Salevium",
+    logo: "/logos/salevium.avif",
+    width: 152,
+    height: 42,
+    result: "Vollständige Automatisierung des LinkedIn-Marketing-Prozesses eines gamifizierten Vertriebstrainings-Unternehmens.",
+    metric: "0% manuell",
+    slug: "salevium"
+  },
+  {
+    company: "ERPA Teknoloji",
+    logo: "/logos/erpa.avif",
+    width: 42,
+    height: 42,
+    result: "Strategischer Eintritt in den europäischen Markt für Stadion-Digitaldisplays mit der TOCHI-Marke durch KI in der Kundengewinnung.",
+    metric: "Erster Monat",
+    slug: "erpa-teknoloji"
+  },
+  {
+    company: "CemKimsan",
+    logo: "/logos/cemkimsan.avif",
+    width: 149,
+    height: 42,
+    result: "Digitale Transformation des Kundenerlebnisses und der Vertriebsprozesse im Chemiesektor durch CRM-Prozessautomatisierung.",
+    metric: "+40%",
+    slug: "cemkimsan"
+  },
+  {
+    company: "Coach Bilge",
+    logo: "/logos/coach-bilge.avif",
+    width: 42,
+    height: 42,
+    result: "Automatisierte Terminbuchung und Kundenkommunikation für Business-Coaching durch KI-Kundenservice.",
+    metric: "+120%",
+    slug: "dkm-coach-bilge"
+  }
+];
+---
+
+<section class="py-20">
+  <div class="container mx-auto px-4">
+    <div class="mx-auto mb-16 max-w-2xl text-center">
+      <h2 class="mb-4 text-3xl font-bold text-white">Erfolgsgeschichten</h2>
+      <p class="text-gray-400">
+        <a href="/fallstudien" class="text-lime-400 hover:underline">Unsere detaillierten Fallstudien</a> ansehen und Erfolgsgeschichten entdecken.
+      </p>
+    </div>
+    
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+      {cases.map((item) => (
+        <div class="group transition-all duration-300 hover:border-lime-500/30 flex flex-col h-full bg-[#111827] border border-white/10 rounded-xl overflow-hidden">
+          <div class="p-6 flex flex-col h-full">
+            <div class="h-12 w-full bg-transparent rounded-lg flex items-center justify-center p-3 mb-4">
+               {item.logo ? (
+                 <img
+                   src={item.logo}
+                   alt={`${item.company} Logo`}
+                   width={item.width}
+                   height={item.height}
+                   loading="lazy"
+                   decoding="async"
+                   class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                 />
+               ) : (
+                 <span class="text-gray-400 text-xs font-medium">{item.company}</span>
+               )}
+            </div>
+            
+            <h3 class="text-lg font-semibold text-white text-center mt-4">{item.company}</h3>
+            <p class="text-sm text-gray-400 mt-4 flex-grow line-clamp-4">{item.result}</p>
+            
+            <div class="flex items-center justify-between mt-6 pt-4 border-t border-white/5">
+              <span class="inline-flex items-center rounded-full border border-lime-500/10 bg-lime-500/10 px-2.5 py-0.5 text-xs font-semibold text-lime-400">
+                {item.metric}
+              </span>
+              <a href={`/fallstudien/${item.slug}`} class="text-sm text-lime-400 hover:underline">
+                Details
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

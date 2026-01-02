@@ -1,221 +1,25 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Orbit from "@/components/Orbit.astro";
-import CaseStudies from "@/components/CaseStudies.astro";
+import Hero from "@/components/Hero.astro";
+import Agitate from "@/components/Agitate.astro";
+import SolutionSection from "@/components/SolutionSection.astro";
+import MiniCases from "@/components/MiniCases.astro";
 import QuickAnalysisModal from "@/components/QuickAnalysisModal.astro";
-import WhyUs from "@/components/WhyUs.astro";
-import SolutionSteps from "@/components/SolutionSteps.astro";
 
-// Content Constants
-const copy = {
-  hero: {
-    title1: 'Ihr Team schläft nachts.',
-    title2: 'Unsere KI-Systeme nicht.',
-    subtitle: 'Wir automatisieren alles, von der E-Mail bis zur Rechnung. Ergebnisse statt KI-Hype.',
-    cta: "Kostenlose Analyse"
-  },
-  agitate: {
-    title: "Was sind Ihre Optionen?",
-    subtitle: "Es gibt nur 3 Wege, KI in Ihr Geschäft zu integrieren",
-    items: [
-      {
-        title: "Selber machen",
-        desc: "Das ist die größte Technologie, die die Menschheit je entwickelt hat. Um sie richtig in Ihr Unternehmen zu integrieren, brauchen Sie Monate an Fokus und ernsthafter Zeit.",
-        icon: "settings"
-      },
-      {
-        title: "Interne Lösung",
-        desc: "Jemanden intern beauftragen: Das ist nur eine weitere Aufgabe auf einem ohnehin vollen Schreibtisch. Wollen Sie die Technologie, die Ihr Unternehmen transformieren wird, als Nebenprojekt behandeln?",
-        icon: "users"
-      },
-      {
-        title: "Warten (Status Quo)",
-        desc: "Wir planen das Budget für nächstes Jahr – dann machen wir das. Aber jeder Monat, der vergeht, bedeutet verlorene Chancen und entgangene Kunden.",
-        icon: "calendar"
-      }
-    ]
-  },
-  whyUs: {
-    title: "Warum funktioniert das so schnell?",
-    items: [
-      { text: "KI-gestützte Prozesse", icon: "zap" },
-      { text: "Parallel-Workflow", icon: "users" },
-      { text: "Erprobte Frameworks", icon: "code" },
-      { text: "Keine Meeting-Schleifen", icon: "message" }
-    ]
-  },
-  solutions: [
-    {
-      title: "KI Leadgenerierung",
-      desc: "Automatisierte Inbound- & Outbound-Systeme für volle Kalender.",
-      link: "/losungen/leadgenerierung-ki",
-      icon: "target"
-    },
-    {
-      title: "Vertriebs-Automatisierung",
-      desc: '"Speed-to-Lead" durch KI-Mitarbeiter (SDRBots), die 24/7 reagieren.',
-      link: "/losungen/vertriebsautomatisierung",
-      icon: "bot"
-    },
-    {
-      title: "Marketing-Autopilot",
-      desc: "Skalierbarer Content & Ads durch automatisierte Workflows.",
-      link: "/losungen/marketing-automatisierung",
-      icon: "megaphone"
-    },
-    {
-      title: "CRM & Prozess-Automation",
-      desc: "Vernetzung aller Business-Tools (n8n) für reibungslose Logik.",
-      link: "/losungen/crm-prozessautomatisierung",
-      icon: "workflow"
-    },
-    {
-      title: "KI-Kundenservice",
-      desc: "Intelligente Chatbots, die Supportanfragen menschlich und effizient lösen.",
-      link: "/losungen/kundenservice-automatisierung",
-      icon: "message_square"
-    }
-  ],
-  timeline: [
-    { title: "KI-Leadgenerierung", date: "Jetzt", desc: "KI-Agenten identifizieren und qualifizieren Ihre Idealkunden rund um die Uhr." },
-    { title: "Marketing-Automation", date: "Diesen Monat", desc: "Personalisierte Kampagnen, die sich selbst optimieren." },
-    { title: "CRM & Prozessautomation", date: "Dieses Quartal", desc: "Ihr CRM arbeitet für Sie: Automatische Datenpflege." },
-    { title: "Kundenservice-AI", date: "Kontinuierlich", desc: "24/7 verfügbare KI-Assistenten beantworten Anfragen sofort." },
-    { title: "Vertriebs-Automatisierung", date: "Immer", desc: "Von der Erstansprache bis zum Abschluss: KI unterstützt jeden Schritt." }
-  ]
-};
+// Pure Strict Alignment Index Page
+// Structure: Hero -> Agitate -> Solution -> MiniCases
 ---
 
-<BaseLayout title="KI Agentur für Vertriebsautomatisierung | n8n & AI" description="Skalieren Sie Ihren Vertrieb mit KI & n8n. Wir automatisieren Lead-Qualifizierung, Outreach und CRM-Prozesse.">
+<BaseLayout title="KI Automatisieren – Vertriebs- und Marketingautomatisierung" description="Durchgängige KI-Automatisierung vom Lead bis zum Meeting. Steigern Sie Ihren Umsatz mit Outbound & Inbound, Content- und Social-Media-Automatisierung.">
   
-  <!-- Hero Section -->
-  <section class="relative min-h-[85vh] md:min-h-screen flex items-center justify-center pt-16 overflow-hidden">
-    <div class="absolute inset-0 bg-background pointer-events-none"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(163,230,53,0.05),transparent_70%)] pointer-events-none"></div>
-    
-    <div class="container mx-auto px-4 relative z-10 text-center">
-      <!-- Badge -->
-      <div class="flex justify-center mb-6">
-        <div class="inline-flex items-center rounded-full border border-lime-400/30 bg-lime-400/10 px-3 py-1 text-sm font-medium text-lime-400 ring-1 ring-inset ring-lime-400/20">
-            <span class="flex h-2 w-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
-            Deutsche Ingenieurskunst für Ihren Vertrieb
-        </div>
-      </div>
+  <Hero />
 
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 max-w-4xl mx-auto leading-[1.1] text-foreground">
-        <span class="block">{copy.hero.title1}</span>
-        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-emerald-400">
-            {copy.hero.title2}
-        </span>
-      </h1>
-      
-      <p class="text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-        {copy.hero.subtitle}
-      </p>
+  <Agitate />
 
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <button data-action="open-analysis" class="inline-flex items-center justify-center h-14 px-8 rounded-xl bg-lime-500 text-black font-bold text-lg hover:bg-lime-400 transition-all hover:scale-105 shadow-[0_0_20px_rgba(163,230,53,0.3)]">
-          {copy.hero.cta}
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 w-5 h-5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </button>
-        <a href="#cases" class="inline-flex items-center justify-center h-14 px-8 rounded-xl border border-white/10 hover:bg-white/5 font-medium transition-colors text-foreground">
-          Fallstudien ansehen
-        </a>
-      </div>
-    </div>
-  </section>
+  <SolutionSection />
 
-  <!-- Why Us Section (Praxis statt Theorie) -->
-  <WhyUs />
-
-  <!-- Agitate Section -->
-  <section class="py-24 bg-card/30 border-t border-white/5">
-    <div class="container mx-auto px-4">
-        <div class="max-w-3xl mx-auto text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-foreground">{copy.agitate.title}</h2>
-            <p class="text-lg text-muted-foreground">{copy.agitate.subtitle}</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {copy.agitate.items.map(item => (
-                <div class="p-8 rounded-2xl bg-background border border-border/50 hover:border-lime-500/30 transition-colors">
-                    <div class="w-12 h-12 rounded-xl bg-lime-500/10 flex items-center justify-center mb-6 text-lime-400">
-                      {/* Icons simplified for HTML */}
-                      {item.icon === 'settings' && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.47a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.39a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>}
-                      {item.icon === 'users' && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>}
-                      {item.icon === 'calendar' && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>}
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-foreground">{item.title}</h3>
-                    <p class="text-muted-foreground leading-relaxed">{item.desc}</p>
-                </div>
-            ))}
-        </div>
-    </div>
-  </section>
-
-  <!-- Solution Steps (Ergebnisse statt Hype) -->
-  <SolutionSteps />
-
-  <!-- Orbit Section -->
-  <Orbit items={copy.timeline} />
-
-  <!-- Solutions Section -->
-  <section class="py-24 bg-card/30 border-y border-white/5">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-5xl font-bold mb-4 text-foreground">End-to-End <span class="text-lime-400">Automation</span></h2>
-        <p class="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Wir automatisieren nicht nur Aufgaben. Wir automatisieren Ergebnisse.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {copy.hero.solutions && copy.hero.solutions.map(solution => (
-          <a href={solution.link} class="block group">
-            <div class="p-8 rounded-2xl h-full bg-background border border-white/5 hover:border-lime-400/40 transition-all hover:shadow-[0_0_30px_-5px_rgba(163,230,53,0.15)]">
-                <div class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-lime-400 mb-6 group-hover:bg-lime-400 group-hover:text-black transition-colors">
-                   {/* Icons */}
-                   {solution.icon === 'target' && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>}
-                   {solution.icon === 'bot' && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="10" x="3" y="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" x2="8" y1="16" y2="16"/><line x1="16" x2="16" y1="16" y2="16"/></svg>}
-                   {solution.icon === 'megaphone' && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>}
-                   {solution.icon === 'workflow' && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg>}
-                   {solution.icon === 'message_square' && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>}
-                </div>
-                <h3 class="text-xl font-bold text-foreground mb-3 group-hover:text-lime-400 transition-colors">
-                    {solution.title}
-                </h3>
-                <p class="text-muted-foreground leading-relaxed mb-6">
-                    {solution.desc}
-                </p>
-                <div class="text-sm font-medium text-lime-400 flex items-center gap-2">
-                    Mehr erfahren <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </div>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Success Stories (Case Studies) -->
-  <CaseStudies />
-
-  <!-- CTA Section -->
-  <section id="kontakt" class="py-24 relative overflow-hidden">
-    <div class="absolute inset-0 bg-lime-500/5 -z-10"></div>
-    <div class="container mx-auto px-4 text-center relative z-10">
-      <div class="max-w-3xl mx-auto p-12 rounded-3xl bg-gradient-to-b from-card to-background border border-border shadow-2xl">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-foreground">Starten Sie Ihre Transformation</h2>
-        <p class="text-lg text-muted-foreground mb-8">
-          Lassen Sie uns in 30 Minuten herausfinden, wie viel Zeit und Geld Sie sparen können.
-        </p>
-        <button data-action="open-analysis" class="inline-flex items-center justify-center h-14 px-8 rounded-xl bg-white text-black font-bold text-lg hover:bg-gray-200 transition-colors w-full md:w-auto">
-          Gespräch vereinbaren
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modals -->
+  <MiniCases />
+  
   <QuickAnalysisModal />
 
 </BaseLayout>

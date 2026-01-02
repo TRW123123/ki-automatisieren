@@ -1,13 +1,120 @@
 ---
 const currentYear = new Date().getFullYear();
 ---
-<footer class="border-t border-white/5 bg-card/30 pt-16 pb-8">
-  <div class="container mx-auto px-4">
-    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-       <span class="font-bold text-xl">KI Automatisieren</span>
-       <div class="text-sm text-muted-foreground">
-         &copy; {currentYear} Safak Tepecik.
-       </div>
+
+<footer class="border-t border-white/10 bg-[#0B0F19]">
+  <div class="container mx-auto px-4 py-12 lg:px-6">
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
+      
+      <!-- Column 1: Logo & Desc -->
+      <div class="space-y-4">
+        <a href="/" class="flex items-center" aria-label="Zur Startseite">
+          <img 
+            src="/logos/de-logo.avif" 
+            alt="KI Automatisieren Logo" 
+            width="48"
+            height="48"
+            class="h-12 w-auto"
+          />
+        </a>
+        <p class="text-sm text-gray-400">
+          KI-gestützte Automatisierung für wachsende Unternehmen.
+        </p>
+      </div>
+      
+      <!-- Column 2: Menu -->
+      <div class="space-y-4">
+        <h3 class="text-sm font-semibold text-white">Menu</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/" class="text-gray-400 hover:text-lime-400 transition-colors">Startseite</a></li>
+          <li><a href="/losungen" class="text-gray-400 hover:text-lime-400 transition-colors">Lösungen</a></li>
+          <li><a href="/fallstudien" class="text-gray-400 hover:text-lime-400 transition-colors">Fallstudien</a></li>
+          <li><a href="/uber-uns" class="text-gray-400 hover:text-lime-400 transition-colors">Über uns</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Services -->
+      <div class="space-y-4">
+         <h3 class="text-sm font-semibold text-white">Dienstleistungen</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/losungen/leadgenerierung-ki" class="text-gray-400 hover:text-lime-400 transition-colors">KI Leadgenerierung</a></li>
+            <li><a href="/losungen/marketing-automatisierung" class="text-gray-400 hover:text-lime-400 transition-colors">Marketing Automatisierung</a></li>
+            <li><a href="/losungen/vertriebsautomatisierung" class="text-gray-400 hover:text-lime-400 transition-colors">Vertriebsautomatisierung</a></li>
+            <li><a href="/losungen/crm-prozessautomatisierung" class="text-gray-400 hover:text-lime-400 transition-colors">CRM Automatisierung</a></li>
+            <li><a href="/losungen/kundenservice-automatisierung" class="text-gray-400 hover:text-lime-400 transition-colors">Kundenservice Automatisierung</a></li>
+            <li><a href="/strategieberatung-ki-sales-marketing" class="text-gray-400 hover:text-lime-400 transition-colors">KI Strategieberatung</a></li>
+          </ul>
+      </div>
+
+      <!-- Column 4: Contact -->
+      <div class="space-y-4">
+        <h3 class="text-sm font-semibold text-white">Kontakt</h3>
+        <div class="space-y-4">
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li class="font-medium text-white">ST-Automatisierung</li>
+            <li>Heidestraße 2<br/>58239 Schwerte, Deutschland</li>
+            <li><a href="mailto:s.tepecik@ki-automatisieren.de" class="hover:text-lime-400 transition-colors">s.tepecik@ki-automatisieren.de</a></li>
+            <li><a href="tel:+491627246504" class="hover:text-lime-400 transition-colors">+49 162 724 6504</a></li>
+          </ul>
+          <!-- Reference Footer.tsx line 166: "Kostenlose Beratung Erhalten" button that opens Modal -->
+          <button 
+             onclick="document.getElementById('quick-analysis-modal').showModal()"
+             class="w-full bg-lime-500 hover:bg-lime-400 text-black font-semibold py-2 px-4 rounded-md transition-colors"
+          >
+            Kostenlose Beratung Erhalten
+          </button>
+        </div>
+      </div>
+      
+      <!-- Socials (Inside Col 4 in strict grid? No, Reference has it separate or below? Reference Grid is 5 cols actually, wait. Line 26: md:grid-cols-2 lg:grid-cols-5. 
+           Col 1: Logo
+           Col 2: Menu
+           Col 3: Services (Uses space?)
+           Col 4: Contact
+           Col 5: Socials? Wait, let's check code again.
+           Line 104 is Contact. Line 123 is Socials INSIDE Contact div? No, separate div?
+           Let's look at indentation. Line 123 closes Line 104's div? No.
+           Line 104 starts "space-y-4".
+           Line 102 ends "Dienstleistungen".
+           Line 104 starts Contact.
+           Line 123 starts Socials.
+           It seems Socials are inside the Contact column or just below contact info in standard layout?
+           Ah, `lg:grid-cols-5`. 
+           Div 1: Logo/Desc
+           Div 2: Menu
+           Div 3: Services
+           Div 4: Contact (Lines 104-122)
+           Div 5 (Lines 123-?): Socials? No, wait. 
+           Line 123 is inside Line 104 div?
+           Let's check indentation of Step 1431 carefully.
+           Line 104 div starts.
+           Line 122 ul closes.
+           Line 123 div starts (socials).
+           Line 158 div closes.
+           So Socials ARE inside the Contact column div.
+           Wait, then where is the 5th column?
+           Maybe `Dienstleistungen` takes 2 cols? No.
+           Maybe `Space-y-4`?
+           Actually, the grid has 5 cols defined, but maybe only 4 divs are direct children?
+           Div 1 (Logo), Div 2 (Menu), Div 3 (Services), Div 4 (Contact).
+           If only 4 divs, grid-cols-5 leaves one empty or specific spans?
+           The reference code is React, maybe I missed a div.
+           Regardless, I will put Socials in the Contact column as it seems logical or create a 5th column if I see fit.
+           Actually, looking at `Footer.tsx` line 123, it is indeed inside the last div.
+           So 4 columns is safer. I'll stick to 4 columns.
+      -->
+    </div>
+    
+    <div class="mt-8 border-t border-white/10 pt-8">
+      <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+        <p class="text-sm text-gray-400">
+          © {currentYear} KI Automatisieren. Alle Rechte vorbehalten.
+        </p>
+        <div class="flex space-x-4">
+          <a href="/datenschutz" class="text-sm text-gray-400 hover:text-lime-400 transition-colors">Datenschutz</a>
+          <a href="/nutzungsbedingungen" class="text-sm text-gray-400 hover:text-lime-400 transition-colors">Nutzungsbedingungen</a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
