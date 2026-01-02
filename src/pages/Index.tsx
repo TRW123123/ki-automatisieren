@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { 
-  ArrowRight, 
-  Star, 
-  CheckCircle, 
-  Users, 
-  Zap, 
-  Target, 
-  BarChart3, 
-  MessageSquare, 
-  TrendingUp, 
+import {
+  ArrowRight,
+  Star,
+  CheckCircle,
+  Users,
+  Zap,
+  Target,
+  BarChart3,
+  MessageSquare,
+  TrendingUp,
   Clock,
-  Bot, 
+  Bot,
   MessageCircle,
   ChevronLeft,
   ChevronRight
@@ -23,6 +23,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { QuickAnalysisModal } from "@/components/QuickAnalysisModal";
 import { SEO } from "@/components/SEO";
 import { FAQSchema } from "@/components/FAQSchema";
+import { ProfessionalServiceSchema } from "@/components/ProfessionalServiceSchema";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Hero } from "@/components/hero/Hero";
 import AgitateDemo from "@/components/AgitateDemo";
@@ -47,7 +48,7 @@ const Index = () => {
     },
     {
       icon: <Bot className="h-8 w-8 text-primary" />,
-      title: t('index.features.marketing.title'), 
+      title: t('index.features.marketing.title'),
       description: t('index.features.marketing.description'),
       proof: t('index.features.marketing.proof')
     },
@@ -66,7 +67,7 @@ const Index = () => {
   ];
 
   const localizedCaseStudies = getLocalizedCaseStudies(currentLanguage as 'tr' | 'de');
-  
+
   const cases = localizedCaseStudies.map((cs) => {
     // Define logo widths
     const logoWidths: { [key: string]: number } = {
@@ -77,7 +78,7 @@ const Index = () => {
       'cemkimsan': 149,
       'dkm-coach-bilge': 42
     };
-    
+
     return {
       company: cs.title,
       logo: cs.logo || '',
@@ -98,14 +99,14 @@ const Index = () => {
     },
     {
       text: t('index.testimonials.2.text'),
-      name: t('index.testimonials.2.name'), 
+      name: t('index.testimonials.2.name'),
       company: t('index.testimonials.2.company'),
       metric: t('index.testimonials.2.metric')
     },
     {
       text: t('index.testimonials.3.text'),
       name: t('index.testimonials.3.name'),
-      company: t('index.testimonials.3.company'), 
+      company: t('index.testimonials.3.company'),
       metric: t('index.testimonials.3.metric')
     }
   ];
@@ -149,7 +150,8 @@ const Index = () => {
         routeKey="home"
       />
       <FAQSchema faqs={faqs} />
-      
+      <ProfessionalServiceSchema />
+
       {/* Hero Section */}
       <Hero modalOpen={modalOpen} onModalOpenChange={setModalOpen} />
 
@@ -177,8 +179,8 @@ const Index = () => {
                 <CardContent className="p-6 flex flex-col h-full">
                   <div className="h-12 w-full bg-transparent rounded-lg flex items-center justify-center p-3">
                     {case_item.logo ? (
-                      <img 
-                        src={case_item.logo} 
+                      <img
+                        src={case_item.logo}
                         alt={`${case_item.company} Logo`}
                         width={case_item.width}
                         height={case_item.height}
@@ -196,13 +198,13 @@ const Index = () => {
                   <p className="text-sm text-muted-foreground mt-4 flex-grow">{case_item.result}</p>
                   <div className="flex items-center justify-between mt-4">
                     <Badge className="bg-primary/10 text-primary pointer-events-none">{case_item.metric}</Badge>
-                    <button 
+                    <button
                       onClick={() => {
-                        const caseSlugMap: Record<number, string> = { 
-                          0: 'acilsatis', 
-                          1: 'car-studio-ai', 
-                          2: 'salevium', 
-                          3: 'erpa-teknoloji', 
+                        const caseSlugMap: Record<number, string> = {
+                          0: 'acilsatis',
+                          1: 'car-studio-ai',
+                          2: 'salevium',
+                          3: 'erpa-teknoloji',
                           4: 'cemkimsan',
                           5: 'dkm-coach-bilge'
                         };
