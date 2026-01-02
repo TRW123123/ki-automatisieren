@@ -1,0 +1,36 @@
+---
+// import { Menu } from "lucide-react";
+
+const navItems = [
+  { name: "Lösungen", href: "/losungen/vertriebsautomatisierung" },
+  { name: "Über uns", href: "/uber-uns" },
+  { name: "Blog", href: "/blog" },
+  { name: "Kontakt", href: "#kontakt" },
+];
+---
+
+<header class="fixed top-0 w-full z-50 border-b border-white/5 bg-background/80 backdrop-blur-md">
+  <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 group">
+      <div class="w-8 h-8 rounded-lg bg-lime-500/20 flex items-center justify-center group-hover:bg-lime-500/30 transition-colors">
+        <div class="w-4 h-4 bg-lime-500 rounded-sm"></div>
+      </div>
+      <span class="font-bold text-xl tracking-tight">KI Automatisieren</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-8">
+      {navItems.map(item => (
+        <a href={item.href} class="text-sm font-medium text-muted-foreground hover:text-lime-500 transition-colors">
+          {item.name}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Mobile Menu Trigger (Island candidate later) -->
+    <button class="md:hidden p-2 text-muted-foreground hover:text-foreground" aria-label="Menu">
+      <!-- <Menu className="w-6 h-6" /> -->
+      Menu
+    </button>
+  </div>
+</header>

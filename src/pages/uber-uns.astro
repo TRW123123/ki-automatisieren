@@ -1,0 +1,59 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const content = {
+  title: "Über uns | KI Automatisieren",
+  description: "Safak Tepecik - Experte für B2B-Softwarevertrieb und digitale Transformation.",
+  intro: "Ich bin Safak Tepecik und Experte für B2B-Softwarevertrieb und digitale Transformation. Seit Jahren arbeite ich in der Technologiebranche und habe Erfahrung in der Optimierung digitaler Prozesse für Unternehmen gesammelt.",
+  background: {
+    title: "Beruflicher Hintergrund",
+    text: "Im Laufe meiner Karriere habe ich Unternehmen aus verschiedenen Branchen Technologielösungen angeboten. Ich habe mich insbesondere auf die Automatisierung von Vertriebsprozessen, Kundenbeziehungsmanagement und Datenanalyse spezialisiert. Durch diese Erfahrungen habe ich entdeckt, wie KI-Technologien praktische Lösungen für Unternehmen bieten können."
+  },
+  current: {
+    title: "Was ich heute mache",
+    text: "Als KI Automatisieren helfe ich Unternehmen in Europa, den maximalen Nutzen aus KI-Technologien zu ziehen. Mein Ziel ist es, komplexe Technologien in praktische Lösungen zu verwandeln, die jeder verstehen und anwenden kann."
+  },
+  vision: "Ich glaube, dass KI nicht nur für große Technologieunternehmen, sondern für Unternehmen jeder Größe zugänglich sein sollte. Mit dieser Vision begleite ich insbesondere KMU bei ihren digitalen Transformationsprozessen und biete nachhaltige Lösungen an."
+};
+---
+
+<BaseLayout 
+  title={content.title} 
+  description={content.description}
+  type="profile"
+>
+  <section class="py-20 md:py-32">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-8">Über uns</h1>
+        
+        <div class="prose prose-invert prose-lg max-w-none">
+          <p class="text-xl leading-relaxed mb-12 font-medium text-white">
+            {content.intro}
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-12 mb-16">
+            <div class="bg-card p-8 rounded-2xl border border-white/5">
+              <h2 class="text-2xl font-bold mb-4 text-lime-400">{content.background.title}</h2>
+              <p class="text-muted-foreground">{content.background.text}</p>
+            </div>
+            <div class="bg-card p-8 rounded-2xl border border-white/5">
+              <h2 class="text-2xl font-bold mb-4 text-lime-400">{content.current.title}</h2>
+              <p class="text-muted-foreground">{content.current.text}</p>
+            </div>
+          </div>
+
+          <blockquote class="border-l-4 border-lime-500 pl-6 italic text-2xl text-muted-foreground my-12">
+            "{content.vision}"
+          </blockquote>
+
+          <div class="flex justify-center mt-16">
+            <a href="#kontakt" class="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-lime-500 text-black font-bold hover:bg-lime-400 transition-colors">
+              Zusammenarbeiten
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

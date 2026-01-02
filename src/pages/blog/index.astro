@@ -1,0 +1,36 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const posts = [
+  { title: "Wie KI den Vertrieb revolutioniert", slug: "vertrieb-revolution", date: "02.01.2026" },
+  { title: "Automatisierung im Mittelstand", slug: "automatisierung-mittelstand", date: "01.01.2026" },
+  { title: "Make.com vs n8n Vergleich", slug: "make-vs-n8n", date: "28.12.2025" }
+];
+---
+
+<BaseLayout 
+  title="KI Blog – Automatisierung & Strategie" 
+  description="Einblicke, Tutorials und Strategien zur KI-Automatisierung im B2B Vertrieb."
+  type="article"
+>
+  <section class="py-20 md:py-32">
+    <div class="container mx-auto px-4">
+      <h1 class="text-5xl font-bold mb-6">Blog</h1>
+      <p class="text-xl text-muted-foreground mb-16 max-w-2xl">
+        Insights, Strategien und Anleitungen für die neue Ära der Unternehmensautomatisierung.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {posts.map(post => (
+          <article class="group cursor-pointer">
+            <div class="aspect-video bg-card border border-white/10 rounded-xl mb-4 group-hover:border-lime-500/50 transition-colors overflow-hidden relative">
+              <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+            <div class="text-sm text-lime-400 mb-2">{post.date}</div>
+            <h2 class="text-2xl font-bold group-hover:text-lime-400 transition-colors">{post.title}</h2>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
