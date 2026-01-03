@@ -11,17 +11,34 @@ interface CaseStudyDetailProps {
     caseStudy: CaseStudy;
     prev: CaseStudy | null;
     next: CaseStudy | null;
-    t: (key: string) => string;
+    t?: (key: string) => string; // Optional/Ignored to prevent breaking Astro parent usage
     currentLanguage: string;
 }
+
+const translations: Record<string, string> = {
+    'cases.back.link': 'Zurück zur Übersicht',
+    'cases.nav.all': 'Alle Fallstudien',
+    'cases.breadcrumb.home': 'Startseite',
+    'cases.breadcrumb.cases': 'Fallstudien',
+    'cases.tabs.problem': 'Problem',
+    'cases.tabs.solution': 'Lösung',
+    'cases.tabs.implementation': 'Implementierung',
+    'cases.tabs.implementation.short': 'Impl.',
+    'cases.tabs.results': 'Ergebnisse',
+    'cases.cta.title': 'Interessiert an ähnlichen Ergebnissen?',
+    'cases.cta.subtitle': 'Lassen Sie uns besprechen, wie wir diese Strategien für Ihr Unternehmen anwenden können.',
+    'cases.cta.button': 'Kostenlose Analyse anfordern',
+};
 
 export default function CaseStudyDetail({
     caseStudy,
     prev,
     next,
-    t,
     currentLanguage
 }: CaseStudyDetailProps) {
+
+    // Helper to replace prop 't' which cannot be passed to client islands
+    const t = (key: string) => translations[key] || key;
 
     // Mock openQuickAnalysis for now, or accept as prop if we want to trigger modal
     const openQuickAnalysis = () => {
