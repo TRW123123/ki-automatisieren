@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CaseStudyDetail from '../../components/react/CaseStudyDetail';
+import { caseStudiesData, getAdjacentCaseStudies } from '../../data/caseStudiesData';
+
+export function getStaticPaths() {
+  return caseStudiesData.map(caseStudy => ({
+    params: { slug: caseStudy.slug },
+    props: { caseStudy },
+  }));
+}
+
+const { caseStudy } = Astro.props;
+const { prev, next } = getAdjacentCaseStudies(caseStudy.slug);
+
+// Simple translation function
+const t = (key: string) => {
+  const translations: Record<string, string> = {
+    'cases.back.link': 'Zurück zur Übersicht',
+    'cases.nav.all': 'Alle Fallstudien',
+    'cases.breadcrumb.home': 'Startseite',
+    'cases.breadcrumb.cases': 'Fallstudien',
+    'cases.tabs.problem': 'Problem',
+    'cases.tabs.solution': 'Lösung',
+    'cases.tabs.implementation': 'Implementierung',
+    'cases.tabs.implementation.short': 'Impl.',
+    'cases.tabs.results': 'Ergebnisse',
+    'cases.cta.title': 'Interessiert an ähnlichen Ergebnissen?',
+    'cases.cta.subtitle': 'Lassen Sie uns besprechen, wie wir diese Strategien für Ihr Unternehmen anwenden können.',
+    'cases.cta.button': 'Kostenlose Analyse anfordern',
+  };
+  return translations[key] || key;
+};
+
+const currentLanguage = 'de';
+
+// Schema Markup
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": caseStudy.title,
+  "description": caseStudy.summary,
+  "image": caseStudy.ogImage || "/og-homepage.jpg",
+  "datePublished": "2024-01-15",
+  "dateModified": new Date().toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": "KI Automatisieren"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KI Automatisieren",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ki-automatisieren.de/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://ki-automatisieren.de/fallstudien/${caseStudy.slug}`
+  }
+});
+---
+
+<BaseLayout
+  title={caseStudy.metaTitle || `${caseStudy.title} | Fallstudie`}
+  description={caseStudy.metaDescription || caseStudy.summary}
+  image={caseStudy.ogImage}
+  type="article"
+>
+  <!-- Schema.org markup -->
+  <script type="application/ld+json" set:html={schema} />
+
+  <!-- Page Content -->
+  <CaseStudyDetail 
+    client:load 
+    caseStudy={caseStudy} 
+    prev={prev} 
+    next={next} 
+    t={t} 
+    currentLanguage={currentLanguage} 
+  />
+
+</BaseLayout>

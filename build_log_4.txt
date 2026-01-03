@@ -1,0 +1,44 @@
+
+> mad-mercury@0.0.1 build
+> astro build
+
+13:59:25 [WARN] Unsupported file type C:\Users\Safak\.gemini\antigravity\scratch\ki-automatisieren-astro\src\pages\index.astro.bak found. Prefix filename with an underscore (`_`) to ignore.
+13:59:26 [types] Generated 97ms
+13:59:26 [build] output: "static"
+13:59:26 [build] directory: C:\Users\Safak\.gemini\antigravity\scratch\ki-automatisieren-astro\dist\
+13:59:26 [build] Collecting build info...
+13:59:26 [build] ✓ Completed in 170ms.
+13:59:26 [build] Building static entrypoints...
+"default" is imported from external module "react" but never used in "src/components/react/BlogPostDetail.tsx", "src/components/react/BlogCard.tsx", "src/components/react/ConnectedTimeline.tsx" and "src/components/react/CaseStudyDetail.tsx".
+13:59:27 [vite] [32m✓ built in 1.38s[39m
+13:59:27 [build] ✓ Completed in 1.41s.
+
+ building client (vite) 
+13:59:27 [vite] transforming...
+node_modules/@radix-ui/react-tabs/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/@radix-ui/react-tabs/dist/index.mjs" was ignored.
+node_modules/@radix-ui/react-presence/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/@radix-ui/react-presence/dist/index.mjs" was ignored.
+node_modules/@radix-ui/react-roving-focus/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/@radix-ui/react-roving-focus/dist/index.mjs" was ignored.
+node_modules/@radix-ui/react-collection/dist/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "node_modules/@radix-ui/react-collection/dist/index.mjs" was ignored.
+13:59:29 [vite] [32m✓[39m 1730 modules transformed.
+13:59:29 [vite] rendering chunks...
+13:59:29 [vite] computing gzip size...
+13:59:29 [vite] [2mdist/[22m[36m_astro/BlogCard.B4Ks1XxM.js           [39m[1m[2m  2.06 kB[22m[1m[22m[2m │ gzip:  0.90 kB[22m
+13:59:29 [vite] [2mdist/[22m[36m_astro/ConnectedTimeline.CFvXg-tQ.js  [39m[1m[2m  8.22 kB[22m[1m[22m[2m │ gzip:  2.13 kB[22m
+13:59:29 [vite] [2mdist/[22m[36m_astro/routeMappings.D0MtqmEN.js      [39m[1m[2m  8.92 kB[22m[1m[22m[2m │ gzip:  3.41 kB[22m
+13:59:29 [vite] [2mdist/[22m[36m_astro/CaseStudyDetail.nbyfiIBk.js    [39m[1m[2m 13.02 kB[22m[1m[22m[2m │ gzip:  4.10 kB[22m
+13:59:29 [vite] [2mdist/[22m[36m_astro/tabs.Bu7A9wwV.js               [39m[1m[2m172.01 kB[22m[1m[22m[2m │ gzip: 56.19 kB[22m
+13:59:29 [vite] [32m✓ built in 1.81s[39m
+
+ generating static routes 
+13:59:29 ▶ src/pages/blog/[slug].astro
+13:59:29   └─ /blog/welcome-to-our-blog/index.html[NoMatchingRenderer] Unable to render `BlogPostDetail`.
+
+No valid renderer was found for this file extension.
+  Hint:
+    Did you mean to enable the `@astrojs/react`, `@astrojs/preact`, `@astrojs/solid-js`, `@astrojs/vue`, `@astrojs/svelte` or `@astrojs/lit` integration?
+    
+    See https://docs.astro.build/en/guides/framework-components/ for more information on how to install and configure integrations.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/no-matching-renderer/
+  Stack trace:
+    at renderFrameworkComponent (file:///C:/Users/Safak/.gemini/antigravity/scratch/ki-automatisieren-astro/dist/chunks/astro/server_aS10jzg8.mjs:1356:15)

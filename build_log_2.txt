@@ -1,0 +1,31 @@
+﻿
+> mad-mercury@0.0.1 build
+> astro build
+
+13:58:05 [WARN] Unsupported file type C:\Users\Safak\.gemini\antigravity\scratch\ki-automatisieren-astro\src\pages\index.astro.bak found. Prefix filename with an underscore (`_`) to ignore.
+13:58:05 [types] Generated 103ms
+13:58:05 [build] output: "static"
+13:58:05 [build] directory: C:\Users\Safak\.gemini\antigravity\scratch\ki-automatisieren-astro\dist\
+13:58:05 [build] Collecting build info...
+13:58:05 [build] Ô£ô Completed in 202ms.
+13:58:05 [build] Building static entrypoints...
+13:58:06 [vite] [32mÔ£ô built in 1.13s[39m
+13:58:06 [build] Ô£ô Completed in 1.16s.
+
+ building client (vite) 
+13:58:06 [vite] transforming...
+13:58:08 [vite] [32mÔ£ô[39m 1732 modules transformed.
+13:58:08 [vite] rendering chunks...
+13:58:08 [vite] computing gzip size...
+13:58:08 [vite] [2mdist/[22m[36m_astro/BlogPostDetail.C7qHZZbN.js     [39m[1m[2m  0.40 kB[22m[1m[22m[2m Ôöé gzip:  0.29 kB[22m
+13:58:08 [vite] [2mdist/[22m[36m_astro/routeMappings.CjVc1II8.js      [39m[1m[2m  0.81 kB[22m[1m[22m[2m Ôöé gzip:  0.42 kB[22m
+13:58:08 [vite] [2mdist/[22m[36m_astro/BlogCard.zAFBltEq.js           [39m[1m[2m  2.10 kB[22m[1m[22m[2m Ôöé gzip:  0.93 kB[22m
+13:58:08 [vite] [2mdist/[22m[36m_astro/jsx-runtime.DDXJxHXf.js        [39m[1m[2m  8.11 kB[22m[1m[22m[2m Ôöé gzip:  3.05 kB[22m
+13:58:08 [vite] [2mdist/[22m[36m_astro/ConnectedTimeline.DWqihdwl.js  [39m[1m[2m  8.26 kB[22m[1m[22m[2m Ôöé gzip:  2.15 kB[22m
+13:58:08 [vite] [2mdist/[22m[36m_astro/CaseStudyDetail.bmjaNV1O.js    [39m[1m[2m 13.06 kB[22m[1m[22m[2m Ôöé gzip:  4.12 kB[22m
+13:58:08 [vite] [2mdist/[22m[36m_astro/card.DWt2qDnL.js               [39m[1m[2m172.01 kB[22m[1m[22m[2m Ôöé gzip: 56.13 kB[22m
+13:58:08 [vite] [32mÔ£ô built in 1.68s[39m
+
+ generating static routes 
+13:58:08 ÔûÂ src/pages/blog/[slug].astro
+13:58:08   ÔööÔöÇ /blog/welcome-to-our-blog/index.html

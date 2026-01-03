@@ -6,6 +6,13 @@ export interface SolutionData {
     process: { title: string; steps: { title: string; description: string }[] };
     features: { title: string; items: { title: string; description: string }[] };
     benefits: { title: string; items: string[] };
+    caseStudy: {
+        company: string;
+        result: string;
+        description: string;
+        link: string;
+        image: string;
+    };
 }
 
 export const solutions: SolutionData[] = [
@@ -52,6 +59,13 @@ export const solutions: SolutionData[] = [
                 "15+ Stunden Admin-Arbeit pro Woche gespart",
                 "Lückenlose CRM-Dokumentation"
             ]
+        },
+        caseStudy: {
+            company: "ERPA Teknoloji",
+            result: "Stadion-Akquise automatisiert",
+            description: "ERPA Teknoloji automatisiert Stadion-Akquise mit KI und erreicht systematische Neukundengewinnung im B2B-Bereich.",
+            link: "/fallstudien/erpa-teknoloji",
+            image: "/logos/erpa.avif"
         }
     },
     {
@@ -88,6 +102,13 @@ export const solutions: SolutionData[] = [
         benefits: {
             title: "Vorteile",
             items: ["30+ Termine/Monat", "20h Zeitersparnis", "3x Response Rate"]
+        },
+        caseStudy: {
+            company: "Car Studio AI",
+            result: "+30 Termine/Monat",
+            description: "Car Studio AI automatisiert Leadgenerierung mit KI und erzielt 30+ qualifizierte Termine pro Monat durch personalisierte Multichannel-Kampagnen.",
+            link: "/fallstudien/car-studio-ai",
+            image: "/logos/carstudio.avif"
         }
     },
     {
@@ -124,6 +145,13 @@ export const solutions: SolutionData[] = [
         benefits: {
             title: "Ergebnisse",
             items: ["5x mehr Content", "80% Zeitersparnis", "Konsistentes Branding"]
+        },
+        caseStudy: {
+            company: "Salevium",
+            result: "LinkedIn Automatisierung",
+            description: "Salevium automatisiert LinkedIn-Marketing mit KI und erreicht systematische B2B-Lead-Generierung durch Content-Automation.",
+            link: "/fallstudien/salevium",
+            image: "/logos/salevium.avif"
         }
     },
     {
@@ -160,6 +188,13 @@ export const solutions: SolutionData[] = [
         benefits: {
             title: "Vorteile",
             items: ["90% saubere Daten", "Vollständige Transparenz", "Fehlerreduktion"]
+        },
+        caseStudy: {
+            company: "Car Studio AI",
+            result: "15h/Woche gespart",
+            description: "Car Studio AI automatisiert CRM-Prozesse und spart 15 Stunden pro Woche durch intelligente Workflows und Daten-Enrichment.",
+            link: "/fallstudien/car-studio-ai",
+            image: "/logos/carstudio.avif"
         }
     },
     {
@@ -196,6 +231,13 @@ export const solutions: SolutionData[] = [
         benefits: {
             title: "Vorteile",
             items: ["24/7 Erreichbarkeit", "80% Automatisierungsquote", "Entlastetes Team"]
+        },
+        caseStudy: {
+            company: "Acilsatis",
+            result: "1000+ Anfragen beantwortet",
+            description: "Acilsatis automatisiert Kundenservice mit Instagram DM Bot und beantwortet 1000+ Anfragen automatisch, 24/7 verfügbar.",
+            link: "/fallstudien/acilsatis",
+            image: "/logos/acilsatis.avif"
         }
     }
 ];
