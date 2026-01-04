@@ -6,7 +6,7 @@ export default function Footer() {
     const socialLinks = {
         youtube: 'https://www.youtube.com/@KI-Automatisieren',
         tiktok: 'https://www.tiktok.com/@ki_automatisieren',
-        instagram: 'https://www.instagram.com/stautomatisierung/',
+        instagram: 'https://www.instagram.com/ki_automatisieren/',
     };
 
     return (
