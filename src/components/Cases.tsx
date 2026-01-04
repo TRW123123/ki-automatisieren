@@ -70,9 +70,9 @@ export default function Cases() {
                 </div>
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
                     {cases.map((case_item, index) => (
-                        <Card key={index} className="group transition-all duration-300 hover:border-primary/30 flex flex-col h-full bg-[#111827] border-white/10">
-                            <CardContent className="p-6 flex flex-col h-full">
-                                <div className="h-12 w-full bg-transparent rounded-lg flex items-center justify-center p-3">
+                        <Card key={index} className="group transition-all duration-500 hover:border-lime-500/50 hover:shadow-[0_0_30px_rgba(163,230,53,0.1)] flex flex-col h-full bg-[#111827] border-white/5 relative overflow-hidden">
+                            <CardContent className="p-6 flex flex-col h-full relative z-10">
+                                <div className="h-12 w-full bg-transparent rounded-lg flex items-center justify-center p-3 mb-4">
                                     {case_item.logo ? (
                                         <img
                                             src={case_item.logo}
@@ -81,7 +81,7 @@ export default function Cases() {
                                             height={case_item.height}
                                             loading="lazy"
                                             decoding="async"
-                                            className="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                                            className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-110"
                                         />
                                     ) : (
                                         <span className="text-muted-foreground text-xs font-medium">
