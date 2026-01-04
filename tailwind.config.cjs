@@ -54,6 +54,12 @@ module.exports = {
                 sans: ['Space Grotesk', 'sans-serif'],
             },
         },
+        backgroundImage: {
+            'grid-pattern': "linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)",
+        },
+        boxShadow: {
+            'lime-glow': '0 0 8px rgba(163, 230, 53, 0.6)',
+        },
     },
     plugins: [
         require('@tailwindcss/typography'),

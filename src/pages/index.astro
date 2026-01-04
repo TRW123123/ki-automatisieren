@@ -1,25 +1,25 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/Hero.astro";
-import Agitate from "@/components/Agitate.astro";
-import SolutionSection from "@/components/SolutionSection.astro";
-import MiniCases from "@/components/MiniCases.astro";
+import Agitate from "@/components/Agitate.tsx";
+import GoToMarketTimeline from "@/components/GoToMarketTimeline.tsx";
+import SolutionSection from "@/components/SolutionSection.tsx";
+import Cases from "@/components/Cases.tsx";
 import QuickAnalysisModal from "@/components/QuickAnalysisModal.astro";
 
 // Pure Strict Alignment Index Page
-// Structure: Hero -> Agitate -> Solution -> MiniCases
+// Structure: Hero -> Agitate -> GoToMarketTimeline -> Solution -> Cases
 ---
 
-<BaseLayout title="KI Automatisieren – Vertriebs- und Marketingautomatisierung" description="Durchgängige KI-Automatisierung vom Lead bis zum Meeting. Steigern Sie Ihren Umsatz mit Outbound & Inbound, Content- und Social-Media-Automatisierung.">
-  
+<BaseLayout 
+  title="KI Automatisieren – Vertriebs- und Marketingautomatisierung" 
+  description="Durchgängige KI-Automatisierung vom Lead bis zum Meeting. Steigern Sie Ihren Umsatz mit Outbound & Inbound, Content- und Social-Media-Automatisierung."
+>
   <Hero />
-
-  <Agitate />
-
-  <SolutionSection />
-
-  <MiniCases />
-  
+  <Agitate client:load />
+  <GoToMarketTimeline client:load />
+  <SolutionSection client:load />
+  <Cases client:load />
   <QuickAnalysisModal />
-
 </BaseLayout>
+

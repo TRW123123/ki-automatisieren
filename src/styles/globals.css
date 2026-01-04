@@ -1,6 +1,20 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer utilities {
+    .lime-underline {
+        @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#A3E635] after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left;
+    }
+
+    .lime-dot {
+        @apply h-1.5 w-1.5 rounded-full bg-[#A3E635] shadow-lime-glow;
+    }
+
+    .focus-lime {
+        @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A3E635] focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+    }
+}
 
 @layer base {
     :root {
