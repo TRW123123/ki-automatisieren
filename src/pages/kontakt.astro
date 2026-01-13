@@ -1,0 +1,51 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const title = "Kontakt - KI Automatisieren";
+const description = "Kontaktieren Sie KI Automatisieren für eine kostenlose Beratung.";
+---
+
+<BaseLayout title={title} description={description} type="website">
+  <section class="py-24 md:py-32">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">Kontakt</h1>
+        <p class="text-xl text-muted-foreground leading-relaxed">
+          Bereit, Ihr Unternehmen zu automatisieren? Wir freuen uns auf das Gespräch.
+        </p>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        <a href="mailto:s.tepecik@ki-automatisieren.de" class="group relative overflow-hidden rounded-2xl bg-card border border-white/10 p-8 hover:border-lime-500/50 transition-all duration-300">
+          <div class="absolute inset-0 bg-lime-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative z-10 flex flex-col items-center text-center">
+            <div class="w-16 h-16 rounded-full bg-lime-500/10 flex items-center justify-center text-lime-400 mb-6 group-hover:bg-lime-500 group-hover:text-black transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">E-Mail schreiben</h3>
+            <p class="text-muted-foreground mb-4">Für schriftliche Anfragen</p>
+            <span class="text-lime-400 font-medium group-hover:underline">s.tepecik@ki-automatisieren.de</span>
+          </div>
+        </a>
+
+        <a href="tel:+491627246504" class="group relative overflow-hidden rounded-2xl bg-card border border-white/10 p-8 hover:border-lime-500/50 transition-all duration-300">
+          <div class="absolute inset-0 bg-lime-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative z-10 flex flex-col items-center text-center">
+             <div class="w-16 h-16 rounded-full bg-lime-500/10 flex items-center justify-center text-lime-400 mb-6 group-hover:bg-lime-500 group-hover:text-black transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Anrufen</h3>
+            <p class="text-muted-foreground mb-4">Mo-Fr 09:00 - 18:00</p>
+            <span class="text-lime-400 font-medium group-hover:underline">+49 162 724 6504</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="mt-16 text-center">
+         <p class="text-muted-foreground">
+          ST-Automatisierung <span class="mx-2">•</span> Heidestraße 2 <span class="mx-2">•</span> 58239 Schwerte
+         </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

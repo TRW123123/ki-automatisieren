@@ -239,5 +239,48 @@ export const solutions: SolutionData[] = [
             link: "/fallstudien/acilsatis",
             image: "/logos/acilsatis.avif"
         }
+    },
+    {
+        slug: "strategieberatung-ki-sales-marketing",
+        seo: {
+            title: "KI Strategieberatung – Sales & Marketing Transformation",
+            description: "Strategische Beratung für die Einführung von KI in Vertrieb und Marketing. Wir entwickeln Ihre Roadmap zur Automatisierung."
+        },
+        hero: {
+            title: "KI Strategieberatung",
+            subtitle: "Von der Vision zur Umsetzung. Wir entwickeln Ihre maßgeschneiderte KI-Roadmap für Sales & Marketing."
+        },
+        problem: {
+            title: "Herausforderungen",
+            items: ["Fehlendes KI-Know-how", "Unklare Use-Cases", "Sorge vor Fehlinvestitionen"]
+        },
+        process: {
+            title: "Beratungsprozess",
+            steps: [
+                { title: "Audit", description: "Status-Quo Analyse" },
+                { title: "Strategie", description: "Use-Case Definition" },
+                { title: "Roadmap", description: "Umsetzungsplan" },
+                { title: "Begleitung", description: "Implementierungssupport" }
+            ]
+        },
+        features: {
+            title: "Leistungsumfang",
+            items: [
+                { title: "Potentialanalyse", description: "ROI Berechnung" },
+                { title: "Tool-Selection", description: "Die richtige Software" },
+                { title: "Change Mgmt", description: "Team-Onboarding" }
+            ]
+        },
+        benefits: {
+            title: "Ihr Mehrwert",
+            items: ["Klarer Fahrplan", "Vermeidung von Fehlern", "Schnellerer ROI"]
+        },
+        caseStudy: {
+            company: "KI Automatisieren",
+            result: "Strategische Klarheit",
+            description: "Wir begleiten Unternehmen von der ersten Idee bis zur erfolgreichen Implementierung ihrer KI-Strategie.",
+            link: "/fallstudien",
+            image: "/logos/de-logo.avif"
+        }
     }
 ];
