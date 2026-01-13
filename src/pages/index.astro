@@ -9,12 +9,39 @@ import QuickAnalysisModal from "@/components/QuickAnalysisModal.astro";
 
 // Pure Strict Alignment Index Page
 // Structure: Hero -> Agitate -> GoToMarketTimeline -> Solution -> Cases
+
+// Organization + WebSite Schema (required for homepage)
+const organizationSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "KI Automatisieren",
+  "url": "https://ki-automatisieren.de",
+  "logo": "https://ki-automatisieren.de/logo.png",
+  "description": "Durchgängige KI-Automatisierung vom Lead bis zum Meeting. Vertriebs- und Marketingautomatisierung für B2B-Unternehmen.",
+  "sameAs": []
+});
+
+const websiteSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "KI Automatisieren",
+  "url": "https://ki-automatisieren.de",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://ki-automatisieren.de/?s={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+});
 ---
 
 <BaseLayout 
   title="KI Automatisieren – Vertriebs- und Marketingautomatisierung" 
   description="Durchgängige KI-Automatisierung vom Lead bis zum Meeting. Steigern Sie Ihren Umsatz mit Outbound & Inbound, Content- und Social-Media-Automatisierung."
 >
+  <!-- Organization + WebSite Schema -->
+  <script type="application/ld+json" set:html={organizationSchema} />
+  <script type="application/ld+json" set:html={websiteSchema} />
+  
   <Hero />
   <Agitate client:load />
   <SolutionSection client:load />
