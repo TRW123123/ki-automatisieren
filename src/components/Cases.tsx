@@ -79,8 +79,6 @@ export default function Cases() {
                                             alt={`${case_item.company} Logo`}
                                             width={case_item.width}
                                             height={case_item.height}
-                                            loading="lazy"
-                                            decoding="async"
                                             className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-110"
                                         />
                                     ) : (
