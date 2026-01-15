@@ -92,7 +92,7 @@ export default function Cases() {
                                 <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/5 w-full">
                                     <Badge className="bg-primary/10 text-primary pointer-events-none hover:bg-primary/10 border-lime-500/10 whitespace-nowrap">{case_item.metric}</Badge>
                                     <a
-                                        href={`/fallstudien/${case_item.slug}`}
+                                        href={`/fallstudien/${case_item.slug}/`}
                                         className="text-sm text-primary hover:underline focus-visible:outline-2 focus-visible:outline-primary whitespace-nowrap ml-2"
                                     >
                                         Details
