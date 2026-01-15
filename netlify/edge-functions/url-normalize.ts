@@ -17,6 +17,12 @@ export default async (request: Request, context: Context) => {
             return context.next();
         }
 
+        // 0.5 CRAWLER ENTRYPOINTS - EARLY RETURN (P1 GSC FIX)
+        // These files MUST NEVER be normalized or redirected
+        if (path === '/robots.txt' || path === '/sitemap.xml' || path === '/sitemap-index.xml') {
+            return context.next();
+        }
+
         // 1. Handle index.html FIRST (before asset check)
         if (lowerPath === '/index.html' || lowerPath.endsWith('/index.html')) {
             // /index.html → / and /preise/index.html → /preise/
@@ -30,8 +36,8 @@ export default async (request: Request, context: Context) => {
             return Response.redirect(url.origin + withoutHtml + url.search, 301);
         }
 
-        // 3. Skip static assets (images, css, js, etc.)
-        if (/\.(png|jpg|jpeg|gif|svg|ico|css|js|woff|woff2|ttf|eot|webp|mp4|webm|pdf|avif)$/i.test(path)) {
+        // 3. Skip static assets (images, css, js, etc.) + TXT/XML files
+        if (/\.(png|jpg|jpeg|gif|svg|ico|css|js|woff|woff2|ttf|eot|webp|mp4|webm|pdf|avif|txt|xml)$/i.test(path)) {
             return context.next();
         }
 

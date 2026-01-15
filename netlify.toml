@@ -15,6 +15,23 @@
 # Astro handles trailing slashes via trailingSlash: 'always'
 # Netlify should serve /blog/index.html for /blog/ requests
 
+# ===========================================
+# TXT/XML HARDENING - Crawler Entrypoints (P1 GSC FIX)
+# These MUST return 200, NEVER redirect
+# Added: 2026-01-15
+# ===========================================
+[[redirects]]
+  from = "/robots.txt"
+  to = "/robots.txt"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/sitemap-index.xml"
+  to = "/sitemap-index.xml"
+  status = 200
+  force = true
+
 # Only the critical index.html → / redirect
 [[redirects]]
   from = "/index.html"

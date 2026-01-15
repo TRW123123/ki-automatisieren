@@ -12,8 +12,8 @@ https://www.ki-automatisieren.de/* https://ki-automatisieren.de/:splat 301!
 /ki-training                    /losungen/strategieberatung-ki-sales-marketing/ 301
 /social-media                   /losungen/marketing-automatisierung/         301
 
-# FIX 3: Sitemap Alias (P0)
-/sitemap.xml                    /sitemap-index.xml                           301
+# FIX 3: Sitemap is at sitemap-index.xml (Astro naming)
+# Note: robots.txt already references sitemap-index.xml correctly
 
 # Clean URLs (Standard Netlify)
 /index.html                     /                                            301
