@@ -18,13 +18,13 @@
 # Having both causes redirect loops
 
 # ===========================================
-# EDGE FUNCTION - URL Normalizer
-# Runs BEFORE static file serving
-# Enforces: trailing slash, lowercase, no .html
+# EDGE FUNCTION - DISABLED
+# Causes redirect loops with Netlify's Astro SSG routing
+# The explicit redirect rules below handle normalization
 # ===========================================
-[[edge_functions]]
-  path = "/*"
-  function = "url-normalize"
+# [[edge_functions]]
+#   path = "/*"
+#   function = "url-normalize"
 
 # ===========================================
 # FORCED REDIRECTS - Single URL Truth
