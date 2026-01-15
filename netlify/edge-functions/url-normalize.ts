@@ -11,6 +11,12 @@ export default async (request: Request, context: Context) => {
         let path = url.pathname;
         const lowerPath = path.toLowerCase();
 
+        // 0. EARLY RETURN: If path already ends with / and is lowercase, skip processing
+        // This prevents infinite redirect loops with Netlify's static file routing
+        if (path !== '/' && path.endsWith('/') && path === lowerPath) {
+            return context.next();
+        }
+
         // 1. Handle index.html FIRST (before asset check)
         if (lowerPath === '/index.html' || lowerPath.endsWith('/index.html')) {
             // /index.html → / and /preise/index.html → /preise/
