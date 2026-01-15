@@ -14,8 +14,8 @@
 [build.processing]
   skip_processing = false
 
-[build.processing.html]
-  pretty_urls = true
+# NOTE: pretty_urls disabled - Edge Function handles URL normalization
+# Having both causes redirect loops
 
 # ===========================================
 # EDGE FUNCTION - URL Normalizer
