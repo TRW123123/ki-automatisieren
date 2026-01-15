@@ -1,6 +1,6 @@
 # ===========================================
 # NETLIFY CONFIGURATION - ki-automatisieren.de
-# URL Strategy: Edge Function for 301 Redirects
+# MINIMAL CONFIG - Debugging redirect loops
 # Last updated: 2026-01-15
 # ===========================================
 
@@ -11,181 +11,13 @@
 [build.environment]
   NODE_VERSION = "20"
 
-[build.processing]
-  skip_processing = false
+# IMPORTANT: No redirects, no edge functions
+# Astro handles trailing slashes via trailingSlash: 'always'
+# Netlify should serve /blog/index.html for /blog/ requests
 
-# NOTE: pretty_urls disabled - Edge Function handles URL normalization
-# Having both causes redirect loops
-
-# ===========================================
-# EDGE FUNCTION - DISABLED
-# Causes redirect loops with Netlify's Astro SSG routing
-# The explicit redirect rules below handle normalization
-# ===========================================
-# [[edge_functions]]
-#   path = "/*"
-#   function = "url-normalize"
-
-# ===========================================
-# FORCED REDIRECTS - Single URL Truth
-# Redundancy layer for critical paths
-# ===========================================
-
-# --- HOMEPAGE ---
+# Only the critical index.html → / redirect
 [[redirects]]
   from = "/index.html"
   to = "/"
-  status = 301
-  force = true
-
-# --- LOSUNGEN ---
-[[redirects]]
-  from = "/losungen"
-  to = "/losungen/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/Losungen"
-  to = "/losungen/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/losungen.html"
-  to = "/losungen/"
-  status = 301
-  force = true
-
-# --- FALLSTUDIEN ---
-[[redirects]]
-  from = "/fallstudien"
-  to = "/fallstudien/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/Fallstudien"
-  to = "/fallstudien/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/fallstudien.html"
-  to = "/fallstudien/"
-  status = 301
-  force = true
-
-# --- BLOG ---
-[[redirects]]
-  from = "/blog"
-  to = "/blog/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/Blog"
-  to = "/blog/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog.html"
-  to = "/blog/"
-  status = 301
-  force = true
-
-# --- UBER-UNS ---
-[[redirects]]
-  from = "/uber-uns"
-  to = "/uber-uns/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/Uber-uns"
-  to = "/uber-uns/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/uber-uns.html"
-  to = "/uber-uns/"
-  status = 301
-  force = true
-
-# --- KONTAKT ---
-[[redirects]]
-  from = "/kontakt"
-  to = "/kontakt/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/Kontakt"
-  to = "/kontakt/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/kontakt.html"
-  to = "/kontakt/"
-  status = 301
-  force = true
-
-# --- IMPRESSUM (noindex) ---
-[[redirects]]
-  from = "/impressum"
-  to = "/impressum/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/Impressum"
-  to = "/impressum/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/impressum.html"
-  to = "/impressum/"
-  status = 301
-  force = true
-
-# --- DATENSCHUTZ (noindex) ---
-[[redirects]]
-  from = "/datenschutz"
-  to = "/datenschutz/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/Datenschutz"
-  to = "/datenschutz/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/datenschutz.html"
-  to = "/datenschutz/"
-  status = 301
-  force = true
-
-# --- NUTZUNGSBEDINGUNGEN ---
-[[redirects]]
-  from = "/nutzungsbedingungen"
-  to = "/nutzungsbedingungen/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/Nutzungsbedingungen"
-  to = "/nutzungsbedingungen/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/nutzungsbedingungen.html"
-  to = "/nutzungsbedingungen/"
   status = 301
   force = true
