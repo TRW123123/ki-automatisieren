@@ -9,5 +9,13 @@ export default defineConfig({
   output: 'static',
   // adapter: netlify(),
   trailingSlash: 'always',
-  integrations: [tailwind({ applyBaseStyles: false }), react(), sitemap()]
+  integrations: [
+    tailwind({ applyBaseStyles: false }),
+    react(),
+    sitemap({
+      filter: (page) =>
+        !page.includes('/impressum/') &&
+        !page.includes('/datenschutz/')
+    })
+  ]
 });

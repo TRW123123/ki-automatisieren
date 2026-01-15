@@ -39,17 +39,17 @@ export default function Footer() {
                                 </a>
                             </li>
                             <li>
-                                <a href="/losungen" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
+                                <a href="/losungen/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
                                     Lösungen
                                 </a>
                             </li>
                             <li>
-                                <a href="/fallstudien" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
+                                <a href="/fallstudien/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
                                     Fallstudien
                                 </a>
                             </li>
                             <li>
-                                <a href="/uber-uns" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
+                                <a href="/uber-uns/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
                                     Über uns
                                 </a>
                             </li>
@@ -60,11 +60,11 @@ export default function Footer() {
                     <div className="space-y-4">
                         <h3 className="text-sm font-semibold text-foreground">Dienstleistungen</h3>
                         <ul className="space-y-2 text-sm">
-                            <li><a href="/losungen/leadgenerierung-ki" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">KI Leadgenerierung</a></li>
-                            <li><a href="/losungen/marketing-automatisierung" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">Marketing Automatisierung</a></li>
-                            <li><a href="/losungen/vertriebsautomatisierung" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">Vertriebsautomatisierung</a></li>
-                            <li><a href="/losungen/crm-prozessautomatisierung" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">CRM Automatisierung</a></li>
-                            <li><a href="/losungen/kundenservice-automatisierung" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">Kundenservice Automatisierung</a></li>
+                            <li><a href="/losungen/leadgenerierung-ki/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">KI Leadgenerierung</a></li>
+                            <li><a href="/losungen/marketing-automatisierung/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">Marketing Automatisierung</a></li>
+                            <li><a href="/losungen/vertriebsautomatisierung/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">Vertriebsautomatisierung</a></li>
+                            <li><a href="/losungen/crm-prozessautomatisierung/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">CRM Automatisierung</a></li>
+                            <li><a href="/losungen/kundenservice-automatisierung/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">Kundenservice Automatisierung</a></li>
                             <li><a href="/losungen/strategieberatung-ki-sales-marketing/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">KI Strategieberatung</a></li>
                         </ul>
                     </div>
@@ -154,10 +154,10 @@ export default function Footer() {
                             © {currentYear} KI Automatisieren. Alle Rechte vorbehalten.
                         </p>
                         <div className="flex space-x-4">
-                            <a href="/datenschutz" className="text-sm text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
+                            <a href="/datenschutz/" className="text-sm text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
                                 Datenschutz
                             </a>
-                            <a href="/nutzungsbedingungen" className="text-sm text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
+                            <a href="/nutzungsbedingungen/" className="text-sm text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
                                 Nutzungsbedingungen
                             </a>
                         </div>

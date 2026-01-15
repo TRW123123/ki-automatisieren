@@ -65,7 +65,7 @@ export default function Cases() {
                 <div className="mx-auto mb-16 max-w-2xl text-center">
                     <h2 className="mb-4 text-3xl font-bold text-foreground">Erfolgsgeschichten</h2>
                     <p className="text-muted-foreground">
-                        <a href="/fallstudien" className="text-lime-400 hover:underline">Unsere detaillierten Fallstudien</a> ansehen und Erfolgsgeschichten entdecken.
+                        <a href="/fallstudien/" className="text-lime-400 hover:underline">Unsere detaillierten Fallstudien</a> ansehen und Erfolgsgeschichten entdecken.
                     </p>
                 </div>
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
