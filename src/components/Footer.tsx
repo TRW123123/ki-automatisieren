@@ -131,7 +131,7 @@ export default function Footer() {
                         <h3 className="text-sm font-semibold text-foreground">Kontakt</h3>
                         <div className="space-y-4">
                             <p className="text-sm text-muted-foreground">
-                                Bereit, Ihr Unternehmen zu transformieren?
+                                Bereit für Ihr KI-Vertriebssystem?
                             </p>
                             <Button
                                 className="w-full bg-[#A3E635] hover:bg-[#A3E635]/90 text-black font-semibold hover-glow"

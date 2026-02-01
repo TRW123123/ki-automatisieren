@@ -3,53 +3,73 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const content = {
   title: "Über uns | KI Automatisieren",
-  description: "Safak Tepecik - Experte für B2B-Softwarevertrieb und digitale Transformation.",
-  intro: "Ich bin Safak Tepecik und Experte für B2B-Softwarevertrieb und digitale Transformation. Seit Jahren arbeite ich in der Technologiebranche und habe Erfahrung in der Optimierung digitaler Prozesse für Unternehmen gesammelt.",
-  background: {
-    title: "Beruflicher Hintergrund",
-    text: "Im Laufe meiner Karriere habe ich Unternehmen aus verschiedenen Branchen Technologielösungen angeboten. Ich habe mich insbesondere auf die Automatisierung von Vertriebsprozessen, Kundenbeziehungsmanagement und Datenanalyse spezialisiert. Durch diese Erfahrungen habe ich entdeckt, wie KI-Technologien praktische Lösungen für Unternehmen bieten können."
+  description:
+    "KI Automatisieren baut KI-Systeme für Leadgenerierung, Outbound und Vertriebsautomatisierung.",
+  company: {
+    title: "Wer wir sind",
+    text: "KI Automatisieren ist ein spezialisierter Anbieter von KI- und Automatisierungssystemen für Vertrieb und Marketing. Wir entwickeln und implementieren Systeme, die Leads finden, ansprechen und qualifizieren – vollautomatisch.",
   },
-  current: {
-    title: "Was ich heute mache",
-    text: "Als KI Automatisieren helfe ich Unternehmen in Europa, den maximalen Nutzen aus KI-Technologien zu ziehen. Mein Ziel ist es, komplexe Technologien in praktische Lösungen zu verwandeln, die jeder verstehen und anwenden kann."
+  systems: {
+    title: "Was wir bauen",
+    text: "Unsere Systeme übernehmen die zeitintensiven Aufgaben im Vertrieb: Lead-Recherche, personalisiertes Outreach, Erst-Qualifizierung per KI-Caller und automatische CRM-Dokumentation. Kein Proof-of-Concept, sondern produktionsreife Implementierung.",
   },
-  vision: "Ich glaube, dass KI nicht nur für große Technologieunternehmen, sondern für Unternehmen jeder Größe zugänglich sein sollte. Mit dieser Vision begleite ich insbesondere KMU bei ihren digitalen Transformationsprozessen und biete nachhaltige Lösungen an."
+  approach: {
+    title: "Wie wir arbeiten",
+    text: "System-Design, Architektur, Implementierung. Wir nutzen bewährte Tools wie Make, Vapi und OpenAI – bauen aber keine Abhängigkeiten zu uns. Nach Übergabe gehört das System vollständig dem Kunden.",
+  },
+  founder:
+    "Gegründet von Safak Tepecik mit 8 Jahren Erfahrung im B2B-Softwarevertrieb. Der Fokus liegt auf Systemen, die messbare Ergebnisse liefern, nicht auf Slides.",
 };
 ---
 
-<BaseLayout 
-  title={content.title} 
+<BaseLayout
+  title={content.title}
   description={content.description}
-  type="profile"
+  type="website"
 >
   <section class="py-20 md:py-32">
     <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto">
+      <div class="max-w-4xl mx-auto">
         <h1 class="text-4xl md:text-5xl font-bold mb-8">Über uns</h1>
-        
-        <div class="prose prose-invert prose-lg max-w-none">
-          <p class="text-xl leading-relaxed mb-12 font-medium text-white">
-            {content.intro}
-          </p>
 
-          <div class="grid md:grid-cols-2 gap-12 mb-16">
+        <div class="prose prose-invert prose-lg max-w-none">
+          <!-- Company -->
+          <div class="bg-card p-8 rounded-2xl border border-white/5 mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-lime-400">
+              {content.company.title}
+            </h2>
+            <p class="text-lg text-white leading-relaxed">
+              {content.company.text}
+            </p>
+          </div>
+
+          <!-- Systems & Approach Grid -->
+          <div class="grid md:grid-cols-2 gap-8 mb-12">
             <div class="bg-card p-8 rounded-2xl border border-white/5">
-              <h2 class="text-2xl font-bold mb-4 text-lime-400">{content.background.title}</h2>
-              <p class="text-muted-foreground">{content.background.text}</p>
+              <h2 class="text-2xl font-bold mb-4 text-lime-400">
+                {content.systems.title}
+              </h2>
+              <p class="text-muted-foreground">{content.systems.text}</p>
             </div>
             <div class="bg-card p-8 rounded-2xl border border-white/5">
-              <h2 class="text-2xl font-bold mb-4 text-lime-400">{content.current.title}</h2>
-              <p class="text-muted-foreground">{content.current.text}</p>
+              <h2 class="text-2xl font-bold mb-4 text-lime-400">
+                {content.approach.title}
+              </h2>
+              <p class="text-muted-foreground">{content.approach.text}</p>
             </div>
           </div>
 
-          <blockquote class="border-l-4 border-lime-500 pl-6 italic text-2xl text-muted-foreground my-12">
-            "{content.vision}"
-          </blockquote>
+          <!-- Founder Context -->
+          <p class="text-muted-foreground text-center italic mb-12">
+            {content.founder}
+          </p>
 
-          <div class="flex justify-center mt-16">
-            <a href="#kontakt" class="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-lime-500 text-black font-bold hover:bg-lime-400 transition-colors">
-              Zusammenarbeiten
+          <div class="flex justify-center">
+            <a
+              href="/kontakt/"
+              class="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-lime-500 text-black font-bold hover:bg-lime-400 transition-colors"
+            >
+              System anfragen
             </a>
           </div>
         </div>
