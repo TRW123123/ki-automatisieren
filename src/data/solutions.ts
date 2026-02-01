@@ -243,42 +243,50 @@ export const solutions: SolutionData[] = [
     {
         slug: "strategieberatung-ki-sales-marketing",
         seo: {
-            title: "KI Strategieberatung – Sales & Marketing Transformation",
-            description: "Strategische Beratung für die Einführung von KI in Vertrieb und Marketing. Wir entwickeln Ihre Roadmap zur Automatisierung."
+            title: "System-Design & Implementierung – KI für Vertrieb & Marketing",
+            description: "Wir konzipieren und implementieren KI-Systeme für Ihre Leadgenerierung und Vertriebsautomatisierung. Kein Workshop, direkte Umsetzung."
         },
         hero: {
-            title: "KI Strategieberatung",
-            subtitle: "Von der Vision zur Umsetzung. Wir entwickeln Ihre maßgeschneiderte KI-Roadmap für Sales & Marketing."
+            title: "System-Design & Implementierung",
+            subtitle: "Vom Konzept zum laufenden System. Wir bauen, was andere nur beraten."
         },
         problem: {
-            title: "Herausforderungen",
-            items: ["Fehlendes KI-Know-how", "Unklare Use-Cases", "Sorge vor Fehlinvestitionen"]
+            title: "Das Problem mit klassischer KI-Beratung",
+            items: [
+                "PowerPoint statt Implementierung",
+                "Roadmaps ohne Umsetzungspartner",
+                "Externe Abhängigkeiten nach dem Projekt"
+            ]
         },
         process: {
-            title: "Beratungsprozess",
+            title: "Unser Ansatz",
             steps: [
-                { title: "Audit", description: "Status-Quo Analyse" },
-                { title: "Strategie", description: "Use-Case Definition" },
-                { title: "Roadmap", description: "Umsetzungsplan" },
-                { title: "Begleitung", description: "Implementierungssupport" }
+                { title: "Analyse", description: "Bestehende Systeme & Datenquellen erfassen" },
+                { title: "Architektur", description: "System-Design für Ihren Use Case" },
+                { title: "Implementierung", description: "Make, Vapi, OpenAI – wir bauen es" },
+                { title: "Übergabe", description: "Dokumentation & Training Ihres Teams" }
             ]
         },
         features: {
-            title: "Leistungsumfang",
+            title: "Was Sie bekommen",
             items: [
-                { title: "Potentialanalyse", description: "ROI Berechnung" },
-                { title: "Tool-Selection", description: "Die richtige Software" },
-                { title: "Change Mgmt", description: "Team-Onboarding" }
+                { title: "Fertiges System", description: "Kein Proof-of-Concept, sondern Produktion" },
+                { title: "Dokumentation", description: "Vollständige technische Doku" },
+                { title: "Ownership", description: "Das System gehört Ihnen, kein Vendor Lock-in" }
             ]
         },
         benefits: {
-            title: "Ihr Mehrwert",
-            items: ["Klarer Fahrplan", "Vermeidung von Fehlern", "Schnellerer ROI"]
+            title: "Ihr Ergebnis",
+            items: [
+                "Laufendes System statt Roadmap",
+                "Keine externen Abhängigkeiten",
+                "Messbarer ROI ab Tag 1"
+            ]
         },
         caseStudy: {
             company: "KI Automatisieren",
-            result: "Strategische Klarheit",
-            description: "Wir begleiten Unternehmen von der ersten Idee bis zur erfolgreichen Implementierung ihrer KI-Strategie.",
+            result: "Systeme statt Slides",
+            description: "Wir begleiten Unternehmen von der ersten Idee bis zum laufenden KI-System für Vertrieb und Marketing.",
             link: "/fallstudien",
             image: "/logos/de-logo.avif"
         }

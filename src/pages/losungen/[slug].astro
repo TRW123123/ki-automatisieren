@@ -3,7 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { solutions } from "../../data/solutions";
 
 export function getStaticPaths() {
-  return solutions.map(solution => ({
+  return solutions.map((solution) => ({
     params: { slug: solution.slug },
     props: { solution },
   }));
@@ -15,19 +15,19 @@ const { solution } = Astro.props;
 const serviceSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": solution.hero.title,
-  "description": solution.seo.description,
-  "provider": {
+  name: solution.hero.title,
+  description: solution.seo.description,
+  provider: {
     "@type": "Organization",
-    "name": "KI Automatisieren"
+    name: "KI Automatisieren",
   },
-  "areaServed": "DE",
-  "serviceType": solution.slug
+  areaServed: "DE",
+  serviceType: solution.slug,
 });
 ---
 
-<BaseLayout 
-  title={solution.seo.title} 
+<BaseLayout
+  title={solution.seo.title}
   description={solution.seo.description}
   type="article"
 >
@@ -38,11 +38,22 @@ const serviceSchema = JSON.stringify({
     <div class="absolute inset-0 bg-lime-500/5 -z-10"></div>
     <div class="container mx-auto px-4">
       <div class="max-w-4xl">
-        <div class="text-sm font-medium text-lime-400 mb-4 tracking-wide uppercase">Lösung</div>
-        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">{solution.hero.title}</h1>
-        <p class="text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">{solution.hero.subtitle}</p>
-        <a href="#kontakt" class="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-lime-500 text-black font-bold hover:bg-lime-400 transition-colors">
-          Beratung anfragen
+        <div
+          class="text-sm font-medium text-lime-400 mb-4 tracking-wide uppercase"
+        >
+          Lösung
+        </div>
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          {solution.hero.title}
+        </h1>
+        <p class="text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
+          {solution.hero.subtitle}
+        </p>
+        <a
+          href="#kontakt"
+          class="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-lime-500 text-black font-bold hover:bg-lime-400 transition-colors"
+        >
+          System anfragen
         </a>
       </div>
     </div>
@@ -51,14 +62,18 @@ const serviceSchema = JSON.stringify({
   <!-- Problems -->
   <section class="py-24 border-y border-white/5 bg-card/30">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-12 text-center">{solution.problem.title}</h2>
+      <h2 class="text-3xl font-bold mb-12 text-center">
+        {solution.problem.title}
+      </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {solution.problem.items.map(item => (
-          <div class="p-6 rounded-xl bg-background border border-white/5 flex items-start gap-4">
-            <div class="w-1 h-1 rounded-full bg-red-500 mt-2.5 shrink-0"></div>
-            <p class="text-lg">{item}</p>
-          </div>
-        ))}
+        {
+          solution.problem.items.map((item) => (
+            <div class="p-6 rounded-xl bg-background border border-white/5 flex items-start gap-4">
+              <div class="w-1 h-1 rounded-full bg-red-500 mt-2.5 shrink-0" />
+              <p class="text-lg">{item}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -66,19 +81,26 @@ const serviceSchema = JSON.stringify({
   <!-- Process -->
   <section class="py-24">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-16 text-center">{solution.process.title}</h2>
+      <h2 class="text-3xl font-bold mb-16 text-center">
+        {solution.process.title}
+      </h2>
       <div class="relative">
-        <div class="absolute top-1/2 left-0 w-full h-0.5 bg-white/10 -translate-y-1/2 hidden md:block z-0"></div>
+        <div
+          class="absolute top-1/2 left-0 w-full h-0.5 bg-white/10 -translate-y-1/2 hidden md:block z-0"
+        >
+        </div>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
-          {solution.process.steps.map((step, index) => (
-            <div class="bg-background md:bg-transparent p-6 md:p-0 rounded-xl border border-white/5 md:border-none">
-              <div class="w-10 h-10 rounded-full bg-card border-2 border-lime-500 text-lime-500 font-bold flex items-center justify-center mb-6 mx-auto md:mx-0 relative z-10">
-                {index + 1}
+          {
+            solution.process.steps.map((step, index) => (
+              <div class="bg-background md:bg-transparent p-6 md:p-0 rounded-xl border border-white/5 md:border-none">
+                <div class="w-10 h-10 rounded-full bg-card border-2 border-lime-500 text-lime-500 font-bold flex items-center justify-center mb-6 mx-auto md:mx-0 relative z-10">
+                  {index + 1}
+                </div>
+                <h3 class="text-xl font-bold mb-2">{step.title}</h3>
+                <p class="text-muted-foreground">{step.description}</p>
               </div>
-              <h3 class="text-xl font-bold mb-2">{step.title}</h3>
-              <p class="text-muted-foreground">{step.description}</p>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </div>
     </div>
@@ -89,68 +111,95 @@ const serviceSchema = JSON.stringify({
     <div class="container mx-auto px-4 text-center">
       <h2 class="text-3xl font-bold mb-12">{solution.benefits.title}</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        {solution.benefits.items.map(item => (
-          <div class="p-8 rounded-2xl bg-card border border-lime-500/20 shadow-[0_0_30px_rgba(163,230,53,0.05)]">
-            <p class="text-xl md:text-2xl font-bold text-lime-400">{item}</p>
-          </div>
-        ))}
+        {
+          solution.benefits.items.map((item) => (
+            <div class="p-8 rounded-2xl bg-card border border-lime-500/20 shadow-[0_0_30px_rgba(163,230,53,0.05)]">
+              <p class="text-xl md:text-2xl font-bold text-lime-400">{item}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
 
   <!-- Case Study -->
-  {solution.caseStudy && (
-    <section class="py-24 border-t border-white/5 bg-card/30 relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-lime-500/5 to-transparent pointer-events-none"></div>
-      <div class="container mx-auto px-4 relative z-10">
-        <div class="max-w-4xl mx-auto">
+  {
+    solution.caseStudy && (
+      <section class="py-24 border-t border-white/5 bg-card/30 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-lime-500/5 to-transparent pointer-events-none" />
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-lime-500/30 bg-lime-500/10 text-lime-400 text-xs font-medium mb-6">
-              <span class="w-1.5 h-1.5 rounded-full bg-lime-400 animate-pulse"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-lime-400 animate-pulse" />
               SUCCESS STORY
             </div>
             <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white">
-              Wie <span class="text-lime-400">{solution.caseStudy.company}</span> {solution.caseStudy.result} erreichte
+              Wie{" "}
+              <span class="text-lime-400">{solution.caseStudy.company}</span>{" "}
+              {solution.caseStudy.result} erreichte
             </h2>
-            
+
             <div class="bg-background/80 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-10 shadow-2xl">
               <div class="flex flex-col md:flex-row gap-8 items-center">
                 <div class="w-full md:w-1/3 flex justify-center">
-                    <div class="w-40 h-40 bg-white/5 rounded-full flex items-center justify-center border border-white/10 p-6">
-                        <img 
-                          src={solution.caseStudy.image} 
-                          alt={`${solution.caseStudy.company} Logo`}
-                          class="max-w-full max-h-full object-contain"
-                          loading="lazy"
-                        />
-                    </div>
+                  <div class="w-40 h-40 bg-white/5 rounded-full flex items-center justify-center border border-white/10 p-6">
+                    <img
+                      src={solution.caseStudy.image}
+                      alt={`${solution.caseStudy.company} Logo`}
+                      class="max-w-full max-h-full object-contain"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
                 <div class="w-full md:w-2/3 text-center md:text-left">
                   <p class="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
                     "{solution.caseStudy.description}"
                   </p>
-                  <a 
+                  <a
                     href={solution.caseStudy.link}
                     class="inline-flex items-center text-lime-400 font-bold hover:text-lime-300 transition-colors group"
                   >
                     Fallstudie lesen
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1"
+                    >
+                      <>
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                      </>
+                    </svg>
                   </a>
                 </div>
               </div>
             </div>
+          </div>
         </div>
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
 
   <!-- CTA -->
-  <section id="kontakt" class="py-24 bg-card border-t border-white/5 text-center">
+  <section
+    id="kontakt"
+    class="py-24 bg-card border-t border-white/5 text-center"
+  >
     <div class="container mx-auto px-4">
       <h2 class="text-4xl font-bold mb-6">Starten Sie jetzt</h2>
-      <a href="mailto:kontakt@ki-automatisieren.de" class="inline-block px-8 py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-colors">
+      <a
+        href="mailto:kontakt@ki-automatisieren.de"
+        class="inline-block px-8 py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-colors"
+      >
         Gespräch vereinbaren
       </a>
     </div>
   </section>
-
 </BaseLayout>

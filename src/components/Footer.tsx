@@ -65,7 +65,7 @@ export default function Footer() {
                             <li><a href="/losungen/vertriebsautomatisierung/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">Vertriebsautomatisierung</a></li>
                             <li><a href="/losungen/crm-prozessautomatisierung/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">CRM Automatisierung</a></li>
                             <li><a href="/losungen/kundenservice-automatisierung/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">Kundenservice Automatisierung</a></li>
-                            <li><a href="/losungen/strategieberatung-ki-sales-marketing/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">KI Strategieberatung</a></li>
+                            <li><a href="/losungen/strategieberatung-ki-sales-marketing/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">System-Design</a></li>
                         </ul>
                     </div>
 
@@ -142,7 +142,7 @@ export default function Footer() {
                                     }
                                 }}
                             >
-                                Kostenlose Beratung Erhalten
+                                Jetzt System anfragen
                             </Button>
                         </div>
                     </div>
