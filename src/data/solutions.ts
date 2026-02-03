@@ -1,11 +1,29 @@
 export interface SolutionData {
     slug: string;
-    seo: { title: string; description: string };
-    hero: { title: string; subtitle: string };
-    problem: { title: string; items: string[] };
-    process: { title: string; steps: { title: string; description: string }[] };
-    features: { title: string; items: { title: string; description: string }[] };
-    benefits: { title: string; items: string[] };
+    seo: {
+        title: string;
+        description: string;
+    };
+    hero: {
+        title: string;
+        subtitle: string;
+    };
+    problem: {
+        title: string;
+        items: string[];
+    };
+    process: {
+        title: string;
+        steps: Array<{ title: string; description: string }>;
+    };
+    features: {
+        title: string;
+        items: Array<{ title: string; description: string }>;
+    };
+    benefits: {
+        title: string;
+        items: string[];
+    };
     caseStudy: {
         company: string;
         result: string;
@@ -17,6 +35,49 @@ export interface SolutionData {
 
 export const solutions: SolutionData[] = [
     {
+        slug: "leadgenerierung-ki",
+        seo: {
+            title: "KI Leadgenerierung – 30+ B2B Termine/Monat (Garantiert)",
+            description: "Automatisieren Sie Ihre Leadgenerierung mit KI. Finden und kontaktieren Sie Ihre Traumkunden vollautomatisch. Skalierbar & messbar."
+        },
+        hero: {
+            title: "KI Leadgenerierung",
+            subtitle: "Hören Sie auf, Leads manuell zu suchen. Lassen Sie KI Ihre Pipeline füllen – automatisch und qualifiziert."
+        },
+        problem: {
+            title: "Herausforderungen",
+            items: ["Leere Pipeline", "Teure Ads", "Niedrige Antwortraten"]
+        },
+        process: {
+            title: "Prozess",
+            steps: [
+                { title: "Daten-Analyse", description: "Identifikation idealer Kunden (ICP)" },
+                { title: "Smart-Scraping", description: "Automatisierte Datengewinnung" },
+                { title: "Enrichment", description: "KI-Anreicherung & Validierung" },
+                { title: "Outreach", description: "Personalisierte Kampagnen" }
+            ]
+        },
+        features: {
+            title: "Features",
+            items: [
+                { title: "ICP-Targeting", description: "Präzise Zielgruppen" },
+                { title: "Multi-Channel", description: "LinkedIn & E-Mail" },
+                { title: "Warm-Up", description: "Domain-Protection" }
+            ]
+        },
+        benefits: {
+            title: "Vorteile",
+            items: ["30+ Termine/Monat", "90% Zeitersparnis", "Qualifizierte Leads"]
+        },
+        caseStudy: {
+            company: "ERPA",
+            result: "Europäische Expansion",
+            description: "Wie ERPA Teknoloji mit KI-Leadgenerierung in neue Märkte expandierte.",
+            link: "/fallstudien/erpa-teknoloji",
+            image: "/logos/erpa.avif"
+        }
+    },
+    {
         slug: "vertriebsautomatisierung",
         seo: {
             title: "Vertriebsautomatisierung – Outbound & KI-Caller",
@@ -27,217 +88,36 @@ export const solutions: SolutionData[] = [
             subtitle: "Entlasten Sie Ihr Vertriebsteam von Admin-Arbeit. KI übernimmt Outbound, Follow-ups und erste Qualifizierung."
         },
         problem: {
-            title: "Diese Herausforderungen kennen Sie?",
-            items: [
-                "Vertriebsteam ertrinkt in Admin-Arbeit",
-                "Leads werden zu langsam kontaktiert",
-                "CRM-Dokumentation wird vernachlässigt",
-                "Follow-ups sind inkonsistent"
-            ]
+            title: "Probleme im Vertrieb",
+            items: ["Zu viel Admin-Arbeit", "Vergessene Follow-ups", "Teure SDR Gehälter"]
         },
         process: {
-            title: "Unsere KI-Lösung in 4 Schritten",
+            title: "Vorgehensweise",
             steps: [
-                { title: "Analyse", description: "Verstehen Ihrer Vertriebsprozesse und Engpässe" },
-                { title: "Automatisierung", description: "KI-Caller, CRM-Sync und automatische Follow-ups" },
-                { title: "Integration", description: "Nahtlose Einbindung in Ihr bestehendes CRM" },
-                { title: "Skalierung", description: "Kontinuierliche Optimierung Ihrer Sales Pipeline" }
-            ]
-        },
-        features: {
-            title: "Leistungsumfang",
-            items: [
-                { title: "KI-Caller", description: "Erste Qualifizierung per Telefon automatisiert" },
-                { title: "CRM-Sync", description: "Automatische Dokumentation aller Aktivitäten" },
-                { title: "Pipeline Automation", description: "Deals bewegen sich automatisch durch Ihre Pipeline" }
-            ]
-        },
-        benefits: {
-            title: "Ergebnisse & Vorteile",
-            items: [
-                "50% mehr Zeit für Verkaufsgespräche",
-                "15+ Stunden Admin-Arbeit pro Woche gespart",
-                "Lückenlose CRM-Dokumentation"
-            ]
-        },
-        caseStudy: {
-            company: "ERPA Teknoloji",
-            result: "Stadion-Akquise automatisiert",
-            description: "ERPA Teknoloji automatisiert Stadion-Akquise mit KI und erreicht systematische Neukundengewinnung im B2B-Bereich.",
-            link: "/fallstudien/erpa-teknoloji",
-            image: "/logos/erpa.avif"
-        }
-    },
-    {
-        slug: "leadgenerierung-ki",
-        seo: {
-            title: "KI Leadgenerierung – 30+ B2B Termine automatisiert",
-            description: "Automatisierte Lead-Recherche, personalisierte Outreach, Follow-ups. Füllen Sie Ihren Kalender mit qualifizierten Terminen."
-        },
-        hero: {
-            title: "KI-basierte Leadgenerierung",
-            subtitle: "Automatisierte Recherche, personalisiertes Outreach, intelligente Follow-ups."
-        },
-        problem: {
-            title: "Herausforderungen",
-            items: ["Kalender bleibt leer", "Manuelle Recherche kostet Zeit", "Cold Outreach bringt nichts"]
-        },
-        process: {
-            title: "Prozess",
-            steps: [
-                { title: "Analyse", description: "Verstehen Ihrer Zielgruppe" },
-                { title: "Automatisierung", description: "Lead-Recherche und Outreach" },
-                { title: "Integration", description: "CRM Anbindung" },
-                { title: "Skalierung", description: "Optimierung" }
+                { title: "Audit", description: "Analyse Ihrer Prozesse" },
+                { title: "System-Design", description: "Architektur der AI-Agents" },
+                { title: "Integration", description: "Anbindung an CRM (HubSpot, Pipedrive)" },
+                { title: "Go-Live", description: "Start der Automatisierung" }
             ]
         },
         features: {
             title: "Funktionen",
             items: [
-                { title: "Auto-Recherche", description: "Findet ideale Kunden" },
-                { title: "Personalisierung", description: "Individuelle Ansprache" },
-                { title: "Multichannel", description: "Email & LinkedIn" }
-            ]
-        },
-        benefits: {
-            title: "Vorteile",
-            items: ["30+ Termine/Monat", "20h Zeitersparnis", "3x Response Rate"]
-        },
-        caseStudy: {
-            company: "Car Studio AI",
-            result: "+30 Termine/Monat",
-            description: "Car Studio AI automatisiert Leadgenerierung mit KI und erzielt 30+ qualifizierte Termine pro Monat durch personalisierte Multichannel-Kampagnen.",
-            link: "/fallstudien/car-studio-ai",
-            image: "/logos/carstudio.avif"
-        }
-    },
-    {
-        slug: "marketing-automatisierung",
-        seo: {
-            title: "Marketing Automatisierung – Content & Ads auf Autopilot",
-            description: "KI-gestützte Content-Erstellung, Social Media Automation, Ads-Optimierung."
-        },
-        hero: {
-            title: "Marketing-Automatisierung",
-            subtitle: "Skalieren Sie Ihr Marketing ohne zusätzliches Team. KI erstellt Content und postet automatisch."
-        },
-        problem: {
-            title: "Probleme",
-            items: ["Content ist teuer", "Social Media ist sporadisch", "Ads laufen schlecht"]
-        },
-        process: {
-            title: "Prozess",
-            steps: [
-                { title: "Analyse", description: "Ziele definieren" },
-                { title: "Automatisierung", description: "Content Erstellung" },
-                { title: "Integration", description: "Tools verknüpfen" },
-                { title: "Skalierung", description: "Performance Tracking" }
-            ]
-        },
-        features: {
-            title: "Features",
-            items: [
-                { title: "Content AI", description: "Blog & Social Postings" },
-                { title: "Auto-Posting", description: "Alle Kanäle" },
-                { title: "Ad-Optimierung", description: "Besserer ROI" }
+                { title: "KI-Voice-Caller", description: "Vapi.ai Integration" },
+                { title: "Auto-Follow-up", description: "Kein Lead geht verloren" },
+                { title: "Meeting-Bot", description: "Automatische Terminbuchung" }
             ]
         },
         benefits: {
             title: "Ergebnisse",
-            items: ["5x mehr Content", "80% Zeitersparnis", "Konsistentes Branding"]
-        },
-        caseStudy: {
-            company: "Salevium",
-            result: "LinkedIn Automatisierung",
-            description: "Salevium automatisiert LinkedIn-Marketing mit KI und erreicht systematische B2B-Lead-Generierung durch Content-Automation.",
-            link: "/fallstudien/salevium",
-            image: "/logos/salevium.avif"
-        }
-    },
-    {
-        slug: "crm-prozessautomatisierung",
-        seo: {
-            title: "CRM Automatisierung – Workflows für KMU",
-            description: "Automatisieren Sie CRM, Dokumentenverarbeitung, Daten-Enrichment."
-        },
-        hero: {
-            title: "CRM- & Prozessautomatisierung",
-            subtitle: "Lassen Sie Ihre Systeme für sich arbeiten. Automatisieren Sie CRM und Datenverarbeitung."
-        },
-        problem: {
-            title: "Herausforderungen",
-            items: ["Daten unvollständig", "Manuelle Eingabe", "Excel-Chaos"]
-        },
-        process: {
-            title: "Prozess",
-            steps: [
-                { title: "Analyse", description: "Prozess-Mapping" },
-                { title: "Automatisierung", description: "N8n / Make Workflows" },
-                { title: "Integration", description: "Systeme verbinden" },
-                { title: "Skalierung", description: "Maintenance" }
-            ]
-        },
-        features: {
-            title: "Features",
-            items: [
-                { title: "CRM Clean-up", description: "Keine Dubletten" },
-                { title: "Data Enrichment", description: "Daten anreichern" },
-                { title: "Doc Parsing", description: "PDFs auslesen" }
-            ]
-        },
-        benefits: {
-            title: "Vorteile",
-            items: ["90% saubere Daten", "Vollständige Transparenz", "Fehlerreduktion"]
+            items: ["24/7 Erreichbarkeit", "Konsistente Qualität", "Skalierbarer Outreach"]
         },
         caseStudy: {
             company: "Car Studio AI",
-            result: "15h/Woche gespart",
-            description: "Car Studio AI automatisiert CRM-Prozesse und spart 15 Stunden pro Woche durch intelligente Workflows und Daten-Enrichment.",
+            result: "3000+ Mails/Monat",
+            description: "Wie Car Studio AI den Vertrieb komplett automatisierte und internationale Märkte erschloss.",
             link: "/fallstudien/car-studio-ai",
             image: "/logos/carstudio.avif"
-        }
-    },
-    {
-        slug: "kundenservice-automatisierung",
-        seo: {
-            title: "Kundenservice Automatisierung – Chatbots 24/7",
-            description: "KI-Chatbots & Voicebots für automatisierten Kundenservice."
-        },
-        hero: {
-            title: "Kundenservice-Automatisierung",
-            subtitle: "Bieten Sie erstklassigen Kundenservice rund um die Uhr."
-        },
-        problem: {
-            title: "Herausforderungen",
-            items: ["Lange Wartezeiten", "Hohe Personalkosten", "Nur 9-5 erreichbar"]
-        },
-        process: {
-            title: "Prozess",
-            steps: [
-                { title: "Analyse", description: "FAQ Analyse" },
-                { title: "Automatisierung", description: "Bot Training" },
-                { title: "Integration", description: "Website & WhatsApp" },
-                { title: "Skalierung", description: "Continuous Learning" }
-            ]
-        },
-        features: {
-            title: "Features",
-            items: [
-                { title: "Chatbots", description: "Web & Messenger" },
-                { title: "Voicebots", description: "Telefon-Support" },
-                { title: "Ticket Routing", description: "An den richtigen Agenten" }
-            ]
-        },
-        benefits: {
-            title: "Vorteile",
-            items: ["24/7 Erreichbarkeit", "80% Automatisierungsquote", "Entlastetes Team"]
-        },
-        caseStudy: {
-            company: "Acilsatis",
-            result: "1000+ Anfragen beantwortet",
-            description: "Acilsatis automatisiert Kundenservice mit Instagram DM Bot und beantwortet 1000+ Anfragen automatisch, 24/7 verfügbar.",
-            link: "/fallstudien/acilsatis",
-            image: "/logos/acilsatis.avif"
         }
     },
     {
@@ -289,6 +169,135 @@ export const solutions: SolutionData[] = [
             description: "Wir begleiten Unternehmen von der ersten Idee bis zum laufenden KI-System für Vertrieb und Marketing.",
             link: "/fallstudien",
             image: "/logos/de-logo.avif"
+        }
+    },
+    {
+        slug: "marketing-automatisierung",
+        seo: {
+            title: "Marketing Automatisierung – Content & Ads",
+            description: "Skalieren Sie Ihr Marketing mit KI. Automatisierte Content-Erstellung, Ad-Management und Social Media."
+        },
+        hero: {
+            title: "Marketing Automatisierung – Content & Ads",
+            subtitle: "Mehr Sichtbarkeit, weniger manueller Aufwand. Lassen Sie KI Ihren Content und Ihre Ads steuern."
+        },
+        problem: {
+            title: "Marketing-Engpässe",
+            items: ["Content-Erstellung dauert zu lange", "Inkonsistente Posting-Frequenz", "Teure Agenturen"]
+        },
+        process: {
+            title: "Ablauf",
+            steps: [
+                { title: "Rethink", description: "Content-Strategie Workshop" },
+                { title: "AI-Setup", description: "Training der KI auf Ihre Brand-Voice" },
+                { title: "Automation", description: "Autopilot für Social Media" },
+                { title: "Scale", description: "Mehr Output bei gleichen Kosten" }
+            ]
+        },
+        features: {
+            title: "Tools",
+            items: [
+                { title: "Content-Engine", description: "Blog & Social Posts auf Knopfdruck" },
+                { title: "Ad-Optimizer", description: "Automatische Gebotsanpassung" },
+                { title: "Visual-AI", description: "Bildgenerierung für Ads" }
+            ]
+        },
+        benefits: {
+            title: "Impact",
+            items: ["10x mehr Content", "Brand-Konsistenz", "Höhere ROAS"]
+        },
+        caseStudy: {
+            company: "Salevium",
+            result: "22.000+ Follower",
+            description: "Wie Salevium durch automatisierte Content-Erstellung zur LinkedIn-Authority wurde.",
+            link: "/fallstudien/salevium",
+            image: "/logos/salevium.avif"
+        }
+    },
+    {
+        slug: "crm-prozessautomatisierung",
+        seo: {
+            title: "CRM Automatisierung – Workflows für KMU",
+            description: "Verbinden Sie Ihre Tools. Automatisierte Datenflüsse zwischen CRM, E-Mail und Accounting."
+        },
+        hero: {
+            title: "CRM Automatisierung – Workflows für KMU",
+            subtitle: "Schluss mit Copy-Paste. Wir verbinden Ihre Software-Inseln zu einem integrierten System."
+        },
+        problem: {
+            title: "Daten-Chaos",
+            items: ["Manuelle Dateneingabe", "Fehlerhafte Datensätze", "Tools sprechen nicht miteinander"]
+        },
+        process: {
+            title: "Integration",
+            steps: [
+                { title: "Mapping", description: "Datenflüsse visualisieren" },
+                { title: "API-Check", description: "Schnittstellen prüfen" },
+                { title: "Workflow", description: "Make.com Szenarios bauen" },
+                { title: "Testing", description: "Fehlerfreier Betrieb" }
+            ]
+        },
+        features: {
+            title: "Möglichkeiten",
+            items: [
+                { title: "Sync", description: "Echtzeit-Datenabgleich" },
+                { title: "Alerts", description: "Benachrichtigung bei Fehlern" },
+                { title: "Cleaning", description: "Automatische Duplikatbereinigung" }
+            ]
+        },
+        benefits: {
+            title: "Nutzen",
+            items: ["Saubere Daten", "Zeitersparnis", "Skalierbare Prozesse"]
+        },
+        caseStudy: {
+            company: "CemKimsan",
+            result: "Int. Reseller-Akquise",
+            description: "Wie CemKimsan durch automatisierte Recherche internationale Reseller gewann.",
+            link: "/fallstudien/cemkimsan",
+            image: "/logos/cemkimsan.avif"
+        }
+    },
+    {
+        slug: "kundenservice-automatisierung",
+        seo: {
+            title: "Kundenservice Automatisierung – Chatbots 24/7",
+            description: "Bieten Sie 24/7 Support ohne Personalaufbau. KI-Chatbots lösen 80% der Anfragen automatisch."
+        },
+        hero: {
+            title: "Kundenservice Automatisierung – Chatbots 24/7",
+            subtitle: "Perfekter Service rund um die Uhr. KI beantwortet Fragen, bucht Termine und qualifiziert Kunden."
+        },
+        problem: {
+            title: "Support-Last",
+            items: ["Wiederkehrende Fragen", "Lange Wartezeiten", "Teure Support-Mitarbeiter"]
+        },
+        process: {
+            title: "Implementierung",
+            steps: [
+                { title: "Knowledge-Base", description: "Unternehmenswissen strukturieren" },
+                { title: "Training", description: "KI-Modell anlernen" },
+                { title: "Deploy", description: "Integration auf Website & WhatsApp" },
+                { title: "Überwachung", description: "Qualitätssicherung" }
+            ]
+        },
+        features: {
+            title: "Skills",
+            items: [
+                { title: "Multilingual", description: "Support in allen Sprachen" },
+                { title: "Omnichannel", description: "Web, WhatsApp, Mail" },
+                { title: "Handover", description: "Nahtlose Übergabe an Menschen" }
+            ]
+        },
+        benefits: {
+            title: "Gewinn",
+            items: ["Sofortige Antworten", "Sinkende Support-Kosten", "Höhere Kundenzufriedenheit"]
+        },
+        caseStudy: {
+            company: "Coach Bilge",
+            result: "80% weniger No-Shows",
+            description: "Wie Coach Bilge durch automatisierte Terminbuchung die No-Show-Rate drastisch senkte.",
+            link: "/fallstudien/dkm-coach-bilge",
+            image: "/logos/coach-bilge.avif"
         }
     }
 ];

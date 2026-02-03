@@ -3,32 +3,78 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { solutions } from "../../data/solutions";
 
 const title = "Unsere KI-Lösungen";
-const description = "Entdecken Sie unsere maßgeschneiderten KI-Lösungen für Vertrieb, Marketing und Prozesse.";
+const description =
+  "Entdecken Sie unsere maßgeschneiderten KI-Lösungen für Vertrieb, Marketing und Prozesse.";
 ---
 
 <BaseLayout title={title} description={description}>
   <section class="py-20 md:py-32 relative overflow-hidden">
     <div class="absolute inset-0 bg-lime-500/5 -z-10"></div>
     <div class="container mx-auto px-4 text-center">
-      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Unsere KI-Lösungen</h1>
-      <p class="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
-        Skalieren Sie Ihr Unternehmen mit intelligenter Automatisierung.
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+        KI-Systeme für Vertrieb & Marketing
+      </h1>
+      <p
+        class="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
+      >
+        Leadgenerierung, Outbound und Qualifizierung – voll automatisiert.
       </p>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto text-left">
-        {solutions.map(solution => (
-          <a href={`/losungen/${solution.slug}`} class="group block p-8 rounded-2xl bg-card border border-white/10 hover:border-lime-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(163,230,53,0.1)]">
-            <div class="mb-4 text-lime-400">
-               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" x2="12" y1="22.08" y2="12"/></svg>
-            </div>
-            <h2 class="text-xl font-bold mb-3 group-hover:text-lime-400 transition-colors">{solution.hero.title}</h2>
-            <p class="text-muted-foreground">{solution.hero.subtitle}</p>
-            <div class="mt-6 flex items-center text-sm font-medium text-lime-400">
-              Mehr erfahren 
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 transition-transform group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </div>
-          </a>
-        ))}
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto text-left"
+      >
+        {
+          solutions.map((solution) => (
+            <a
+              href={`/losungen/${solution.slug}`}
+              class="group block p-8 rounded-2xl bg-card border border-white/10 hover:border-lime-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(163,230,53,0.1)]"
+            >
+              <div class="mb-4 text-lime-400">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <>
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                    <line x1="12" x2="12" y1="22.08" y2="12" />
+                  </>
+                </svg>
+              </div>
+              <h2 class="text-xl font-bold mb-3 group-hover:text-lime-400 transition-colors">
+                {solution.hero.title}
+              </h2>
+              <p class="text-muted-foreground">{solution.hero.subtitle}</p>
+              <div class="mt-6 flex items-center text-sm font-medium text-lime-400">
+                Mehr erfahren
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="ml-2 transition-transform group-hover:translate-x-1"
+                >
+                  <>
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </>
+                </svg>
+              </div>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>

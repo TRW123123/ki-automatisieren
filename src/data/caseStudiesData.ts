@@ -139,32 +139,32 @@ export const caseStudiesData: CaseStudy[] = [
     {
         id: 5,
         slug: "cemkimsan",
-        category: "CRM-Prozessautomatisierung",
+        category: "Internationale Leadgenerierung",
         title: "CemKimsan",
-        summary: "Digitale Transformation des Kundenerlebnisses und der Vertriebsprozesse im Chemiesektor durch CRM-Prozessautomatisierung.",
-        metaTitle: "CemKimsan Fallstudie – CRM-Prozessautomatisierung | Digitale Transformation",
-        metaDescription: "CemKimsan: CRM-Prozessautomatisierung für digitale Transformation im Chemiesektor mit KI-gestützter Kundenbetreuung.",
+        summary: "Automatisierte Identifikation und Akquise von internationalen Resellern durch KI-Recherche und personalisiertes Outreach.",
+        metaTitle: "CemKimsan Fallstudie – Internationale Leadgenerierung | Reseller-Akquise",
+        metaDescription: "CemKimsan Erfolg: Internationale Reseller-Akquise durch KI. Automatisierte Recherche von Partnern und personalisierte E-Mail-Kampagnen.",
         logo: "/logos/cemkimsan.avif",
         logoDimensions: { width: 149, height: 42 },
         kpis: [
-            { label: "Kundenbeziehung", value: "360° Sicht" },
-            { label: "Prozesseffizienz", value: "+40%" },
-            { label: "Automatisierung", value: "End-to-End" }
+            { label: "Zielmarkt", value: "Global / Reseller" },
+            { label: "Datenqualität", value: "Verifizierte Leads" },
+            { label: "Kampagne", value: "Personalisiert" }
         ],
         problem: [
-            "Verstreute Kundeninformationen in verschiedenen Systemen",
-            "Manuelle und zeitaufwändige Angebotsprozesse",
-            "Schwierigkeiten bei der Nachverfolgung von Kundenanfragen"
+            "Manuelle Suche nach internationalen Vertriebspartnern war ineffizient",
+            "Schwierigkeit, die richtigen Ansprechpartner bei Resellern zu finden",
+            "Kein skalierbarer Prozess für globale Akquise"
         ],
-        solution: "Ein umfassendes CRM-System wurde implementiert, das alle Kundeninteraktionen zentralisiert und automatisiert. KI-gestützte Empfehlungen helfen dem Vertriebsteam bei der Priorisierung.",
-        implementationSteps: ["CRM-Systemintegration", "Datenmigration und -bereinigung", "Automatisierte Workflows", "KI-Empfehlungssystem"],
+        solution: "Ein KI-System durchsuchte globale Datenbanken nach potenziellen Resellern und qualifizierte diese vor. Anschließend wurden hochpersonalisierte E-Mails versendet, um Partnerschaften anzubahnen.",
+        implementationSteps: ["KI-Recherche globaler Reseller", "Daten-Anreicherung & Verifizierung", "Personalisierte E-Mail-Sequenzen", "Automatisches Follow-up"],
         results: [
-            "360-Grad-Sicht auf alle Kundenbeziehungen",
-            "40% Steigerung der Prozesseffizienz",
-            "End-to-End-Automatisierung kritischer Vertriebsprozesse",
-            "Verbesserte Kundenzufriedenheit durch schnellere Reaktionszeiten"
+            "Laufender Strom an qualifizierten Reseller-Anfragen",
+            "Enorme Zeitersparnis bei der Marktrecherche",
+            "Direkter Zugang zu Entscheidungsträgern international",
+            "Skalierbarer Prozess für neue Ländermärkte"
         ],
-        quote: "Die CRM-Automatisierung hat unsere Vertriebseffizienz transformiert und uns eine völlig neue Sicht auf unsere Kunden gegeben."
+        quote: "Das System liefert uns potenzielle Partner auf dem Silbertablett, während wir uns auf die Verhandlungen konzentrieren."
     },
     {
         id: 6,
