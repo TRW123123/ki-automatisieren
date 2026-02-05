@@ -1,7 +1,7 @@
 # ===========================================
 # NETLIFY CONFIGURATION - ki-automatisieren.de
 # MINIMAL CONFIG - Debugging redirect loops
-# Last updated: 2026-01-15
+# Last updated: 2026-02-05
 # ===========================================
 
 [build]
@@ -15,11 +15,4 @@
 # Astro handles trailing slashes via trailingSlash: 'always'
 # Netlify should serve /blog/index.html for /blog/ requests
 
-
-
-# Only the critical index.html → / redirect
-[[redirects]]
-  from = "/index.html"
-  to = "/"
-  status = 301
-  force = true
+# Note: index.html → / redirect is in public/_redirects

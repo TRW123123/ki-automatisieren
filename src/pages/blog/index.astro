@@ -1,61 +1,64 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import BlogCard from '../../components/react/BlogCard';
-import { blogPosts } from '../../data/blogData';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogCard from "../../components/react/BlogCard";
+import { blogPosts } from "../../data/blogData";
 
 // Sort posts by date desc
-const sortedPosts = [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+const sortedPosts = [...blogPosts].sort(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+);
 
-const currentLanguage = 'de';
+const currentLanguage = "de";
 
 const t = {
-    'blog.seo.title': 'Blog | KI Automatisieren',
-    'blog.seo.description': 'Einblicke und Neuigkeiten rund um KI-Automatisierung.',
-    'blog.hero.title': 'Unser Blog',
-    'blog.hero.subtitle': 'Aktuelle Einblicke, Trends und Strategien zur KI-Automatisierung für Ihr Unternehmen.',
-    'blog.empty': 'Noch keine Blog-Posts vorhanden.'
+  "blog.seo.title": "Blog | KI Automatisieren",
+  "blog.seo.description":
+    "Einblicke und Neuigkeiten rund um KI-Automatisierung.",
+  "blog.hero.title": "Unser Blog",
+  "blog.hero.subtitle":
+    "Aktuelle Einblicke, Trends und Strategien zur KI-Automatisierung für Ihr Unternehmen.",
+  "blog.empty": "Noch keine Blog-Posts vorhanden.",
 };
 ---
 
-<BaseLayout
-  title={t['blog.seo.title']}
-  description={t['blog.seo.description']}
->
-  <main style="background: #0B0F14;" class="min-h-screen">
-      
-      <section class="relative mx-auto w-full max-w-6xl px-4 pt-12 md:pt-16">
-        <div
-          aria-hidden
-          class="pointer-events-none absolute inset-0 -z-10 opacity-15"
-          style="background: radial-gradient(ellipse at center, rgba(163,230,53,0.18), transparent 60%); filter: blur(24px);"
-        >
-        </div>
-        <h1
-          class="text-3xl md:text-5xl font-semibold tracking-tight"
-          style="color: #E5E7EB;"
-        >
-          {t['blog.hero.title']}
-        </h1>
-        <p
-          class="mt-3 max-w-[65ch] text-base md:text-lg"
-          style="color: #94A3B8;"
-        >
-          {t['blog.hero.subtitle']}
-        </p>
-      </section>
+<BaseLayout title={t["blog.seo.title"]} description={t["blog.seo.description"]}>
+  <div style="background: #0B0F14;" class="min-h-screen">
+    <section class="relative mx-auto w-full max-w-6xl px-4 pt-12 md:pt-16">
+      <div
+        aria-hidden
+        class="pointer-events-none absolute inset-0 -z-10 opacity-15"
+        style="background: radial-gradient(ellipse at center, rgba(163,230,53,0.18), transparent 60%); filter: blur(24px);"
+      >
+      </div>
+      <h1
+        class="text-3xl md:text-5xl font-semibold tracking-tight"
+        style="color: #E5E7EB;"
+      >
+        {t["blog.hero.title"]}
+      </h1>
+      <p class="mt-3 max-w-[65ch] text-base md:text-lg" style="color: #94A3B8;">
+        {t["blog.hero.subtitle"]}
+      </p>
+    </section>
 
-      <section class="mx-auto w-full max-w-6xl px-4 pb-12 md:pb-16">
-        {sortedPosts.length === 0 ? (
+    <section class="mx-auto w-full max-w-6xl px-4 pb-12 md:pb-16">
+      {
+        sortedPosts.length === 0 ? (
           <div class="mt-8 text-center" style="color: #94A3B8;">
-            {t['blog.empty']}
+            {t["blog.empty"]}
           </div>
         ) : (
           <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
             {sortedPosts.map((post) => (
-              <BlogCard client:load post={post} currentLanguage={currentLanguage} />
+              <BlogCard
+                client:visible
+                post={post}
+                currentLanguage={currentLanguage}
+              />
             ))}
           </div>
-        )}
-      </section>
-    </main>
+        )
+      }
+    </section>
+  </div>
 </BaseLayout>

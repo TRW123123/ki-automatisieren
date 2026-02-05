@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 // import { Link } from 'react-router-dom'; // Replaced with anchor tags for Astro
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
@@ -13,15 +13,17 @@ interface ConnectedTimelineProps {
     caseStudies: CaseStudy[];
     selectedFilter?: string;
     currentLanguage: string;
-    t: (key: string) => string;
+    translations: Record<string, string>; // Serializable object instead of function
 }
 
 export default function ConnectedTimeline({
     caseStudies,
     selectedFilter = "Alle",
     currentLanguage,
-    t
+    translations
 }: ConnectedTimelineProps) {
+    // Reconstruct t function from serializable translations object
+    const t = (key: string) => translations[key] ?? key;
     const [activeCase, setActiveCase] = useState<number | null>(null);
     const prefersReducedMotion = useReducedMotion();
 
@@ -62,31 +64,8 @@ export default function ConnectedTimeline({
                                 <a
                                     href={getLocalizedRoute(currentLanguage, 'case-detail', { slug: caseStudy.slug })}
                                     onClick={(e) => {
-                                        // Start logic: If user wants to just see details in panel, maybe we shouldn't navigate?
-                                        // Original SSOT: Link also onClick handleNodeClick.
-                                        // But Link does navigation. 
-                                        // Wait, original SSOT Link navigates to 'case-detail'. 
-                                        // AND it sets activeCase. 
-                                        // If it navigates away, the activeCase state is lost unless it's on the same page?
-                                        // In SSOT, CaseDetail is a separate page? Or same page?
-                                        // Routes: 'case-detail': '/fallstudien/:slug' (SSOT routeMappings).
-                                        // So clicking the node NAVIGATES to the detail page.
-                                        // But `activeCase` controls the `CasePanel` showing BELOW the timeline.
-                                        // This implies the user might stay on the timeline page to view the preview panel?
-                                        // Ah, looking at SSOT `ConnectedTimeline.tsx`:
-                                        // <Link to={...} onClick={() => handleNodeClick(caseStudy.id)} ... >
-                                        // Usually Link navigates immediately. Maybe they preventDefault somewhere?
-                                        // Or maybe it's for 'open in new tab'?
-                                        // If I click it, I expect to go to detail page.
-                                        // But if I stay, I see the panel.
-                                        // Let's assume for now keeping `a href` behaves like `Link`.
-                                        // But if it navigates, the panel opening is useless unless there's a delay or SPA transition.
-                                        // If I want the PANEL functionality, maybe I should preventDefault if just clicking to open panel?
-                                        // But the Link has a destination.
-                                        // Let's stick to `a href` for now. If user clicks, they go to detail page.
-                                        // Maybe the panel is for hovering or "selecting"?
-                                        // The UI shows a "node".
-                                        // Let's keep strict alignment: href + onClick.
+                                        e.preventDefault();
+                                        handleNodeClick(caseStudy.id);
                                     }}
                                     onKeyDown={(e) => handleKeyDown(e, caseStudy.id)}
                                     className={`

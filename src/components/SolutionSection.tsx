@@ -11,9 +11,6 @@ export default function SolutionSection() {
                     <h2 className="headline text-3xl md:text-4xl tracking-tight text-white mb-6">
                         Warum wir? Praxis-Erfahrung statt KI-Theorie.
                     </h2>
-                    <p className="body-text text-muted-foreground max-w-3xl mx-auto">
-
-                    </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">

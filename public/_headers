@@ -1,24 +1,21 @@
+# Security Headers (Global)
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; img-src 'self' https: data:; script-src 'self' https://unpkg.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; connect-src 'self' https://safakt.app.n8n.cloud; frame-ancestors 'none'
 
+# Astro Build Assets (immutable hashed files)
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Legacy asset paths (if any)
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
-/assets/js/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/assets/images/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.js
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.css
-  Cache-Control: public, max-age=31536000, immutable
-
+# Static Images
 /*.avif
   Cache-Control: public, max-age=31536000, immutable
 
@@ -34,10 +31,17 @@
 /*.svg
   Cache-Control: public, max-age=31536000, immutable
 
+# Fonts
 /*.woff2
   Cache-Control: public, max-age=31536000, immutable
 
-/sitemap.xml
+# Sitemap (correct path: sitemap-index.xml)
+/sitemap-index.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=86400
+  X-Content-Type-Options: nosniff
+
+/sitemap-*.xml
   Content-Type: application/xml; charset=utf-8
   Cache-Control: public, max-age=86400
   X-Content-Type-Options: nosniff
@@ -46,3 +50,7 @@
   Content-Type: text/plain; charset=utf-8
   Cache-Control: public, max-age=86400
   X-Content-Type-Options: nosniff
+
+# HTML pages - short cache
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate

@@ -4,34 +4,77 @@ import Footer from "../components/Footer.tsx";
 import QuickAnalysisModal from "../components/QuickAnalysisModal.astro";
 import "@/styles/globals.css";
 
-const { title, description, noindex = false } = Astro.props;
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+  type?: "website" | "article";
+  image?: string;
+}
+
+const {
+  title,
+  description,
+  noindex = false,
+  type = "website",
+  image,
+} = Astro.props;
+
+const ogImage = image
+  ? image.startsWith("http")
+    ? image
+    : `https://ki-automatisieren.de${image}`
+  : "https://ki-automatisieren.de/social-image.png";
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="de" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    
+    <link rel="manifest" href="/site.webmanifest" />
+
     <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="canonical" href={canonicalURL} />
     {noindex && <meta name="robots" content="noindex, follow" />}
-    
+
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://ki-automatisieren.de/social-image.png" />
-    
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="KI Automatisieren" />
+    <meta property="og:locale" content="de_DE" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- AlpineJS -->
+    <script defer src="https://unpkg.com/alpinejs@3.14.3/dist/cdn.min.js"
+    ></script>
+
+    <!-- Dynamic Head Slot -->
+    <slot name="head" />
   </head>
-  <body class="min-h-screen bg-background font-sans antialiased text-foreground">
+  <body
+    class="min-h-screen bg-background font-sans antialiased text-foreground"
+  >
     <Header />
     <main class="relative z-10">
       <slot />

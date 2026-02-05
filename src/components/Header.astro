@@ -59,6 +59,9 @@
                 ? "text-lime-400"
                 : "text-white hover:text-lime-400",
             ]}
+            aria-expanded="false"
+            aria-controls="solutions-dropdown"
+            aria-haspopup="true"
           >
             Lösungen
             <svg
@@ -81,6 +84,7 @@
           </button>
 
           <div
+            id="solutions-dropdown"
             class="absolute left-0 mt-2 w-56 rounded-md border border-border bg-background p-2 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60]"
           >
             <a
@@ -129,6 +133,8 @@
           @click="open = !open"
           class="p-2 text-white hover:text-lime-400 focus-lime rounded-md"
           aria-label="Toggle menu"
+          :aria-expanded="open"
+          aria-controls="mobile-menu"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -149,11 +155,15 @@
         </button>
 
         <div
+          id="mobile-menu"
           x-show="open"
           @click.outside="open = false"
           x-transition:enter="transition ease-out duration-200"
           x-transition:enter-start="opacity-0 translate-x-10"
           x-transition:enter-end="opacity-100 translate-x-0"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation Menu"
           class="fixed inset-y-0 right-0 w-[300px] bg-background border-l border-border p-6 shadow-2xl z-[60] flex flex-col gap-6"
           style="display: none;"
         >
@@ -170,6 +180,7 @@
             <button
               @click="open = false"
               class="text-gray-400 hover:text-white"
+              aria-label="Menü schließen"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -181,7 +192,11 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                ><path d="M18 6 6 18"></path><path d="m6 6 18 12"></path></svg
+                ><line x1="18" y1="6" x2="6" y2="18"></line><line
+                  x1="6"
+                  y1="6"
+                  x2="18"
+                  y2="18"></line></svg
               >
             </button>
           </div>
@@ -213,3 +228,15 @@
     </div>
   </div>
 </nav>
+
+<script>
+  // Header scroll detection
+  const nav = document.querySelector('nav[aria-label="Main navigation"]');
+  const onScroll = () => {
+    if (nav) {
+      nav.setAttribute("data-scrolled", String(window.scrollY > 4));
+    }
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+</script>

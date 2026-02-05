@@ -1,23 +1,20 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHero from '../../components/PageHero.astro';
-import ConnectedTimeline from '../../components/react/ConnectedTimeline';
-import { caseStudiesData } from '../../data/caseStudiesData';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import ConnectedTimeline from "../../components/react/ConnectedTimeline";
+import { caseStudiesData } from "../../data/caseStudiesData";
 
-// Simple translation function for the component
-const t = (key: string) => {
-  const translations: Record<string, string> = {
-    'cases.summary.title': 'Zusammenfassung',
-    'cases.tabs.problem': 'Problem',
-    'cases.tabs.solution': 'Lösung',
-    'cases.tabs.implementation': 'Implementierung',
-    'cases.tabs.implementation.short': 'Impl.',
-    'cases.tabs.results': 'Ergebnisse',
-  };
-  return translations[key] || key;
+// Translations as serializable object (not function)
+const translations: Record<string, string> = {
+  "cases.summary.title": "Zusammenfassung",
+  "cases.tabs.problem": "Problem",
+  "cases.tabs.solution": "Lösung",
+  "cases.tabs.implementation": "Implementierung",
+  "cases.tabs.implementation.short": "Impl.",
+  "cases.tabs.results": "Ergebnisse",
 };
 
-const currentLanguage = 'de';
+const currentLanguage = "de";
 ---
 
 <BaseLayout
@@ -30,13 +27,13 @@ const currentLanguage = 'de';
     description="Entdecken Sie, wie wir Unternehmen dabei helfen, ihre Prozesse zu automatisieren und messbare Resultate zu erzielen."
   />
 
-  <ConnectedTimeline 
-    client:load 
-    caseStudies={caseStudiesData} 
-    currentLanguage={currentLanguage} 
-    t={t} 
+  <ConnectedTimeline
+    client:load
+    caseStudies={caseStudiesData}
+    currentLanguage={currentLanguage}
+    translations={translations}
   />
-  
+
   <section class="py-24 relative overflow-hidden">
     <div class="absolute inset-0 bg-slate-900/50"></div>
     <div class="container mx-auto px-4 relative z-10 text-center">
@@ -44,10 +41,11 @@ const currentLanguage = 'de';
         Bereit für Ihre eigene Erfolgsgeschichte?
       </h2>
       <p class="text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
-        Lassen Sie uns gemeinsam herausfinden, wie wir Ihr Unternehmen durch intelligente Automatisierung voranbringen können.
+        Lassen Sie uns gemeinsam herausfinden, wie wir Ihr Unternehmen durch
+        intelligente Automatisierung voranbringen können.
       </p>
-      <a 
-        href="/kontakt/" 
+      <a
+        href="/kontakt/"
         class="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-slate-900 bg-lime-400 rounded-full hover:bg-lime-500 transition-colors duration-200"
       >
         Kostenloses Erstgespräch vereinbaren

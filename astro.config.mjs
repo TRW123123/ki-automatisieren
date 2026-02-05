@@ -16,7 +16,8 @@ export default defineConfig({
       filter: (page) =>
         !page.includes('/impressum/') &&
         !page.includes('/datenschutz/') &&
-        !page.includes('/nutzungsbedingungen/')
+        !page.includes('/nutzungsbedingungen/') &&
+        !page.includes('/blog/welcome-to-our-blog/')
     })
   ]
 });

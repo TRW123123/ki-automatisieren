@@ -16,6 +16,10 @@ module.exports = {
                 ring: 'hsl(var(--ring))',
                 background: 'hsl(var(--background))',
                 foreground: 'hsl(var(--foreground))',
+                // Custom tokens for UI components
+                'bg-1': 'hsl(var(--bg-1))',
+                'bg-2': 'hsl(var(--bg-2))',
+                'text-hi': 'hsl(var(--text-hi))',
                 primary: {
                     DEFAULT: 'hsl(var(--primary))',
                     foreground: 'hsl(var(--primary-foreground))',
@@ -53,12 +57,12 @@ module.exports = {
             fontFamily: {
                 sans: ['Space Grotesk', 'sans-serif'],
             },
-        },
-        backgroundImage: {
-            'grid-pattern': "linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)",
-        },
-        boxShadow: {
-            'lime-glow': '0 0 8px rgba(163, 230, 53, 0.6)',
+            backgroundImage: {
+                'grid-pattern': "linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)",
+            },
+            boxShadow: {
+                'lime-glow': '0 0 8px rgba(163, 230, 53, 0.6)',
+            },
         },
     },
     plugins: [

@@ -23,24 +23,24 @@ export type RouteKey =
 
 export const routeMappings: Record<string, Record<RouteKey, string>> = {
     de: {
-        'home': '',
-        'solutions': '/losungen',
-        'cases': '/fallstudien',
-        'case-detail': '/fallstudien/:slug',
-        'free-content': '/kostenlose-inhalte',
-        'blog': '/blog',
-        'blog-post': '/blog/:slug',
-        'about': '/uber-uns',
-        'privacy': '/datenschutz',
-        'terms': '/nutzungsbedingungen',
-        'website-in-3-days': '/website-in-3-tagen',
-        'website-3days-thank-you': '/website-in-3-tagen/danke',
-        'solution-leadgen-ki': '/losungen/leadgenerierung-ki',
-        'solution-vertrieb': '/losungen/vertriebsautomatisierung',
-        'solution-marketing': '/losungen/marketing-automatisierung',
-        'solution-crm': '/losungen/crm-prozessautomatisierung',
-        'solution-kundenservice': '/losungen/kundenservice-automatisierung',
-        'strategieberatung': '/strategieberatung-ki-sales-marketing'
+        'home': '/',
+        'solutions': '/losungen/',
+        'cases': '/fallstudien/',
+        'case-detail': '/fallstudien/:slug/',
+        'free-content': '/kostenlose-inhalte/',
+        'blog': '/blog/',
+        'blog-post': '/blog/:slug/',
+        'about': '/uber-uns/',
+        'privacy': '/datenschutz/',
+        'terms': '/nutzungsbedingungen/',
+        'website-in-3-days': '/website-in-3-tagen/',
+        'website-3days-thank-you': '/website-in-3-tagen/danke/',
+        'solution-leadgen-ki': '/losungen/leadgenerierung-ki/',
+        'solution-vertrieb': '/losungen/vertriebsautomatisierung/',
+        'solution-marketing': '/losungen/marketing-automatisierung/',
+        'solution-crm': '/losungen/crm-prozessautomatisierung/',
+        'solution-kundenservice': '/losungen/kundenservice-automatisierung/',
+        'strategieberatung': '/losungen/strategieberatung-ki-sales-marketing/'
     }
 };
 

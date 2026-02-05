@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -40,12 +39,10 @@ export default function CaseStudyDetail({
     // Helper to replace prop 't' which cannot be passed to client islands
     const t = (key: string) => translations[key] || key;
 
-    // Mock openQuickAnalysis for now, or accept as prop if we want to trigger modal
+    // Use global openQuickAnalysis from QuickAnalysisModal
     const openQuickAnalysis = () => {
-        const modal = document.getElementById('quick-analysis-modal') as HTMLDialogElement;
-        if (modal) {
-            modal.showModal();
-        }
+        // @ts-ignore - Global function from QuickAnalysisModal
+        window.openQuickAnalysis?.();
     };
 
     return (

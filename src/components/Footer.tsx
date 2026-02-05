@@ -73,7 +73,7 @@ export default function Footer() {
                     <div className="space-y-4">
                         <h3 className="text-sm font-semibold text-foreground">Kontakt</h3>
                         <ul className="space-y-2 text-sm text-muted-foreground">
-                            <li className="font-medium text-foreground">ST-Automatisierung</li>
+                            <li className="font-medium text-foreground">KI Automatisieren</li>
                             <li>
                                 Heidestraße 2<br />
                                 58239 Schwerte, Deutschland
@@ -134,12 +134,10 @@ export default function Footer() {
                                 Bereit für Ihr KI-Vertriebssystem?
                             </p>
                             <Button
-                                className="w-full bg-[#A3E635] hover:bg-[#A3E635]/90 text-black font-semibold hover-glow"
+                                className="w-full bg-[#A3E635] hover:bg-[#A3E635]/90 text-black font-semibold"
                                 onClick={() => {
-                                    const modal = document.getElementById('quick-analysis-modal');
-                                    if (modal && 'showModal' in modal) {
-                                        (modal as any).showModal();
-                                    }
+                                    // @ts-ignore - Global function from QuickAnalysisModal
+                                    window.openQuickAnalysis?.();
                                 }}
                             >
                                 Jetzt System anfragen
@@ -156,6 +154,9 @@ export default function Footer() {
                         <div className="flex space-x-4">
                             <a href="/datenschutz/" className="text-sm text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
                                 Datenschutz
+                            </a>
+                            <a href="/impressum/" className="text-sm text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
+                                Impressum
                             </a>
                             <a href="/nutzungsbedingungen/" className="text-sm text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
                                 Nutzungsbedingungen

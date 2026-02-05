@@ -1,8 +1,5 @@
-import React from 'react';
 // import { Link } from "react-router-dom"; // Replaced with a tag
 import { getLocalizedRoute } from "@/lib/routeMappings";
-
-// Need to match the BlogPost type from blogData.ts roughly
 import type { BlogPost } from "@/data/blogData";
 
 interface BlogCardProps {
@@ -24,7 +21,7 @@ export default function BlogCard({ post, currentLanguage }: BlogCardProps) {
                 }}
             />
             <a
-                href={`${getLocalizedRoute(currentLanguage, 'blog')}/${post.id}`} // Using ID as slug based on blogData.ts structure (id seems to be slug-like)
+                href={`${getLocalizedRoute(currentLanguage, 'blog')}${post.id}/`} // ID is the slug, trailing slash for consistency
                 className="relative block overflow-hidden rounded-xl border transition duration-300 hover:translate-y-0.5"
                 style={{ borderColor: "#1F2937", background: "#111827" }}
             >

@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+    title="Seite nicht gefunden | KI Automatisieren"
+    description="Die angeforderte Seite konnte nicht gefunden werden."
+    noindex={true}
+>
+    <section class="min-h-[70vh] flex items-center justify-center py-24">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-md mx-auto">
+                <!-- 404 Badge -->
+                <div
+                    class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-lime-500/10 border border-lime-500/30 mb-8"
+                >
+                    <span class="text-4xl font-bold text-lime-400">404</span>
+                </div>
+
+                <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                    Seite nicht gefunden
+                </h1>
+
+                <p class="text-lg text-muted-foreground mb-8">
+                    Die angeforderte Seite existiert nicht oder wurde
+                    verschoben.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a
+                        href="/"
+                        class="inline-flex items-center justify-center px-6 py-3 bg-lime-500 text-black font-semibold rounded-lg hover:bg-lime-400 transition-colors"
+                    >
+                        Zur Startseite
+                    </a>
+                    <a
+                        href="/kontakt/"
+                        class="inline-flex items-center justify-center px-6 py-3 border border-lime-500/50 text-lime-400 font-medium rounded-lg hover:bg-lime-500/10 transition-colors"
+                    >
+                        Kontakt aufnehmen
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
