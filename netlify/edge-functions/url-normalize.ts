@@ -24,8 +24,8 @@ export default async (request: Request, context: Context) => {
         }
 
         // 2. Already normalized - PASS THROUGH
-        // Path ends with / AND is lowercase → no redirect needed
-        if (path.endsWith('/') && path === lowerPath) {
+        // Path ends with / AND is lowercase AND no double slashes → no redirect needed
+        if (path.endsWith('/') && path === lowerPath && !path.includes('//')) {
             return context.next();
         }
 
