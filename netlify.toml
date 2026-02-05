@@ -1,6 +1,6 @@
 # ===========================================
 # NETLIFY CONFIGURATION - ki-automatisieren.de
-# MINIMAL CONFIG - Debugging redirect loops
+# URL Normalization via Edge Function
 # Last updated: 2026-02-05
 # ===========================================
 
@@ -11,8 +11,10 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# IMPORTANT: No redirects, no edge functions
-# Astro handles trailing slashes via trailingSlash: 'always'
-# Netlify should serve /blog/index.html for /blog/ requests
+# Edge Function for URL normalization (SEO)
+# Handles: trailing slashes, lowercase, .html cleanup
+[[edge_functions]]
+  path = "/*"
+  function = "url-normalize"
 
-# Note: index.html → / redirect is in public/_redirects
+# Note: Additional redirects in public/_redirects
