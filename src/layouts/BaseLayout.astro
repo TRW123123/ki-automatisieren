@@ -80,5 +80,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
     <Footer client:visible />
+    <script is:inline src="/js/cookie-consent.js"></script>
   </body>
 </html>

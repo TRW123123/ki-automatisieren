@@ -6,9 +6,10 @@ import GoToMarketTimeline from "@/components/GoToMarketTimeline.tsx";
 import SolutionSection from "@/components/SolutionSection.tsx";
 import Cases from "@/components/Cases.tsx";
 import QuickAnalysisModal from "@/components/QuickAnalysisModal.astro";
+import IndustrySection from "@/components/IndustrySection.astro";
 
 // Pure Strict Alignment Index Page
-// Structure: Hero -> Agitate -> GoToMarketTimeline -> Solution -> Cases
+// Structure: Hero -> Agitate -> IndustrySection -> GoToMarketTimeline -> Solution -> Cases
 
 // Organization + WebSite Schema (required for homepage)
 const organizationSchema = JSON.stringify({
@@ -40,6 +41,7 @@ const websiteSchema = JSON.stringify({
 
   <Hero />
   <Agitate client:visible />
+  <IndustrySection />
   <SolutionSection client:visible />
   <GoToMarketTimeline client:visible />
   <Cases client:visible />
