@@ -62,7 +62,7 @@ export const industries: SolutionData[] = [
             items: ["Schwer erreichbare Entscheider", "Saisonale Schwankungen", "Hoher manueller Research-Aufwand"],
         },
         process: {
-            title: "Der 'ARPA' Ansatz",
+            title: "Der 'ERPA' Ansatz",
             steps: [
                 { title: "Signal-Monitoring", description: "KI scannt News nach Jubiläen & Expansionen" },
                 { title: "Entscheider-Suche", description: "Identifikation von HR- & Marketing-Leads" },
@@ -82,11 +82,11 @@ export const industries: SolutionData[] = [
             items: ["500 Calls ohne Streuverlust", "Volle VIP-Bereiche", "Planbarer Umsatz"],
         },
         caseStudy: {
-            company: "ARPA",
+            company: "ERPA",
             result: "Marktführerschaft",
-            description: "Wie ARPA durch gezieltes Account-Based-Marketing die größten Stadien Europas als Kunden gewann.",
+            description: "Wie ERPA durch gezieltes Account-Based-Marketing die größten Stadien Europas als Kunden gewann.",
             link: "/fallstudien/erpa-teknoloji",
-            image: "/logos/arpa.avif", // Placeholder, ensure exists or fallback
+            image: "/logos/erpa.avif", // Placeholder, ensure exists or fallback
         },
     },
     {
