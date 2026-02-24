@@ -1,0 +1,834 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const seoTitle = "Mehr Autos verkaufen | High-End Videos & Systeme für Autohäuser";
+const seoDescription = "Wir bringen Käufer für Ihre Autos. Ein komplettes System aus High-End Videoproduktion und konversionsstarken Webseiten für Fahrzeughändler.";
+---
+
+<BaseLayout title={seoTitle} description={seoDescription}>
+    <!-- GSAP & SplitType -->
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script is:inline src="https://unpkg.com/split-type"></script>
+    
+    <!-- Phosphor Icons -->
+    <script is:inline src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style is:inline>
+        /* Specific Styles for this Landingpage to achieve the B2B Dark/Lime Aesthetic */
+        :root {
+            --bg-base: hsl(203, 23%, 8%);
+            --surface: hsl(220, 13%, 9%);
+            --text-main: hsl(210, 10%, 90%);
+            --text-muted: hsl(215, 16%, 58%);
+            --accent: #A3E635; /* Lime Green */
+            --border-color: rgba(255, 255, 255, 0.08);
+            --font-display: 'Space Grotesk', system-ui, sans-serif;
+            --font-ui: 'Space Grotesk', system-ui, sans-serif;
+        }
+
+        /* Override general cursor if needed, but we keep it inside the wrapper to not break navbar */
+        .landing-wrapper * {
+            cursor: none !important;
+        }
+
+        .landing-wrapper {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: var(--font-ui);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        .landing-wrapper h1, .landing-wrapper h2, .landing-wrapper h3, .landing-wrapper .display-font {
+            font-family: var(--font-display);
+            font-weight: 700;
+        }
+
+        .landing-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Image Treatment */
+        .b2b-image {
+            filter: grayscale(100%) contrast(1.2) brightness(0.7);
+            transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+        }
+
+        .b2b-image:hover {
+            filter: grayscale(30%) contrast(1.1) brightness(1);
+            box-shadow: 0 0 25px rgba(163, 230, 53, 0.15);
+        }
+
+        /* Custom Cursor */
+        .c-dot, .c-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .c-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            transition: opacity 0.3s ease;
+            box-shadow: 0 0 10px rgba(163, 230, 53, 0.5);
+        }
+
+        .c-ring {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--text-muted);
+            transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-ui);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--bg-base);
+            overflow: hidden;
+        }
+
+        .c-text {
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Cursor States */
+        body.c-interactive .c-ring {
+            width: 60px;
+            height: 60px;
+            border-color: var(--accent);
+            backdrop-filter: blur(4px);
+            background-color: rgba(163, 230, 53, 0.1);
+        }
+
+        body.c-view .c-ring {
+            width: 80px;
+            height: 80px;
+            background-color: var(--accent);
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(163, 230, 53, 0.4);
+        }
+        
+        body.c-view .c-dot {
+            opacity: 0;
+        }
+
+        body.c-view .c-text {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Global Effects */
+        .n-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0.15;
+            mix-blend-mode: overlay;
+        }
+
+        .cyber-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, black 10%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 10%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .v-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .vl {
+            width: 1px;
+            height: 100%;
+            background-color: rgba(255,255,255,0.02);
+            transform-origin: top;
+            transform: scaleY(0);
+        }
+
+        .g-type {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--font-display);
+            font-size: 18vw;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.05);
+            opacity: 0.8;
+            word-break: keep-all;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+            line-height: 0.8;
+            font-weight: 900;
+        }
+
+        /* Layout & Wrapper */
+        .s-wrap {
+            position: relative;
+            padding: 8vw 4vw;
+            min-height: 100vh;
+            z-index: 5;
+        }
+
+        .g-cont {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2vw;
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 1. The Hero Strike */
+        .hero-area {
+            grid-column: 1 / 13;
+            margin-bottom: 6vw;
+            position: relative;
+            z-index: 20;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 4vw;
+            align-items: center;
+        }
+
+        .m-headline {
+            font-size: clamp(2.5rem, 5vw, 5.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            max-width: 15ch;
+            margin-bottom: 2rem;
+        }
+
+        .w-wrap {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: top;
+        }
+
+        .w-inner {
+            display: inline-block;
+            transform: translateY(115%);
+        }
+
+        .hl-word {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hl-word::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--accent);
+            z-index: -1;
+            opacity: 0.8;
+            border-radius: 2px;
+        }
+
+        .mag-wrap {
+            position: relative;
+            padding: 40px;
+            display: inline-block;
+        }
+
+        .mag-btn {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(163, 230, 53, 0.05);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .mag-btn:hover {
+            background: rgba(163, 230, 53, 0.15);
+            box-shadow: 0 0 30px rgba(163, 230, 53, 0.2);
+        }
+
+        .mag-txt {
+            font-family: var(--font-ui);
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            pointer-events: none;
+        }
+
+        /* 2. The Pain Point Grid */
+        .pain-block {
+            grid-column: 1 / 6;
+            grid-row: 2;
+            background-color: var(--surface);
+            border: 1px solid var(--border-color);
+            padding: 3vw;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            z-index: 15;
+            margin-top: 5vw;
+        }
+
+        .pain-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .p-icon {
+            color: var(--accent);
+            font-size: 1.75rem;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 8px rgba(163,230,53,0.5));
+        }
+
+        .p-text h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+            color: var(--text-main);
+        }
+
+        .p-text p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* 3. The Split-Screen Proof */
+        .perf-image {
+            grid-column: 6 / 13;
+            grid-row: 2;
+            position: relative;
+            min-height: 500px;
+            border-radius: 12px;
+            overflow: hidden;
+            clip-path: inset(100% 0 0 0);
+            z-index: 10;
+        }
+
+        .glass-box {
+            position: absolute;
+            bottom: 2vw;
+            left: -4vw;
+            background: rgba(20, 23, 28, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 2vw;
+            border-radius: 8px;
+            z-index: 20;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            max-width: 300px;
+        }
+
+        .glass-box .highlight {
+            color: var(--accent);
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .seal-wrap {
+            position: absolute;
+            top: 2vw;
+            right: 2vw;
+            width: 100px;
+            height: 100px;
+            z-index: 25;
+        }
+
+        .seal-t {
+            animation: spin 15s linear infinite;
+            transform-origin: center;
+        }
+
+        .seal-i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* 4. The Interactive Dual-CTA */
+        .cta-area {
+            grid-column: 1 / 13;
+            grid-row: 3;
+            margin-top: 10vw;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .cta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4vw 2vw;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            transition: background-color 0.4s ease;
+        }
+
+        .cta-title {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+        }
+        
+        .cta-sub {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .cta-icon {
+            font-size: 2rem;
+            color: var(--text-muted);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+        }
+
+        .cta-row:hover {
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        .cta-row:hover .cta-title {
+            transform: translateX(2vw);
+            color: var(--accent);
+        }
+
+        .cta-row:hover .cta-icon {
+            transform: rotate(45deg);
+            color: var(--accent);
+        }
+
+        /* Floating Reveal Images */
+        .h-reveal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 200px;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0;
+            transform: scale(0.8) translate(-50%, -50%);
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        
+        .h-inner {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-area {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .pain-block {
+                grid-column: 1 / 13;
+                grid-row: 2;
+                margin-top: 2rem;
+            }
+            .method-block {
+                grid-column: 1 / 13 !important;
+                grid-row: 3 !important;
+                margin-top: 2rem !important;
+            }
+            .cta-area {
+                grid-row: 4;
+            }
+            .glass-box {
+                left: 2vw;
+                bottom: 2vw;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .landing-wrapper * {
+                cursor: auto !important;
+            }
+            .c-dot, .c-ring {
+                display: none;
+            }
+            .g-cont {
+                display: flex;
+                flex-direction: column;
+            }
+            .g-type {
+                font-size: 15vw;
+                top: 10%;
+                opacity: 0.2;
+            }
+            .hero-area {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .hero-image-wrap {
+                order: -1;
+                width: 100%;
+                aspect-ratio: 16/9;
+                margin-bottom: 1rem;
+            }
+            .mag-wrap {
+                padding: 0;
+                width: 100%;
+                margin-top: 1rem;
+                display: block;
+            }
+            .mag-btn {
+                width: 100% !important;
+                height: 60px !important;
+                border-radius: 8px !important;
+                background-color: var(--accent) !important;
+            }
+            .mag-txt {
+                color: var(--bg-base) !important;
+            }
+        }
+    </style>
+
+    <div class="landing-wrapper">
+        <!-- SVG Noise -->
+        <svg class="n-overlay" xmlns="http://www.w3.org/2000/svg">
+            <filter id="n-filter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch"/>
+            </filter>
+            <rect width="100%" height="100%" filter="url(#n-filter)"/>
+        </svg>
+
+        <div class="cyber-grid" data-plax="-0.05"></div>
+        <div class="g-type" data-plax="0.1">AUTOMATISIERUNG</div>
+
+        <div class="v-lines">
+            <div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div>
+        </div>
+
+        <!-- Custom Cursor -->
+        <div class="c-dot"></div>
+        <div class="c-ring"><span class="c-text">AUDIT</span></div>
+
+        <!-- Floating Images for CTAs -->
+        <div class="h-reveal">
+            <div class="h-inner">
+                <img class="b2b-image" src="" alt="Preview">
+            </div>
+        </div>
+
+        <section class="s-wrap">
+            <div class="g-cont">
+                
+                <!-- 1. Hero -->
+                <div class="hero-area">
+                    <div class="hero-content">
+                        <h1 class="m-headline">Wir bringen <span class="hl-word">Käufer</span> <br> für Ihre Autos.</h1>
+                        <p class="text-xl text-muted-foreground max-w-2xl leading-relaxed mb-8">
+                            Sie wollen gute Autos profitabel verkaufen, nicht fürs Marketing bezahlen. Wir liefern Ihnen ein komplettes System: Videos, die begeistern, und eine Webseite, die daraus echte Anfragen macht.
+                        </p>
+                        <div class="mag-wrap">
+                            <a href="/kontakt/" class="mag-btn interactive-elem">
+                                <span class="mag-txt text-center">Jetzt<br>Starten</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrap" style="position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+                        <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?fm=jpg&q=80&w=1200" alt="High-End Autovideo" class="b2b-image" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; border-radius: 50%; background: rgba(163, 230, 53, 0.2); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(163, 230, 53, 0.5);">
+                            <i class="ph-fill ph-play" style="color: var(--accent); font-size: 2.5rem; margin-left: 6px;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Pain Points -->
+                <div class="pain-block">
+                    <div class="pain-item">
+                        <i class="ph-fill ph-money p-icon"></i>
+                        <div class="p-text">
+                            <h3>Teure Plattformen</h3>
+                            <p>Mobile.de und Autoscout werden immer teurer. Sie arbeiten, die Plattformen kassieren.</p>
+                        </div>
+                    </div>
+                    <div class="pain-item">
+                        <i class="ph-fill ph-image p-icon"></i>
+                        <div class="p-text">
+                            <h3>Langweiler-Fotos</h3>
+                            <p>Normale Fotos locken niemanden mehr an. Ihre Autos gehen in der Masse unter.</p>
+                        </div>
+                    </div>
+                    <div class="pain-item">
+                        <i class="ph-fill ph-phone-slash p-icon"></i>
+                        <div class="p-text">
+                            <h3>Zu wenig Anfragen</h3>
+                            <p>Leute schauen sich die Autos online an, aber das Telefon klingelt nicht.</p>
+                        </div>
+                    </div>
+                    <div class="pain-item">
+                        <i class="ph-fill ph-clock p-icon"></i>
+                        <div class="p-text">
+                            <h3>Zeitfresser</h3>
+                            <p>Sie verbringen Stunden damit, Mails von Leuten zu beantworten, die eh nicht kaufen.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Proof / Methodik -->
+                <div class="method-block" style="grid-column: 6 / 13; grid-row: 2; position: relative; z-index: 10; display: flex; flex-direction: column; gap: 2vw; border-radius: 12px; margin-top: 5vw;">
+                    <div style="background-color: var(--surface); border: 1px solid var(--border-color); padding: 3vw; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+                        <h2 class="text-3xl font-bold mb-4" style="font-family: var(--font-display);">Aus Klicks werden begeisterte Anfragen.</h2>
+                        <p class="text-muted-foreground mb-8">Wir nutzen Verkaufspsychologie und High-End-Produktion, um Nutzer vom Weiterwischen abzuhalten:</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                            <div style="padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;">
+                                <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; font-family: var(--font-display);">Sucht-Effekt durch Dynamik</h4>
+                                <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.5;">Der Blick am Fahrzeug klebt (smarter Wechsel aus Slow-Motion und Beschleunigung).</p>
+                            </div>
+                            <div style="padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;">
+                                <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; font-family: var(--font-display);">3D Premium-Optik</h4>
+                                <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.5;">Wir stellen Autos frei und platzieren 3D-Texte (Preis, PS) direkt ins Bild. Pures High-End.</p>
+                            </div>
+                            <div style="padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;">
+                                <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; font-family: var(--font-display);">Spürbare Emotionen</h4>
+                                <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.5;">Echte Motorensounds & cineastische Bässe – der Motor wird beim Zuschauen physisch spürbar.</p>
+                            </div>
+                            <div style="padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;">
+                                <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; font-family: var(--font-display);">Nahtlose Übergänge</h4>
+                                <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.5;">Kein Entkommen für das Auge. Das maximiert die Watchtime und bedient den Algorithmus.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Der Plan (3 Schritte) -->
+                <div class="cta-area">
+                    <h2 class="text-2xl font-bold mb-8 uppercase tracking-widest" style="color: var(--text-muted); font-family: var(--font-display);">Der einfache 3-Schritt-Plan</h2>
+                    <!-- Step 1 -->
+                    <a href="/kontakt/" class="cta-row interactive-elem cta-trigger" data-img="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?fm=jpg&q=80&w=600">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest font-bold" style="color: var(--accent);">Schritt 1</span>
+                            <h2 class="cta-title">Kostenloses Gespräch</h2>
+                            <p class="cta-sub">Wir schauen uns an, welche Autos Sie verkaufen wollen.</p>
+                        </div>
+                        <i class="ph-light ph-arrow-right cta-icon"></i>
+                    </a>
+                    <!-- Step 2 -->
+                    <a href="/kontakt/" class="cta-row interactive-elem cta-trigger" data-img="https://images.unsplash.com/photo-1620011403063-e54db5b0d0c3?fm=jpg&q=80&w=600">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest font-bold" style="color: var(--accent);">Schritt 2</span>
+                            <h2 class="cta-title">Wir bauen das System</h2>
+                            <p class="cta-sub">Wir drehen emotionale Videos und richten Ihre neue Verkaufsseite ein.</p>
+                        </div>
+                        <i class="ph-light ph-arrow-right cta-icon"></i>
+                    </a>
+                    <!-- Step 3 -->
+                    <a href="/kontakt/" class="cta-row interactive-elem cta-trigger" data-img="https://images.unsplash.com/photo-1560958089-b8a1929cea89?fm=jpg&q=80&w=600">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest font-bold" style="color: var(--accent);">Schritt 3</span>
+                            <h2 class="cta-title">Sie verkaufen Autos</h2>
+                            <p class="cta-sub">Das System filtert schlechte Kontakte. Sie sprechen nur mit Käufern.</p>
+                        </div>
+                        <i class="ph-light ph-arrow-right cta-icon"></i>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <script is:inline>
+        // Ensure GSAP has executed
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+            
+            gsap.registerPlugin(ScrollTrigger);
+            
+            const isTouch = (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+
+            // Text Split
+            const splitHeadline = new SplitType('.m-headline', { types: 'words', wordClass: 'w-inner' });
+            splitHeadline.words.forEach(word => {
+                const wrapper = document.createElement('span');
+                wrapper.classList.add('w-wrap');
+                word.parentNode.insertBefore(wrapper, word);
+                wrapper.appendChild(word);
+            });
+
+            gsap.to('.w-inner', {
+                y: 0,
+                duration: 1.2,
+                stagger: 0.1,
+                ease: 'power4.out',
+                delay: 0.2
+            });
+
+            // Scroll Animations
+            gsap.to('.vl', {
+                scaleY: 1,
+                duration: 1.5,
+                ease: 'expo.inOut',
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: '.s-wrap',
+                    start: 'top 80%',
+                }
+            });
+
+            gsap.fromTo('.method-block', 
+                { y: 50, opacity: 0 },
+                {
+                y: 0, opacity: 1,
+                duration: 1.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.method-block',
+                    start: 'top 80%',
+                }
+            });
+
+            // Parallax
+            document.querySelectorAll('[data-plax]').forEach(el => {
+                const speed = parseFloat(el.getAttribute('data-plax'));
+                gsap.to(el, {
+                    yPercent: speed * 100,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.s-wrap',
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: true
+                    }
+                });
+            });
+
+            // Interactions
+            if (!isTouch) {
+                const cDot = document.querySelector('.c-dot');
+                const cRing = document.querySelector('.c-ring');
+                
+                const xToDot = gsap.quickTo(cDot, "x", {duration: 0.15, ease: "power3"});
+                const yToDot = gsap.quickTo(cDot, "y", {duration: 0.15, ease: "power3"});
+                const xToRing = gsap.quickTo(cRing, "x", {duration: 0.3, ease: "power3"});
+                const yToRing = gsap.quickTo(cRing, "y", {duration: 0.3, ease: "power3"});
+
+                window.addEventListener('mousemove', e => {
+                    xToDot(e.clientX);
+                    yToDot(e.clientY);
+                    xToRing(e.clientX);
+                    yToRing(e.clientY);
+                });
+
+                document.querySelectorAll('.interactive-elem').forEach(el => {
+                    el.addEventListener('mouseenter', () => document.body.classList.add('c-interactive'));
+                    el.addEventListener('mouseleave', () => document.body.classList.remove('c-interactive'));
+                });
+
+                document.querySelectorAll('.c-view-target').forEach(el => {
+                    el.addEventListener('mouseenter', () => document.body.classList.add('c-view'));
+                    el.addEventListener('mouseleave', () => document.body.classList.remove('c-view'));
+                });
+
+                // Hover Reveal CTAs
+                const hContainer = document.querySelector('.h-reveal');
+                const hImg = hContainer.querySelector('img');
+                const xToH = gsap.quickTo(hContainer, "left", {duration: 0.5, ease: "power4.out"});
+                const yToH = gsap.quickTo(hContainer, "top", {duration: 0.5, ease: "power4.out"});
+
+                document.querySelectorAll('.cta-trigger').forEach(trigger => {
+                    trigger.addEventListener('mouseenter', (e) => {
+                        hImg.src = trigger.getAttribute('data-img');
+                        gsap.to(hContainer, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.5)" });
+                        // Prevent initial jump
+                        gsap.set(hContainer, { left: e.clientX, top: e.clientY });
+                    });
+                    trigger.addEventListener('mousemove', (e) => {
+                        xToH(e.clientX);
+                        yToH(e.clientY);
+                    });
+                    trigger.addEventListener('mouseleave', () => {
+                        gsap.to(hContainer, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power2.in" });
+                    });
+                });
+
+                // Magnetic Button
+                const mWrap = document.querySelector('.mag-wrap');
+                const mBtn = document.querySelector('.mag-btn');
+                const mTxt = document.querySelector('.mag-txt');
+
+                mWrap.addEventListener('mousemove', (e) => {
+                    const rect = mWrap.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+
+                    gsap.to(mBtn, { x: x * 0.4, y: y * 0.4, duration: 0.5, ease: "power2.out" });
+                    gsap.to(mTxt, { x: x * 0.2, y: y * 0.2, duration: 0.5, ease: "power2.out" });
+                });
+
+                mWrap.addEventListener('mouseleave', () => {
+                    gsap.to(mBtn, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
+                    gsap.to(mTxt, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
+                });
+            }
+        });
+    </script>
+</BaseLayout>
