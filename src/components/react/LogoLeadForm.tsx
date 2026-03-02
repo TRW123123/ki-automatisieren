@@ -3,6 +3,7 @@ import { Upload, ArrowRight, CheckCircle, Loader2, Sparkles, Image as ImageIcon,
 
 export default function LogoLeadForm() {
     const [designGoal, setDesignGoal] = useState<'new' | 'upgrade'>('new');
+    const [companyName, setCompanyName] = useState('');
     const [websiteUrl, setWebsiteUrl] = useState('');
     const [businessDescription, setBusinessDescription] = useState('');
     const [email, setEmail] = useState('');
@@ -19,7 +20,7 @@ export default function LogoLeadForm() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!email) return;
+        if (!email || !companyName) return;
 
         setStatus('submitting');
         try {
@@ -62,6 +63,7 @@ export default function LogoLeadForm() {
                     },
                     body: JSON.stringify({
                         email,
+                        companyName,
                         designGoal,
                         websiteUrl,
                         businessDescription,
@@ -114,8 +116,8 @@ export default function LogoLeadForm() {
                         type="button"
                         onClick={() => setDesignGoal('new')}
                         className={`py-3 px-4 rounded-lg text-sm font-semibold transition-all ${designGoal === 'new'
-                                ? 'bg-blue-600 text-white shadow-lg'
-                                : 'text-gray-400 hover:text-white hover:bg-white/5'
+                            ? 'bg-blue-600 text-white shadow-lg'
+                            : 'text-gray-400 hover:text-white hover:bg-white/5'
                             }`}
                     >
                         Komplett neues Design
@@ -124,8 +126,8 @@ export default function LogoLeadForm() {
                         type="button"
                         onClick={() => setDesignGoal('upgrade')}
                         className={`py-3 px-4 rounded-lg text-sm font-semibold transition-all ${designGoal === 'upgrade'
-                                ? 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.3)]'
-                                : 'text-gray-400 hover:text-white hover:bg-white/5'
+                            ? 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.3)]'
+                            : 'text-gray-400 hover:text-white hover:bg-white/5'
                             }`}
                     >
                         Bestehendes Design upgraden
@@ -171,15 +173,16 @@ export default function LogoLeadForm() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                                <LinkIcon className="w-4 h-4 text-gray-500" />
-                                Website URL (Optional)
+                                <FileText className="w-4 h-4 text-gray-500" />
+                                Firmenname *
                             </label>
                             <input
-                                type="url"
-                                value={websiteUrl}
-                                onChange={e => setWebsiteUrl(e.target.value)}
-                                placeholder="https://ihre-website.de"
-                                className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                type="text"
+                                required
+                                value={companyName}
+                                onChange={e => setCompanyName(e.target.value)}
+                                placeholder="z.B. Schmidt Maschinenbau"
+                                className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-mono text-sm"
                             />
                         </div>
 
@@ -197,6 +200,20 @@ export default function LogoLeadForm() {
                                 className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-mono text-sm"
                             />
                         </div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
+                            <LinkIcon className="w-4 h-4 text-gray-500" />
+                            Website URL (Optional, für mehr Kontext)
+                        </label>
+                        <input
+                            type="url"
+                            value={websiteUrl}
+                            onChange={e => setWebsiteUrl(e.target.value)}
+                            placeholder="https://ihre-website.de"
+                            className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                        />
                     </div>
 
                     <div className="space-y-2">
