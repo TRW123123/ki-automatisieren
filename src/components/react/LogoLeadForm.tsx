@@ -27,14 +27,15 @@ export default function LogoLeadForm() {
         try {
             let fileUrl = '';
 
+            const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+            const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+
             // Upload file to Supabase if it exists
             if (file) {
                 const formData = new FormData();
                 formData.append('file', file);
 
                 const fileName = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.-]/g, '')}`;
-                const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
-                const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 
                 if (supabaseUrl && supabaseAnonKey) {
                     const uploadRes = await fetch(`${supabaseUrl}/storage/v1/object/lead_gen_logos/${fileName}`, {
@@ -53,25 +54,30 @@ export default function LogoLeadForm() {
                 }
             }
 
-            // Send to n8n Webhook
-            const webhookUrl = import.meta.env.PUBLIC_N8N_WEBHOOK_URL;
-            if (webhookUrl) {
-                await fetch(webhookUrl, {
+            // Insert data into Supabase database
+            if (supabaseUrl && supabaseAnonKey) {
+                const insertRes = await fetch(`${supabaseUrl}/rest/v1/logo_leads`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${supabaseAnonKey}`,
+                        'apikey': supabaseAnonKey,
+                        'Prefer': 'return=minimal'
                     },
                     body: JSON.stringify({
+                        company_name: companyName,
                         email,
-                        companyName,
-                        designGoal,
-                        websiteUrl,
-                        businessDescription,
-                        logoStyle,
-                        fileUrl,
-                        timestamp: new Date().toISOString(),
+                        design_goal: designGoal,
+                        logo_style: logoStyle,
+                        website_url: websiteUrl,
+                        business_description: businessDescription,
+                        file_url: fileUrl
                     }),
                 });
+
+                if (!insertRes.ok) {
+                    throw new Error('Database insert failed');
+                }
             }
 
             setStatus('success');
@@ -92,8 +98,8 @@ export default function LogoLeadForm() {
                     Unser System synthetisiert jetzt Ihre Daten. Sie erhalten den Link zum neuen Logo-Design in Kürze.
                 </p>
                 <div className="inline-flex items-center gap-2 text-sm font-medium text-[#A3E635] bg-[#A3E635]/10 px-4 py-2 rounded-full border border-[#A3E635]/20 relative z-10">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Prozess läuft im Backend... (n8n Webhook aktiv)
+                    <CheckCircle className="w-4 h-4" />
+                    Ihre Daten wurden sicher verschlüsselt in unserer Datenbank gespeichert.
                 </div>
             </div>
         );
