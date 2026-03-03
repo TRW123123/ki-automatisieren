@@ -42,73 +42,6 @@ const seoDescription = "Wir trimmen Ihr Design auf Conversion. Laden Sie Ihr akt
             font-weight: 700;
         }
 
-        /* Custom Cursor */
-        .c-dot, .c-ring {
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 9999;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .c-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent);
-            transition: opacity 0.3s ease;
-            box-shadow: 0 0 10px rgba(163, 230, 53, 0.5);
-        }
-
-        .c-ring {
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--text-muted);
-            transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-ui);
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            color: var(--bg-base);
-            overflow: hidden;
-        }
-
-        .c-text {
-            opacity: 0;
-            transform: scale(0.5);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        /* Cursor States */
-        body.c-interactive .c-ring {
-            width: 60px;
-            height: 60px;
-            border-color: var(--accent);
-            backdrop-filter: blur(4px);
-            background-color: rgba(163, 230, 53, 0.1);
-        }
-
-        body.c-view .c-ring {
-            width: 80px;
-            height: 80px;
-            background-color: var(--accent);
-            border-color: transparent;
-            box-shadow: 0 0 20px rgba(163, 230, 53, 0.4);
-        }
-        
-        body.c-view .c-dot {
-            opacity: 0;
-        }
-
-        body.c-view .c-text {
-            opacity: 1;
-            transform: scale(1);
-        }
-
         /* Global Effects */
         .n-overlay {
             position: absolute;
@@ -237,12 +170,6 @@ const seoDescription = "Wir trimmen Ihr Design auf Conversion. Laden Sie Ihr akt
         }
 
         @media (max-width: 768px) {
-            .landing-wrapper * {
-                cursor: auto !important;
-            }
-            .c-dot, .c-ring {
-                display: none;
-            }
             .g-type {
                 font-size: 11vw;
                 top: 8%;
@@ -270,18 +197,14 @@ const seoDescription = "Wir trimmen Ihr Design auf Conversion. Laden Sie Ihr akt
             <div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div>
         </div>
 
-        <!-- Custom Cursor -->
-        <div class="c-dot"></div>
-        <div class="c-ring"><span class="c-text">UPLOAD</span></div>
-
         <section class="s-wrap">
             <div class="g-cont">
                 
                 <!-- 1. Hero -->
                 <div class="hero-area">
-                    <h1 class="m-headline">Ihr Logo ist das Nadelöhr für <br> <span class="hl-word text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-emerald-500">B2B-Vertrauen.</span></h1>
+                    <h1 class="m-headline">Ihr Logo entscheidet über <br> <span class="hl-word text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-emerald-500">Vertrauen.</span></h1>
                     <p class="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-12">
-                        In den ersten Millisekunden entscheidet Ihr Gegenüber über Autorität oder Mittelmaß. Wir auditieren Ihr aktuelles Design und generieren die Architektur für maximale visuelle Dominanz.
+                        Menschen entscheiden in Millisekunden über Kompetenz und Autorität. Erzählen Sie uns von Ihrem Unternehmen und unser System generiert Ihr visuelles Fundament.
                     </p>
                 </div>
 
@@ -291,9 +214,9 @@ const seoDescription = "Wir trimmen Ihr Design auf Conversion. Laden Sie Ihr akt
                         <div class="w-12 h-12 rounded-full bg-lime-500/10 flex items-center justify-center mb-6">
                             <span class="text-lime-400 font-bold text-xl">1</span>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-4">Status Quo Audit</h3>
+                        <h3 class="text-2xl font-bold text-white mb-4">Input & Analyse</h3>
                         <p class="text-gray-400">
-                            Sie laden Ihr aktuelles Logo hoch oder nennen uns Ihre Website. Unser System analysiert die visuelle Schwere und strukturellen Schwachstellen.
+                            Sie geben uns erste Informationen zu Ihrem Angebot und Ihrer Zielgruppe. Auf Wunsch laden Sie auch Ihr bisheriges Logo für ein Re-Design hoch.
                         </p>
                     </div>
 
@@ -301,9 +224,9 @@ const seoDescription = "Wir trimmen Ihr Design auf Conversion. Laden Sie Ihr akt
                         <div class="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center mb-6">
                             <span class="text-green-400 font-bold text-xl">2</span>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-4">KI-Benchmark</h3>
+                        <h3 class="text-2xl font-bold text-white mb-4">Wissensspeicher</h3>
                         <p class="text-gray-400">
-                            Wir gleichen Ihr Design mit hunderten erfolgreichen B2B Brands ab. Keine Canva-Templates. Purer Fokus auf "German Thoroughness".
+                            Wir erstellen einen ersten Entwurf basierend auf Ihren Angaben. Diesen Entwurf gleichen wir dann mit Best-Practices aus unserer Wissensspeicher-Datenbank ab.
                         </p>
                     </div>
 
@@ -311,9 +234,9 @@ const seoDescription = "Wir trimmen Ihr Design auf Conversion. Laden Sie Ihr akt
                         <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center mb-6">
                             <span class="text-emerald-400 font-bold text-xl">3</span>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-4">Authority Board</h3>
+                        <h3 class="text-2xl font-bold text-white mb-4">Finales Konzept</h3>
                         <p class="text-gray-400">
-                            Sie erhalten ein konkretes visuelles Konzept ("Architecture Board"), wie Ihr Upgrade aussieht und psychologisch auf Entscheider wirkt.
+                            Sie erhalten ein hochkonvertierendes, extrem hochwertiges Resultat, das die Stärken Ihres Unternehmens optisch perfekt übersetzt.
                         </p>
                     </div>
                 </div>
@@ -394,29 +317,6 @@ const seoDescription = "Wir trimmen Ihr Design auf Conversion. Laden Sie Ihr akt
                     }
                 });
             });
-
-            // Interactions
-            if (!isTouch) {
-                const cDot = document.querySelector('.c-dot');
-                const cRing = document.querySelector('.c-ring');
-                
-                const xToDot = gsap.quickTo(cDot, "x", {duration: 0.15, ease: "power3"});
-                const yToDot = gsap.quickTo(cDot, "y", {duration: 0.15, ease: "power3"});
-                const xToRing = gsap.quickTo(cRing, "x", {duration: 0.3, ease: "power3"});
-                const yToRing = gsap.quickTo(cRing, "y", {duration: 0.3, ease: "power3"});
-
-                window.addEventListener('mousemove', e => {
-                    xToDot(e.clientX);
-                    yToDot(e.clientY);
-                    xToRing(e.clientX);
-                    yToRing(e.clientY);
-                });
-
-                document.querySelectorAll('.interactive-elem').forEach(el => {
-                    el.addEventListener('mouseenter', () => document.body.classList.add('c-interactive'));
-                    el.addEventListener('mouseleave', () => document.body.classList.remove('c-interactive'));
-                });
-            }
         });
     </script>
 </BaseLayout>

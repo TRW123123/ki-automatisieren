@@ -10,6 +10,8 @@ export default function LogoLeadForm() {
     const [email, setEmail] = useState('');
     const [file, setFile] = useState<File | null>(null);
 
+    const [dsgvo, setDsgvo] = useState(false);
+    const [generatedImageUrl, setGeneratedImageUrl] = useState<string | null>(null);
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -21,7 +23,7 @@ export default function LogoLeadForm() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!email || !companyName) return;
+        if (!email || !companyName || !dsgvo) return;
 
         setStatus('submitting');
         try {
@@ -62,7 +64,7 @@ export default function LogoLeadForm() {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${supabaseAnonKey}`,
                         'apikey': supabaseAnonKey,
-                        'Prefer': 'return=minimal'
+                        'Prefer': 'return=representation'
                     },
                     body: JSON.stringify({
                         company_name: companyName,
@@ -77,6 +79,33 @@ export default function LogoLeadForm() {
 
                 if (!insertRes.ok) {
                     throw new Error('Database insert failed');
+                }
+                const insertData = await insertRes.json();
+                const insertId = insertData?.[0]?.id;
+
+                // Sync API Call to Nano Banana 2 (Gemini Image API via Edge Function)
+                const functionRes = await fetch(`${supabaseUrl}/functions/v1/generate-logo`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${supabaseAnonKey}`,
+                    },
+                    body: JSON.stringify({
+                        company_name: companyName,
+                        business_description: businessDescription,
+                        design_goal: designGoal,
+                        logo_style: logoStyle,
+                        insert_id: insertId
+                    })
+                });
+
+                if (functionRes.ok) {
+                    const functionData = await functionRes.json();
+                    if (functionData.imageUrl) {
+                        setGeneratedImageUrl(functionData.imageUrl);
+                    }
+                } else {
+                    console.error("Function failed", await functionRes.text());
                 }
             }
 
@@ -93,14 +122,30 @@ export default function LogoLeadForm() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#A3E635]/20 blur-[100px] rounded-full pointer-events-none"></div>
 
                 <CheckCircle className="w-16 h-16 text-[#A3E635] mx-auto mb-6 relative z-10" />
-                <h3 className="text-3xl font-bold tracking-tight text-white mb-4 relative z-10">Generierung gestartet.</h3>
-                <p className="text-gray-400 text-lg mb-8 relative z-10">
-                    Unser System synthetisiert jetzt Ihre Daten. Sie erhalten den Link zum neuen Logo-Design in Kürze.
-                </p>
-                <div className="inline-flex items-center gap-2 text-sm font-medium text-[#A3E635] bg-[#A3E635]/10 px-4 py-2 rounded-full border border-[#A3E635]/20 relative z-10">
-                    <CheckCircle className="w-4 h-4" />
-                    Ihre Daten wurden sicher verschlüsselt in unserer Datenbank gespeichert.
-                </div>
+                <h3 className="text-3xl font-bold tracking-tight text-white mb-4 relative z-10">
+                    {generatedImageUrl ? "Ihr Design ist fertig." : "Logo wird finalisiert."}
+                </h3>
+                {generatedImageUrl ? (
+                    <div className="relative z-10 space-y-6">
+                        <img src={generatedImageUrl} alt="Ihr neues Nano Banana Logo" className="w-full max-w-sm mx-auto rounded-xl shadow-2xl border border-white/20 aspect-square object-cover" />
+                        <a href={generatedImageUrl} download="B2B-Logo-Design.jpg" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-[#A3E635] text-black font-bold px-8 py-3 rounded-full hover:scale-105 transition-transform gap-2 shadow-[0_0_20px_rgba(163,230,53,0.3)]">
+                            <ImageIcon className="w-5 h-5" /> Logo kostenlos herunterladen
+                        </a>
+                        <p className="text-gray-400 mt-4 text-sm">
+                            Generiert durch Nano Banana 2. Ihre Daten werden nach 30 Tagen DSGVO-konform gelöscht.
+                        </p>
+                    </div>
+                ) : (
+                    <>
+                        <p className="text-gray-400 text-lg mb-8 relative z-10">
+                            In ca. 30 Sekunden können Sie Ihr Logo hier herunterladen. Wir schicken Ihnen aber auch einen Link per Mail zu.
+                        </p>
+                        <div className="inline-flex items-center gap-2 text-sm font-medium text-[#A3E635] bg-[#A3E635]/10 px-4 py-2 rounded-full border border-[#A3E635]/20 relative z-10">
+                            <CheckCircle className="w-4 h-4" />
+                            System verarbeitet Ihr Design... Bitte lassen Sie das Fenster offen!
+                        </div>
+                    </>
+                )}
             </div>
         );
     }
@@ -165,7 +210,7 @@ export default function LogoLeadForm() {
                                 required
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
-                                placeholder="CEO@ihre-firma.de"
+                                placeholder="kontakt@ihr-unternehmen.de"
                                 className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-[#A3E635] focus:ring-1 focus:ring-[#A3E635] transition-all font-mono text-sm"
                             />
                         </div>
@@ -209,43 +254,62 @@ export default function LogoLeadForm() {
                         <textarea
                             value={businessDescription}
                             onChange={e => setBusinessDescription(e.target.value)}
-                            placeholder="Z.B.: Wir sind ein etablierter Handwerksbetrieb. Das Logo soll extrem zuverlässig, massiv und modern wirken. Unsere Zielgruppe sind B2B Entscheider..."
+                            placeholder="Z.B.: Wir sind ein etablierter Handwerksbetrieb / lokales Restaurant. Das Logo soll extrem zuverlässig, massiv und modern wirken. Unsere Kunden legen Wert auf Qualität..."
                             className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-[#A3E635] focus:ring-1 focus:ring-[#A3E635] transition-all min-h-[100px] resize-none"
                         ></textarea>
                     </div>
 
-                    <div
-                        className="border-2 border-dashed border-white/10 rounded-xl p-8 text-center hover:border-[#A3E635]/50 transition-colors cursor-pointer bg-white/5 relative overflow-hidden"
-                        onClick={() => fileInputRef.current?.click()}
-                    >
-                        {file ? (
-                            <div className="flex flex-col items-center gap-3">
-                                <div className="w-12 h-12 rounded-full bg-[#A3E635]/20 flex items-center justify-center border border-[#A3E635]/30">
-                                    <CheckCircle className="w-6 h-6 text-[#A3E635]" />
+                    {designGoal === 'upgrade' && (
+                        <div
+                            className="border-2 border-dashed border-white/10 rounded-xl p-8 text-center hover:border-[#A3E635]/50 transition-colors cursor-pointer bg-white/5 relative overflow-hidden"
+                            onClick={() => fileInputRef.current?.click()}
+                        >
+                            {file ? (
+                                <div className="flex flex-col items-center gap-3">
+                                    <div className="w-12 h-12 rounded-full bg-[#A3E635]/20 flex items-center justify-center border border-[#A3E635]/30">
+                                        <CheckCircle className="w-6 h-6 text-[#A3E635]" />
+                                    </div>
+                                    <div>
+                                        <span className="text-white font-medium block">{file.name}</span>
+                                        <span className="text-gray-500 text-sm">Bereit zur Analyse</span>
+                                    </div>
                                 </div>
-                                <div>
-                                    <span className="text-white font-medium block">{file.name}</span>
-                                    <span className="text-gray-500 text-sm">Bereit zur Analyse</span>
+                            ) : (
+                                <div className="flex flex-col items-center gap-3">
+                                    <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+                                        <Upload className="w-5 h-5 text-gray-400" />
+                                    </div>
+                                    <div>
+                                        <span className="text-gray-300 font-medium block">Aktuelles Logo hochladen</span>
+                                        <span className="text-gray-500 text-sm">PNG, JPG oder SVG bis 5MB</span>
+                                    </div>
                                 </div>
-                            </div>
-                        ) : (
-                            <div className="flex flex-col items-center gap-3">
-                                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-                                    <Upload className="w-5 h-5 text-gray-400" />
-                                </div>
-                                <div>
-                                    <span className="text-gray-300 font-medium block">Aktuelles Logo hochladen (Nur bei Upgrade)</span>
-                                    <span className="text-gray-500 text-sm">PNG, JPG oder SVG bis 5MB</span>
-                                </div>
-                            </div>
-                        )}
-                        <input
-                            type="file"
-                            ref={fileInputRef}
-                            className="hidden"
-                            accept="image/*"
-                            onChange={handleFileChange}
-                        />
+                            )}
+                            <input
+                                type="file"
+                                ref={fileInputRef}
+                                className="hidden"
+                                accept="image/*"
+                                onChange={handleFileChange}
+                            />
+                        </div>
+                    )}
+
+                    {/* DSGVO Consent */}
+                    <div className="flex items-start gap-3 mt-6 p-4 bg-white/5 rounded-xl border border-white/10">
+                        <div className="flex-shrink-0 mt-1">
+                            <input
+                                type="checkbox"
+                                id="dsgvo"
+                                required
+                                checked={dsgvo}
+                                onChange={e => setDsgvo(e.target.checked)}
+                                className="w-5 h-5 rounded border-gray-600 bg-[#0A0A0A] text-[#A3E635] focus:ring-[#A3E635] focus:ring-offset-0 cursor-pointer"
+                            />
+                        </div>
+                        <label htmlFor="dsgvo" className="text-sm tracking-tight text-gray-400 cursor-pointer">
+                            Ich stimme zu, dass meine Daten sowie das hochgeladene Logo zur Bildgenerierung verarbeitet werden. Alle Daten werden automatisch nach 30 Tagen gemäß <strong>DSGVO</strong> ("Datenminimierung") dauerhaft aus dem System gelöscht.
+                        </label>
                     </div>
                 </div>
 
