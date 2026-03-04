@@ -56,6 +56,24 @@ export default function LogoLeadForm() {
                 }
             }
 
+            const normalizeUrl = (url: string) => {
+                if (!url) return '';
+                let clean = url.trim().toLowerCase();
+                // Add default https:// if no protocol is given
+                if (!clean.startsWith('http://') && !clean.startsWith('https://')) {
+                    clean = 'https://' + clean;
+                }
+                try {
+                    // Try parsing to validate structure
+                    new URL(clean);
+                    return clean;
+                } catch {
+                    return url; // fallback to original if parsing completely fails
+                }
+            };
+
+            const finalWebsiteUrl = normalizeUrl(websiteUrl);
+
             if (supabaseUrl && supabaseAnonKey) {
                 const insertId = crypto.randomUUID();
 
@@ -72,7 +90,7 @@ export default function LogoLeadForm() {
                         email,
                         design_goal: designGoal,
                         logo_style: logoStyle,
-                        website_url: websiteUrl,
+                        website_url: finalWebsiteUrl,
                         business_description: businessDescription,
                         file_url: fileUrl
                     }),
@@ -236,7 +254,7 @@ export default function LogoLeadForm() {
                                 Website URL (Optional, für mehr Kontext)
                             </label>
                             <input
-                                type="url"
+                                type="text"
                                 value={websiteUrl}
                                 onChange={e => setWebsiteUrl(e.target.value)}
                                 placeholder="https://ihre-website.de"
