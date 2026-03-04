@@ -14,11 +14,11 @@ async function runTest() {
                 'Authorization': `Bearer ${anonKey}`
             },
             body: JSON.stringify({
-                company_name: "Antigravity",
-                business_description: "A high-end autonomous AI agency specializing in B2B enterprise automation.",
-                website_url: "antigravity.dev",
-                logo_style: "brutalist",
-                userId: crypto.randomUUID()
+                company_name: "ST-Automatisierung",
+                business_description: "Strategieberatung, Vertrauen ",
+                logo_style: "",
+                website_url: "https://st-automatisierung.de/",
+                insert_id: crypto.randomUUID()
             })
         });
 

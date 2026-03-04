@@ -120,9 +120,13 @@ export default function LogoLeadForm() {
                     const functionData = await functionRes.json();
                     if (functionData.imageUrl) {
                         setGeneratedImageUrl(functionData.imageUrl);
+                    } else {
+                        throw new Error(`No image URL returned: ${JSON.stringify(functionData)}`);
                     }
                 } else {
-                    console.error("Function failed", await functionRes.text());
+                    const errorMsg = await functionRes.text();
+                    console.error("Function failed", errorMsg);
+                    throw new Error(`Edge Function error: ${errorMsg}`);
                 }
             }
 
