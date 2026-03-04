@@ -250,7 +250,7 @@ const seoDescription = "Wir trimmen Ihr Design auf Conversion. Laden Sie Ihr akt
                 </div>
 
                 <!-- 4. The Interactive Form (Lead Capture) -->
-                <div class="relative z-30 interactive-elem" style="transform: translateY(30px); opacity: 0;" id="form-container">
+                <div class="relative z-30" id="form-container">
                     <LogoLeadForm client:load />
                 </div>
 
@@ -283,11 +283,12 @@ const seoDescription = "Wir trimmen Ihr Design auf Conversion. Laden Sie Ihr akt
                 delay: 0.2
             });
 
-            gsap.to('#form-container', {
-                y: 0,
-                opacity: 1,
+            gsap.from('#form-container', {
+                y: 30,
+                opacity: 0,
                 duration: 1.2,
                 ease: 'power3.out',
+                clearProps: 'all',
                 delay: 0.8
             });
 
