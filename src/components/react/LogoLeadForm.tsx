@@ -56,17 +56,18 @@ export default function LogoLeadForm() {
                 }
             }
 
-            // Insert data into Supabase database
             if (supabaseUrl && supabaseAnonKey) {
+                const insertId = crypto.randomUUID();
+
                 const insertRes = await fetch(`${supabaseUrl}/rest/v1/logo_leads`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${supabaseAnonKey}`,
-                        'apikey': supabaseAnonKey,
-                        'Prefer': 'return=representation'
+                        'apikey': supabaseAnonKey
                     },
                     body: JSON.stringify({
+                        id: insertId,
                         company_name: companyName,
                         email,
                         design_goal: designGoal,
@@ -80,8 +81,6 @@ export default function LogoLeadForm() {
                 if (!insertRes.ok) {
                     throw new Error('Database insert failed');
                 }
-                const insertData = await insertRes.json();
-                const insertId = insertData?.[0]?.id;
 
                 // Sync API Call to Nano Banana 2 (Gemini Image API via Edge Function)
                 const functionRes = await fetch(`${supabaseUrl}/functions/v1/generate-logo`, {
