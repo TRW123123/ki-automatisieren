@@ -71,24 +71,40 @@ serve(async (req) => {
         }
 
         const prompt = `
-Du bist der "Lead Design Director" einer elitären Design-Agentur.
-Gebrauche das Alex Hormozi Prinzip: Eliminiere Reibung, Maximiere den Wert, Reduziere Bullshit auf null.
-CONVERGENCE AVOIDANCE PROTOCOL (HARD RULES):
-- KEINE Canva-Ästhetik. Keine langweiligen Klischees.
-- "German Thoroughness": Präzise, durchdacht, architektonisch wertvoll.
-- Brutalistische Reduktion. Asymmetrische Balance wo angebracht.
-- Carbon-Dark-Mode Hintergrund.
+Dein gedanklicher Prozess ist ein reines Reverse Engineering des schlimmsten Falls – nämlich eines misstrauischen BAFA-Prüfers (Staatlicher Auditor), der nach einem Vorwand sucht, einen Förderantrag wegen "Verdacht auf unseriöse IT-Spielerei" abzulehnen.
+Du bist der "Lead Design Director" einer Top-Tier B2B Corporate Identity Agentur. 
 
-=== KUNDEN-INPUT ===
-Unternehmen: ${company_name}
-Aktion: ${design_goal} (new = Komplett neues Logo, upgrade = Bestehendes Design upgraden)
-Zielgruppe & Angebot: ${business_description}
-Stil-Wunsch: ${logo_style || 'Kein spezifischer Stil'}
+HIER IST DEIN INTERNER BAUPLAN (ZERLEGT IN 5 STRATEGISCHE ATOME):
+
+1. DIE ABWEHR-DIREKTIVE (Das Anti-Framing):
+Wenn du Begriffe wie "Prozessoptimierung", "Automatisierung" oder "KI" hörst, ist dein Standard-Reflex oft: Zahnräder, leuchtende Netzwerke, Roboterarme oder Binärcode. DAS IST DEIN TODESURTEIL.
+Deine Richtlinie: Erschaffe das Logo einer "high-end business consulting firm" in Form eines "abstract geometric element". Zwinge das Design weg von der IT und hinein in die klassische, seriöse Betriebswirtschaft.
+
+2. DIE PSYCHOLOGISCHE VERANKERUNG (Keywords):
+Das Logo muss "modern, corporate, and professional" wirken. Keine verspielten Startup-Logos, keine bunten Agentur-Vibes.
+Es muss "minimalist, clean, and established" sein. Das ist der Hebel für "Deutsche Gründlichkeit". Suggeriere, dass die Firma seit 20 Jahren am Markt ist. Das baut sofortiges Vertrauen auf.
+
+3. DIE VISUELLE METAPHER (Das Symbol):
+Ein Strategieberater verkauft keine Produkte, er verkauft Ordnung und Wachstum.
+Monogramme (Kombination von Initialen oder klaren Formen) sind der Goldstandard für Elite-Beratungen (wie EY, PwC, BCG). 
+Nutze physische Konstrukte (parallele Linien, strukturierte Gitter, dezente Pfeile), die "structured growth, precision, and efficiency" abbilden und nach Tabellen und messbaren KPIs aussehen.
+
+4. DIE AUTORITÄT (Typografie & Farbe):
+TYPOGRAFIE: Nutze eine "strong, authoritative, modern sans-serif typeface". Serifen-Schriften wirken oft zu altbacken, verspielte Schriften sind tabu. Sans-Serif (serifenlos) steht für objektive Fakten, direkte Kommunikation und radikale Wahrheit.
+FARBPYCHOLOGIE: Nutze "deep professional blue (e.g., navy blue or charcoal grey) and metallic silver". Dunkelblau ist die universelle B2B-Farbe für Vertrauen und Stabilität. Silber bringt die Assoziation von Skalpell-artiger Präzision.
+
+5. DIE TECHNISCHE NUTZBARKEIT:
+Medium: "Clean white background. Isolation." Das Logo MUSS auf einem rein weißen Hintergrund stehen. Keine Mockups (wie Bürowände oder Visitenkarten) generieren, da das Logo für offizielle Word-Dokumente freigestellt benötigt wird.
+
+=== KUNDEN-BRIEFING ===
+Unternehmensname (WICHTIG für Typografie): ${company_name}
+Auftragstyp: ${design_goal}
+Geschäftskern & Essenz: ${business_description}
+Gewünschte Ästhetik: ${logo_style || 'Clean Corporate Vektor, Dribbble Top 1%, Ikonografisch'}
 ${ragContext}
 
-=== DEIN AUFTRAG ===
-Generiere ein hochpräzises, makelloses, extrem hochwertiges Logo-Design für dieses Unternehmen.
-Stelle sicher, dass das Design streng den Hard Rules folgt. Das Endresultat MUSS herausstechen, erstklassig wirken und die Essenz des Unternehmens einfangen.
+=== DEINE AUSFÜHRUNG ===
+Dieser Prompt ist kein Zufall, sondern eine maßgeschneiderte Rüstung für einen Hochrisiko-Antrag. Generiere JETZT das finale Logo für dieses Unternehmen. Ein absolutes Meisterwerk der Reduktion, Zuverlässigkeit und Bedeutung.
     `;
 
         console.log("Generating image with Nano Banana 2 (Native Fetch)...");
