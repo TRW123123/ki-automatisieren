@@ -108,7 +108,6 @@ export default function LogoLeadForm() {
                         company_name: companyName,
                         email,
                         design_goal: designGoal,
-                        logo_style: logoStyle,
                         website_url: finalWebsiteUrl,
                         business_description: businessDescription,
                         file_url: fileUrl
