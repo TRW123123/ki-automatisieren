@@ -186,7 +186,10 @@ export default function LogoLeadForm() {
                             </div>
 
                             <div className="space-y-4">
-                                <a href="https://meetings.hubspot.com/s-tepecik" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-between bg-[#A3E635] text-black font-bold px-6 py-4 rounded-xl hover:scale-[1.02] transition-transform shadow-[0_0_30px_rgba(163,230,53,0.3)]">
+                                <a href="#booking-section" onClick={(e) => {
+                                    e.preventDefault();
+                                    document.getElementById('booking-section')?.scrollIntoView({ behavior: 'smooth' });
+                                }} className="w-full flex items-center justify-between bg-[#A3E635] text-black font-bold px-6 py-4 rounded-xl hover:scale-[1.02] transition-transform shadow-[0_0_30px_rgba(163,230,53,0.3)] cursor-pointer">
                                     <div className="flex items-center gap-3">
                                         <PhoneCall className="w-6 h-6" />
                                         <span className="text-left">Ja, zeigt mir, wie ich automatisch Kunden gewinne.<br /><span className="text-xs font-medium text-black/70">Kostenloses Gespräch buchen</span></span>
@@ -222,7 +225,7 @@ export default function LogoLeadForm() {
                     <p className="text-gray-400">Geben Sie uns Ihre Anforderungen. Unser System generiert Ihren neuen visuellen Anker.</p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mb-8 p-1 bg-white/5 rounded-xl border border-white/10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 p-1 bg-white/5 rounded-xl border border-white/10">
                     <button
                         type="button"
                         onClick={() => setDesignGoal('new')}
