@@ -162,7 +162,7 @@ export default function LogoLeadForm() {
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#A3E635] to-transparent opacity-50"></div>
 
                 <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-8 text-center">
-                    Ihr neues Branding ist einsatzbereit.
+                    Ihr neues Logo ist fertig.
                 </h3>
 
                 {generatedImageUrl && (
@@ -171,17 +171,17 @@ export default function LogoLeadForm() {
                         <div className="w-full md:w-1/2 space-y-6">
                             <div className="relative group/image">
                                 <div className="absolute -inset-2 bg-gradient-to-r from-[#A3E635]/20 to-emerald-500/20 rounded-xl blur-lg opacity-0 group-hover/image:opacity-100 transition duration-500"></div>
-                                <img src={generatedImageUrl} alt="Ihr neues Nano Banana Logo" className="w-full rounded-xl shadow-2xl border border-white/20 aspect-square object-cover relative z-10 bg-white" />
+                                <img src={generatedImageUrl} alt="Ihr neues 2026 Logo" className="w-full rounded-xl shadow-2xl border border-white/20 aspect-square object-cover relative z-10 bg-white" />
                             </div>
                         </div>
 
                         {/* Right: The Upsell / Lead Capture */}
                         <div className="w-full md:w-1/2 space-y-8">
                             <div>
-                                <h4 className="text-2xl font-bold text-white mb-4">Ein starkes Logo ist nur der Anfang.</h4>
+                                <h4 className="text-2xl font-bold text-white mb-4">Ein schönes Logo allein bringt Ihnen keine neuen Kunden.</h4>
                                 <p className="text-gray-400 text-lg">
-                                    Ihre Konkurrenz schläft nicht. Ein Logo weckt Vertrauen, aber <strong>Automatisierung bringt Ihnen Kunden.</strong>
-                                    Möchten Sie wissen, wie wir Ihre Neukundengewinnung auf Autopilot schalten?
+                                    Das Logo steht. Es sieht gut aus. <strong>Aber woher kommen jetzt die Kunden?</strong>
+                                    Wir haben ein System gebaut, das automatisch neue Kunden für Sie findet. Wollen Sie sehen, wie das geht?
                                 </p>
                             </div>
 
@@ -189,7 +189,7 @@ export default function LogoLeadForm() {
                                 <a href="https://meetings.hubspot.com/s-tepecik" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-between bg-[#A3E635] text-black font-bold px-6 py-4 rounded-xl hover:scale-[1.02] transition-transform shadow-[0_0_30px_rgba(163,230,53,0.3)]">
                                     <div className="flex items-center gap-3">
                                         <PhoneCall className="w-6 h-6" />
-                                        <span className="text-left">Ja, zeigen Sie mir das Automatisierungs-System<br /><span className="text-xs font-medium text-black/70">Kostenloses Strategiegespräch buchen</span></span>
+                                        <span className="text-left">Ja, zeigt mir, wie ich automatisch Kunden gewinne.<br /><span className="text-xs font-medium text-black/70">Kostenloses Gespräch buchen</span></span>
                                     </div>
                                     <ArrowRight className="w-6 h-6" />
                                 </a>
@@ -200,9 +200,9 @@ export default function LogoLeadForm() {
                                     <div className="flex-grow border-t border-white/10"></div>
                                 </div>
 
-                                <a href={generatedImageUrl} download="ST-Automatisierung-Logo.jpg" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-white/5 border border-white/10 text-gray-300 font-medium px-6 py-4 rounded-xl hover:bg-white/10 transition-colors gap-2">
+                                <a href={generatedImageUrl} download="B2B-Logo-2026.jpg" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-white/5 border border-white/10 text-gray-300 font-medium px-6 py-4 rounded-xl hover:bg-white/10 transition-colors gap-2">
                                     <Download className="w-5 h-5" />
-                                    Nein danke, ich möchte nur mein Logo herunterladen.
+                                    Nein danke. Ich lade nur das Logo runter und suche meine Kunden lieber selbst.
                                 </a>
                             </div>
                         </div>
