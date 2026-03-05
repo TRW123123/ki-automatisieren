@@ -44,7 +44,7 @@ export default function LogoLeadForm() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!email || !companyName || !dsgvo) return;
+        if (!email || !companyName || !dsgvo || !businessDescription) return;
 
         setStatus('submitting');
         try {
@@ -108,6 +108,7 @@ export default function LogoLeadForm() {
                         company_name: companyName,
                         email,
                         design_goal: designGoal,
+                        logo_style: logoStyle,
                         website_url: finalWebsiteUrl,
                         business_description: businessDescription,
                         file_url: fileUrl
@@ -309,10 +310,11 @@ export default function LogoLeadForm() {
 
                     <div className="space-y-2">
                         <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                            <Sparkles className="w-4 h-4 text-gray-500" />
-                            Was soll das Logo ausstrahlen? (Werte & Kernkompetenz)
+                            <Sparkles className="w-4 h-4 text-[#A3E635]" />
+                            Was macht Ihr Unternehmen? * (Wichtig für das KI-Design)
                         </label>
                         <textarea
+                            required
                             value={businessDescription}
                             onChange={e => setBusinessDescription(e.target.value)}
                             placeholder="Z.B.: Wir sind ein etablierter Handwerksbetrieb / lokales Restaurant. Das Logo soll extrem zuverlässig, massiv und modern wirken. Unsere Kunden legen Wert auf Qualität..."

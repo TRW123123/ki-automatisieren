@@ -12,7 +12,10 @@ serve(async (req) => {
     }
 
     try {
-        const { company_name, business_description, design_goal, logo_style, insert_id } = await req.json();
+        let { company_name, business_description, design_goal, logo_style, insert_id } = await req.json();
+
+        company_name = company_name?.trim() || "Unternehmenslogo";
+        business_description = business_description?.trim() || "Ein etabliertes B2B Unternehmen in der DACH-Region.";
 
         const geminiKey = Deno.env.get("GEMINI_API_KEY") || Deno.env.get("Gemini_API_Key");
         let supabaseUrl = Deno.env.get("SUPABASE_URL");
