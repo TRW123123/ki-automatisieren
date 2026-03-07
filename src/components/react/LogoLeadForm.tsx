@@ -45,6 +45,10 @@ export default function LogoLeadForm() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!email || !companyName || !dsgvo || !businessDescription) return;
+        if (designGoal === 'upgrade' && !file) {
+            alert('Bitte laden Sie Ihr aktuelles Logo hoch, um es upgraden zu können.');
+            return;
+        }
 
         setStatus('submitting');
         try {
@@ -53,26 +57,31 @@ export default function LogoLeadForm() {
             const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
             const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 
-            // Upload file to Supabase if it exists
+            // Upload file to Supabase Storage if it exists
             if (file) {
-                const formData = new FormData();
-                formData.append('file', file);
-
                 const fileName = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.-]/g, '')}`;
 
                 if (supabaseUrl && supabaseAnonKey) {
+                    // Read file as ArrayBuffer and send as raw binary (Supabase REST API requires this)
+                    const arrayBuffer = await file.arrayBuffer();
                     const uploadRes = await fetch(`${supabaseUrl}/storage/v1/object/lead_gen_logos/${fileName}`, {
                         method: 'POST',
-                        body: formData,
+                        body: arrayBuffer,
                         headers: {
                             Authorization: `Bearer ${supabaseAnonKey}`,
+                            'Content-Type': file.type || 'image/jpeg',
                         },
                     });
 
                     if (uploadRes.ok) {
                         fileUrl = `${supabaseUrl}/storage/v1/object/public/lead_gen_logos/${fileName}`;
+                        console.log('File uploaded successfully:', fileUrl);
                     } else {
-                        console.error('File upload failed', await uploadRes.text());
+                        const errText = await uploadRes.text();
+                        console.error('File upload failed:', uploadRes.status, errText);
+                        if (designGoal === 'upgrade') {
+                            throw new Error(`Logo-Upload fehlgeschlagen (${uploadRes.status}): ${errText}`);
+                        }
                     }
                 }
             }
@@ -119,8 +128,11 @@ export default function LogoLeadForm() {
                     throw new Error('Database insert failed');
                 }
 
+                // Conditionally route to the correct Edge Function based on goal
+                const edgeFunctionEndpoint = designGoal === 'upgrade' ? 'upgrade-logo' : 'generate-logo';
+
                 // Sync API Call to Nano Banana 2 (Gemini Image API via Edge Function)
-                const functionRes = await fetch(`${supabaseUrl}/functions/v1/generate-logo`, {
+                const functionRes = await fetch(`${supabaseUrl}/functions/v1/${edgeFunctionEndpoint}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -131,7 +143,9 @@ export default function LogoLeadForm() {
                         business_description: businessDescription,
                         design_goal: designGoal,
                         logo_style: logoStyle,
-                        insert_id: insertId
+                        insert_id: insertId,
+                        website_url: finalWebsiteUrl,
+                        file_url: fileUrl // Re-adding fileUrl to ensure the upgrade function gets it
                     })
                 });
 
@@ -186,10 +200,7 @@ export default function LogoLeadForm() {
                             </div>
 
                             <div className="space-y-4">
-                                <a href="#booking-section" onClick={(e) => {
-                                    e.preventDefault();
-                                    document.getElementById('booking-section')?.scrollIntoView({ behavior: 'smooth' });
-                                }} className="w-full flex items-center justify-between bg-[#A3E635] text-black font-bold px-6 py-4 rounded-xl hover:scale-[1.02] transition-transform shadow-[0_0_30px_rgba(163,230,53,0.3)] cursor-pointer">
+                                <a href="https://calendly.com/st-automatisierung-info/30min?hide_gdpr_banner=1&background_color=050505&text_color=ffffff&primary_color=a3e635" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-between bg-[#A3E635] text-black font-bold px-6 py-4 rounded-xl hover:scale-[1.02] transition-transform shadow-[0_0_30px_rgba(163,230,53,0.3)] cursor-pointer">
                                     <div className="flex items-center gap-3">
                                         <PhoneCall className="w-6 h-6" />
                                         <span className="text-left">Ja, zeigt mir, wie ich automatisch Kunden gewinne.<br /><span className="text-xs font-medium text-black/70">Kostenloses Gespräch buchen</span></span>

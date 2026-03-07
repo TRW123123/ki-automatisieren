@@ -12,7 +12,7 @@ serve(async (req) => {
     }
 
     try {
-        let { company_name, business_description, design_goal, logo_style, insert_id, website_url } = await req.json();
+        let { company_name, business_description, design_goal, logo_style, insert_id, website_url, file_url } = await req.json();
 
         company_name = company_name?.trim() || "Unternehmenslogo";
         business_description = business_description?.trim() || "Ein etabliertes B2B Unternehmen in der DACH-Region.";
@@ -90,16 +90,71 @@ serve(async (req) => {
             }
         }
 
+        // --- 1.c Gemini Vision Node (Analyze Uploaded Logo) ---
+        let visionContext = "";
+        let originalBase64Image = null; // Hoisted for Image-to-Image reference
+        if (file_url) {
+            console.log(`Fetching uploaded logo for analysis: ${file_url}`);
+            try {
+                const imgRes = await fetch(file_url);
+                const arrayBuffer = await imgRes.arrayBuffer();
+                originalBase64Image = btoa(new Uint8Array(arrayBuffer).reduce((data, byte) => data + String.fromCharCode(byte), ''));
+
+                console.log("Calling Vision Node (Gemini 3.0 Flash) to analyze the old logo...");
+                const visionSystemPrompt = `
+Du bist ein renommierter Marken-Architekt und Design-Analyst.
+Der Nutzer möchte sein altes Logo (siehe angehängtes Bild) modernisieren ("upgraden").
+Analysiere dieses alte Logo messerscharf:
+1. Was ist die visuelle Kern-Metapher? (z.B. "Ein abstrakter Fuchs", "Ein statisches Haus-Icon").
+2. Wie ist die grobe Farbpalette?
+3. Welche Stimmung vermittelt es aktuell?
+4. Wie ist der Text (Unternehmen) platziert?
+
+Gib eine sehr prägnante, professionelle Zusammenfassung (max. 5-7 Sätze), die als Bauplan für das Remake dient.
+Die DNA des alten Logos MUSS erhalten bleiben, aber auf 2026-Niveau gehoben werden.
+`;
+                const visionResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [
+                                { text: visionSystemPrompt },
+                                {
+                                    inlineData: {
+                                        mimeType: "image/jpeg", // Assuming jpeg/png, gemini handles both well via inlineData
+                                        data: originalBase64Image
+                                    }
+                                }
+                            ]
+                        }]
+                    })
+                });
+
+                const visionData = await visionResponse.json();
+                if (visionData.candidates && visionData.candidates[0]?.content?.parts?.[0]?.text) {
+                    const analysis = visionData.candidates[0].content.parts[0].text;
+                    visionContext = `\n=== EXISTING LOGO ANALYSIS (DNA TO PRESERVE) ===\n${analysis}\nDer neue Prompt MUSS diese DNA zwingend beibehalten und modernisieren!\n`;
+                    console.log("Vision Analysis successful.");
+                } else {
+                    console.error("Vision Node returned no text.", visionData);
+                }
+            } catch (visionErr) {
+                console.error("Gemini Vision Analysis failed:", visionErr);
+            }
+        }
+
         // --- 2. Director Node (Text LLM generates the perfect Image Prompt) ---
         console.log("Calling Director Node (Gemini 3.0 Flash) to craft the image prompt...");
 
         const directorSystemPrompt = `
 Du bist ein Elite Logo Designer und Prompt Engineer für NanoBanana.
-Deine einzige Aufgabe ist es, basierend auf dem Input des Nutzers und den RAG-Referenzen, den perfekten englischen Prompt für einen AI-Bildgenerator zu schreiben.
+Deine einzige Aufgabe ist es, basierend auf dem Input des Nutzers, der Analyse des alten Logos und den RAG-Referenzen, den perfekten englischen Prompt für einen AI-Bildgenerator zu schreiben.
 
 === RAG KONTEXT (Best Practices) ===
 ${ragContext}
 ${scrapedContext}
+${visionContext}
 
 === INPUT DES NUTZERS ===
 Unternehmen: ${company_name}
@@ -108,7 +163,12 @@ Geschäftskern: ${business_description}
 Gewünschter Stil: ${logo_style || 'Professional and clean'}
 
 === DEINE ANWEISUNG ===
-Schreibe JETZT den englischen Bild-Prompt. Beschreibe präzise die visuelle Metapher, die Farbpalette und fordere zwingend einen weißen, freigestellten Hintergrund ("clean white background, isolation, no mockups").
+Da es sich um ein Logo-Upgrade handelt (Image-to-Image), wird die KI das alte Bild als grobes Gerüst nutzen. 
+Dein Prompt darf das alte Logo daher NICHT einfach nur stur beschreiben!
+Dein englischer Bild-Prompt muss zwingend erklären, WIE das alte Logo massiv modernisiert, qualitativ aufgewertet und exakt an den "Gewünschten Stil" des Nutzers angepasst werden soll.
+Übersetze die alte DNA in eine atemberaubende, moderne Ausführung. Nutze starke, transformative Adjektive.
+Fordere zwingend einen weißen, freigestellten Hintergrund ("clean white background, isolation, no mockups").
+
 CRITICAL TARGET TEXT RULE: If the logo contains the company name, YOU MUST PRESERVE THE EXACT ORIGINAL SPELLING AND LANGUAGE. For example, if the company is "Hassan's Döner", you must output text "Hassan's Döner", NEVER translate it to "Hassan's Kebab" or change the capitalization.
 
 WICHTIGSTE REGEL: Gib AUSSCHLIESSLICH den englischen Bild-Prompt zurück. Keine Erklärungen, keine Einleitung. Nur der rohe Prompt.
@@ -129,11 +189,11 @@ WICHTIGSTE REGEL: Gib AUSSCHLIESSLICH den englischen Bild-Prompt zurück. Keine 
                 generatedImagePrompt = directorData.candidates[0].content.parts[0].text.trim();
                 console.log("Director Node generated prompt:", generatedImagePrompt);
             } else {
-                throw new Error("Director Node failed to return text.");
+                throw new Error("Director Node failed to return text. Response: " + JSON.stringify(directorData));
             }
-        } catch (directorErr) {
+        } catch (directorErr: any) {
             console.error("Director Node Error:", directorErr);
-            generatedImagePrompt = `A high-quality, professional logo for a ${business_description} company named "${company_name}". Style: ${logo_style || 'clean, modern, minimalist'}. Clean white background, isolation, vector art style. MUST EXACTLY spell text "${company_name}".`;
+            generatedImagePrompt = `[FALLBACK TRIGGERED - ERROR: ${directorErr.message || directorErr.toString()}] A high-quality, professional logo for a ${business_description} company named "${company_name}". Style: ${logo_style || 'clean, modern, minimalist'}. Clean white background, isolation, vector art style. MUST EXACTLY spell text "${company_name}".`;
         }
 
         // Log generated prompt to Supabase
@@ -148,16 +208,26 @@ WICHTIGSTE REGEL: Gib AUSSCHLIESSLICH den englischen Bild-Prompt zurück. Keine 
             }
         }
 
-        // We MUST enforce the "no text" rule on the final image endpoint if no text is wanted, or enforce the correct text rule
-        const finalImagePrompt = `${generatedImagePrompt}\n\nCRITICAL FINAL INSTRUCTION: You are an image generator tool. Draw the image exactly as requested. Do NOT append unnecessary explanations.`;
+        const finalImagePrompt = `${generatedImagePrompt}\n\nCRITICAL FINAL INSTRUCTION: You are an image generator tool. Use the provided reference image ONLY as a structural and thematic blueprint. DO NOT trace or copy it exactly. You MUST fiercely apply the new modern style requested in the prompt to upgrade the visual quality. Do NOT append unnecessary explanations.`;
 
         console.log("Generating image with Nano Banana 2 (Gemini 3.1 Flash Image)...");
+
+        let imageParts: any[] = [{ text: finalImagePrompt }];
+        if (originalBase64Image) {
+            imageParts.push({
+                inline_data: {
+                    mime_type: "image/jpeg",
+                    data: originalBase64Image
+                }
+            });
+            console.log("Injecting original image as Image-to-Image reference.");
+        }
 
         const generateResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image-preview:generateContent?key=${geminiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                contents: [{ parts: [{ text: finalImagePrompt }] }]
+                contents: [{ parts: imageParts }]
             })
         });
 
@@ -230,7 +300,8 @@ WICHTIGSTE REGEL: Gib AUSSCHLIESSLICH den englischen Bild-Prompt zurück. Keine 
         return new Response(
             JSON.stringify({
                 success: true,
-                imageUrl: publicUrl
+                imageUrl: publicUrl,
+                director_prompt: finalImagePrompt
             }),
             {
                 status: 200,
@@ -243,7 +314,8 @@ WICHTIGSTE REGEL: Gib AUSSCHLIESSLICH den englischen Bild-Prompt zurück. Keine 
         return new Response(
             JSON.stringify({
                 error: "Generation failed",
-                details: e.toString()
+                details: e.toString(),
+                director_prompt: typeof generatedImagePrompt !== 'undefined' ? generatedImagePrompt : null
             }),
             {
                 status: 500,
