@@ -1,0 +1,70 @@
+2026-03-07----fix(b2b-logo): update headline text and fix invisible subtitle caused by SplitType
+2026-03-05----feat(ux): integrate Calendly widget and optimize form mobile responsiveness
+2026-03-05----fix(ux): add missing generated_logo_url db column, ensure business description is required, and patch edge function with fallback values to prevent 500 crashes
+2026-03-05----fix(ux): remove unmapped logo_style column from db insert payload to prevent 400 bad request error
+2026-03-05----feat(ux): simplify hormozi copy to 4th-grade reading level and reframe to '2026 Logo' aesthetic
+2026-03-05----feat(ux): implement dynamic 60s progress bar for nano banana 2 and add A/B post-generation lead capture modal
+2026-03-04----fix(ui): throw explicit error in lead form to prevent silent loading state
+2026-03-04----feat(ui): robust website url handling in logo form
+2026-03-04----fix(rag): rewrite gemini sdk to native fetch and expand db dimensions
+2026-03-04----fix: update CSP connect-src to allow supabase api calls
+2026-03-04----fix: remove inline opacity that hides form on slow/failed js execution
+2026-03-03----chore: trigger netlify deployment for new env variables
+2026-03-03----feat: b2b logo design feature with nano banana 2 integration and refactored copy
+2026-03-02----feat: switch from n8n webhook to direct supabase insertion for logo leads
+2026-03-02----feat: brand lime green & detailed logo generation inputs
+2026-03-02----fix: make b2b-logo-design value-driven and add companyName to form
+2026-03-02----feat: B2B Logo Lead System with Autohaus GSAP Design
+2026-02-25----fix: remove global cursor none to prevent invisible mouse on desktop
+2026-02-25----feat: temporarily remove fake play button from hero section until real videos are ready
+2026-02-25----feat: make hero video placeholder clickable linking to contact page
+2026-02-25----style: refine mobile typography and spacing for iPhone layout
+2026-02-25----fix: mobile hero layout order and android blur rendering bug
+2026-02-25----chore: rename autohaus-test to autohaus for production url
+2026-02-25----feat: autohaus landing page copy update, mobile optimization and hero split layout
+2026-02-17----feat(content): Update Hero messaging to 'Direct Problem/Solution'
+2026-02-17----fix(content): Correct company name ARPA -> ERPA
+2026-02-17----feat(seo): Implement V3 Radical Focus Strategy (Clean, Expand, Authority)
+2026-02-05----fix: Edge Function Double Slash Redirect hinzugefügt
+2026-02-05----feat: Edge Function wiederhergestellt für URL-Normalisierung
+2026-02-05----fix: Paranoid SEO Audit - doppelter Slash Bug, Edge Function, blog-temp gelöscht
+2026-02-05----fix(deploy): remove self-redirect loops in netlify.toml causing 500 errors
+2026-02-03----fix: Entity-Bereinigung - Blog noindex, CemKimsan LeadGen Rewrite, Hub-Priorisierung
+2026-02-01----fix: Entity-Bereinigung - Über-uns auf Unternehmens-Entity, Footer CTA systemorientiert
+2026-02-01----refactor: Systemanbieter-Rebranding - Beratung zu System-Design
+2026-01-15----fix(seo): P1 TXT/XML hardening - early return for crawler entrypoints + extend asset regex
+2026-01-15----fix(seo): Add trailing slash to Cases.tsx, noindex to legal pages, exclude nutzungsbedingungen from sitemap
+2026-01-15----DEBUG: Minimal netlify.toml to isolate redirect loop cause
+2026-01-15----Disable Edge Function to fix redirect loops - use redirect rules only
+2026-01-15----Fix redirect loop: Early return for already-normalized paths in Edge Function
+2026-01-15----Hotfix: Remove pretty_urls to fix redirect loop (Edge Function handles normalization)
+2026-01-15----SEO Fix: Edge Function + URL normalization + trailing slashes + sitemap cleanup
+2026-01-14----fix: replace logo.png and social-image.png with correct Hexagon branding, update og:image to absolute URL
+2026-01-13----fix(seo): add OG assets + Organization schema + fix dateModified
+2026-01-13----fix: footer link, legacy redirects, sitemap alias, logo rendering
+2026-01-13----fix(legal): update impressum with Kleinunternehmer regulation
+2026-01-13----fix(seo): add missing legal pages, fix solutions 404, and add redirects
+2026-01-04----fix(footer): update instagram link to ki_automatisieren
+2026-01-04----fix: strict hero CTA button (SSOT code match)
+2026-01-04----fix: strict hero alignment SSOT compliance
+2026-01-04----chore: trigger netlify deploy retry
+2026-01-04----fix: strict visual polish (Header, Hero, Cases, Section Order)
+2026-01-04----fix: build stability and strict alignment
+2026-01-03----fix(seo): remove stale static sitemap.xml to enable dynamic sitemap generation
+2026-01-03----fix(client): resolve hydration crash in CaseStudyDetail by removing non-serializable props
+2026-01-03----fix(deps): remove unused @astrojs/netlify to prevent CI install errors
+2026-01-03----fix(astro): enforce 'trailingSlash: always' for strict HTML folder structure (SSG)
+2026-01-03----feat(release): Phase 7 Go-Live - Astro Rebuild Complete
+2026-01-02----Strict Alignment: 1:1 sync with pratik-ai-vizyon reference
+2026-01-02----Emergency Fix: Added WhyUs, SolutionSteps, StaticOrbit
+2026-01-02----feat(ui): add high-fidelity orbit component [no-react]
+2026-01-02----fix(content): restore agitate section (reference match)
+2026-01-02----fix(content): remove unwanted sections and fix solutions grid
+2026-01-02----fix(fidelity): restore 100% homepage content parity (WhyUs, Agitate, Timeline)
+2026-01-02----fix(content): restore homepage fidelity and header navigation
+2026-01-02----feat(css): restore full dark mode design system
+2026-01-02----feat(css): restore basic tailwind integration
+2026-01-02----chore(release): deploy html-first architecture with pure html components
+2026-01-02----fix(css): resolve tailwind utility class conflict for netlify build
+2026-01-02----chore(deploy): strict gate compliance for SEO and Netlify
+2026-01-02----feat(astro): complete migration to Astro SSG (Zero-JS)

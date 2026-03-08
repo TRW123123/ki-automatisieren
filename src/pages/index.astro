@@ -5,6 +5,7 @@ import Agitate from "@/components/Agitate.tsx";
 import GoToMarketTimeline from "@/components/GoToMarketTimeline.tsx";
 import SolutionSection from "@/components/SolutionSection.tsx";
 import Cases from "@/components/Cases.tsx";
+import PseoHub from "@/components/PseoHub.astro";
 import QuickAnalysisModal from "@/components/QuickAnalysisModal.astro";
 import IndustrySection from "@/components/IndustrySection.astro";
 
@@ -44,6 +45,7 @@ const websiteSchema = JSON.stringify({
   <IndustrySection />
   <SolutionSection client:visible />
   <GoToMarketTimeline client:visible />
+  <PseoHub />
   <Cases client:visible />
   <QuickAnalysisModal />
 </BaseLayout>

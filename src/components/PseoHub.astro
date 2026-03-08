@@ -1,0 +1,49 @@
+---
+import pseoData from "../data/pseo_data.json";
+
+// We can show all 40, but to avoid making the page too long, we might show them in a tight grid.
+// Or maybe categorize them? For now, an alphabetical or grouped grid is good.
+// Let's sort alphabetically by branchName
+const sortedBranches = [...pseoData].sort((a, b) => a.branchName.localeCompare(b.branchName));
+---
+
+<section class="py-24 bg-card/10 border-t border-white/5 relative overflow-hidden" id="branchen">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(163,230,53,0.03),transparent_50%)] pointer-events-none" />
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">
+                Passgenaue B2B-Vertriebsstrategien für <span class="text-lime-400">{sortedBranches.length} Branchen</span>
+            </h2>
+            <p class="text-xl text-muted-foreground">
+                Jede Industrie hat ihre eigenen Gesetze, Schmerzpunkte und Entscheider. Finden Sie Ihre Branche und entdecken Sie unsere spezifischen Akquise-Modelle.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {
+                sortedBranches.map((branche) => (
+                    <a
+                        href={`/branchen/${branche.slug}`}
+                        class="group flex items-center p-4 rounded-xl bg-background border border-white/10 hover:border-lime-500/50 hover:bg-white/5 transition-all text-sm font-medium hover:-translate-y-1"
+                    >
+                        <div class="mr-3 p-2 rounded-lg bg-white/5 group-hover:bg-lime-500/20 text-lime-400 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                            </svg>
+                        </div>
+                        <span class="group-hover:text-white transition-colors">{branche.branchName}</span>
+                    </a>
+                ))
+            }
+        </div>
+        
+        <div class="mt-16 text-center">
+            <p class="text-muted-foreground mb-4">Ihre Branche ist nicht dabei?</p>
+            <a href="https://calendly.com/feyyaz-ki-automatisieren/30min" target="_blank" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white/10 text-white font-medium hover:bg-white/20 transition-colors border border-white/10 hover:border-white/30">
+                Kostenlose Potenzialanalyse anfordern
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" class="ml-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+</section>

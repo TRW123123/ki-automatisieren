@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { industries } from "../../data/industries";
+import { pseoBranchen } from "@/data/pseo-branchen";
 
 export function getStaticPaths() {
-    return industries.map((industry) => ({
+    return pseoBranchen.map((industry) => ({
         params: { slug: industry.slug },
         props: { industry },
     }));
@@ -19,11 +19,29 @@ const serviceSchema = JSON.stringify({
     description: industry.seo.description,
     provider: {
         "@type": "Organization",
-        name: "KI Automatisieren",
+        name: "Vertrieb mit KI",
     },
     areaServed: "DE",
-    serviceType: industry.slug,
+    serviceType: industry.branchName,
 });
+
+// FAQ Schema
+const faqSchema = industry.faqs ? JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: industry.faqs.map(faq => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer
+        }
+    }))
+}) : null;
+
+const processSteps = industry.process || industry.solution?.steps || [];
+const benefitsList = industry.benefits || [];
+const featuresList = industry.features || [];
 ---
 
 <BaseLayout
@@ -31,193 +49,292 @@ const serviceSchema = JSON.stringify({
     description={industry.seo.description}
     type="article"
 >
+    <!-- SEO Schemas -->
     <script type="application/ld+json" set:html={serviceSchema} />
+    {faqSchema && <script type="application/ld+json" set:html={faqSchema} />}
 
-    <!-- Hero -->
-    <section class="py-20 md:py-32 relative overflow-hidden">
-        <div class="absolute inset-0 bg-indigo-500/5 -z-10"></div>
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl">
-                <div
-                    class="text-sm font-medium text-indigo-400 mb-4 tracking-wide uppercase"
-                >
-                    Branche
+    <style is:inline>
+        :root {
+            --bg-base: hsl(203, 23%, 8%);
+            --surface: hsl(220, 13%, 9%);
+            --text-main: hsl(210, 10%, 90%);
+            --text-muted: hsl(215, 16%, 58%);
+            --accent: #A3E635; /* Lime Green */
+            --border-color: rgba(255, 255, 255, 0.08);
+            --font-display: 'Space Grotesk', system-ui, sans-serif;
+            --font-ui: 'Space Grotesk', system-ui, sans-serif;
+        }
+
+        .landing-wrapper {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: var(--font-ui);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        .landing-wrapper h1, .landing-wrapper h2, .landing-wrapper h3, .landing-wrapper .display-font {
+            font-family: var(--font-display);
+            font-weight: 700;
+        }
+
+        .cyber-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, black 10%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 10%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .seo-article-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        .seo-article-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #e2e8f0;
+        }
+        .seo-article-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #94a3b8;
+        }
+        .seo-article-content strong {
+            color: #f8fafc;
+        }
+    </style>
+
+    <div class="landing-wrapper">
+        <div class="cyber-grid"></div>
+
+        <!-- 1. Hero -->
+        <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden z-20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-lime-500/30 bg-lime-500/10 text-lime-400 text-sm font-medium mb-8">
+                        <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse" />
+                        Branchenlösung: {industry.branchName}
+                    </div>
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight tracking-tight text-white">
+                        {industry.hero.title || industry.hero.headline}
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto leading-relaxed">
+                        {industry.hero.subtitle || industry.hero.subheadline || industry.hero.description}
+                    </p>
+                    <a
+                        href="#booking-section"
+                        class="inline-flex items-center justify-center h-14 px-8 rounded-xl bg-lime-500 text-black font-bold text-lg hover:bg-lime-400 transition-colors shadow-[0_0_30px_rgba(163,230,53,0.3)]"
+                    >
+                        Potenzialanalyse buchen
+                    </a>
                 </div>
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                    {industry.hero.title}
-                </h1>
-                <p
-                    class="text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed"
-                >
-                    {industry.hero.subtitle}
-                </p>
-                <a
-                    href="#kontakt"
-                    class="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-indigo-500 text-white font-bold hover:bg-indigo-400 transition-colors"
-                >
-                    Branchen-Lösung anfragen
-                </a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Problems -->
-    <section class="py-24 border-y border-white/5 bg-card/30">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12 text-center">
-                {industry.problem.title}
-            </h2>
-            <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
-            >
-                {
-                    industry.problem.items.map((item) => (
-                        <div class="p-6 rounded-xl bg-background border border-white/5 flex items-start gap-4">
-                            <div class="w-1 h-1 rounded-full bg-red-500 mt-2.5 shrink-0" />
-                            <p class="text-lg">{item}</p>
-                        </div>
-                    ))
-                }
-            </div>
-        </div>
-    </section>
-
-    <!-- Process -->
-    <section class="py-24">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-16 text-center">
-                {industry.process.title}
-            </h2>
-            <div class="relative">
-                <div
-                    class="absolute top-1/2 left-0 w-full h-0.5 bg-white/10 -translate-y-1/2 hidden md:block z-0"
-                >
-                </div>
-                <div
-                    class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 relative z-10"
-                >
-                    {
-                        industry.process.steps.map((step, index) => (
-                            <div class="bg-background md:bg-transparent p-6 md:p-0 rounded-xl border border-white/5 md:border-none">
-                                <div class="w-10 h-10 rounded-full bg-card border-2 border-indigo-500 text-indigo-500 font-bold flex items-center justify-center mb-6 mx-auto md:mx-0 relative z-10">
-                                    {index + 1}
+        <!-- 2. Hard Metrics & Pain Points -->
+        <section class="py-20 relative z-20 bg-[#050505] border-y border-white/5">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <!-- Metrics Dashboard -->
+                    <div>
+                        <h2 class="text-3xl font-bold mb-8 text-white">Markt Realität in Zahlen</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {industry.hardMetrics.avgLeadCost || industry.hardMetrics.cpl && (
+                                <div class="p-6 bg-[#0A0A0A] border border-white/10 rounded-2xl">
+                                    <div class="text-sm text-gray-400 mb-2">Cost-per-Lead / Akquisekosten</div>
+                                    <div class="text-2xl font-bold text-lime-400">{industry.hardMetrics.avgLeadCost || industry.hardMetrics.cpl}</div>
                                 </div>
-                                <h3 class="text-xl font-bold mb-2">
-                                    {step.title}
-                                </h3>
-                                <p class="text-muted-foreground">
-                                    {step.description}
-                                </p>
-                            </div>
-                        ))
-                    }
+                            )}
+                            {industry.hardMetrics.conversionRate && (
+                                <div class="p-6 bg-[#0A0A0A] border border-white/10 rounded-2xl">
+                                    <div class="text-sm text-gray-400 mb-2">Typische Conversion Rate</div>
+                                    <div class="text-2xl font-bold text-emerald-400">{industry.hardMetrics.conversionRate}</div>
+                                </div>
+                            )}
+                            {(industry.hardMetrics.timeToClose || industry.hardMetrics.salesCycle) && (
+                                <div class="p-6 bg-[#0A0A0A] border border-white/10 rounded-2xl sm:col-span-2">
+                                    <div class="text-sm text-gray-400 mb-2">Sales Cycle / Dauer bis Abschluss</div>
+                                    <div class="text-2xl font-bold text-white">{industry.hardMetrics.timeToClose || industry.hardMetrics.salesCycle}</div>
+                                </div>
+                            )}
+                            {industry.hardMetrics.marketChallenge && (
+                                <div class="p-6 bg-[#0A0A0A] border border-lime-500/20 rounded-2xl sm:col-span-2">
+                                    <div class="text-sm text-lime-400 mb-2">Markt-Herausforderung</div>
+                                    <div class="text-lg font-medium text-white">{industry.hardMetrics.marketChallenge}</div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <!-- Pain Points -->
+                    <div>
+                        <h2 class="text-3xl font-bold mb-8 text-white">Aktuelle Herausforderungen</h2>
+                        <div class="space-y-6">
+                            {industry.painPoints.map((pain) => (
+                                <div class="flex gap-4">
+                                    <div class="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center shrink-0 mt-1">
+                                        <div class="w-2 h-2 rounded-full bg-red-500" />
+                                    </div>
+                                    <p class="text-gray-400 leading-relaxed text-lg">
+                                        {typeof pain === 'string' ? pain : (
+                                            <>
+                                                <strong class="text-white block mb-1">{pain.title || pain.headline}</strong>
+                                                {pain.description || pain.text}
+                                            </>
+                                        )}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Benefits -->
-    <section class="py-24 bg-indigo-500/5 border-t border-white/5">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-12">{industry.benefits.title}</h2>
-            <div
-                class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
-            >
-                {
-                    industry.benefits.items.map((item) => (
-                        <div class="p-8 rounded-2xl bg-card border border-indigo-500/20 shadow-[0_0_30px_rgba(99,102,241,0.05)]">
-                            <p class="text-xl md:text-2xl font-bold text-indigo-400">
-                                {item}
-                            </p>
-                        </div>
-                    ))
-                }
-            </div>
-        </div>
-    </section>
+        <!-- 3. Method / Process (Solution) -->
+        {processSteps.length > 0 && (
+            <section class="py-24 relative z-20">
+                <div class="container mx-auto px-4">
+                    <div class="max-w-3xl mx-auto text-center mb-16">
+                        <h2 class="text-4xl font-bold mb-6 text-white">{industry.solution?.title || "Unser Prozess für Ihren B2B Vertrieb"}</h2>
+                        {industry.solution?.approach && (
+                            <p class="text-xl text-gray-400 leading-relaxed">{industry.solution.approach}</p>
+                        )}
+                    </div>
 
-    <!-- Case Study -->
-    {
-        industry.caseStudy && (
-            <section class="py-24 border-t border-white/5 bg-card/30 relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent pointer-events-none" />
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        {processSteps.map((step, idx) => (
+                            <div class="bg-[#0A0A0A] border border-white/10 rounded-2xl p-8 hover:border-lime-500/30 transition-colors relative">
+                                <div class="text-6xl font-black text-white/5 absolute top-4 right-4 z-0">0{idx+1}</div>
+                                <h3 class="text-2xl font-bold text-white mb-4 relative z-10">{step.step || step.title}</h3>
+                                <p class="text-gray-400 leading-relaxed relative z-10">{step.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        )}
+
+        <!-- 4. Deep SEO Article (Market Analysis) -->
+        {industry.seoArticle && (
+             <section class="py-24 bg-[#050505] border-y border-white/5 relative z-20">
+             <div class="container mx-auto px-4">
+                 <div class="max-w-4xl mx-auto">
+                     <h2 class="text-3xl md:text-5xl font-bold mb-10 text-white">{industry.seoArticle.heading || industry.seoArticle.title}</h2>
+                     <div class="seo-article-content text-lg" set:html={industry.seoArticle.content} />
+                 </div>
+             </div>
+         </section>
+        )}
+
+        <!-- 5. Benefits -->
+        {benefitsList.length > 0 && (
+            <section class="py-24 relative z-20">
+                <div class="container mx-auto px-4 text-center">
+                    <h2 class="text-4xl font-bold mb-16 text-white">Ihre Resultate</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        {benefitsList.map((benefit) => (
+                            <div class="p-8 rounded-2xl bg-[#0A0A0A] border border-lime-500/20 shadow-[0_0_30px_rgba(163,230,53,0.05)]">
+                                {typeof benefit === 'string' ? (
+                                    <p class="text-xl font-bold text-lime-400">{benefit}</p>
+                                ) : (
+                                    <>
+                                        <h3 class="text-2xl font-bold text-lime-400 mb-4">{benefit.title}</h3>
+                                        <p class="text-gray-400">{benefit.description}</p>
+                                    </>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        )}
+
+        <!-- 6. Case Study -->
+        {industry.caseStudy && (
+            <section class="py-24 border-t border-white/5 bg-[#050505] relative z-20 overflow-hidden">
                 <div class="container mx-auto px-4 relative z-10">
-                    <div class="max-w-4xl mx-auto">
+                    <div class="max-w-4xl mx-auto bg-[#0A0A0A] border border-white/10 rounded-3xl p-8 md:p-12">
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-xs font-medium mb-6">
-                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
-                            REFERENZ
+                            FALLSTUDIE
                         </div>
                         <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white">
-                            Wie{" "}
-                            <span class="text-indigo-400">
-                                {industry.caseStudy.company}
-                            </span>{" "}
-                            {industry.caseStudy.result}
+                            Beispiel: {industry.caseStudy.companyType}
                         </h2>
-
-                        <div class="bg-background/80 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-10 shadow-2xl">
-                            <div class="flex flex-col md:flex-row gap-8 items-center">
-                                <div class="w-full md:w-1/3 flex justify-center">
-                                    <div class="w-40 h-40 bg-white/5 rounded-full flex items-center justify-center border border-white/10 p-6">
-                                        <img
-                                            src={industry.caseStudy.image}
-                                            alt={`${industry.caseStudy.company} Logo`}
-                                            class="max-w-full max-h-full object-contain"
-                                            loading="lazy"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="w-full md:w-2/3 text-center md:text-left">
-                                    <p class="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-                                        "{industry.caseStudy.description}"
-                                    </p>
-                                    <a
-                                        href={industry.caseStudy.link}
-                                        class="inline-flex items-center text-indigo-400 font-bold hover:text-indigo-300 transition-colors group"
-                                    >
-                                        Fallstudie lesen
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            class="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1"
-                                        >
-                                            <>
-                                                <path d="M5 12h14" />
-                                                <path d="m12 5 7 7-7 7" />
-                                            </>
-                                        </svg>
-                                    </a>
-                                </div>
+                        
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-300 mb-2">Das Problem</h3>
+                                <p class="text-gray-400 leading-relaxed">{industry.caseStudy.problem}</p>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-300 mb-2">Unsere KI Lösung</h3>
+                                <p class="text-gray-400 leading-relaxed">{industry.caseStudy.solution}</p>
+                            </div>
+                            <div class="p-6 bg-lime-500/5 border border-lime-500/20 rounded-2xl">
+                                <h3 class="text-xl font-bold text-lime-400 mb-4">Die Ergebnisse</h3>
+                                <ul class="space-y-3">
+                                    {industry.caseStudy.results.map((res) => (
+                                        <li class="flex items-start gap-3 text-gray-300">
+                                            <svg class="w-6 h-6 text-lime-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                            <span class="mt-0.5">{res}</span>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-        )
-    }
+        )}
 
-    <!-- CTA -->
-    <section
-        id="kontakt"
-        class="py-24 bg-card border-t border-white/5 text-center"
-    >
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold mb-6">
-                Starten Sie in Ihrer Branche
-            </h2>
-            <a
-                href="mailto:kontakt@ki-automatisieren.de"
-                class="inline-block px-8 py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-colors"
-            >
-                Erstgespräch vereinbaren
-            </a>
+        <!-- 7. FAQs -->
+        {industry.faqs && industry.faqs.length > 0 && (
+            <section class="py-24 relative z-20">
+                <div class="container mx-auto px-4 max-w-4xl">
+                    <h2 class="text-4xl font-bold mb-12 text-center text-white">Häufig gestellte Fragen</h2>
+                    <div class="space-y-6">
+                        {industry.faqs.map((faq) => (
+                            <div class="bg-[#0A0A0A] border border-white/10 rounded-2xl p-6 md:p-8">
+                                <h3 class="text-2xl font-bold text-white mb-4">{faq.question}</h3>
+                                <p class="text-gray-400 leading-relaxed">{faq.answer}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        )}
+
+        <!-- 8. Calendly Embed Section (Hormozi Style) -->
+        <div class="py-32 relative z-30 text-center bg-[#050505] border-t border-white/5" id="booking-section">
+            <h2 class="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">Kunden gewinnen. <br class="md:hidden" /><span class="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-emerald-500">Automatisch.</span></h2>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-12">
+                Buchen Sie jetzt eine kostenlose Markt-Analyse. Wir zeigen Ihnen 1:1, wie unser System vollautomatisch qualifizierte Entscheider aus {industry.branchName.replace(/\(.*?\)/g, '')} für Sie gewinnt.
+            </p>
+            
+            <div class="bg-[#0A0A0A] border border-white/10 rounded-3xl overflow-hidden p-2 shadow-2xl relative max-w-5xl mx-auto">
+                <div class="absolute inset-0 bg-gradient-to-b from-lime-500/5 to-transparent pointer-events-none"></div>
+                <!-- Calendly inline widget begin -->
+                <div class="calendly-inline-widget min-w-[320px] h-[750px]" data-url="https://calendly.com/st-automatisierung-info/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=050505&text_color=ffffff&primary_color=a3e635"></div>
+                <script is:inline type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                <!-- Calendly inline widget end -->
+            </div>
         </div>
-    </section>
+
+    </div>
 </BaseLayout>
