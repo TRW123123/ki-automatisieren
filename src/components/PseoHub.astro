@@ -2,9 +2,18 @@
 import pseoData from "../data/pseo_data.json";
 
 // We can show all 40, but to avoid making the page too long, we might show them in a tight grid.
-// Or maybe categorize them? For now, an alphabetical or grouped grid is good.
-// Let's sort alphabetically by branchName
-const sortedBranches = [...pseoData].sort((a, b) => a.branchName.localeCompare(b.branchName));
+// Sort by Tier (Tier 1 first), then Search Volume (descending), then Alphabetical
+const sortedBranches = [...pseoData].sort((a, b) => {
+    const tierA = parseInt(a.tier || '3');
+    const tierB = parseInt(b.tier || '3');
+    if (tierA !== tierB) return tierA - tierB;
+    
+    const volA = a.searchVolume || 0;
+    const volB = b.searchVolume || 0;
+    if (volA !== volB) return volB - volA;
+    
+    return a.branchName.localeCompare(b.branchName);
+});
 ---
 
 <section class="py-24 bg-card/10 border-t border-white/5 relative overflow-hidden" id="branchen">
@@ -40,7 +49,7 @@ const sortedBranches = [...pseoData].sort((a, b) => a.branchName.localeCompare(b
         
         <div class="mt-16 text-center">
             <p class="text-muted-foreground mb-4">Ihre Branche ist nicht dabei?</p>
-            <a href="https://calendly.com/feyyaz-ki-automatisieren/30min" target="_blank" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white/10 text-white font-medium hover:bg-white/20 transition-colors border border-white/10 hover:border-white/30">
+            <a href="https://calendly.com/st-automatisierung-info/30min" target="_blank" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white/10 text-white font-medium hover:bg-white/20 transition-colors border border-white/10 hover:border-white/30">
                 Kostenlose Potenzialanalyse anfordern
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" class="ml-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>

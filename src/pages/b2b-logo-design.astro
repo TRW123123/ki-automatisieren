@@ -148,7 +148,7 @@ const seoDescription = "Wir trimmen Ihr Design auf Conversion. Laden Sie Ihr akt
 
         .w-inner {
             display: inline-block;
-            transform: translateY(115%);
+            /* transform translateY extracted to JS for better LCP */
         }
 
         .hl-word {
@@ -181,7 +181,42 @@ const seoDescription = "Wir trimmen Ihr Design auf Conversion. Laden Sie Ihr akt
         }
     </style>
 
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Person",
+                "@id": "https://ki-automatisieren.de/#safak-tepecik",
+                "name": "Safak Tepecik",
+                "jobTitle": "Gründer & KI-Systemarchitekt",
+                "worksFor": { "@id": "https://ki-automatisieren.de/#organization" }
+            },
+            {
+                "@type": "Organization",
+                "@id": "https://ki-automatisieren.de/#organization",
+                "name": "ST-Automatisierung",
+                "alternateName": "KI Automatisieren",
+                "url": "https://ki-automatisieren.de",
+                "founder": { "@id": "https://ki-automatisieren.de/#safak-tepecik" }
+            },
+            {
+                "@type": "Service",
+                "@id": "https://ki-automatisieren.de/b2b-logo-design#service",
+                "name": "B2B Design System | High-End Logos für visuelle Autorität",
+                "provider": { "@id": "https://ki-automatisieren.de/#organization" },
+                "serviceType": "B2B Logo Design und Brand Architecture",
+                "review": {
+                    "@type": "Review",
+                    "reviewBody": "Wir trimmen Ihr Design auf Conversion.",
+                    "author": { "@id": "https://ki-automatisieren.de/#safak-tepecik" }
+                }
+            }
+        ]
+    }
+    </script>
     <div class="landing-wrapper">
+        <article itemscope itemtype="https://schema.org/Article">
         <!-- SVG Noise -->
         <svg class="n-overlay" xmlns="http://www.w3.org/2000/svg">
             <filter id="n-filter">
@@ -272,6 +307,7 @@ const seoDescription = "Wir trimmen Ihr Design auf Conversion. Laden Sie Ihr akt
 
             </div>
         </section>
+        </article>
     </div>
 
     <script is:inline>
@@ -291,8 +327,8 @@ const seoDescription = "Wir trimmen Ihr Design auf Conversion. Laden Sie Ihr akt
                 wrapper.appendChild(word);
             });
 
-            gsap.to('.w-inner', {
-                y: 0,
+            gsap.from('.w-inner', {
+                y: '115%',
                 duration: 1.2,
                 stagger: 0.1,
                 ease: 'power4.out',

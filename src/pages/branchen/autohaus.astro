@@ -241,7 +241,7 @@ const seoDescription = "Wir bringen Käufer für Ihre Autos. Ein komplettes Syst
 
         .w-inner {
             display: inline-block;
-            transform: translateY(115%);
+            /* transform translateY extracted to JS for better LCP */
         }
 
         .hl-word {
@@ -548,7 +548,42 @@ const seoDescription = "Wir bringen Käufer für Ihre Autos. Ein komplettes Syst
         }
     </style>
 
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Person",
+                "@id": "https://ki-automatisieren.de/#safak-tepecik",
+                "name": "Safak Tepecik",
+                "jobTitle": "Gründer & KI-Systemarchitekt",
+                "worksFor": { "@id": "https://ki-automatisieren.de/#organization" }
+            },
+            {
+                "@type": "Organization",
+                "@id": "https://ki-automatisieren.de/#organization",
+                "name": "ST-Automatisierung",
+                "alternateName": "KI Automatisieren",
+                "url": "https://ki-automatisieren.de",
+                "founder": { "@id": "https://ki-automatisieren.de/#safak-tepecik" }
+            },
+            {
+                "@type": "Service",
+                "@id": "https://ki-automatisieren.de/branchen/autohaus#service",
+                "name": "Mehr Autos verkaufen",
+                "provider": { "@id": "https://ki-automatisieren.de/#organization" },
+                "serviceType": "Videoproduktion und Lead-Generierung für Autohäuser",
+                "review": {
+                    "@type": "Review",
+                    "reviewBody": "Spezialisierte Lösung für den Autohandel",
+                    "author": { "@id": "https://ki-automatisieren.de/#safak-tepecik" }
+                }
+            }
+        ]
+    }
+    </script>
     <div class="landing-wrapper">
+        <article itemscope itemtype="https://schema.org/Article">
         <!-- SVG Noise -->
         <svg class="n-overlay" xmlns="http://www.w3.org/2000/svg">
             <filter id="n-filter">
@@ -689,6 +724,7 @@ const seoDescription = "Wir bringen Käufer für Ihre Autos. Ein komplettes Syst
 
             </div>
         </section>
+        </article>
     </div>
 
     <script is:inline>
@@ -709,8 +745,8 @@ const seoDescription = "Wir bringen Käufer für Ihre Autos. Ein komplettes Syst
                 wrapper.appendChild(word);
             });
 
-            gsap.to('.w-inner', {
-                y: 0,
+            gsap.from('.w-inner', {
+                y: '115%',
                 duration: 1.2,
                 stagger: 0.1,
                 ease: 'power4.out',

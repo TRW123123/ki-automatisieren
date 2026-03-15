@@ -1,0 +1,405 @@
+﻿
+> ki-automatisieren@0.0.1 build
+> astro build
+
+22:20:24 [types] Generated 123ms
+22:20:24 [build] output: "static"
+22:20:24 [build] directory: C:\Users\User\Projects\ki-automatisieren-astro\dist\
+22:20:24 [build] Collecting build info...
+22:20:24 [build] Ô£ô Completed in 190ms.
+22:20:24 [build] Building static entrypoints...
+node.exe : "Image" is imported from external module "lucide-react" 
+but never used in "src/components/react/LogoLeadForm.tsx".
+In Zeile:1 Zeichen:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : NotSpecified: ("Image" is impo...oLea 
+   dForm.tsx".:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+22:20:27 [vite] [32mÔ£ô built in 2.11s[39m
+22:20:27 [build] Ô£ô Completed in 2.17s.
+
+ building client (vite) 
+22:20:27 [vite] transforming...
+22:20:29 [vite] [32mÔ£ô[39m 1751 modules transformed.
+22:20:29 [vite] rendering chunks...
+22:20:29 [vite] computing gzip size...
+22:20:29 [vite] [2mdist/[22m[36m_astro/hoisted.DBmp4d3F.js             [39m[1m[2m  0.19 kB[22m[1m[22m[2m Ôöé gzip:  0.18 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/useReducedMotion.DpqPH3ky.js    [39m[1m[2m  0.30 kB[22m[1m[22m[2m Ôöé gzip:  0.23 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/arrow-right.BIpdAfmq.js         [39m[1m[2m  0.35 kB[22m[1m[22m[2m Ôöé gzip:  0.27 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/clsx.B-dksMZM.js                [39m[1m[2m  0.37 kB[22m[1m[22m[2m Ôöé gzip:  0.24 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/index.N3PVDHTn.js               [39m[1m[2m  0.40 kB[22m[1m[22m[2m Ôöé gzip:  0.27 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/phone-call.CWDhuQw7.js          [39m[1m[2m  0.61 kB[22m[1m[22m[2m Ôöé gzip:  0.38 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/index.KbCko3GM.js               [39m[1m[2m  0.70 kB[22m[1m[22m[2m Ôöé gzip:  0.42 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/badge.DeTR0eAX.js               [39m[1m[2m  0.81 kB[22m[1m[22m[2m Ôöé gzip:  0.42 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/jsx-runtime.DkTqYnWV.js         [39m[1m[2m  0.92 kB[22m[1m[22m[2m Ôöé gzip:  0.58 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/card.D_2ARGUv.js                [39m[1m[2m  1.05 kB[22m[1m[22m[2m Ôöé gzip:  0.41 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/client.sMpoFJXe.js              [39m[1m[2m  1.76 kB[22m[1m[22m[2m Ôöé gzip:  0.90 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/hoisted.BMBN3CsG.js             [39m[1m[2m  1.79 kB[22m[1m[22m[2m Ôöé gzip:  0.85 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/createLucideIcon.I9eFQF8B.js    [39m[1m[2m  1.86 kB[22m[1m[22m[2m Ôöé gzip:  0.80 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/button.Cga2BEeZ.js              [39m[1m[2m  3.35 kB[22m[1m[22m[2m Ôöé gzip:  1.48 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/Cases.CiQ1nhJT.js               [39m[1m[2m  3.65 kB[22m[1m[22m[2m Ôöé gzip:  1.61 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/Agitate.CV8HIKn2.js             [39m[1m[2m  4.87 kB[22m[1m[22m[2m Ôöé gzip:  2.02 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/SolutionSection.BBR4IOOJ.js     [39m[1m[2m  5.11 kB[22m[1m[22m[2m Ôöé gzip:  1.90 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/index.a3y3H-wG.js               [39m[1m[2m  7.22 kB[22m[1m[22m[2m Ôöé gzip:  2.91 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/Footer.5ueoxW2z.js              [39m[1m[2m  7.86 kB[22m[1m[22m[2m Ôöé gzip:  2.23 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/ConnectedTimeline.B0uk8Lkh.js   [39m[1m[2m  8.28 kB[22m[1m[22m[2m Ôöé gzip:  2.15 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/CaseStudyDetail.DsEsKjEf.js     [39m[1m[2m  8.86 kB[22m[1m[22m[2m Ôöé gzip:  2.65 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/GoToMarketTimeline.WCxyMtkt.js  [39m[1m[2m 11.54 kB[22m[1m[22m[2m Ôöé gzip:  4.34 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/routeMappings.CUjLRo3k.js       [39m[1m[2m 16.04 kB[22m[1m[22m[2m Ôöé gzip:  5.66 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/LogoLeadForm.BwMXMdD5.js        [39m[1m[2m 16.97 kB[22m[1m[22m[2m Ôöé gzip:  5.39 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/utils.CppfKf37.js               [39m[1m[2m 19.95 kB[22m[1m[22m[2m Ôöé gzip:  6.72 kB[22m
+22:20:29 [vite] [2mdist/[22m[36m_astro/index.DnlfWS4L.js               [39m[1m[2m133.91 kB[22m[1m[22m[2m Ôöé gzip: 43.12 kB[22m
+22:20:29 [vite] [32mÔ£ô built in 2.33s[39m
+
+ generating static routes 
+22:20:29 ÔûÂ src/pages/404.astro
+22:20:29   ÔööÔöÇ /404.html (+25ms)
+22:20:29 ÔûÂ src/pages/b2b-logo-design.astro
+22:20:29   ÔööÔöÇ /b2b-logo-design/index.html (+9ms)
+22:20:29 ÔûÂ src/pages/branchen/autohaus.astro
+22:20:29   ÔööÔöÇ /branchen/autohaus/index.html (+6ms)
+
+­ƒÜ¿ pSEO QUALITY GATE: 40 of 50 entries failed validation!
+This build is BLOCKED to prevent thin content from reaching 
+production.
+
+ÔØî QUALITY GATE FAILED for "werbeagenturen-marketing-agenturen":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "architekten-ingenieurbueros":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "maschinenbau-anlagenbau":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "pharma-lifesciences-medtech":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "zahnarztpraxen-aerzte":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "finanzberater-vermoegensverwalter":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "e-commerce-b2b-shops":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "saas-software-it-produkte":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "grosshandel-b2b-distribution":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "weiterbildung-coaching-b2b":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "automobilzulieferer-automotive-oem":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "kunststofftechnik-spritzguss":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "elektrotechnik-schaltanlagenbau":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "cybersecurity-it-sicherheit":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "robotik-automatisierungstechnik":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "umwelttechnik-erneuerbare-energien":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "metallindustrie-zerspanung-cnc":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "lebensmittelindustrie-food-beverage":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "druckindustrie-verpackungsdruck":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "telekommunikation-carrier-services":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "medizintechnik-life-sciences":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "m-and-a-unternehmensnachfolge":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "spezialtiefbau-grossbauprojekte":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "luft-raumfahrt-aerospace":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "private-equity-venture-capital":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "krypto-blockchain-b2b":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "intralogistik-lagerautomatisierung":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "luxusgueter-high-end-retail-b2b":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "agrar-technologie-smart-farming":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for "schiffbau-maritime-wirtschaft":
+  ÔåÆ seo.primaryKeyword: Required
+  ÔåÆ seo.secondaryKeywords: Required
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ solution.title: Required
+  ÔåÆ solution.approach: Required
+  ÔåÆ benefits: Expected array, received object
+  ÔåÆ seoArticle.content: Required
+
+ÔØî QUALITY GATE FAILED for 
+"sicherheitsdienste-objektschutz-werkschutz":
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ benefits: Required
+  ÔåÆ faqs: Required
+
+ÔØî QUALITY GATE FAILED for "energieberater-unternehmen-industrie":
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ benefits: Required
+  ÔåÆ faqs: Required
+
+ÔØî QUALITY GATE FAILED for "industriereinigung-spezialreinigung":
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ benefits: Required
+  ÔåÆ faqs: Required
+
+ÔØî QUALITY GATE FAILED for "flottenmanagement-fuhrparkverwaltung":
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ benefits: Required
+  ÔåÆ faqs: Required
+
+ÔØî QUALITY GATE FAILED for "b2b-factoring-forderungsmanagement":
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ benefits: Required
+  ÔåÆ faqs: Required
+
+ÔØî QUALITY GATE FAILED for "arbeitsschutz-arbeitssicherheit":
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ benefits: Required
+  ÔåÆ faqs: Required
+
+ÔØî QUALITY GATE FAILED for "nutzfahrzeuge-baumaschinenhandel":
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ benefits: Required
+  ÔåÆ faqs: Required
+
+ÔØî QUALITY GATE FAILED for "b2b-catering-betriebsgastronomie":
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ benefits: Required
+  ÔåÆ faqs: Required
+
+ÔØî QUALITY GATE FAILED for "messebau-eventagenturen":
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ benefits: Required
+  ÔåÆ faqs: Required
+
+ÔØî QUALITY GATE FAILED for "hr-tech-recruiting-software":
+  ÔåÆ hardMetrics: Expected object, received array
+  ÔåÆ benefits: Required
+  ÔåÆ faqs: Required
+
+Fix the data in src/data/pseo_data.json and rebuild.
+  Stack trace:
+    at validatePseoData (file:///C:/Users/User/Projects/ki-automatis
+ieren-astro/dist/pages/branchen/_slug_.astro.mjs?time=1773609629620:
+108:11)
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async BuildPipeline.retrieveSsrEntry (file:///C:/Users/User/P
+rojects/ki-automatisieren-astro/node_modules/astro/dist/core/build/p
+ipeline.js:244:15)
+    at async staticBuild (file:///C:/Users/User/Projects/ki-automati
+sieren-astro/node_modules/astro/dist/core/build/static-build.js:100:
+5)
+    at async AstroBuilder.run (file:///C:/Users/User/Projects/ki-aut
+omatisieren-astro/node_modules/astro/dist/core/build/index.js:182:7)
+

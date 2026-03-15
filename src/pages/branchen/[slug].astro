@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { pseoBranchen } from "@/data/pseo-branchen";
+import KiEinsparungsrechner from "@/components/react/KiEinsparungsrechner.tsx";
 
 export function getStaticPaths() {
     return pseoBranchen.map((industry) => ({
@@ -11,37 +12,143 @@ export function getStaticPaths() {
 
 const { industry } = Astro.props;
 
-// Schema Markup for Industry Solution
-const serviceSchema = JSON.stringify({
+// Select top 3 related branches by search volume for internal linking
+const relatedBranches = pseoBranchen
+    .filter(b => b.slug !== industry.slug)
+    .sort((a, b) => (b.searchVolume || 0) - (a.searchVolume || 0))
+    .slice(0, 3);
+
+
+// ============================================================
+// HELPER: Normalize polymorphic data shapes (Batch 1 vs Batch 2+)
+// ============================================================
+const getHardMetricsArray = () => {
+    if (Array.isArray(industry.hardMetrics)) {
+        return industry.hardMetrics;
+    }
+    // Convert Batch 1 flat object to array format
+    const m = industry.hardMetrics;
+    const items: { label: string; value: string }[] = [];
+    if (m.avgLeadCost || m.cpl) items.push({ label: "Cost-per-Lead", value: (m.avgLeadCost || m.cpl)! });
+    if (m.conversionRate) items.push({ label: "Conversion Rate", value: m.conversionRate });
+    if (m.timeToClose || m.salesCycle) items.push({ label: "Sales Cycle", value: (m.timeToClose || m.salesCycle)! });
+    if (m.marketChallenge) items.push({ label: "Markt-Herausforderung", value: m.marketChallenge });
+    return items;
+};
+
+const getBenefitsArray = () => {
+    if (Array.isArray(industry.benefits)) return industry.benefits;
+    if (industry.benefits && typeof industry.benefits === 'object' && 'items' in industry.benefits) {
+        return (industry.benefits as any).items;
+    }
+    return [];
+};
+
+const getSolutionSteps = () => {
+    if (Array.isArray(industry.solution)) return industry.solution;
+    if (industry.process) return industry.process;
+    if (industry.solution && 'steps' in industry.solution) return industry.solution.steps;
+    return [];
+};
+
+const getSolutionTitle = () => {
+    if (industry.solution && !Array.isArray(industry.solution)) {
+        return (industry.solution as any).title || (industry.solution as any).headline || "Unser Prozess für Ihren B2B Vertrieb";
+    }
+    return "Unser Prozess für Ihren B2B Vertrieb";
+};
+
+const getSolutionApproach = () => {
+    if (industry.solution && !Array.isArray(industry.solution) && 'approach' in industry.solution) {
+        return industry.solution.approach;
+    }
+    return null;
+};
+
+const getSeoArticleContent = () => {
+    if (!industry.seoArticle) return null;
+    if (industry.seoArticle.content) return industry.seoArticle.content;
+    if ('sections' in industry.seoArticle && industry.seoArticle.sections) {
+        return (industry.seoArticle as any).sections.map((s: any) =>
+            `<h3>${s.heading}</h3><p>${s.content}</p>`
+        ).join('');
+    }
+    return null;
+};
+
+const hardMetricsArray = getHardMetricsArray();
+const benefitsList = getBenefitsArray();
+const processSteps = getSolutionSteps();
+const seoArticleContent = getSeoArticleContent();
+
+// ============================================================
+// SCHEMA MARKUP — Entity-Graph with @id linking
+// Master Ruleset Phase 01+04+09+10
+// ============================================================
+const baseUrl = `https://ki-automatisieren.de/branchen/${industry.slug}`;
+
+const personSchema = {
+    "@type": "Person",
+    "@id": "https://ki-automatisieren.de/#safak-tepecik",
+    "name": "Safak Tepecik",
+    "jobTitle": "Gründer & KI-Systemarchitekt",
+    "worksFor": { "@id": "https://ki-automatisieren.de/#organization" }
+};
+
+const organizationSchema = {
+    "@type": "Organization",
+    "@id": "https://ki-automatisieren.de/#organization",
+    "name": "ST-Automatisierung",
+    "alternateName": "KI Automatisieren",
+    "url": "https://ki-automatisieren.de",
+    "founder": { "@id": "https://ki-automatisieren.de/#safak-tepecik" }
+};
+
+const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: industry.hero.title,
-    description: industry.seo.description,
-    provider: {
-        "@type": "Organization",
-        name: "Vertrieb mit KI",
+    "@id": `${baseUrl}#service`,
+    "name": industry.hero.title || industry.hero.headline,
+    "description": industry.seo.description,
+    "provider": { "@id": "https://ki-automatisieren.de/#organization" },
+    "areaServed": "DE",
+    "serviceType": industry.branchName,
+    "review": {
+        "@type": "Review",
+        "reviewBody": `Branchenspezifische KI-Vertriebslösung für ${industry.branchName}`,
+        "author": { "@id": "https://ki-automatisieren.de/#safak-tepecik" }
     },
-    areaServed: "DE",
-    serviceType: industry.branchName,
+    // Schema-to-DOM Parity: hardMetrics as additionalProperty
+    "additionalProperty": hardMetricsArray.map(m => ({
+        "@type": "PropertyValue",
+        "name": m.label,
+        "value": m.value
+    }))
+};
+
+// Entity-Graph: Link all schemas in a single @graph
+const entityGraph = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+        personSchema,
+        organizationSchema,
+        serviceSchema
+    ]
 });
 
 // FAQ Schema
-const faqSchema = industry.faqs ? JSON.stringify({
+const faqSchema = industry.faqs && industry.faqs.length > 0 ? JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: industry.faqs.map(faq => ({
+    "mainEntity": industry.faqs.map(faq => ({
         "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: {
+        "name": faq.question,
+        "acceptedAnswer": {
             "@type": "Answer",
-            text: faq.answer
+            "text": faq.answer
         }
     }))
 }) : null;
-
-const processSteps = industry.process || industry.solution?.steps || [];
-const benefitsList = industry.benefits || [];
-const featuresList = industry.features || [];
 ---
 
 <BaseLayout
@@ -49,8 +156,8 @@ const featuresList = industry.features || [];
     description={industry.seo.description}
     type="article"
 >
-    <!-- SEO Schemas -->
-    <script type="application/ld+json" set:html={serviceSchema} />
+    <!-- Entity-Graph JSON-LD (Organization + Person + Service) -->
+    <script type="application/ld+json" set:html={entityGraph} />
     {faqSchema && <script type="application/ld+json" set:html={faqSchema} />}
 
     <style is:inline>
@@ -59,7 +166,7 @@ const featuresList = industry.features || [];
             --surface: hsl(220, 13%, 9%);
             --text-main: hsl(210, 10%, 90%);
             --text-muted: hsl(215, 16%, 58%);
-            --accent: #A3E635; /* Lime Green */
+            --accent: #A3E635;
             --border-color: rgba(255, 255, 255, 0.08);
             --font-display: 'Space Grotesk', system-ui, sans-serif;
             --font-ui: 'Space Grotesk', system-ui, sans-serif;
@@ -117,210 +224,302 @@ const featuresList = industry.features || [];
         .seo-article-content strong {
             color: #f8fafc;
         }
+
+        /* FAQ Accordion Styles (Micro-Interaction Hooks) */
+        .faq-accordion summary {
+            cursor: pointer;
+            list-style: none;
+        }
+        .faq-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        .faq-accordion details[open] summary .faq-chevron {
+            transform: rotate(180deg);
+        }
+        .faq-accordion .faq-chevron {
+            transition: transform 0.3s ease;
+        }
+        .faq-accordion details[open] .faq-answer {
+            animation: faqFadeIn 0.3s ease;
+        }
+        @keyframes faqFadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hard Metrics Table (Schema-to-DOM Parity) */
+        .metrics-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .metrics-table th,
+        .metrics-table td {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .metrics-table th {
+            color: #94a3b8;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        .metrics-table td {
+            color: #a3e635;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
     </style>
 
     <div class="landing-wrapper">
         <div class="cyber-grid"></div>
 
-        <!-- 1. Hero -->
-        <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden z-20">
-            <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto text-center">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-lime-500/30 bg-lime-500/10 text-lime-400 text-sm font-medium mb-8">
-                        <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse" />
-                        Branchenlösung: {industry.branchName}
-                    </div>
-                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight tracking-tight text-white">
-                        {industry.hero.title || industry.hero.headline}
-                    </h1>
-                    <p class="text-xl md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto leading-relaxed">
-                        {industry.hero.subtitle || industry.hero.subheadline || industry.hero.description}
-                    </p>
-                    <a
-                        href="#booking-section"
-                        class="inline-flex items-center justify-center h-14 px-8 rounded-xl bg-lime-500 text-black font-bold text-lg hover:bg-lime-400 transition-colors shadow-[0_0_30px_rgba(163,230,53,0.3)]"
-                    >
-                        Potenzialanalyse buchen
-                    </a>
-                </div>
-            </div>
-        </section>
+        <!-- Semantic HTML5: Entire pSEO content wrapped in <article> -->
+        <article itemscope itemtype="https://schema.org/Article">
 
-        <!-- 2. Hard Metrics & Pain Points -->
-        <section class="py-20 relative z-20 bg-[#050505] border-y border-white/5">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                    <!-- Metrics Dashboard -->
-                    <div>
-                        <h2 class="text-3xl font-bold mb-8 text-white">Markt Realität in Zahlen</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            {industry.hardMetrics.avgLeadCost || industry.hardMetrics.cpl && (
-                                <div class="p-6 bg-[#0A0A0A] border border-white/10 rounded-2xl">
-                                    <div class="text-sm text-gray-400 mb-2">Cost-per-Lead / Akquisekosten</div>
-                                    <div class="text-2xl font-bold text-lime-400">{industry.hardMetrics.avgLeadCost || industry.hardMetrics.cpl}</div>
-                                </div>
-                            )}
-                            {industry.hardMetrics.conversionRate && (
-                                <div class="p-6 bg-[#0A0A0A] border border-white/10 rounded-2xl">
-                                    <div class="text-sm text-gray-400 mb-2">Typische Conversion Rate</div>
-                                    <div class="text-2xl font-bold text-emerald-400">{industry.hardMetrics.conversionRate}</div>
-                                </div>
-                            )}
-                            {(industry.hardMetrics.timeToClose || industry.hardMetrics.salesCycle) && (
-                                <div class="p-6 bg-[#0A0A0A] border border-white/10 rounded-2xl sm:col-span-2">
-                                    <div class="text-sm text-gray-400 mb-2">Sales Cycle / Dauer bis Abschluss</div>
-                                    <div class="text-2xl font-bold text-white">{industry.hardMetrics.timeToClose || industry.hardMetrics.salesCycle}</div>
-                                </div>
-                            )}
-                            {industry.hardMetrics.marketChallenge && (
-                                <div class="p-6 bg-[#0A0A0A] border border-lime-500/20 rounded-2xl sm:col-span-2">
-                                    <div class="text-sm text-lime-400 mb-2">Markt-Herausforderung</div>
-                                    <div class="text-lg font-medium text-white">{industry.hardMetrics.marketChallenge}</div>
-                                </div>
+            <!-- 1. Hero -->
+            <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden z-20">
+                <div class="container mx-auto px-4">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-lime-500/30 bg-lime-500/10 text-lime-400 text-sm font-medium mb-8">
+                            <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse" />
+                            <!-- Schema-to-DOM Parity: branchName as semantic definition -->
+                            <dl class="inline"><dt class="sr-only">Branche</dt><dd>{industry.branchName}</dd></dl>
+                        </div>
+                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight tracking-tight text-white" itemprop="headline">
+                            {industry.hero.title || industry.hero.headline}
+                        </h1>
+                        <p class="text-xl md:text-2xl text-gray-400 mb-6 max-w-3xl mx-auto leading-relaxed">
+                            {industry.hero.subtitle || industry.hero.subheadline || industry.hero.description}
+                        </p>
+
+                        <!-- E-E-A-T: Visible "Reviewed by" byline (Schema-to-DOM Parity for Person) -->
+                        <div class="flex items-center justify-center gap-2 text-sm text-gray-500 mb-10">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                Geprüft von <span itemprop="name" class="text-gray-400">Safak Tepecik</span>, <span itemprop="jobTitle">KI-Systemarchitekt</span>
+                            </span>
+                        </div>
+
+                        <a
+                            href="#booking-section"
+                            class="inline-flex items-center justify-center h-14 px-8 rounded-xl bg-lime-500 text-black font-bold text-lg hover:bg-lime-400 transition-colors shadow-[0_0_30px_rgba(163,230,53,0.3)]"
+                        >
+                            Potenzialanalyse buchen
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Hard Metrics & Pain Points (Schema-to-DOM Parity via <table>) -->
+            <section class="py-20 relative z-20 bg-[#050505] border-y border-white/5">
+                <div class="container mx-auto px-4">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                        <!-- Metrics as semantic <table> for crawler extraction -->
+                        <div>
+                            <h2 class="text-3xl font-bold mb-8 text-white">Markt Realität in Zahlen</h2>
+                            {hardMetricsArray.length > 0 && (
+                                <table class="metrics-table">
+                                    <thead>
+                                        <tr><th>Kennzahl</th><th>Wert</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        {hardMetricsArray.map(metric => (
+                                            <tr>
+                                                <td class="!text-gray-400 !font-normal !text-base">{metric.label}</td>
+                                                <td>{metric.value}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                             )}
                         </div>
-                    </div>
 
-                    <!-- Pain Points -->
-                    <div>
-                        <h2 class="text-3xl font-bold mb-8 text-white">Aktuelle Herausforderungen</h2>
-                        <div class="space-y-6">
-                            {industry.painPoints.map((pain) => (
-                                <div class="flex gap-4">
-                                    <div class="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center shrink-0 mt-1">
-                                        <div class="w-2 h-2 rounded-full bg-red-500" />
+                        <!-- Pain Points -->
+                        <div>
+                            <h2 class="text-3xl font-bold mb-8 text-white">Aktuelle Herausforderungen</h2>
+                            <div class="space-y-6">
+                                {industry.painPoints.map((pain) => (
+                                    <div class="flex gap-4">
+                                        <div class="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center shrink-0 mt-1">
+                                            <div class="w-2 h-2 rounded-full bg-red-500" />
+                                        </div>
+                                        <p class="text-gray-400 leading-relaxed text-lg">
+                                            {typeof pain === 'string' ? pain : (
+                                                <>
+                                                    <strong class="text-white block mb-1">{(pain as any).title || (pain as any).headline}</strong>
+                                                    {(pain as any).description || (pain as any).text}
+                                                </>
+                                            )}
+                                        </p>
                                     </div>
-                                    <p class="text-gray-400 leading-relaxed text-lg">
-                                        {typeof pain === 'string' ? pain : (
-                                            <>
-                                                <strong class="text-white block mb-1">{pain.title || pain.headline}</strong>
-                                                {pain.description || pain.text}
-                                            </>
-                                        )}
-                                    </p>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Method / Process (Solution) — Adaptive: only renders if steps exist -->
+            {processSteps.length > 0 && (
+                <section class="py-24 relative z-20">
+                    <div class="container mx-auto px-4">
+                        <div class="max-w-3xl mx-auto text-center mb-16">
+                            <h2 class="text-4xl font-bold mb-6 text-white">{getSolutionTitle()}</h2>
+                            {getSolutionApproach() && (
+                                <p class="text-xl text-gray-400 leading-relaxed">{getSolutionApproach()}</p>
+                            )}
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                            {processSteps.map((step, idx) => (
+                                <div class="bg-[#0A0A0A] border border-white/10 rounded-2xl p-8 hover:border-lime-500/30 transition-colors relative">
+                                    <div class="text-6xl font-black text-white/5 absolute top-4 right-4 z-0">0{idx+1}</div>
+                                    <h3 class="text-2xl font-bold text-white mb-4 relative z-10">{(step as any).step || (step as any).title}</h3>
+                                    <p class="text-gray-400 leading-relaxed relative z-10">{(step as any).description}</p>
                                 </div>
                             ))}
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
+                </section>
+            )}
 
-        <!-- 3. Method / Process (Solution) -->
-        {processSteps.length > 0 && (
+            <!-- 4. Deep SEO Article — Adaptive: skipped if no content -->
+            {seoArticleContent && (
+                 <section class="py-24 bg-[#050505] border-y border-white/5 relative z-20">
+                 <div class="container mx-auto px-4">
+                     <div class="max-w-4xl mx-auto">
+                         <h2 class="text-3xl md:text-5xl font-bold mb-10 text-white">{industry.seoArticle?.heading || industry.seoArticle?.title || `${industry.branchName}: Marktanalyse`}</h2>
+                         <div class="seo-article-content text-lg" set:html={seoArticleContent} />
+                     </div>
+                 </div>
+             </section>
+            )}
+
+            <!-- 4.5 Proprietary Compute: KI Einsparungsrechner -->
             <section class="py-24 relative z-20">
                 <div class="container mx-auto px-4">
                     <div class="max-w-3xl mx-auto text-center mb-16">
-                        <h2 class="text-4xl font-bold mb-6 text-white">{industry.solution?.title || "Unser Prozess für Ihren B2B Vertrieb"}</h2>
-                        {industry.solution?.approach && (
-                            <p class="text-xl text-gray-400 leading-relaxed">{industry.solution.approach}</p>
-                        )}
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                        {processSteps.map((step, idx) => (
-                            <div class="bg-[#0A0A0A] border border-white/10 rounded-2xl p-8 hover:border-lime-500/30 transition-colors relative">
-                                <div class="text-6xl font-black text-white/5 absolute top-4 right-4 z-0">0{idx+1}</div>
-                                <h3 class="text-2xl font-bold text-white mb-4 relative z-10">{step.step || step.title}</h3>
-                                <p class="text-gray-400 leading-relaxed relative z-10">{step.description}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-        )}
-
-        <!-- 4. Deep SEO Article (Market Analysis) -->
-        {industry.seoArticle && (
-             <section class="py-24 bg-[#050505] border-y border-white/5 relative z-20">
-             <div class="container mx-auto px-4">
-                 <div class="max-w-4xl mx-auto">
-                     <h2 class="text-3xl md:text-5xl font-bold mb-10 text-white">{industry.seoArticle.heading || industry.seoArticle.title}</h2>
-                     <div class="seo-article-content text-lg" set:html={industry.seoArticle.content} />
-                 </div>
-             </div>
-         </section>
-        )}
-
-        <!-- 5. Benefits -->
-        {benefitsList.length > 0 && (
-            <section class="py-24 relative z-20">
-                <div class="container mx-auto px-4 text-center">
-                    <h2 class="text-4xl font-bold mb-16 text-white">Ihre Resultate</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                        {benefitsList.map((benefit) => (
-                            <div class="p-8 rounded-2xl bg-[#0A0A0A] border border-lime-500/20 shadow-[0_0_30px_rgba(163,230,53,0.05)]">
-                                {typeof benefit === 'string' ? (
-                                    <p class="text-xl font-bold text-lime-400">{benefit}</p>
-                                ) : (
-                                    <>
-                                        <h3 class="text-2xl font-bold text-lime-400 mb-4">{benefit.title}</h3>
-                                        <p class="text-gray-400">{benefit.description}</p>
-                                    </>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-        )}
-
-        <!-- 6. Case Study -->
-        {industry.caseStudy && (
-            <section class="py-24 border-t border-white/5 bg-[#050505] relative z-20 overflow-hidden">
-                <div class="container mx-auto px-4 relative z-10">
-                    <div class="max-w-4xl mx-auto bg-[#0A0A0A] border border-white/10 rounded-3xl p-8 md:p-12">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-xs font-medium mb-6">
-                            FALLSTUDIE
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-lime-500/30 bg-lime-500/10 text-lime-400 text-sm font-medium mb-6">
+                            <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse" />
+                            LIVE BERECHNUNG
                         </div>
-                        <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white">
-                            Beispiel: {industry.caseStudy.companyType}
-                        </h2>
-                        
-                        <div class="space-y-8">
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-300 mb-2">Das Problem</h3>
-                                <p class="text-gray-400 leading-relaxed">{industry.caseStudy.problem}</p>
+                        <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">Ihr Kosten-Potenzial</h2>
+                        <p class="text-xl text-gray-400">Berechnen Sie live, wie viel Kapital Sie aktuell durch ineffiziente, manuelle Prozesse verbrennen.</p>
+                    </div>
+                    <div class="max-w-4xl mx-auto">
+                        <KiEinsparungsrechner client:visible />
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Benefits — Adaptive: renders card grid or bullet list depending on data shape -->
+            {benefitsList.length > 0 && (
+                <section class="py-24 relative z-20">
+                    <div class="container mx-auto px-4 text-center">
+                        <h2 class="text-4xl font-bold mb-16 text-white">Ihre Resultate</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                            {benefitsList.map((benefit) => (
+                                <div class="p-8 rounded-2xl bg-[#0A0A0A] border border-lime-500/20 shadow-[0_0_30px_rgba(163,230,53,0.05)]">
+                                    {typeof benefit === 'string' ? (
+                                        <p class="text-xl font-bold text-lime-400">{benefit}</p>
+                                    ) : (
+                                        <>
+                                            <h3 class="text-2xl font-bold text-lime-400 mb-4">{(benefit as any).title}</h3>
+                                            <p class="text-gray-400">{(benefit as any).description}</p>
+                                        </>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            <!-- 6. Case Study — Adaptive: only renders if data exists -->
+            {industry.caseStudy && (
+                <section class="py-24 border-t border-white/5 bg-[#050505] relative z-20 overflow-hidden">
+                    <div class="container mx-auto px-4 relative z-10">
+                        <div class="max-w-4xl mx-auto bg-[#0A0A0A] border border-white/10 rounded-3xl p-8 md:p-12">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-xs font-medium mb-6">
+                                FALLSTUDIE
                             </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-300 mb-2">Unsere KI Lösung</h3>
-                                <p class="text-gray-400 leading-relaxed">{industry.caseStudy.solution}</p>
-                            </div>
-                            <div class="p-6 bg-lime-500/5 border border-lime-500/20 rounded-2xl">
-                                <h3 class="text-xl font-bold text-lime-400 mb-4">Die Ergebnisse</h3>
-                                <ul class="space-y-3">
-                                    {industry.caseStudy.results.map((res) => (
-                                        <li class="flex items-start gap-3 text-gray-300">
-                                            <svg class="w-6 h-6 text-lime-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                            <span class="mt-0.5">{res}</span>
-                                        </li>
-                                    ))}
-                                </ul>
+                            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white">
+                                Beispiel: {industry.caseStudy.companyType}
+                            </h2>
+                            
+                            <div class="space-y-8">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-300 mb-2">Das Problem</h3>
+                                    <p class="text-gray-400 leading-relaxed">{industry.caseStudy.problem}</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-300 mb-2">Unsere KI Lösung</h3>
+                                    <p class="text-gray-400 leading-relaxed">{industry.caseStudy.solution}</p>
+                                </div>
+                                <div class="p-6 bg-lime-500/5 border border-lime-500/20 rounded-2xl">
+                                    <h3 class="text-xl font-bold text-lime-400 mb-4">Die Ergebnisse</h3>
+                                    <ul class="space-y-3">
+                                        {industry.caseStudy.results.map((res) => (
+                                            <li class="flex items-start gap-3 text-gray-300">
+                                                <svg class="w-6 h-6 text-lime-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                                <span class="mt-0.5">{res}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        )}
+                </section>
+            )}
 
-        <!-- 7. FAQs -->
-        {industry.faqs && industry.faqs.length > 0 && (
-            <section class="py-24 relative z-20">
-                <div class="container mx-auto px-4 max-w-4xl">
-                    <h2 class="text-4xl font-bold mb-12 text-center text-white">Häufig gestellte Fragen</h2>
-                    <div class="space-y-6">
-                        {industry.faqs.map((faq) => (
-                            <div class="bg-[#0A0A0A] border border-white/10 rounded-2xl p-6 md:p-8">
-                                <h3 class="text-2xl font-bold text-white mb-4">{faq.question}</h3>
-                                <p class="text-gray-400 leading-relaxed">{faq.answer}</p>
-                            </div>
-                        ))}
+            <!-- 7.5 Dynamic Internal Linking (Top 3 Related Branches) -->
+            {relatedBranches && relatedBranches.length > 0 && (
+                <section class="py-16 relative z-20 border-t border-white/5 bg-[#050505]" aria-label="Verwandte Branchen">
+                    <div class="container mx-auto px-4 max-w-5xl text-center">
+                        <h2 class="text-3xl font-bold mb-10 text-white">Weitere relevante Branchen</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {relatedBranches.map(branch => (
+                                <a href={`/branchen/${branch.slug}`} class="block p-6 rounded-2xl bg-[#0A0A0A] border border-white/10 hover:border-lime-500/50 hover:bg-white/5 hover:-translate-y-1 transition-all text-left group">
+                                    <h3 class="text-xl font-bold text-white group-hover:text-lime-400 mb-3 transition-colors">{branch.branchName}</h3>
+                                    <p class="text-sm text-gray-400 font-medium inline-flex items-center">
+                                        Zur Potenzial-Analyse 
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                    </p>
+                                </a>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            </section>
-        )}
+                </section>
+            )}
 
-        <!-- 8. Calendly Embed Section (Hormozi Style) -->
+            <!-- 8. FAQs as <details>/<summary> Accordion (Micro-Interaction Hooks for Navboost) -->
+            {industry.faqs && industry.faqs.length > 0 && (
+                <aside class="py-24 relative z-20" aria-label="Häufig gestellte Fragen">
+                    <div class="container mx-auto px-4 max-w-4xl">
+                        <h2 class="text-4xl font-bold mb-12 text-center text-white">Häufig gestellte Fragen</h2>
+                        <div class="space-y-4 faq-accordion">
+                            {industry.faqs.map((faq) => (
+                                <details class="bg-[#0A0A0A] border border-white/10 rounded-2xl group">
+                                    <summary class="flex items-center justify-between p-6 md:p-8">
+                                        <h3 class="text-xl md:text-2xl font-bold text-white pr-4">{faq.question}</h3>
+                                        <svg class="faq-chevron w-6 h-6 text-lime-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </summary>
+                                    <div class="faq-answer px-6 pb-6 md:px-8 md:pb-8">
+                                        <p class="text-gray-400 leading-relaxed">{faq.answer}</p>
+                                    </div>
+                                </details>
+                            ))}
+                        </div>
+                    </div>
+                </aside>
+            )}
+
+        </article>
+
+        <!-- 8. Calendly Embed Section (Outside <article> — not editorial content) -->
         <div class="py-32 relative z-30 text-center bg-[#050505] border-t border-white/5" id="booking-section">
             <h2 class="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">Kunden gewinnen. <br class="md:hidden" /><span class="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-emerald-500">Automatisch.</span></h2>
             <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-12">

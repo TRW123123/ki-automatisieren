@@ -1,0 +1,210 @@
+﻿{
+    "success":  true,
+    "data":  [
+                 {
+                     "pagePath":  "/",
+                     "sessions":  81,
+                     "engagementRate":  "40.74%"
+                 },
+                 {
+                     "pagePath":  "/de",
+                     "sessions":  11,
+                     "engagementRate":  "27.27%"
+                 },
+                 {
+                     "pagePath":  "/blog",
+                     "sessions":  7,
+                     "engagementRate":  "85.71%"
+                 },
+                 {
+                     "pagePath":  "/losungen",
+                     "sessions":  7,
+                     "engagementRate":  "71.43%"
+                 },
+                 {
+                     "pagePath":  "/fallstudien",
+                     "sessions":  6,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/fallstudien/car-studio-ai",
+                     "sessions":  6,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/uber-uns",
+                     "sessions":  5,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/losungen/crm-prozessautomatisierung",
+                     "sessions":  4,
+                     "engagementRate":  "75.00%"
+                 },
+                 {
+                     "pagePath":  "/losungen/leadgenerierung-ki",
+                     "sessions":  4,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/blog/ki-automatisierung-einstieg",
+                     "sessions":  3,
+                     "engagementRate":  "66.67%"
+                 },
+                 {
+                     "pagePath":  "/fallstudien/acilsatis",
+                     "sessions":  3,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/fallstudien/dkm-coach-bilge",
+                     "sessions":  3,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/losungen/marketing-automatisierung",
+                     "sessions":  3,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/losungen/vertriebsautomatisierung",
+                     "sessions":  3,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/website-in-3-tagen",
+                     "sessions":  3,
+                     "engagementRate":  "66.67%"
+                 },
+                 {
+                     "pagePath":  "/b2b-logo-design/",
+                     "sessions":  2,
+                     "engagementRate":  "50.00%"
+                 },
+                 {
+                     "pagePath":  "/branchen/autohaus-test/",
+                     "sessions":  2,
+                     "engagementRate":  "50.00%"
+                 },
+                 {
+                     "pagePath":  "/datenschutz",
+                     "sessions":  2,
+                     "engagementRate":  "50.00%"
+                 },
+                 {
+                     "pagePath":  "/de/blog",
+                     "sessions":  2,
+                     "engagementRate":  "0.00%"
+                 },
+                 {
+                     "pagePath":  "/de/losungen",
+                     "sessions":  2,
+                     "engagementRate":  "0.00%"
+                 },
+                 {
+                     "pagePath":  "/de/losungen/kundenservice-automatisierung",
+                     "sessions":  2,
+                     "engagementRate":  "0.00%"
+                 },
+                 {
+                     "pagePath":  "/fallstudien/cemkimsan",
+                     "sessions":  2,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/fallstudien/erpa-teknoloji",
+                     "sessions":  2,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/losungen/kundenservice-automatisierung",
+                     "sessions":  2,
+                     "engagementRate":  "50.00%"
+                 },
+                 {
+                     "pagePath":  "/nutzungsbedingungen",
+                     "sessions":  2,
+                     "engagementRate":  "50.00%"
+                 },
+                 {
+                     "pagePath":  "/strategieberatung-ki-sales-marketing",
+                     "sessions":  2,
+                     "engagementRate":  "50.00%"
+                 },
+                 {
+                     "pagePath":  "/b2b-logo-design",
+                     "sessions":  1,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/branchen/autohaus",
+                     "sessions":  1,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/de/website-in-3-Tagen",
+                     "sessions":  1,
+                     "engagementRate":  "0.00%"
+                 },
+                 {
+                     "pagePath":  "/fallstudien/acilsatis-com",
+                     "sessions":  1,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/fallstudien/salevium",
+                     "sessions":  1,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/impressum",
+                     "sessions":  1,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/losungen/conversion-optimierung",
+                     "sessions":  1,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/losungen/crm-automatisierung",
+                     "sessions":  1,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/losungen/customer-success",
+                     "sessions":  1,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/post/revolution-im-kundenservice-ki-chatbots-als-automatisierungslösung",
+                     "sessions":  1,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/privacy-policy",
+                     "sessions":  1,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/sitemap-index.xml",
+                     "sessions":  1,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/sitemap.xml",
+                     "sessions":  1,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/terms-conditions",
+                     "sessions":  1,
+                     "engagementRate":  "100.00%"
+                 },
+                 {
+                     "pagePath":  "/ueber-uns",
+                     "sessions":  1,
+                     "engagementRate":  "100.00%"
+                 }
+             ]
+}

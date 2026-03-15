@@ -1,0 +1,47 @@
+1 Handwerksbetriebe (TGA, Anlagenbau & Großprojekte)
+2 Immobilienmakler für Gewerbeimmobilien
+3 Versicherungsmakler (Gewerbeversicherungen & bAV)
+4 Steuerberater & Wirtschaftsprüfer
+5 Personaldienstleister (B2B Kundenakquise)
+6 Gebäudereinigung & Facility Management (Gewerblich)
+7 IT-Systemhäuser & Managed Service Provider
+8 Logistikunternehmen & Speditionen
+9 Rechtsanwälte & Wirtschaftskanzleien
+10 Unternehmensberatung & Consulting
+11 Werbeagenturen & Marketing
+12 Architekten & Ingenieurbüros
+13 Maschinenbau & Anlagenbau
+14 Pharma, Life Sciences & MedTech
+15 Zahnärzte & Facharztpraxen
+16 Finanzberater & Vermögensverwalter
+17 E-Commerce Agenturen & B2B-Shops
+18 SaaS & Software-Produkte
+19 Großhandel & B2B-Distribution
+20 Weiterbildung & B2B-Coaching
+21 Automobilzulieferer & Automotive OEM
+22 Kunststofftechnik & Spritzguss
+23 Elektrotechnik & Schaltanlagenbau
+24 Cybersecurity & IT-Sicherheit
+25 Robotik & Automatisierungstechnik
+26 Umwelttechnik & Erneuerbare Energien
+27 Metallindustrie & CNC-Zerspanung
+28 Lebensmittelindustrie & Food/Beverage
+29 Druckindustrie & Verpackungsdruck
+30 Telekommunikation & Carrier Services
+31 Medizintechnik & Life Sciences
+32 M&A und Unternehmensnachfolge
+33 Spezialtiefbau & Großbauprojekte
+34 Luft- & Raumfahrt (Aerospace)
+35 Private Equity & Venture Capital B2B
+36 Krypto & Blockchain B2B
+37 Intralogistik & Lagerautomatisierung
+38 Luxusgüter & High-End Retail B2B
+39 Agrar-Technologie & Smart Farming
+40 Schiffbau & Maritime Wirtschaft
+41 Sicherheitsdienste (Objektschutz & Werkschutz)
+42 Energieberater für Unternehmen & Industrie
+43 Industriereinigung & Spezialreinigung (B2B)
+44 Flottenmanagement & Fuhrparkverwaltung (B2B)
+45 B2B Factoring & Forderungsmanagement
+46 Arbeitsschutz & Arbeitssicherheit (B2B)
+47 Nutzfahrzeuge & Baumaschinenhandel

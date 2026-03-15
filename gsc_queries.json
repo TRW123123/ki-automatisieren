@@ -1,0 +1,47 @@
+﻿{
+    "success":  true,
+    "data":  [
+                 {
+                     "query":  "automatisieren",
+                     "impressions":  3,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "97.0"
+                 },
+                 {
+                     "query":  "ki automation neunkirchen-seelscheid",
+                     "impressions":  26,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "86.3"
+                 },
+                 {
+                     "query":  "ki automatisierung",
+                     "impressions":  2,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "80.5"
+                 },
+                 {
+                     "query":  "ki-automatisieren.de",
+                     "impressions":  33,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "1.1"
+                 },
+                 {
+                     "query":  "ki-automatisierung",
+                     "impressions":  2,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "89.0"
+                 },
+                 {
+                     "query":  "vertriebsautomatisierung",
+                     "impressions":  21,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "85.1"
+                 }
+             ]
+}

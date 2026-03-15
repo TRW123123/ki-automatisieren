@@ -1,0 +1,110 @@
+﻿{
+    "success":  true,
+    "data":  [
+                 {
+                     "page":  "https://ki-automatisieren.de/",
+                     "impressions":  151,
+                     "clicks":  2,
+                     "ctr":  "1.32%",
+                     "position":  "35.2"
+                 },
+                 {
+                     "page":  "https://ki-automatisieren.de/fallstudien/acilsatis",
+                     "impressions":  22,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "3.3"
+                 },
+                 {
+                     "page":  "https://ki-automatisieren.de/fallstudien/acilsatis/",
+                     "impressions":  1,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "3.0"
+                 },
+                 {
+                     "page":  "https://ki-automatisieren.de/fallstudien/car-studio-ai",
+                     "impressions":  19,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "6.4"
+                 },
+                 {
+                     "page":  "https://ki-automatisieren.de/losungen/crm-prozessautomatisierung",
+                     "impressions":  19,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "5.1"
+                 },
+                 {
+                     "page":  "https://ki-automatisieren.de/losungen/crm-prozessautomatisierung/",
+                     "impressions":  2,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "6.0"
+                 },
+                 {
+                     "page":  "https://ki-automatisieren.de/losungen/kundenservice-automatisierung",
+                     "impressions":  19,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "3.9"
+                 },
+                 {
+                     "page":  "https://ki-automatisieren.de/losungen/kundenservice-automatisierung/",
+                     "impressions":  1,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "5.0"
+                 },
+                 {
+                     "page":  "https://ki-automatisieren.de/losungen/leadgenerierung-ki/",
+                     "impressions":  2,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "6.0"
+                 },
+                 {
+                     "page":  "https://ki-automatisieren.de/losungen/vertriebsautomatisierung/",
+                     "impressions":  1,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "4.0"
+                 },
+                 {
+                     "page":  "https://www.ki-automatisieren.de/blog/categories/ki",
+                     "impressions":  21,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "6.7"
+                 },
+                 {
+                     "page":  "https://www.ki-automatisieren.de/chatbot",
+                     "impressions":  27,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "1.9"
+                 },
+                 {
+                     "page":  "https://www.ki-automatisieren.de/datenschutz",
+                     "impressions":  27,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "3.2"
+                 },
+                 {
+                     "page":  "https://www.ki-automatisieren.de/marketing-automatisierung-ki",
+                     "impressions":  23,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "5.5"
+                 },
+                 {
+                     "page":  "https://www.ki-automatisieren.de/post/revolution-im-kundenservice-ki-chatbots-als-automatisierungsl%C3%B6sung",
+                     "impressions":  8,
+                     "clicks":  0,
+                     "ctr":  "0.00%",
+                     "position":  "6.6"
+                 }
+             ]
+}
