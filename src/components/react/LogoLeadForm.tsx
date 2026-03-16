@@ -176,13 +176,13 @@ export default function LogoLeadForm() {
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#A3E635] to-transparent opacity-50"></div>
 
                 <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-8 text-center">
-                    Perfekt. Ihr Logo wird jetzt asynchron generiert!
+                    Ihr neues Logo ist fertig.
                 </h3>
-                <p className="text-xl text-center text-gray-300 mb-8 max-w-2xl mx-auto">
-                    Die KI (Nano Banana 2) rechnet jetzt im Hintergrund. Sobald Ihr Logo fertig gerendert wurde, <strong>senden wir es Ihnen umgehend an {email}</strong>.
+                <p className="text-xl text-center text-[#A3E635] mb-8 max-w-2xl mx-auto">
+                    Wir haben Ihnen das Logo zusätzlich auch an <strong>{email}</strong> gesendet.
                 </p>
 
-                {status === 'success' && (
+                {generatedImageUrl && (
                     <div className="flex flex-col md:flex-row gap-12 items-center">
                         {/* Left: Product Result */}
                         <div className="w-full md:w-1/2 space-y-6">
@@ -217,9 +217,9 @@ export default function LogoLeadForm() {
                                     <div className="flex-grow border-t border-white/10"></div>
                                 </div>
 
-                                <a href="/" className="w-full flex items-center justify-center bg-white/5 border border-white/10 text-gray-300 font-medium px-6 py-4 rounded-xl hover:bg-white/10 transition-colors gap-2">
-                                    <CheckCircle className="w-5 h-5 text-gray-400" />
-                                    Nein danke. Ich warte einfach auf mein Logo per E-Mail.
+                                <a href={generatedImageUrl} download="B2B-Logo-2026.jpg" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-white/5 border border-white/10 text-gray-300 font-medium px-6 py-4 rounded-xl hover:bg-white/10 transition-colors gap-2">
+                                    <Download className="w-5 h-5" />
+                                    Nein danke. Ich lade nur das Logo runter und suche meine Kunden lieber selbst.
                                 </a>
                             </div>
                         </div>
@@ -414,7 +414,7 @@ export default function LogoLeadForm() {
                             <Loader2 className="w-5 h-5 animate-spin" />
                             <span>Nano Banana 2 kalkuliert Design... ({Math.round(progress)}%)</span>
                         </div>
-                        <p className="text-gray-500 text-xs text-center">Dieser Prozess benötigt immense Rechenleistung und dauert ca. 45-60 Sekunden.</p>
+                        <p className="text-gray-400 text-sm text-center leading-relaxed max-w-lg mx-auto">Dieser Prozess benötigt immense Rechenleistung und kann bis zu <strong>2-3 Minuten</strong> dauern.<br/><br/><span className="text-[#A3E635]">Sie können hier bequem auf das Ergebnis warten, oder die Seite sicher schließen – wir senden Ihnen das fertige Design automatisch als E-Mail an <strong>{email}</strong>.</span></p>
                     </div>
                 ) : (
                     <button
