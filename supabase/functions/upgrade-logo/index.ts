@@ -12,7 +12,7 @@ serve(async (req) => {
     }
 
     try {
-        let { company_name, business_description, design_goal, logo_style, insert_id, website_url, file_url } = await req.json();
+        let { company_name, business_description, design_goal, logo_style, insert_id, website_url, file_url, email } = await req.json();
 
         company_name = company_name?.trim() || "Unternehmenslogo";
         business_description = business_description?.trim() || "Ein etabliertes B2B Unternehmen in der DACH-Region.";
@@ -295,6 +295,24 @@ WICHTIGSTE REGEL: Gib AUSSCHLIESSLICH den englischen Bild-Prompt zurück. Keine 
             await supabase.from('logo_leads').update({
                 generated_logo_url: publicUrl
             }).eq('id', insert_id);
+        }
+
+        // --- 4. Fire Webhook to n8n for Email Delivery ---
+        if (email) {
+            console.log(`Firing n8n webhook to deliver upgraded logo to ${email}...`);
+            const webhookUrl = "https://safakt.app.n8n.cloud/webhook/5c290c61-ba2d-4877-8a4b-74e62f0cf5d4";
+            // Fire and forget (don't await) to not block the response
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: email,
+                    company_name: company_name,
+                    image_url: publicUrl,
+                    logo_style: logo_style,
+                    lead_id: insert_id
+                })
+            }).catch(err => console.error("Failed to fire n8n webhook:", err));
         }
 
         return new Response(
