@@ -14,6 +14,7 @@ export default function LogoLeadForm() {
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
     const [validationError, setValidationError] = useState<string | null>(null);
     const [progress, setProgress] = useState(0);
+    const [leadId, setLeadId] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     // Dynamic Progress Bar Logic for 60-second API call
@@ -42,14 +43,64 @@ export default function LogoLeadForm() {
         }
     };
 
+    const savePartialLead = async (id: string, partialData: any, isUpdate = false) => {
+        const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+        const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+        if (!supabaseUrl || !supabaseAnonKey) return;
+
+        try {
+            const method = isUpdate ? 'PATCH' : 'POST';
+            const url = isUpdate 
+                ? `${supabaseUrl}/rest/v1/logo_leads?id=eq.${id}`
+                : `${supabaseUrl}/rest/v1/logo_leads`;
+
+            const payload = isUpdate ? partialData : { id, ...partialData };
+
+            await fetch(url, {
+                method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${supabaseAnonKey}`,
+                    'apikey': supabaseAnonKey,
+                    ...(!isUpdate && { 'Prefer': 'resolution=merge-duplicates' })
+                },
+                body: JSON.stringify(payload),
+            });
+            // Fire and forget, no await or error blocking for UX
+        } catch (e) {
+            console.error("Partial save failed quietly", e);
+        }
+    };
+
     const nextStep = () => {
         setValidationError(null);
         if (step === 1) {
             if (!companyName) { setValidationError("Bitte geben Sie Ihren Firmennamen ein."); return; }
             if (designGoal === 'upgrade' && !file) { setValidationError('Bitte laden Sie Ihr aktuelles Logo hoch.'); return; }
+            
+            // Initiate partial save
+            const currentLeadId = leadId || crypto.randomUUID();
+            if (!leadId) setLeadId(currentLeadId);
+            
+            savePartialLead(currentLeadId, {
+                company_name: companyName,
+                design_goal: designGoal,
+                email: "draft@aborted.com", // Placeholder until step 3
+                logo_style: "Optimized 2026",
+                website_url: "",
+                business_description: ""
+            });
+
             setStep(2);
         } else if (step === 2) {
             if (!businessDescription) { setValidationError("Bitte beschreiben Sie kurz Ihr Unternehmen."); return; }
+            
+            if (leadId) {
+                savePartialLead(leadId, {
+                    business_description: businessDescription
+                }, true); // Update the draft entry
+            }
+
             setStep(3);
         }
     };
@@ -73,6 +124,9 @@ export default function LogoLeadForm() {
 
             const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
             const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+            
+            // Fail safe if leadId somehow isn't set yet (user reloads mid-step)
+            const finalInsertId = leadId || crypto.randomUUID();
 
             // Upload file to Supabase Storage if it exists
             if (file && supabaseUrl && supabaseAnonKey) {
@@ -99,29 +153,42 @@ export default function LogoLeadForm() {
             }
 
             if (supabaseUrl && supabaseAnonKey) {
-                const insertId = crypto.randomUUID();
-
-                const insertRes = await fetch(`${supabaseUrl}/rest/v1/logo_leads`, {
-                    method: 'POST',
+                // Finalize the record with their actual email and potential file_url
+                const finalizeRes = await fetch(`${supabaseUrl}/rest/v1/logo_leads?id=eq.${finalInsertId}`, {
+                    method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${supabaseAnonKey}`,
                         'apikey': supabaseAnonKey
                     },
                     body: JSON.stringify({
-                        id: insertId,
-                        company_name: companyName,
                         email,
-                        design_goal: designGoal,
-                        logo_style: "Optimized 2026", // simplified out of UI
-                        website_url: "",             // simplified out of UI
-                        business_description: businessDescription,
-                        file_url: fileUrl
+                        file_url: fileUrl,
+                        business_description: businessDescription
                     }),
                 });
-
-                if (!insertRes.ok) {
-                    throw new Error('Database insert failed');
+                
+                // Fallback POST if they went straight from Step 3 without draft (extremely unlikely in Wizard but safe)
+                if (!finalizeRes.ok || (finalizeRes.status !== 204 && finalizeRes.status !== 200)) {
+                   await fetch(`${supabaseUrl}/rest/v1/logo_leads`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${supabaseAnonKey}`,
+                            'apikey': supabaseAnonKey,
+                            'Prefer': 'resolution=merge-duplicates'
+                        },
+                        body: JSON.stringify({
+                            id: finalInsertId,
+                            company_name: companyName,
+                            email,
+                            design_goal: designGoal,
+                            logo_style: "Optimized 2026",
+                            website_url: "",
+                            business_description: businessDescription,
+                            file_url: fileUrl
+                        }),
+                    });
                 }
 
                 // Conditionally route to the correct Edge Function based on goal
@@ -138,9 +205,9 @@ export default function LogoLeadForm() {
                         business_description: businessDescription,
                         design_goal: designGoal,
                         logo_style: "Optimized 2026",
-                        insert_id: insertId,
+                        insert_id: finalInsertId,
                         website_url: "",
-                        file_url: fileUrl
+                        file_url: fileUrl // Even if missing from form, Edge function needs key payload mapping
                     })
                 });
 
