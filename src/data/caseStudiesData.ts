@@ -1,6 +1,8 @@
 export interface CaseStudy {
     id: number;
     slug: string;
+    datePublished?: string;
+    dateModified?: string;
     category: string;
     title: string;
     summary: string;
@@ -21,6 +23,7 @@ export const caseStudiesData: CaseStudy[] = [
     {
         id: 1,
         slug: "car-studio-ai",
+        datePublished: "2024-01-15",
         category: "Vertriebsautomatisierung",
         title: "Car Studio AI",
         summary: "Aufbau einer nachhaltigen Vertriebsinfrastruktur auf internationalen Märkten ohne Teamvergrößerung durch KI im Vertrieb.",
@@ -50,6 +53,7 @@ export const caseStudiesData: CaseStudy[] = [
     {
         id: 2,
         slug: "acilsatis",
+        datePublished: "2024-02-10",
         category: "Marketingautomatisierung",
         title: "Acilsatis",
         summary: "Schnelles Wachstum und organische Traffic-Steigerung im Immobilien- und Automobilsektor durch KI im Marketing.",
@@ -79,6 +83,7 @@ export const caseStudiesData: CaseStudy[] = [
     {
         id: 3,
         slug: "salevium",
+        datePublished: "2024-03-05",
         category: "Content-Automatisierung",
         title: "Salevium",
         summary: "Vollständige Automatisierung des LinkedIn-Marketing-Prozesses eines gamifizierten Vertriebstrainings-Unternehmens.",
@@ -109,6 +114,7 @@ export const caseStudiesData: CaseStudy[] = [
     {
         id: 4,
         slug: "erpa-teknoloji",
+        datePublished: "2024-04-20",
         category: "Internationale Markterschließung",
         title: "ERPA Teknoloji",
         summary: "Strategischer Eintritt in den europäischen Markt für Stadion-Digitaldisplays mit der TOCHI-Marke durch KI in der Kundengewinnung.",
@@ -139,6 +145,7 @@ export const caseStudiesData: CaseStudy[] = [
     {
         id: 5,
         slug: "cemkimsan",
+        datePublished: "2024-05-12",
         category: "Internationale Leadgenerierung",
         title: "CemKimsan",
         summary: "Automatisierte Identifikation und Akquise von internationalen Resellern durch KI-Recherche und personalisiertes Outreach.",
@@ -169,6 +176,7 @@ export const caseStudiesData: CaseStudy[] = [
     {
         id: 6,
         slug: "dkm-coach-bilge",
+        datePublished: "2024-06-08",
         category: "Kundenservice-Automatisierung",
         title: "Coach Bilge",
         summary: "Automatisierte Terminbuchung und Kundenkommunikation für Business-Coaching durch KI-Kundenservice.",
