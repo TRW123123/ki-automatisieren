@@ -113,11 +113,6 @@ const serviceSchema = {
     "provider": { "@id": "https://ki-automatisieren.de/#organization" },
     "areaServed": "DE",
     "serviceType": industry.branchName,
-    "review": {
-        "@type": "Review",
-        "reviewBody": `Branchenspezifische KI-Vertriebslösung für ${industry.branchName}`,
-        "author": { "@id": "https://ki-automatisieren.de/#safak-tepecik" }
-    },
     // Schema-to-DOM Parity: hardMetrics as additionalProperty
     "additionalProperty": hardMetricsArray.map(m => ({
         "@type": "PropertyValue",

@@ -112,6 +112,12 @@ export default function LogoLeadForm() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        
+        if (step < 3) {
+            nextStep();
+            return;
+        }
+
         setValidationError(null);
         
         // Final validations just in case

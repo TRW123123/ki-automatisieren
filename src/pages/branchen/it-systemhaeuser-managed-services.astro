@@ -1,0 +1,690 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const seoTitle = "B2B Neukundengewinnung für IT-Systemhäuser | KI & Automatisierung";
+const seoDescription = "IT-Systemhäuser verlieren Kunden an Cloud-Anbieter. KI-Leadgenerierung identifiziert Mittelständler mit akutem IT-Modernisierungsbedarf.";
+---
+
+<BaseLayout title={seoTitle} description={seoDescription}>
+    <!-- GSAP & SplitType -->
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script is:inline src="https://unpkg.com/split-type"></script>
+    
+    <!-- Phosphor Icons -->
+    <script is:inline src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style is:inline>
+        :root {
+            --bg-base: hsl(203, 23%, 8%);
+            --surface: hsl(220, 13%, 9%);
+            --text-main: hsl(210, 10%, 90%);
+            --text-muted: hsl(215, 16%, 58%);
+            --accent: #A3E635; /* Lime Green */
+            --border-color: rgba(255, 255, 255, 0.08);
+            --font-display: 'Space Grotesk', system-ui, sans-serif;
+            --font-ui: 'Space Grotesk', system-ui, sans-serif;
+        }
+
+        .landing-wrapper {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: var(--font-ui);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        .landing-wrapper h1, .landing-wrapper h2, .landing-wrapper h3, .landing-wrapper .display-font {
+            font-family: var(--font-display);
+            font-weight: 700;
+        }
+
+        .landing-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .b2b-image {
+            filter: grayscale(100%) contrast(1.2) brightness(0.7);
+            transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+        }
+
+        .b2b-image:hover {
+            filter: grayscale(30%) contrast(1.1) brightness(1);
+            box-shadow: 0 0 25px rgba(163, 230, 53, 0.15);
+        }
+
+        .c-dot, .c-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .c-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            transition: opacity 0.3s ease;
+            box-shadow: 0 0 10px rgba(163, 230, 53, 0.5);
+        }
+
+        .c-ring {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--text-muted);
+            transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-ui);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--bg-base);
+            overflow: hidden;
+        }
+
+        .c-text {
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        body.c-interactive .c-ring {
+            width: 60px;
+            height: 60px;
+            border-color: var(--accent);
+            backdrop-filter: blur(4px);
+            background-color: rgba(163, 230, 53, 0.1);
+        }
+
+        body.c-view .c-ring {
+            width: 80px;
+            height: 80px;
+            background-color: var(--accent);
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(163, 230, 53, 0.4);
+        }
+        
+        body.c-view .c-dot {
+            opacity: 0;
+        }
+
+        body.c-view .c-text {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .n-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0.15;
+            mix-blend-mode: overlay;
+        }
+
+        .cyber-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, black 10%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 10%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .v-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .vl {
+            width: 1px;
+            height: 100%;
+            background-color: rgba(255,255,255,0.02);
+            transform-origin: top;
+            transform: scaleY(0);
+        }
+
+        .g-type {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--font-display);
+            font-size: 18vw;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.05);
+            opacity: 0.8;
+            word-break: keep-all;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+            line-height: 0.8;
+            font-weight: 900;
+        }
+
+        .s-wrap {
+            position: relative;
+            padding: 8vw 4vw;
+            min-height: 100vh;
+            z-index: 5;
+        }
+
+        .g-cont {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2vw;
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-area {
+            grid-column: 1 / 13;
+            margin-bottom: 6vw;
+            position: relative;
+            z-index: 20;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 4vw;
+            align-items: center;
+        }
+
+        .m-headline {
+            font-size: clamp(2.5rem, 5vw, 5.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            max-width: 15ch;
+            margin-bottom: 2rem;
+        }
+
+        .w-wrap {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: top;
+        }
+
+        .w-inner {
+            display: inline-block;
+        }
+
+        .hl-word {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hl-word::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--accent);
+            z-index: -1;
+            opacity: 0.8;
+            border-radius: 2px;
+        }
+
+        .mag-wrap {
+            position: relative;
+            padding: 40px;
+            display: inline-block;
+        }
+
+        .mag-btn {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(163, 230, 53, 0.05);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .mag-btn:hover {
+            background: rgba(163, 230, 53, 0.15);
+            box-shadow: 0 0 30px rgba(163, 230, 53, 0.2);
+        }
+
+        .mag-txt {
+            font-family: var(--font-ui);
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            pointer-events: none;
+        }
+
+        .pain-block {
+            grid-column: 1 / 6;
+            grid-row: 2;
+            background-color: var(--surface);
+            border: 1px solid var(--border-color);
+            padding: 3vw;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            z-index: 15;
+            margin-top: 5vw;
+        }
+
+        .pain-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .p-icon {
+            color: var(--accent);
+            font-size: 1.75rem;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 8px rgba(163,230,53,0.5));
+        }
+
+        .p-text h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+            color: var(--text-main);
+        }
+
+        .p-text p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .cta-area {
+            grid-column: 1 / 13;
+            grid-row: 3;
+            margin-top: 10vw;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .cta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4vw 2vw;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            transition: background-color 0.4s ease;
+        }
+
+        .cta-title {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+        }
+        
+        .cta-sub {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .cta-icon {
+            font-size: 2rem;
+            color: var(--text-muted);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+        }
+
+        .cta-row:hover {
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        .cta-row:hover .cta-title {
+            transform: translateX(2vw);
+            color: var(--accent);
+        }
+
+        .cta-row:hover .cta-icon {
+            transform: rotate(45deg);
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .hero-area {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .pain-block {
+                grid-column: 1 / 13;
+                grid-row: 2;
+                margin-top: 2rem;
+            }
+            .method-block {
+                grid-column: 1 / 13 !important;
+                grid-row: 3 !important;
+                margin-top: 2rem !important;
+            }
+            .cta-area {
+                grid-row: 4;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .landing-wrapper * {
+                cursor: auto !important;
+            }
+            .c-dot, .c-ring {
+                display: none;
+            }
+            .g-cont {
+                display: flex;
+                flex-direction: column;
+            }
+            .g-type {
+                font-size: 11vw;
+                top: 8%;
+                opacity: 0.15;
+            }
+            .hero-area {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                padding-top: 1.5rem;
+            }
+            .hero-image-wrap {
+                width: 100%;
+                aspect-ratio: 16/9;
+                margin-top: 1rem;
+            }
+            .mag-wrap {
+                padding: 0;
+                width: 100%;
+                margin-top: 1.5rem;
+                margin-bottom: 1.5rem;
+                display: block;
+            }
+            .mag-btn {
+                width: 100% !important;
+                height: 64px !important;
+                border-radius: 12px !important;
+                background-color: var(--accent) !important;
+            }
+            .mag-txt {
+                color: var(--bg-base) !important;
+            }
+        }
+    </style>
+
+    <div class="landing-wrapper">
+        <article itemscope itemtype="https://schema.org/Article">
+        <!-- SVG Noise -->
+        <svg class="n-overlay" xmlns="http://www.w3.org/2000/svg">
+            <filter id="n-filter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch"/>
+            </filter>
+            <rect width="100%" height="100%" filter="url(#n-filter)"/>
+        </svg>
+
+        <div class="cyber-grid" data-plax="-0.05"></div>
+        <div class="g-type" data-plax="0.1">AUTOMATISIERUNG</div>
+
+        <div class="v-lines">
+            <div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div>
+        </div>
+
+        <!-- Custom Cursor -->
+        <div class="c-dot"></div>
+        <div class="c-ring"><span class="c-text">MANDAT</span></div>
+
+        <section class="s-wrap">
+            <div class="g-cont">
+                
+                <!-- 1. Hero -->
+                <div class="hero-area">
+                    <div class="hero-content">
+                        <h1 class="m-headline">B2B-Neukundengewinnung für IT-Systemhäuser & Managed Service Provider</h1>
+                        <p class="text-xl text-muted-foreground max-w-2xl leading-relaxed mb-8">
+                            Sie betreuen IT-Infrastrukturen, implementieren Cloud-Lösungen, managen Security-Systeme oder bieten Managed Services – doch neue Kunden kommen nur sporadisch über Empfehlungen, während Hyperscaler und Cloud-native Anbieter Ihren Bestandskunden aggressive Angebote machen. Unser KI-System identifiziert mittelständische Unternehmen mit konkretem IT-Modernisierungsbedarf und generiert qualifizierte Erstgespräche für Ihr Vertriebsteam.
+                        </p>
+                        <div class="mag-wrap">
+                            <a href="/kontakt/" class="mag-btn interactive-elem">
+                                <span class="mag-txt text-center">Jetzt<br>Starten</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrap" style="position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?fm=jpg&q=80&w=1200" alt="IT-Systemhäuser & Managed Service Provider" class="b2b-image" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+
+                <!-- 2. Pain Points -->
+                <div class="pain-block">
+                    <div class="pain-item">
+                        <i class="ph-fill ph-warning-circle p-icon"></i>
+                        <div class="p-text">
+                            <h3>Herausforderung 1</h3>
+                            <p>Cloud-Disruption und Hyperscaler-Wettbewerb: Microsoft Azure, AWS und Google Cloud vermarkten ihre Managed-Service-Angebote zunehmend direkt an den Mittelstand – teilweise über eigene Vertriebsteams, teilweise über große Cloud-only-Partner, die mit aggressiven Einsteigerpreisen arbeiten. Für klassische IT-Systemhäuser bedeutet das einen schleichenden Erosionsprozess: Bestehende Kunden migrieren schrittweise ihre On-Premise-Infrastruktur in die Cloud und brauchen den lokalen Systempartner immer weniger. Laut Bitkom-Erhebungen planen über 60 % der deutschen Mittelständler, ihre IT-Budgets in den nächsten zwei Jahren stärker in Cloud-Services zu investieren. IT-Systemhäuser, die nicht proaktiv neue Kunden akquirieren und sich als Cloud-Integrator positionieren, verlieren ihre Daseinsberechtigung.</p>
+                        </div>
+                    </div>
+                    <div class="pain-item">
+                        <i class="ph-fill ph-trend-down p-icon"></i>
+                        <div class="p-text">
+                            <h3>Herausforderung 2</h3>
+                            <p>Kein skalierbarer Vertrieb trotz hoher Customer Lifetime Values: Ein typischer Managed-Service-Vertrag bringt monatlich zwischen 2.000 und 15.000 Euro wiederkehrenden Umsatz – bei Laufzeiten von 24 bis 60 Monaten sind das sechsstellige Vertragsvolumina. Dennoch arbeiten die meisten IT-Systemhäuser mit maximal ein bis zwei Vertrieblern, die gleichzeitig Bestandskunden betreuen, Angebote schreiben und Projekte koordinieren müssen. Systematische Neukundenakquise – etwa durch Outbound-Kampagnen an Geschäftsführer und IT-Leiter – findet schlicht nicht statt. Die Pipeline ist leer, wenn nicht gerade ein Bestandskunde jemanden empfiehlt.</p>
+                        </div>
+                    </div>
+                    <div class="pain-item">
+                        <i class="ph-fill ph-users-three p-icon"></i>
+                        <div class="p-text">
+                            <h3>Herausforderung 3</h3>
+                            <p>NIS2 und regulatorischer Druck als Chance und Bürde zugleich: Die NIS2-Richtlinie verpflichtet ab Oktober 2025 schätzungsweise 30.000 Unternehmen in Deutschland zu verschärften IT-Sicherheitsmaßnahmen. Für IT-Systemhäuser ist das gleichzeitig riesige Chance und operative Herausforderung: Die betroffenen Unternehmen brauchen Partner für Compliance-Assessments, Security-Monitoring und Incident-Response – doch die meisten wissen noch gar nicht, dass sie betroffen sind. Systemhäuser, die diese Unternehmen jetzt proaktiv identifizieren und ansprechen, können sich als Compliance-Partner positionieren und langfristige Managed-Security-Verträge abschließen.</p>
+                        </div>
+                    </div>
+                    <div class="pain-item">
+                        <i class="ph-fill ph-clock p-icon"></i>
+                        <div class="p-text">
+                            <h3>Herausforderung 4</h3>
+                            <p>Fehlende Zeit für das Kerngeschäft durch repetitive Aufgaben.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Proof / Methodik -->
+                <div class="method-block" style="grid-column: 6 / 13; grid-row: 2; position: relative; z-index: 10; display: flex; flex-direction: column; gap: 2vw; border-radius: 12px; margin-top: 5vw;">
+                    <div style="background-color: var(--surface); border: 1px solid var(--border-color); padding: 3vw; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+                        <h2 class="text-3xl font-bold mb-4" style="font-family: var(--font-display);">Unser Automatisierungs-System für IT-Systemhäuser</h2>
+                        <p class="text-muted-foreground mb-8">Unser KI-System identifiziert mittelständische Unternehmen, die mit hoher Wahrscheinlichkeit IT-Modernisierungs-, Security- oder Cloud-Migrationsbedarf haben. Wir scannen LinkedIn-Profile von IT-Leitern und Geschäftsführern, analysieren Technologie-Signale wie auslaufende Windows-Server-Versionen, Stellenausschreibungen für IT-Positionen als Indikator für wachsenden IT-Bedarf, sowie NIS2-Betroffenheit anhand von Branche und Mitarbeiterzahl. Die personalisierte Ansprache adressiert den konkreten Pain Point: Bei einem Produktionsbetrieb thematisieren wir OT-Security und NIS2, bei einer Kanzlei Datenschutz und revisionssichere Archivierung, bei einem Handelsunternehmen Multi-Standort-Netzwerk und Cloud-POS. So erreichen wir Antwortquoten von 10 bis 16 % – ein Vielfaches der branchenüblichen Kaltakquise.</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                            <div style="padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;">
+                                <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; font-family: var(--font-display);">Technologie- und Compliance-basierte Zielgruppenanalyse</h4>
+                                <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.5;">Wir segmentieren Ihre Zielgruppe nach Branche, Mitarbeiterzahl, NIS2-Betroffenheit und erkennbaren Technologie-Indikatoren. Unternehmen mit veralteter IT-Infrastruktur, wachsendem Headcount oder regulatorischen Pflichten werden priorisiert und mit dem passenden Lösungsansatz Ihres Portfolios verknüpft.</p>
+                            </div>
+                            <div style="padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;">
+                                <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; font-family: var(--font-display);">Personalisierte Multi-Channel-Ansprache</h4>
+                                <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.5;">Jeder IT-Entscheider erhält eine individuell zugeschnittene Ansprache über LinkedIn und E-Mail. Statt generischer 'Wir sind ein IT-Systemhaus'-Nachrichten referenzieren wir konkrete Herausforderungen: NIS2-Compliance-Druck, Cloud-Migrations-Vorhaben oder Security-Incidents in der Branche des Zielunternehmens.</p>
+                            </div>
+                            <div style="padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;">
+                                <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; font-family: var(--font-display);">Qualifizierte Übergabe mit technischem Briefing</h4>
+                                <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.5;">Jeder Termin wird mit einem Unternehmensprofil übergeben: Branche, IT-Teamgröße, erkannter Bedarf (Cloud, Security, Managed Workplace), aktuelle Infrastruktur-Hinweise und der Gesprächsaufhänger. Ihr Vertrieb geht bestens vorbereitet in jedes Erstgespräch.</p>
+                            </div>
+                            <div style="padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;">
+                                <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; font-family: var(--font-display);">Pipeline-Aufbau für wiederkehrenden Umsatz: 12–30 qualifizierte Erstgespräche pro Monat mit IT-Entscheidern, die konkreten Managed-Service- oder Security-Bedarf haben</h4>
+                                <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.5;">NIS2 als Türöffner: Wir identifizieren NIS2-betroffene Unternehmen und positionieren Sie als Compliance-Partner – ein Gesprächsaufhänger mit fast 100 % Relevanz</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Der Plan (3 Schritte) -->
+                <div class="cta-area">
+                    <h2 class="text-2xl font-bold mb-8 uppercase tracking-widest" style="color: var(--text-muted); font-family: var(--font-display);">Der einfache 3-Schritt-Plan</h2>
+                    <a href="/kontakt/" class="cta-row interactive-elem">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest font-bold" style="color: var(--accent);">Schritt 1</span>
+                            <h2 class="cta-title">Kostenloses Gespräch</h2>
+                            <p class="cta-sub">Wir analysieren Ihre Positionierung als IT-Systemhäuser & Managed Service Provider.</p>
+                        </div>
+                        <i class="ph-light ph-arrow-right cta-icon"></i>
+                    </a>
+                    <a href="/kontakt/" class="cta-row interactive-elem">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest font-bold" style="color: var(--accent);">Schritt 2</span>
+                            <h2 class="cta-title">Wir bauen das System</h2>
+                            <p class="cta-sub">Wir richten Ihre Landingpage und Automatisierung ein.</p>
+                        </div>
+                        <i class="ph-light ph-arrow-right cta-icon"></i>
+                    </a>
+                    <a href="/kontakt/" class="cta-row interactive-elem">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest font-bold" style="color: var(--accent);">Schritt 3</span>
+                            <h2 class="cta-title">Kundenanfragen skalieren</h2>
+                            <p class="cta-sub">Das System filtert schlechte Kontakte. Sie sprechen nur mit kaufbereiten Leads.</p>
+                        </div>
+                        <i class="ph-light ph-arrow-right cta-icon"></i>
+                    </a>
+                </div>
+
+                <!-- 5. SEO Text Area (Dynamic) -->
+                
+                <div style="grid-column: 1 / 13; grid-row: 4; margin-top: 5vw; padding: 4vw; background: var(--surface); border-radius: 12px; border: 1px solid var(--border-color);">
+                    <h2 class="text-3xl font-bold mb-6" style="font-family: var(--font-display);">Die aktuelle Marktsituation & Vertriebs-Herausforderungen für IT-Systemhäuser</h2>
+                    <div class="prose prose-invert max-w-none">
+                        <p class="mb-4 text-muted-foreground">Der deutsche Markt für IT-Systemhäuser und Managed Service Provider befindet sich in einer Phase fundamentaler Transformation. Die Konvergenz von Cloud-Migration, verschärften Cybersecurity-Anforderungen und dem allgegenwärtigen Fachkräftemangel verändert die Spielregeln für lokale IT-Dienstleister grundlegend – und stellt traditionelle Vertriebsmodelle vor existenzielle Herausforderungen.
+
+Die Cloud-Disruption hat das klassische Geschäftsmodell vieler Systemhäuser untergraben. Wo früher der Verkauf und die Wartung von physischen Servern, Storage-Systemen und Netzwerk-Hardware das Rückgrat der Umsätze bildete, migrieren mittelständische Unternehmen zunehmend in die Public Cloud. Microsoft 365, Azure und AWS ersetzen lokale Infrastrukturen – und damit auch die Rolle des klassischen Systemhaus-Partners. Laut Bitkom-Erhebungen planen über 60 Prozent der deutschen Mittelständler, ihre IT-Budgets verstärkt in Cloud-Services zu investieren.
+
+Gleichzeitig eröffnet die regulatorische Welle enorme Chancen. Die NIS2-Richtlinie, die ab Oktober 2025 in Deutschland umgesetzt wird, betrifft schätzungsweise 30.000 Unternehmen – von kritischer Infrastruktur über die Lebensmittelindustrie bis zum produzierenden Gewerbe. Diese Unternehmen müssen IT-Risikomanagement, Incident-Reporting und technische Sicherheitsmaßnahmen nachweisen – Anforderungen, die viele ohne externen IT-Partner nicht erfüllen können. Systemhäuser, die sich als NIS2-Compliance-Partner positionieren, haben einen Gesprächsaufhänger mit nahezu hundertprozentiger Relevanz.
+
+Der Fachkräftemangel in der IT-Branche verschärft die Situation paradox: Unternehmen finden keine eigenen IT-Administratoren und sind deshalb stärker als je zuvor auf externe IT-Partner angewiesen. Gleichzeitig fehlen auch den Systemhäusern selbst Techniker und Consultants, was die Kapazität für Neukundenakquise weiter einschränkt. Die wenigen verfügbaren Vertriebsmitarbeiter sind mit Bestandskundenbetreuung und Projektarbeit ausgelastet.
+
+Der klassische Vertriebsweg – Empfehlungen, IHK-Events, lokale Netzwerke – reicht in diesem kompetitiven Umfeld nicht mehr aus. Systemhäuser, die wachsen wollen, brauchen einen systematischen Outbound-Vertrieb, der gezielt Unternehmen mit IT-Modernisierungsbedarf identifiziert und anspricht. Die Gewinner werden jene MSPs sein, die datengestützt die richtigen Prospects finden, sich über Compliance-Expertise differenzieren und den Vertriebsprozess von der Leadgenerierung bis zur Terminvereinbarung automatisieren.</p>
+                    </div>
+                    
+                    
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-bold mb-6" style="font-family: var(--font-display);">Häufige Fragen (FAQ)</h3>
+                        <div class="space-y-6">
+                            
+                            <div class="border border-[var(--border-color)] p-6 rounded-lg bg-[var(--bg-base)]">
+                                <h4 class="font-bold text-lg mb-2 text-[var(--accent)]">Funktioniert das auch für spezialisierte IT-Bereiche wie Managed Security oder Cloud-Migration?</h4>
+                                <p class="text-muted-foreground">Ja, gerade bei spezialisierten Services ist die Effektivität am höchsten. Wir passen die Zielgruppe und Ansprache exakt auf Ihr Portfolio an – ob Managed SOC, Cloud-Infrastruktur, Workplace-as-a-Service oder ERP-Hosting. Bei NIS2-bezogenen Security-Services sehen wir aktuell besonders hohe Antwortquoten, da die regulatorische Dringlichkeit enorm ist.</p>
+                            </div>
+                            
+                            <div class="border border-[var(--border-color)] p-6 rounded-lg bg-[var(--bg-base)]">
+                                <h4 class="font-bold text-lg mb-2 text-[var(--accent)]">Wie stellen Sie sicher, dass die Leads zu unserer Unternehmensgröße und Region passen?</h4>
+                                <p class="text-muted-foreground">Wir filtern exakt nach Ihren Kriterien: Unternehmensgröße, Branche, Region, IT-Teamgröße und Budget-Indikatoren. Ein Systemhaus mit 15 Mitarbeitern in Franken bekommt andere Leads als ein MSP mit 80 Technikern in Hamburg. Jede Kampagne wird individuell auf Ihr Einzugsgebiet und Ihre Kapazitäten zugeschnitten.</p>
+                            </div>
+                            
+                            <div class="border border-[var(--border-color)] p-6 rounded-lg bg-[var(--bg-base)]">
+                                <h4 class="font-bold text-lg mb-2 text-[var(--accent)]">Wie schnell amortisiert sich das bei typischen Managed-Service-Verträgen?</h4>
+                                <p class="text-muted-foreground">Bei durchschnittlichen MRR-Werten von 3.000 bis 10.000 Euro pro Managed-Service-Vertrag und Laufzeiten von 24 bis 36 Monaten amortisiert sich bereits ein gewonnener Neukunde innerhalb weniger Wochen. Der Customer Lifetime Value eines mittelständischen IT-Kunden liegt typischerweise im sechsstelligen Bereich – durch Managed Services, Projekte und Hardware-Beschaffung über die gesamte Kundenbeziehung.</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                
+
+            </div>
+        </section>
+        </article>
+    </div>
+
+    <script is:inline>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+            gsap.registerPlugin(ScrollTrigger);
+            
+            const isTouch = (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+
+            const splitHeadline = new SplitType('.m-headline', { types: 'words', wordClass: 'w-inner' });
+            splitHeadline.words.forEach(word => {
+                const wrapper = document.createElement('span');
+                wrapper.classList.add('w-wrap');
+                word.parentNode.insertBefore(wrapper, word);
+                wrapper.appendChild(word);
+            });
+
+            gsap.from('.w-inner', {
+                y: '115%',
+                duration: 1.2,
+                stagger: 0.1,
+                ease: 'power4.out',
+                delay: 0.2
+            });
+
+            gsap.to('.vl', {
+                scaleY: 1,
+                duration: 1.5,
+                ease: 'expo.inOut',
+                stagger: 0.1,
+                scrollTrigger: { trigger: '.s-wrap', start: 'top 80%' }
+            });
+
+            gsap.fromTo('.method-block', 
+                { y: 50, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: '.method-block', start: 'top 80%' } }
+            );
+
+            document.querySelectorAll('[data-plax]').forEach(el => {
+                const speed = parseFloat(el.getAttribute('data-plax'));
+                gsap.to(el, {
+                    yPercent: speed * 100,
+                    ease: 'none',
+                    scrollTrigger: { trigger: '.s-wrap', start: 'top bottom', end: 'bottom top', scrub: true }
+                });
+            });
+
+            if (!isTouch) {
+                const cDot = document.querySelector('.c-dot');
+                const cRing = document.querySelector('.c-ring');
+                const xToDot = gsap.quickTo(cDot, "x", {duration: 0.15, ease: "power3"});
+                const yToDot = gsap.quickTo(cDot, "y", {duration: 0.15, ease: "power3"});
+                const xToRing = gsap.quickTo(cRing, "x", {duration: 0.3, ease: "power3"});
+                const yToRing = gsap.quickTo(cRing, "y", {duration: 0.3, ease: "power3"});
+
+                window.addEventListener("mousemove", (e) => {
+                    xToDot(e.clientX);
+                    yToDot(e.clientY);
+                    xToRing(e.clientX);
+                    yToRing(e.clientY);
+                });
+
+                document.querySelectorAll('.interactive-elem').forEach(el => {
+                    el.addEventListener('mouseenter', () => document.body.classList.add('c-interactive'));
+                    el.addEventListener('mouseleave', () => document.body.classList.remove('c-interactive'));
+                });
+            }
+        });
+    </script>
+</BaseLayout>
