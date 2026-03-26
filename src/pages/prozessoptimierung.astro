@@ -1,0 +1,225 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Prozessoptimierung mit KI – Methoden, Tools und ROI",
+  "description": "Wie KI-gestützte Prozessoptimierung im Mittelstand funktioniert: welche Prozesse zuerst, welche Tools, welcher ROI in 12 Monaten.",
+  "url": "https://ki-automatisieren.de/prozessoptimierung",
+  "publisher": {
+    "@type": "Organization",
+    "name": "KI Automatisieren",
+    "url": "https://ki-automatisieren.de"
+  }
+});
+---
+
+<BaseLayout
+  title="Prozessoptimierung mit KI – Methoden & ROI für den Mittelstand | ki-automatisieren.de"
+  description="Welche Prozesse im Mittelstand zuerst optimiert werden sollten, welche KI-Tools sich lohnen und welchen ROI Sie in 12 Monaten realistisch erwarten können."
+>
+  <script type="application/ld+json" set:html={schema} />
+
+  <section class="py-24 px-4 max-w-4xl mx-auto">
+
+    <!-- Hero -->
+    <div class="mb-14">
+      <p class="text-sm font-medium text-primary uppercase tracking-widest mb-3">Prozessoptimierung</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-5 leading-tight">
+        Prozessoptimierung mit KI: Wo Mittelständler anfangen sollten
+      </h1>
+      <p class="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+        Die meisten Optimierungsprojekte scheitern nicht an der Technologie — sondern daran, dass die falschen Prozesse zuerst angegangen werden. Hier ist die Methodik, die tatsächlich funktioniert.
+      </p>
+    </div>
+
+    <!-- Warum KI für Prozessoptimierung -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-5">Warum KI Prozessoptimierung verändert</h2>
+      <p class="text-muted-foreground leading-relaxed mb-4">
+        Klassische Prozessoptimierung (Lean, Six Sigma) identifiziert Verschwendung und standardisiert Abläufe. Das funktioniert — ist aber langsam, teuer und erfordert Spezialisten.
+      </p>
+      <p class="text-muted-foreground leading-relaxed mb-6">
+        KI macht das in drei Bereichen drastisch schneller: <strong class="text-foreground">Erkennung</strong> (welche Prozesse haben Potenzial), <strong class="text-foreground">Ausführung</strong> (wer führt repetitive Schritte aus) und <strong class="text-foreground">Monitoring</strong> (wann weicht ein Prozess vom Standard ab).
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {[
+          { phase: "Erkennung", old: "Workshop + Berater, 4–8 Wochen", new: "Process Mining + KI-Analyse, 3–5 Tage", icon: "🔍" },
+          { phase: "Ausführung", old: "Mensch führt Standardschritte aus", new: "KI-Agent führt aus, Mensch supervisiert", icon: "⚙️" },
+          { phase: "Monitoring", old: "Quartals-Review, Abweichung wird spät erkannt", new: "Echtzeit-Alerts bei Prozessabweichung", icon: "📡" },
+        ].map(p => (
+          <div class="border border-border rounded-xl p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xl">{p.icon}</span>
+              <span class="font-semibold text-foreground text-sm">{p.phase}</span>
+            </div>
+            <p class="text-xs text-muted-foreground mb-1 line-through opacity-60">{p.old}</p>
+            <p class="text-xs text-primary font-medium">{p.new}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Priorisierungs-Matrix -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-5">Die Priorisierungs-Matrix: Welche Prozesse zuerst</h2>
+      <p class="text-muted-foreground leading-relaxed mb-6">
+        Nicht jeder Prozess lohnt sich für KI-Optimierung. Diese Matrix zeigt, wo das Verhältnis aus Aufwand und Ertrag am günstigsten ist:
+      </p>
+
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="border-b border-border">
+              <th class="text-left py-3 pr-4 text-muted-foreground font-medium">Prozesstyp</th>
+              <th class="text-left py-3 pr-4 text-muted-foreground font-medium">Volumen</th>
+              <th class="text-left py-3 pr-4 text-muted-foreground font-medium">Aufwand/Impl.</th>
+              <th class="text-left py-3 font-medium text-primary">Priorität</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { type: "Dateneingabe & -übertragung", vol: "Hoch", effort: "Niedrig", prio: "P0 – sofort", prioCls: "text-primary" },
+              { type: "E-Mail-Klassifizierung & Routing", vol: "Hoch", effort: "Niedrig", prio: "P0 – sofort", prioCls: "text-primary" },
+              { type: "Rechnungsverarbeitung", vol: "Mittel", effort: "Mittel", prio: "P1 – Quartal 1", prioCls: "text-yellow-400" },
+              { type: "Lead-Qualifizierung", vol: "Mittel", effort: "Mittel", prio: "P1 – Quartal 1", prioCls: "text-yellow-400" },
+              { type: "Reporting & Dashboards", vol: "Niedrig", effort: "Mittel", prio: "P2 – Quartal 2", prioCls: "text-muted-foreground" },
+              { type: "Komplexe Entscheidungen", vol: "Niedrig", effort: "Hoch", prio: "P3 – später", prioCls: "text-muted-foreground" },
+            ].map(r => (
+              <tr class="border-b border-border/50">
+                <td class="py-3 pr-4 text-foreground">{r.type}</td>
+                <td class="py-3 pr-4 text-muted-foreground">{r.vol}</td>
+                <td class="py-3 pr-4 text-muted-foreground">{r.effort}</td>
+                <td class={`py-3 font-medium ${r.prioCls}`}>{r.prio}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 5 Prozesse mit konkretem ROI -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-5">5 Prozesse mit messbarem ROI in 90 Tagen</h2>
+
+      <div class="space-y-4">
+        {[
+          {
+            num: "01",
+            title: "Eingehende E-Mails klassifizieren & routen",
+            desc: "KI liest jeden eingehenden Kontakt, erkennt Thema und Dringlichkeit, weist ihn der richtigen Person oder Warteschlange zu — automatisch.",
+            roi: "Ø 2,5 Stunden/Tag gespart pro Service-Mitarbeiter",
+            tools: "Zapier + GPT-4 / n8n + Claude"
+          },
+          {
+            num: "02",
+            title: "Rechnungseingang digitalisieren",
+            desc: "PDF-Rechnungen werden automatisch ausgelesen, in DATEV/SAP übertragen und zur Freigabe vorgelegt. Keine manuelle Dateneingabe mehr.",
+            roi: "80% Zeitreduktion bei der Buchhalter-Arbeit",
+            tools: "Mindee / Rossum + ERP-Connector"
+          },
+          {
+            num: "03",
+            title: "Lead-Scoring automatisieren",
+            desc: "Eingehende Anfragen werden nach Budget, Entscheidungsbefugnis und Fit mit Ihrem Angebot bewertet — bevor der Vertrieb sie sieht.",
+            roi: "40–60% mehr qualifizierte Erstgespräche",
+            tools: "HubSpot Workflows + Clay + KI-Scoring"
+          },
+          {
+            num: "04",
+            title: "Reporting-Erstellung",
+            desc: "Wöchentliche Status-Reports aus CRM, ERP und Analytics werden automatisch zusammengeführt, aufbereitet und als PDF versendet.",
+            roi: "3–4 Stunden/Woche gespart pro Manager",
+            tools: "n8n + Looker Studio + Claude API"
+          },
+          {
+            num: "05",
+            title: "Onboarding neuer Kunden",
+            desc: "Begrüßungs-E-Mails, Vertragsversand, erste Check-ins und Dokumenten-Anfragen laufen automatisch — nach einem klar definierten Zeitplan.",
+            roi: "Onboarding-Zeit von 5 auf 1,5 Tage reduziert",
+            tools: "HubSpot / ActiveCampaign + DocuSign API"
+          },
+        ].map(p => (
+          <div class="border border-border rounded-xl p-5 hover:border-primary/30 transition-colors">
+            <div class="flex items-start gap-4">
+              <span class="text-2xl font-bold text-primary/40 shrink-0 w-8">{p.num}</span>
+              <div class="flex-1">
+                <h3 class="font-semibold text-foreground mb-2">{p.title}</h3>
+                <p class="text-sm text-muted-foreground leading-relaxed mb-3">{p.desc}</p>
+                <div class="flex flex-wrap gap-4 text-xs">
+                  <span class="text-primary font-medium">ROI: {p.roi}</span>
+                  <span class="text-muted-foreground">Tools: {p.tools}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-5">Die häufigsten Fehler bei der Prozessoptimierung</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {[
+          { mistake: "Komplexen Prozess zuerst automatisieren", fix: "Mit kleinstem Volumen-Prozess starten, Vertrauen aufbauen, dann skalieren." },
+          { mistake: "Tool kaufen, dann Prozess suchen", fix: "Erst Prozess analysieren, dann passendes Tool wählen — nicht umgekehrt." },
+          { mistake: "IT-Projekt ohne Fachbereich", fix: "Prozesseigner aus dem Fachbereich müssen co-designen, nicht nur freigeben." },
+          { mistake: "Kein Monitoring nach Go-Live", fix: "Jeder automatisierte Prozess braucht ein Dashboard mit Fehlerrate und Durchlaufzeit." },
+        ].map(f => (
+          <div class="border border-border rounded-xl p-5">
+            <p class="text-sm font-medium text-red-400 mb-2 flex items-center gap-2"><span>✗</span>{f.mistake}</p>
+            <p class="text-sm text-muted-foreground"><span class="text-primary mr-1">→</span>{f.fix}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Links -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-5">Weiterführendes</h2>
+      <div class="space-y-3">
+        <a href="/prozesse-automatisieren/" class="flex items-center justify-between p-5 border border-border rounded-xl hover:border-primary/40 transition-colors group">
+          <div>
+            <p class="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">Welche Prozesse automatisiert werden können — Überblick</p>
+            <p class="text-xs text-muted-foreground mt-1">Vollständige Matrix aller automatisierbaren Prozesstypen mit ROI-Bewertung.</p>
+          </div>
+          <span class="text-primary shrink-0 ml-4">→</span>
+        </a>
+        <a href="/blog/rechnungsverarbeitung-ki-automatisierung-mittelstand/" class="flex items-center justify-between p-5 border border-border rounded-xl hover:border-primary/40 transition-colors group">
+          <div>
+            <p class="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">Rechnungsverarbeitung automatisieren – Praxis-Guide</p>
+            <p class="text-xs text-muted-foreground mt-1">Wie Mittelständler 80% der Buchhalter-Zeit zurückgewinnen — konkret und messbar.</p>
+          </div>
+          <span class="text-primary shrink-0 ml-4">→</span>
+        </a>
+        <a href="/losungen/crm-prozessautomatisierung/" class="flex items-center justify-between p-5 border border-border rounded-xl hover:border-primary/40 transition-colors group">
+          <div>
+            <p class="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">CRM-Prozessautomatisierung — unsere Lösung</p>
+            <p class="text-xs text-muted-foreground mt-1">Wie wir CRM-Prozesse für den Mittelstand implementieren und integrieren.</p>
+          </div>
+          <span class="text-primary shrink-0 ml-4">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="bg-primary/5 border border-primary/20 rounded-xl p-8">
+      <h3 class="text-xl font-semibold text-foreground mb-2">
+        Welche Prozesse lohnen sich bei Ihnen?
+      </h3>
+      <p class="text-muted-foreground text-sm mb-6 leading-relaxed">
+        In einem 45-Minuten-Gespräch analysieren wir Ihre drei größten Zeitfresser und zeigen, welche davon in 4–6 Wochen automatisiert werden können — mit konkreten Zahlen.
+      </p>
+      <a
+        href="/termin/"
+        class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium text-sm hover:bg-primary/90 transition-colors"
+      >
+        Kostenlose Prozessanalyse vereinbaren →
+      </a>
+    </div>
+
+  </section>
+</BaseLayout>
