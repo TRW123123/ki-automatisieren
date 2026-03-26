@@ -60,7 +60,7 @@ export default function PdfLeadFunnel() {
     };
 
     return (
-        <div className="w-full max-w-xl mx-auto backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
+        <div className="w-full max-w-xl mx-auto backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-4 md:p-10 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-lime-500/10 blur-[60px] pointer-events-none"></div>
 
             <div className="relative z-10 min-h-[250px] flex flex-col justify-center">
@@ -240,8 +240,8 @@ export default function PdfLeadFunnel() {
             </div>
 
             {/* GLOBAL PERSISTENT CTA */}
-            <div className="relative z-10 mt-8 pt-6 border-t border-white/10 text-center">
-                <p className="text-sm text-gray-400 mb-3">Du willst KI direkt für dein Business einsetzen?</p>
+            <div className="relative z-10 mt-4 pt-4 border-t border-white/10 text-center">
+                <p className="hidden sm:block text-sm text-gray-400 mb-3">Du willst KI direkt für dein Business einsetzen?</p>
                 <a href="/termin" className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-lime-500/30 text-white rounded-xl transition-all text-sm font-medium group">
                     <Sparkles className="w-4 h-4 text-lime-400" />
                     Kostenlose Beratung buchen
