@@ -53,9 +53,9 @@ const schema = JSON.stringify({
           { title: "Rechnungsverarbeitung", roi: "Sehr hoch", effort: "Mittel", desc: "OCR + ERP-Integration eliminiert manuelle Dateneingabe vollständig.", link: "/blog/rechnungsverarbeitung-ki-automatisierung-mittelstand" },
           { title: "Kundenservice (Tier 1)", roi: "Hoch", effort: "Mittel", desc: "65–80% der Anfragen lassen sich ohne menschlichen Eingriff lösen.", link: "/blog/kundenservice-chatbot-ki-mittelstand-automatisierung" },
           { title: "Lead-Qualifizierung", roi: "Hoch", effort: "Mittel", desc: "Automatisches Scoring und Follow-up verdoppelt die Vertriebseffizienz.", link: "/blog/vertrieb-lead-qualifizierung-ki-mittelstand" },
-          { title: "Dokumenten-Extraktion", roi: "Hoch", effort: "Niedrig", desc: "Lieferscheine, Verträge, Formulare — KI liest und strukturiert automatisch.", link: null },
-          { title: "E-Mail-Klassifizierung", roi: "Mittel", effort: "Niedrig", desc: "Eingehende Mails werden automatisch kategorisiert und weitergeleitet.", link: null },
-          { title: "Berichts-Erstellung", roi: "Mittel", effort: "Niedrig", desc: "Wöchentliche Reports aus ERP/CRM-Daten ohne manuelle Aufbereitung.", link: null },
+          { title: "Dokumenten-Extraktion", roi: "Hoch", effort: "Niedrig", desc: "Lieferscheine, Verträge, Formulare — KI liest und strukturiert automatisch.", link: "/blog/digitale-prozessoptimierung-unternehmen/" },
+          { title: "E-Mail-Klassifizierung", roi: "Mittel", effort: "Niedrig", desc: "Eingehende Mails werden automatisch kategorisiert und weitergeleitet.", link: "/blog/e-mail-automatisierung-vertrieb-marketing/" },
+          { title: "Berichts-Erstellung", roi: "Mittel", effort: "Niedrig", desc: "Wöchentliche Reports aus ERP/CRM-Daten ohne manuelle Aufbereitung.", link: "/blog/prozessoptimierung-ki-mittelstand-leitfaden/" },
         ].map(p => (
           <div class="border border-border rounded-xl p-5 hover:border-primary/40 transition-colors">
             <div class="flex items-center justify-between mb-2">
@@ -118,6 +118,17 @@ const schema = JSON.stringify({
           </a>
         ))}
       </div>
+    </div>
+
+    <!-- Cross-Link Hub -->
+    <div class="mb-14">
+      <a href="/prozessoptimierung/" class="flex items-center justify-between p-5 border border-border rounded-xl hover:border-primary/40 transition-colors group">
+        <div>
+          <p class="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">Prozessoptimierung mit KI — Methodik & ROI</p>
+          <p class="text-xs text-muted-foreground mt-1">Priorisierungs-Matrix, Fehler-Analyse und realistischer ROI in 12 Monaten.</p>
+        </div>
+        <span class="text-primary shrink-0 ml-4">→</span>
+      </a>
     </div>
 
     <!-- CTA -->
