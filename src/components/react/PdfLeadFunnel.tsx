@@ -14,11 +14,8 @@ export default function PdfLeadFunnel() {
     const pdfUrl = `${import.meta.env.PUBLIC_SUPABASE_URL}/storage/v1/object/public/lead_magnets/ki-video-guide.pdf`;
 
     const handleInitialDownloadClick = () => {
-        // Zero Friction: Instantly trigger download on the very first click
-        // Note: If this throws a JSON 404, the PDF is not yet uploaded to the Supabase Bucket.
-        window.open(pdfUrl, '_blank');
-        
-        // Move to the reciprocity opt-in step
+        // Show the newsletter opt-in question first
+        // PDF will open AFTER they make their choice (subscribe or decline)
         setStep('downloading_optin');
     };
 
@@ -50,6 +47,8 @@ export default function PdfLeadFunnel() {
                 throw new Error(errText);
             }
 
+            // PDF opens automatically after successful signup
+            window.open(pdfUrl, '_blank');
             setStep('success_optin');
 
         } catch (err: any) {
