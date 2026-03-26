@@ -1,0 +1,193 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PdfLeadFunnel from "@/components/react/PdfLeadFunnel.tsx";
+
+const seoTitle = "Kostenloser Guide: KI Cinematic Video Ads erstellen";
+const seoDescription = "Lerne, wie du mit simplen Handy-Shots und KI (Gemini, Nano Banana Pro) High-End Werbevideos generierst. Lade jetzt das kostenlose PDF herunter.";
+---
+
+<BaseLayout title={seoTitle} description={seoDescription}>
+    <!-- GSAP for Animations -->
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style is:inline>
+        :root {
+            --bg-base: hsl(203, 23%, 8%);
+            --surface: hsl(220, 13%, 9%);
+            --text-main: hsl(210, 10%, 90%);
+            --text-muted: hsl(215, 16%, 58%);
+            --font-display: 'Space Grotesk', system-ui, sans-serif;
+            --font-ui: 'Space Grotesk', system-ui, sans-serif;
+        }
+
+        .landing-wrapper {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: var(--font-ui);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .landing-wrapper h1, .landing-wrapper h2, .landing-wrapper .display-font {
+            font-family: var(--font-display);
+            font-weight: 700;
+        }
+
+        /* SVG Noise Overlay */
+        .n-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0.15;
+            mix-blend-mode: overlay;
+        }
+
+        /* Cyberpunk Grid Background */
+        .cyber-grid {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Ambient Glows */
+        .ambient-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(163, 230, 53, 0.08) 0%, transparent 70%);
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .content-area {
+            position: relative;
+            z-index: 20;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10vh 4vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        .hl-word {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hl-word::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #A3E635, #22c55e);
+            z-index: -1;
+            opacity: 0.8;
+            border-radius: 2px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+
+        .hero-p {
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 700px;
+            margin-bottom: 4rem;
+            line-height: 1.6;
+        }
+    </style>
+
+    <div class="landing-wrapper">
+        <svg class="n-overlay" xmlns="http://www.w3.org/2000/svg">
+            <filter id="n-filter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" stitchTiles="stitch"/>
+            </filter>
+            <rect width="100%" height="100%" filter="url(#n-filter)"/>
+        </svg>
+
+        <div class="cyber-grid"></div>
+        <div class="ambient-glow"></div>
+
+        <main class="content-area">
+            <div class="hero-header opacity-0 translate-y-8 flex flex-col items-center">
+                <div class="inline-block px-4 py-1.5 rounded-full border border-lime-500/20 bg-lime-500/10 text-lime-400 font-medium text-sm mb-8 tracking-wide">
+                    🎁 KOSTENLOSES PDF-TRAINING
+                </div>
+                
+                <h1 class="hero-title">
+                    High-End Video Ads aus <br> <span class="hl-word text-[#A3E635]">simplen Handy-Shots.</span>
+                </h1>
+                
+                <p class="hero-p">
+                    Das exakte Framework, wie B2B-Companies mit Nano Banana Pro & Gemini cinematische Werbevideos bauen. Laden Sie sich jetzt den Guide herunter.
+                </p>
+            </div>
+
+            <!-- The React Funnel Component -->
+            <div class="funnel-container w-full opacity-0 translate-y-8">
+                <PdfLeadFunnel client:load />
+            </div>
+            
+            <div class="mt-16 text-center opacity-0 fade-in-delay">
+                 <p class="text-sm text-gray-600 flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    Deine Daten sind sicher & SSL verschlüsselt. Wir hassen Spam genauso sehr wie du.
+                 </p>
+            </div>
+        </main>
+    </div>
+
+    <script is:inline>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof gsap === 'undefined') return;
+            
+            const tl = gsap.timeline();
+            
+            tl.to('.hero-header', {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                ease: 'power3.out'
+            })
+            .to('.funnel-container', {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                ease: 'power3.out'
+            }, "-=0.8")
+            .to('.fade-in-delay', {
+                opacity: 1,
+                duration: 1
+            }, "-=0.5");
+        });
+    </script>
+</BaseLayout>
