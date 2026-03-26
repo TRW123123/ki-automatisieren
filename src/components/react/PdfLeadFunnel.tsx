@@ -110,7 +110,10 @@ export default function PdfLeadFunnel() {
                             </button>
 
                             <button 
-                                onClick={() => setStep('success_declined')}
+                                onClick={() => {
+                                    window.open(pdfUrl, '_blank');
+                                    setStep('success_declined');
+                                }}
                                 className="group p-4 bg-white/5 border border-white/10 hover:bg-white/10 rounded-xl text-left transition-all"
                             >
                                 <div className="flex items-center gap-3 mb-2">
@@ -210,7 +213,19 @@ export default function PdfLeadFunnel() {
                         </div>
                         <div>
                             <h3 className="text-3xl font-bold text-white mb-2">Willkommen an Bord.</h3>
-                            <p className="text-gray-400 mb-6">Deine Anmeldung ist bestätigt! Checke ab und zu dein Postfach.</p>
+                            <p className="text-gray-400 mb-4">Deine Anmeldung ist bestätigt! Checke ab und zu dein Postfach.</p>
+                            <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-lime-500 hover:bg-lime-400 text-black font-bold rounded-xl transition-all">
+                                <Download className="w-5 h-5" />
+                                PDF jetzt öffnen
+                            </a>
+                        </div>
+
+                        <div className="pt-4 border-t border-white/10">
+                            <p className="text-sm text-gray-400 mb-3">Du willst KI direkt für dein Business einsetzen?</p>
+                            <a href="/termin" className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 text-white rounded-xl transition-all text-sm font-medium">
+                                Kostenlose Beratung buchen
+                                <ArrowRight className="w-4 h-4" />
+                            </a>
                         </div>
                     </div>
                 )}
@@ -220,11 +235,19 @@ export default function PdfLeadFunnel() {
                     <div className="text-center space-y-6 animate-in zoom-in-95 duration-500">
                         <div>
                             <h3 className="text-3xl font-bold text-white mb-2">Alles klar, kein Problem.</h3>
-                            <p className="text-gray-400 mb-6">Wir wünschen dir viel Erfolg mit der Anleitung!</p>
-                            
-                            <p className="text-sm text-gray-600">
-                                Falls der Download blockiert wurde, klicke <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-400">hier</a>, um die Datei manuell zu öffnen.
-                            </p>
+                            <p className="text-gray-400 mb-4">Viel Erfolg mit der Anleitung!</p>
+                            <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-lime-500 hover:bg-lime-400 text-black font-bold rounded-xl transition-all">
+                                <Download className="w-5 h-5" />
+                                PDF erneut öffnen
+                            </a>
+                        </div>
+
+                        <div className="pt-4 border-t border-white/10">
+                            <p className="text-sm text-gray-400 mb-3">Du willst KI direkt für dein Business einsetzen?</p>
+                            <a href="/termin" className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 text-white rounded-xl transition-all text-sm font-medium">
+                                Kostenlose Beratung buchen
+                                <ArrowRight className="w-4 h-4" />
+                            </a>
                         </div>
                     </div>
                 )}
