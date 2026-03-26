@@ -1,0 +1,190 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Marketing Automatisierung mit KI – Kampagnen, Leads, Content automatisieren",
+  "description": "Wie KI-gestützte Marketing-Automatisierung funktioniert: Lead-Nurturing, Content-Produktion, E-Mail-Kampagnen und Reporting ohne manuellen Aufwand.",
+  "url": "https://ki-automatisieren.de/marketing-automatisierung-ki",
+  "publisher": {
+    "@type": "Organization",
+    "name": "KI Automatisieren",
+    "url": "https://ki-automatisieren.de"
+  }
+});
+---
+
+<BaseLayout
+  title="Marketing Automatisierung KI – Kampagnen & Leads automatisieren | ki-automatisieren.de"
+  description="KI-gestützte Marketing-Automatisierung für den Mittelstand: Lead-Nurturing, Content, E-Mail-Kampagnen und Reporting — automatisiert, skalierbar, messbar."
+>
+  <script type="application/ld+json" set:html={schema} />
+
+  <section class="py-24 px-4 max-w-4xl mx-auto">
+
+    <!-- Hero -->
+    <div class="mb-14">
+      <p class="text-sm font-medium text-primary uppercase tracking-widest mb-3">Marketing Automatisierung</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-5 leading-tight">
+        Marketing Automatisierung mit KI: Mehr Leads, weniger Aufwand
+      </h1>
+      <p class="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+        Marketing-Teams im Mittelstand verlieren täglich Stunden für repetitive Aufgaben: Kampagnen aufsetzen, Reports erstellen, Content produzieren, Leads pflegen. KI übernimmt das — systematisch und skalierbar.
+      </p>
+    </div>
+
+    <!-- Was automatisiert werden kann -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-6">Welche Marketing-Prozesse KI automatisiert</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        {[
+          {
+            title: "Lead-Nurturing-Sequenzen",
+            desc: "Automatische E-Mail-Serien basierend auf Nutzerverhalten — wer welche Seite besucht hat, welche Inhalte er geladen hat, wo er im Funnel steht.",
+            badge: "320 SV",
+            icon: "📧"
+          },
+          {
+            title: "Content-Produktion",
+            desc: "KI-gestützte Texterstellung für Blogartikel, Social Posts und Produktbeschreibungen — nach Briefing, im definierten Tonfall, skalierbar auf 100 Stücke pro Woche.",
+            badge: "Hoch",
+            icon: "✍️"
+          },
+          {
+            title: "Kampagnen-Reporting",
+            desc: "Automatische Aggregation aus Google Ads, Meta, LinkedIn und Analytics in ein Dashboard. Kein manuelles Zusammenführen mehr.",
+            badge: "Zeit -80%",
+            icon: "📊"
+          },
+          {
+            title: "Social Media Scheduling",
+            desc: "Aus einem Content-Briefing entstehen automatisch Texte, Bilder-Prompts und Publishing-Schedule für alle Kanäle.",
+            badge: "Workflow",
+            icon: "📱"
+          },
+          {
+            title: "Lead-Qualifizierung",
+            desc: "Eingehende Leads werden automatisch bewertet, angereichert (Unternehmensgröße, Branche, LinkedIn) und dem richtigen Vertriebsmitarbeiter zugeordnet.",
+            badge: "B2B-Fokus",
+            icon: "🎯"
+          },
+          {
+            title: "Personalisierung at Scale",
+            desc: "Dynamische Landingpages, personalisierte E-Mails und individuelle Angebote — ohne manuellen Aufwand pro Kontakt.",
+            badge: "CRO",
+            icon: "⚡"
+          },
+        ].map(item => (
+          <div class="border border-border rounded-xl p-5 hover:border-primary/40 transition-colors">
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <span class="text-xl">{item.icon}</span>
+                <h3 class="font-semibold text-foreground text-sm">{item.title}</h3>
+              </div>
+              <span class="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full shrink-0">{item.badge}</span>
+            </div>
+            <p class="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Stack -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-6">Typischer KI Marketing-Stack für den Mittelstand</h2>
+      <p class="text-muted-foreground leading-relaxed mb-6">
+        Kein Einheitsbrei. Die meisten Mittelständler haben bereits HubSpot, Mailchimp oder ActiveCampaign im Einsatz. Wir bauen KI-Automatisierung auf dem auf, was schon funktioniert — keine Migrationen, keine Verträge kündigen.
+      </p>
+
+      <div class="space-y-3">
+        {[
+          { layer: "CRM & E-Mail", tools: "HubSpot, ActiveCampaign, Mailchimp", what: "Workflows, Lead-Scoring, Nurturing-Sequenzen" },
+          { layer: "Content-Produktion", tools: "Claude, GPT-4, Make.com", what: "Automatische Texterstellung nach Briefing-Template" },
+          { layer: "Data & Analytics", tools: "Google Analytics 4, Looker Studio, n8n", what: "Automatisches Reporting, Alert-System bei KPI-Abweichungen" },
+          { layer: "Social & Ads", tools: "Meta, LinkedIn, Google Ads API", what: "Automatische Budget-Anpassung, Performance-Alerts, A/B-Tests" },
+          { layer: "Lead-Enrichment", tools: "Clay, Apollo, LinkedIn API", what: "Anreicherung mit Unternehmensdaten, Kontaktinfos, Intent-Signalen" },
+        ].map(s => (
+          <div class="grid grid-cols-3 gap-4 p-4 border border-border rounded-xl text-sm">
+            <div>
+              <p class="text-xs text-muted-foreground mb-1">Ebene</p>
+              <p class="font-medium text-foreground">{s.layer}</p>
+            </div>
+            <div>
+              <p class="text-xs text-muted-foreground mb-1">Tools</p>
+              <p class="text-muted-foreground">{s.tools}</p>
+            </div>
+            <div>
+              <p class="text-xs text-muted-foreground mb-1">Automatisiert</p>
+              <p class="text-muted-foreground">{s.what}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- ROI -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-6">Was Marketing-Automatisierung bringt</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          { metric: "65%", label: "weniger Zeit für manuelle Reports" },
+          { metric: "3×", label: "mehr Content-Output mit gleichem Team" },
+          { metric: "40%", label: "höhere Lead-Conversion durch Nurturing" },
+          { metric: "2–4 Mon.", label: "typische Amortisationszeit" },
+        ].map(s => (
+          <div class="text-center p-5 border border-border rounded-xl">
+            <p class="text-2xl font-bold text-primary mb-1">{s.metric}</p>
+            <p class="text-xs text-muted-foreground leading-tight">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Links -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-6">Weiterführendes</h2>
+      <div class="space-y-3">
+        <a href="/losungen/outbound-automatisierung/" class="flex items-center justify-between p-5 border border-border rounded-xl hover:border-primary/40 transition-colors group">
+          <div>
+            <p class="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">Outbound-Automatisierung — unsere Lösung</p>
+            <p class="text-xs text-muted-foreground mt-1">Automatisierter Outreach auf LinkedIn und per E-Mail — skalierbar auf 500+ Kontakte pro Woche.</p>
+          </div>
+          <span class="text-primary shrink-0 ml-4">→</span>
+        </a>
+        <a href="/blog/vertrieb-lead-qualifizierung-ki-mittelstand/" class="flex items-center justify-between p-5 border border-border rounded-xl hover:border-primary/40 transition-colors group">
+          <div>
+            <p class="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">KI Lead-Qualifizierung: Praxis-Guide</p>
+            <p class="text-xs text-muted-foreground mt-1">Wie B2B-Unternehmen ihren Vertriebsfunnel mit KI-Scoring 3× effizienter machen.</p>
+          </div>
+          <span class="text-primary shrink-0 ml-4">→</span>
+        </a>
+        <a href="/prozesse-automatisieren/" class="flex items-center justify-between p-5 border border-border rounded-xl hover:border-primary/40 transition-colors group">
+          <div>
+            <p class="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">Alle Automatisierungs-Möglichkeiten im Überblick</p>
+            <p class="text-xs text-muted-foreground mt-1">Marketing ist ein Bereich. Welche anderen Prozesse lohnen sich?</p>
+          </div>
+          <span class="text-primary shrink-0 ml-4">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="bg-primary/5 border border-primary/20 rounded-xl p-8">
+      <h3 class="text-xl font-semibold text-foreground mb-2">
+        Marketing-Automatisierung für Ihr Unternehmen?
+      </h3>
+      <p class="text-muted-foreground text-sm mb-6 leading-relaxed">
+        Wir analysieren Ihre aktuellen Marketing-Prozesse und zeigen, wo KI-Automatisierung den größten ROI bringt — in einem kostenlosen 45-Minuten-Gespräch.
+      </p>
+      <a
+        href="/termin/"
+        class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium text-sm hover:bg-primary/90 transition-colors"
+      >
+        Kostenlose Marketing-Analyse vereinbaren →
+      </a>
+    </div>
+
+  </section>
+</BaseLayout>

@@ -1,0 +1,156 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "KI Chatbot für Unternehmen – Kundenservice automatisieren",
+  "description": "Wie KI-Chatbots 65–80% der Kundenanfragen automatisch lösen, ohne menschlichen Eingriff. Einsatz im Mittelstand, Integration in bestehende Systeme.",
+  "url": "https://ki-automatisieren.de/chatbot",
+  "publisher": {
+    "@type": "Organization",
+    "name": "KI Automatisieren",
+    "url": "https://ki-automatisieren.de"
+  }
+});
+---
+
+<BaseLayout
+  title="KI Chatbot für Unternehmen – Kundenservice automatisieren | ki-automatisieren.de"
+  description="KI-Chatbots lösen 65–80% der Kundenanfragen ohne menschlichen Eingriff. Wie Implementierung im Mittelstand funktioniert und was es kostet."
+>
+  <script type="application/ld+json" set:html={schema} />
+
+  <section class="py-24 px-4 max-w-4xl mx-auto">
+
+    <!-- Hero -->
+    <div class="mb-14">
+      <p class="text-sm font-medium text-primary uppercase tracking-widest mb-3">KI Chatbot</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-5 leading-tight">
+        KI Chatbot: Kundenservice der sich selbst erledigt
+      </h1>
+      <p class="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+        65–80% der eingehenden Kundenanfragen folgen immer denselben Mustern. Ein KI-Chatbot beantwortet sie — rund um die Uhr, ohne Wartezeit, ohne Personalkosten.
+      </p>
+    </div>
+
+    <!-- Was ein KI Chatbot leistet -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-6">Was ein KI Chatbot im Mittelstand leistet</h2>
+      <p class="text-muted-foreground leading-relaxed mb-6">
+        Moderne KI-Chatbots sind keine einfachen FAQ-Bots mehr. Sie verstehen natürliche Sprache, greifen auf Ihre Daten zu und handeln — ob das eine Bestellung ist, eine Terminbuchung oder eine Reklamation.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        {[
+          { title: "Tier-1-Support (65–80%)", desc: "Standardanfragen wie Lieferstatus, Öffnungszeiten, Produktinfos werden vollständig automatisiert beantwortet.", icon: "💬" },
+          { title: "24/7 Verfügbarkeit", desc: "Keine Wartezeiten außerhalb der Geschäftszeiten. Kunden bekommen sofort eine Antwort — auch am Wochenende.", icon: "🕐" },
+          { title: "CRM-Integration", desc: "Der Chatbot sieht die Kundenhistorie, offene Tickets und Bestellungen — und antwortet kontextuell.", icon: "🔗" },
+          { title: "Eskalation bei Bedarf", desc: "Komplexe Anfragen werden mit vollständigem Kontext an einen Mitarbeiter übergeben. Kein Informationsverlust.", icon: "↗️" },
+          { title: "Mehrsprachig", desc: "Für internationale Kunden oder DACH-Märkte: automatische Spracherkennung und Antwort in der Muttersprache.", icon: "🌍" },
+          { title: "Lead-Qualifizierung", desc: "Chatbots qualifizieren eingehende Anfragen, erfassen Kontaktdaten und übergeben warme Leads direkt ans CRM.", icon: "🎯" },
+        ].map(item => (
+          <div class="border border-border rounded-xl p-5 hover:border-primary/40 transition-colors">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-xl">{item.icon}</span>
+              <h3 class="font-semibold text-foreground text-sm">{item.title}</h3>
+            </div>
+            <p class="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- ROI Rechnung -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-6">Was ein Chatbot kostet vs. was er spart</h2>
+      <div class="bg-muted/30 border border-border rounded-xl p-6 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <p class="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-3">Typische Kosten ohne Chatbot</p>
+            <ul class="space-y-2 text-sm text-muted-foreground">
+              <li class="flex justify-between"><span>Mitarbeiter Kundenservice (1 FTE)</span><span class="text-foreground font-medium">~3.500 €/Monat</span></li>
+              <li class="flex justify-between"><span>Entgangene Leads (außerhalb Bürozeiten)</span><span class="text-foreground font-medium">nicht messbar</span></li>
+              <li class="flex justify-between"><span>Reaktionszeit (Ø 4 Stunden)</span><span class="text-foreground font-medium">Kundenverlust</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-primary uppercase tracking-wide mb-3">Mit KI Chatbot</p>
+            <ul class="space-y-2 text-sm text-muted-foreground">
+              <li class="flex justify-between"><span>Implementierung (einmalig)</span><span class="text-primary font-medium">2.500–8.000 €</span></li>
+              <li class="flex justify-between"><span>Laufende Kosten</span><span class="text-primary font-medium">200–600 €/Monat</span></li>
+              <li class="flex justify-between"><span>Reaktionszeit</span><span class="text-primary font-medium">&lt; 3 Sekunden</span></li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-xs text-muted-foreground mt-6 pt-4 border-t border-border">Amortisation typischerweise innerhalb von 2–4 Monaten bei mittleren Anfragevolumen (50+ Tickets/Woche).</p>
+      </div>
+    </div>
+
+    <!-- Implementierung -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-6">Wie Implementierung in 4 Wochen aussieht</h2>
+      <div class="space-y-3">
+        {[
+          { step: "1", title: "Woche 1: Datengrundlage", desc: "Analyse der häufigsten Anfragen aus Ihrem Ticketsystem. Aufbau der Knowledge Base aus FAQs, Handbüchern und Prozessdokumenten." },
+          { step: "2", title: "Woche 2: Integration", desc: "Anbindung an Ihr CRM, Helpdesk (Zendesk, Freshdesk, HubSpot) und ggf. ERP. Einrichtung der Eskalationsregeln." },
+          { step: "3", title: "Woche 3: Testing & Training", desc: "Parallelbetrieb mit manuellem Support. Echte Anfragen werden genutzt um das Modell zu verfeinern." },
+          { step: "4", title: "Woche 4: Go-Live", desc: "Produktivsetzung auf Website, WhatsApp oder in Ihrem Kundenportal. Monitoring-Dashboard für Ihre Teamleiter." },
+        ].map(s => (
+          <div class="flex gap-4 p-4 border border-border rounded-xl">
+            <span class="text-primary font-bold text-lg w-6 shrink-0">{s.step}</span>
+            <div>
+              <p class="font-medium text-foreground text-sm mb-1">{s.title}</p>
+              <p class="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Weiterführende Links -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-6">Weiterführende Ressourcen</h2>
+      <div class="space-y-3">
+        <a href="/losungen/kundenservice-automatisierung/" class="flex items-center justify-between p-5 border border-border rounded-xl hover:border-primary/40 transition-colors group">
+          <div>
+            <p class="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">Kundenservice Automatisierung — unsere Lösung</p>
+            <p class="text-xs text-muted-foreground mt-1">Wie wir Chatbots, Helpdesk-Automatisierung und KI-Ticketing für den Mittelstand implementieren.</p>
+          </div>
+          <span class="text-primary shrink-0 ml-4">→</span>
+        </a>
+        <a href="/blog/kundenservice-chatbot-ki-mittelstand-automatisierung/" class="flex items-center justify-between p-5 border border-border rounded-xl hover:border-primary/40 transition-colors group">
+          <div>
+            <p class="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">Detaillierter Leitfaden: KI Chatbot im Mittelstand</p>
+            <p class="text-xs text-muted-foreground mt-1">Kosten, Anbieter, Implementierung — alles was Sie für die Entscheidung brauchen.</p>
+          </div>
+          <span class="text-primary shrink-0 ml-4">→</span>
+        </a>
+        <a href="/prozesse-automatisieren/" class="flex items-center justify-between p-5 border border-border rounded-xl hover:border-primary/40 transition-colors group">
+          <div>
+            <p class="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">Welche Prozesse lohnt es sich zu automatisieren?</p>
+            <p class="text-xs text-muted-foreground mt-1">Chatbots sind nur ein Baustein. Hier der komplette Überblick über Automatisierungspotenziale.</p>
+          </div>
+          <span class="text-primary shrink-0 ml-4">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="bg-primary/5 border border-primary/20 rounded-xl p-8">
+      <h3 class="text-xl font-semibold text-foreground mb-2">
+        Chatbot für Ihr Unternehmen einrichten lassen?
+      </h3>
+      <p class="text-muted-foreground text-sm mb-6 leading-relaxed">
+        Wir analysieren Ihre häufigsten Kundenanfragen und zeigen konkret, was automatisiert werden kann — kostenlos und ohne Verpflichtung.
+      </p>
+      <a
+        href="/termin/"
+        class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium text-sm hover:bg-primary/90 transition-colors"
+      >
+        Kostenlose Chatbot-Analyse vereinbaren →
+      </a>
+    </div>
+
+  </section>
+</BaseLayout>

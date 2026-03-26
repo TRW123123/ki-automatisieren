@@ -15,6 +15,20 @@ https://www.ki-automatisieren.de/* https://ki-automatisieren.de/:splat 301!
 # FIX 3: Sitemap is at sitemap-index.xml (Astro naming)
 # Note: robots.txt already references sitemap-index.xml correctly
 
+# FIX 4: Zombie-URLs aus altem CMS (Ghost/Wix) — GSC indexiert diese noch
+# Alte Blog-Posts → neue Blog-Seiten
+/post/revolution-im-kundenservice-ki-chatbots-als-automatisierungsl%C3%B6sung /blog/kundenservice-chatbot-ki-mittelstand-automatisierung/ 301
+/post/*                                                                        /blog/                                                         301
+
+# Alte Kategorie-Seiten → Blog-Index
+/blog/categories/*  /blog/  301
+/blog/category/*    /blog/  301
+/blog/tag/*         /blog/  301
+/blog/tags/*        /blog/  301
+
+# /de/ Zombie-Pfade (falls historisch indiziert)
+/de/*   /  301
+
 # Clean URLs (Standard Netlify)
 /index.html                     /                                            301
 
