@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { blogPosts } from "../../data/blogData";
+
+const sortedPosts = [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+---
+
+<BaseLayout
+  title="Blog – KI-Automatisierung für den Mittelstand | ki-automatisieren.de"
+  description="Praxiswissen zu KI-Automatisierung: Rechnungsverarbeitung, Kundenservice, CRM-Integration und mehr – konkret, umsetzbar, für Mittelständler."
+>
+  <section class="py-24 px-4 max-w-4xl mx-auto">
+    <div class="mb-12">
+      <p class="text-sm font-medium text-primary uppercase tracking-widest mb-3">Blog</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        KI-Automatisierung — Praxiswissen
+      </h1>
+      <p class="text-lg text-muted-foreground max-w-2xl">
+        Konkrete Lösungen für reale Prozesse im Mittelstand. Keine Theorie, keine Buzzwords.
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      {sortedPosts.map((post) => (
+        <article class="border border-border rounded-xl p-6 hover:border-primary/50 transition-colors group">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
+              {post.category}
+            </span>
+            <time class="text-xs text-muted-foreground">
+              {new Date(post.date).toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "numeric" })}
+            </time>
+            <span class="text-xs text-muted-foreground">{post.readTime} Min. Lesezeit</span>
+          </div>
+          <h2 class="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+            <a href={`/blog/${post.id}`}>{post.title}</a>
+          </h2>
+          <p class="text-muted-foreground text-sm leading-relaxed mb-4">
+            {post.excerpt}
+          </p>
+          <div class="flex items-center justify-between">
+            <div class="flex gap-2 flex-wrap">
+              {post.tags.slice(0, 3).map((tag) => (
+                <span class="text-xs text-muted-foreground border border-border px-2 py-0.5 rounded">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <a
+              href={`/blog/${post.id}`}
+              class="text-sm font-medium text-primary hover:underline"
+            >
+              Weiterlesen →
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Schema.org BlogPosting List -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "KI-Automatisierung Blog",
+    "url": "https://ki-automatisieren.de/blog",
+    "publisher": {
+      "@type": "Organization",
+      "name": "KI Automatisieren",
+      "url": "https://ki-automatisieren.de"
+    }
+  })} />
+</BaseLayout>

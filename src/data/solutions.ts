@@ -209,8 +209,8 @@ export const solutions: SolutionData[] = [
     {
         slug: "crm-prozessautomatisierung",
         seo: {
-            title: "Data-Warehouse & CRM Sync – Single Source of Truth",
-            description: "Keine Datensilos mehr. Wir synchronisieren HubSpot, Salesforce und Ihre Custom-Apps in Echtzeit.",
+            title: "CRM Automatisierung für den Mittelstand – Keine manuelle Datenpflege mehr",
+            description: "Kundendaten automatisch zwischen HubSpot, Salesforce und ERP synchronisieren. Wir bauen die Middleware — Sie konzentrieren sich auf den Vertrieb.",
         },
         hero: {
             title: "Unified Data Infrastructure",

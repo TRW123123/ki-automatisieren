@@ -1,0 +1,178 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { blogPosts } from "../../data/blogData";
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+// Parse simple markdown-ish content to HTML (headings, paragraphs, lists, tables, hr)
+function renderContent(md: string): string {
+  return md
+    .trim()
+    .split('\n')
+    .reduce((acc: string[], line: string, i: number, arr: string[]) => {
+      acc.push(line);
+      return acc;
+    }, [])
+    .join('\n')
+    // Tables (must come before other replacements)
+    .replace(/^\|(.+)\|$/gm, '<tr><td class="px-4 py-2 border border-border text-sm">$1</td></tr>')
+    .replace(/<tr><td[^>]*>\s*[-|: ]+\s*<\/td><\/tr>/g, '')
+    // HR
+    .replace(/^---$/gm, '<hr class="border-border my-8" />')
+    // H1
+    .replace(/^# (.+)$/gm, '<h1 class="text-3xl md:text-4xl font-bold text-foreground mb-6 mt-8">$1</h1>')
+    // H2
+    .replace(/^## (.+)$/gm, '<h2 class="text-xl font-semibold text-foreground mb-4 mt-10">$1</h2>')
+    // H3
+    .replace(/^### (.+)$/gm, '<h3 class="text-lg font-medium text-foreground mb-3 mt-6">$1</h3>')
+    // Bold
+    .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-foreground">$1</strong>')
+    // Unordered list items
+    .replace(/^- (.+)$/gm, '<li class="ml-4 text-muted-foreground text-sm leading-relaxed list-disc">$1</li>')
+    // Table rows cleanup
+    .replace(/\|/g, '')
+    // Paragraphs (lines that aren't tags)
+    .split('\n\n')
+    .map((block: string) => {
+      const b = block.trim();
+      if (!b) return '';
+      if (b.startsWith('<')) return b;
+      return `<p class="text-muted-foreground leading-relaxed mb-4">${b.replace(/\n/g, '<br />')}</p>`;
+    })
+    .join('\n');
+}
+
+const htmlContent = renderContent(post.content);
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.metaTitle || post.title,
+  "description": post.metaDescription || post.excerpt,
+  "datePublished": post.date,
+  "author": {
+    "@type": "Person",
+    "name": post.author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KI Automatisieren",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ki-automatisieren.de/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://ki-automatisieren.de/blog/${post.id}`
+  },
+  "keywords": post.tags.join(", ")
+});
+
+const faqSchema = post.content.includes('**') ? JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": post.content
+    .match(/\*\*(.+?)\*\*\n(.+?)(?=\n\n|\n\*\*|$)/gs)
+    ?.filter(m => m.includes('?'))
+    .map(match => {
+      const lines = match.split('\n');
+      const q = lines[0].replace(/\*\*/g, '').trim();
+      const a = lines.slice(1).join(' ').trim();
+      return { "@type": "Question", "name": q, "acceptedAnswer": { "@type": "Answer", "text": a } };
+    }) || []
+}) : null;
+---
+
+<BaseLayout
+  title={post.metaTitle || post.title}
+  description={post.metaDescription || post.excerpt}
+  type="article"
+>
+  <script type="application/ld+json" set:html={schema} />
+  {faqSchema && <script type="application/ld+json" set:html={faqSchema} />}
+
+  <!-- Breadcrumb -->
+  <nav class="max-w-3xl mx-auto px-4 pt-8 pb-2">
+    <ol class="flex items-center gap-2 text-xs text-muted-foreground">
+      <li><a href="/" class="hover:text-foreground transition-colors">Start</a></li>
+      <li>/</li>
+      <li><a href="/blog" class="hover:text-foreground transition-colors">Blog</a></li>
+      <li>/</li>
+      <li class="text-foreground truncate max-w-[200px]">{post.title}</li>
+    </ol>
+  </nav>
+
+  <article class="max-w-3xl mx-auto px-4 py-12">
+    <!-- Header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
+          {post.category}
+        </span>
+        <time class="text-xs text-muted-foreground">
+          {new Date(post.date).toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "numeric" })}
+        </time>
+        <span class="text-xs text-muted-foreground">{post.readTime} Min. Lesezeit</span>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-bold text-foreground leading-tight mb-4">
+        {post.title}
+      </h1>
+      <p class="text-lg text-muted-foreground leading-relaxed">
+        {post.excerpt}
+      </p>
+      <div class="flex items-center gap-4 mt-6 pt-6 border-t border-border">
+        <div>
+          <p class="text-sm font-medium text-foreground">{post.author}</p>
+          <p class="text-xs text-muted-foreground">KI-Automatisierungs-Experte</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="prose-custom">
+      <Fragment set:html={htmlContent} />
+    </div>
+
+    <!-- Tags -->
+    <div class="mt-12 pt-8 border-t border-border">
+      <div class="flex flex-wrap gap-2">
+        {post.tags.map((tag) => (
+          <span class="text-xs text-muted-foreground border border-border px-3 py-1 rounded-full">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-12 bg-primary/5 border border-primary/20 rounded-xl p-8">
+      <h3 class="text-xl font-semibold text-foreground mb-2">
+        Bereit, diesen Prozess zu automatisieren?
+      </h3>
+      <p class="text-muted-foreground text-sm mb-6">
+        Wir analysieren kostenlos Ihre aktuelle Situation und zeigen konkret, welche Automatisierungen sich für Ihr Unternehmen lohnen.
+      </p>
+      <a
+        href="/termin"
+        class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium text-sm hover:bg-primary/90 transition-colors"
+      >
+        Kostenlose Analyse vereinbaren →
+      </a>
+    </div>
+
+    <!-- Back to blog -->
+    <div class="mt-8">
+      <a href="/blog" class="text-sm text-muted-foreground hover:text-foreground transition-colors">
+        ← Alle Artikel
+      </a>
+    </div>
+  </article>
+</BaseLayout>
