@@ -362,37 +362,6 @@ Die Reaktionszeitverbesserung ist sofort sichtbar. Qualifizierungsrate und Follo
         tags: ["Leadgenerierung", "B2B", "Vertrieb", "KI-Automatisierung", "CRM"],
         readTime: 7,
         image: "/og-homepage.jpg"
-    },
-    {
-        id: "welcome-to-our-blog",
-        title: "Transformation im Business durch KI",
-        metaTitle: "KI-Automatisierung im Business: Prozesse transformieren | ki-automatisieren.de",
-        metaDescription: "Wie KI-Automatisierung Routineaufgaben übernimmt und Mittelständler sich auf strategische Arbeit konzentrieren können.",
-        excerpt: "Entdecken Sie neue Wege zur Effizienzsteigerung durch Automatisierung Ihrer Geschäftsprozesse.",
-        content: `
-KI-Technologien schaffen grundlegende Veränderungen in der Geschäftswelt. Unternehmen automatisieren Routineaufgaben und ermöglichen es ihren Mitarbeitern, sich auf strategischere Bereiche zu konzentrieren.
-
-## Hauptthemen
-
-### 1. Automatisierungsprozesse
-- E-Mail-Marketing-Automatisierung
-- Kundenservice-Chatbots
-- Datenanalyse und Reporting
-
-### 2. Effizienzsteigerung
-Durch KI-gestützte Tools können Unternehmen Effizienzsteigerungen von bis zu 40% erreichen.
-
-### 3. Zukunftspläne
-KI-Integration spielt eine entscheidende Rolle dabei, dass Unternehmen Wettbewerbsvorteile erlangen.
-
-Beginnen Sie Ihre KI-Reise mit unserem Expertenteam.
-        `,
-        author: "Safak Tepecik",
-        date: "2024-01-15",
-        category: "Künstliche Intelligenz",
-        tags: ["KI", "Automatisierung", "Business"],
-        readTime: 5,
-        image: "/og-homepage.jpg"
     }
 ];
 
