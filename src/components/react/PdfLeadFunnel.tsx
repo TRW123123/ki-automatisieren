@@ -219,13 +219,6 @@ export default function PdfLeadFunnel() {
                             </a>
                         </div>
 
-                        <div className="pt-4 border-t border-white/10">
-                            <p className="text-sm text-gray-400 mb-3">Du willst KI direkt für dein Business einsetzen?</p>
-                            <a href="/termin" className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 text-white rounded-xl transition-all text-sm font-medium">
-                                Kostenlose Beratung buchen
-                                <ArrowRight className="w-4 h-4" />
-                            </a>
-                        </div>
                     </div>
                 )}
 
@@ -241,16 +234,19 @@ export default function PdfLeadFunnel() {
                             </a>
                         </div>
 
-                        <div className="pt-4 border-t border-white/10">
-                            <p className="text-sm text-gray-400 mb-3">Du willst KI direkt für dein Business einsetzen?</p>
-                            <a href="/termin" className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 text-white rounded-xl transition-all text-sm font-medium">
-                                Kostenlose Beratung buchen
-                                <ArrowRight className="w-4 h-4" />
-                            </a>
-                        </div>
                     </div>
                 )}
 
+            </div>
+
+            {/* GLOBAL PERSISTENT CTA */}
+            <div className="relative z-10 mt-8 pt-6 border-t border-white/10 text-center">
+                <p className="text-sm text-gray-400 mb-3">Du willst KI direkt für dein Business einsetzen?</p>
+                <a href="/termin" className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-lime-500/30 text-white rounded-xl transition-all text-sm font-medium group">
+                    <Sparkles className="w-4 h-4 text-lime-400" />
+                    Kostenlose Beratung buchen
+                    <ArrowRight className="w-4 h-4 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                </a>
             </div>
         </div>
     );
