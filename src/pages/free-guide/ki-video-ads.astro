@@ -137,37 +137,39 @@ const seoDescription = "Lerne, wie du mit simplen Handy-Shots und KI (Gemini, Na
         <div class="cyber-grid"></div>
         <div class="ambient-glow"></div>
 
-        <main class="content-area max-w-6xl mx-auto w-full flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-24 pt-12 pb-24">
+        <main class="content-area max-w-6xl mx-auto w-full flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16 pt-8 pb-24">
             
-            <!-- LEFT: Ultra Minimal Copy & Trust Mockup -->
-            <div class="flex-1 w-full text-center lg:text-left opacity-0 translate-y-8 hero-left">
-                <h1 class="text-5xl lg:text-7xl font-black text-white mb-6 leading-[1.05] tracking-tight display-font">
-                    KI-Werbevideos <br> in <span class="text-[#A3E635] relative">15 Min.<div class="absolute -bottom-2 left-0 w-full h-2 bg-gradient-to-r from-[#A3E635] to-emerald-500 rounded-full opacity-80"></div></span>
+            <!-- LEFT: Hero Text & The REQUIRED Funnel (Always Above Fold) -->
+            <div class="flex-1 w-full text-center lg:text-left opacity-0 translate-y-8 hero-left flex flex-col justify-center order-1">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-4 leading-[1.1] tracking-tight display-font">
+                    KI-Werbevideos in <span class="text-[#A3E635]">15 Min.</span>
                 </h1>
-                <p class="text-2xl text-gray-400 mb-10 max-w-lg mx-auto lg:mx-0">
-                    Die exakte Schritt-für-Schritt Anleitung als kostenloses PDF. Keine Vorwissen nötig.
+                <p class="text-lg sm:text-xl text-gray-400 mb-8 max-w-lg mx-auto lg:mx-0">
+                    Die exakte Schritt-für-Schritt PDF-Anleitung. 100% kostenlos.
                 </p>
                 
-                <div class="relative inline-block max-w-sm w-full perspective-[1000px]">
-                    <div class="absolute inset-0 bg-lime-500/20 blur-[50px] rounded-full"></div>
-                    <img src="/assets/pdf_mockup.png" alt="Vorschau der PDF Anleitung" class="relative z-10 w-full rounded-2xl border border-white/10 shadow-2xl transform hover:scale-105 transition-transform duration-500" />
-                    
-                    <div class="absolute -bottom-6 -right-6 bg-black/80 backdrop-blur-md border border-white/10 text-white text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-2 z-20 shadow-xl">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                        SSL-Geprüftes PDF
+                <!-- The Funnel is now IMMEDIATELY under the text so it is always visible -->
+                <div class="w-full max-w-xl mx-auto lg:mx-0">
+                    <PdfLeadFunnel client:load />
+                    <div className="mt-4 text-center">
+                        <p class="text-xs text-gray-600 flex items-center justify-center lg:justify-start gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            100% Sicher. Kein Spam.
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <!-- RIGHT: The React Funnel Component -->
-            <div class="flex-1 w-full max-w-xl opacity-0 translate-y-8 funnel-right mt-12 lg:mt-0 relative z-30">
-                <PdfLeadFunnel client:load />
-                
-                <div class="mt-8 text-center opacity-0 fade-in-delay">
-                    <p class="text-xs text-gray-600 flex items-center justify-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                        100% Sicher. Kein Virus. Kein Spam.
-                    </p>
+            <!-- RIGHT/BOTTOM: The Trust Mockup (Secondary Element) -->
+            <div class="flex-1 w-full flex justify-center opacity-0 translate-y-8 funnel-right mt-4 lg:mt-0 order-2">
+                <div class="relative inline-block max-w-xs sm:max-w-sm w-full perspective-[1000px]">
+                    <div class="absolute inset-0 bg-lime-500/20 blur-[50px] rounded-full hidden sm:block"></div>
+                    <img src="/assets/pdf_mockup.png" alt="Vorschau der PDF Anleitung" class="relative z-10 w-full rounded-2xl border border-white/10 shadow-2xl transform hover:scale-105 transition-transform duration-500" />
+                    
+                    <div class="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-black/90 backdrop-blur-md border border-[#A3E635]/30 text-white text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg flex items-center gap-2 z-20 shadow-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                        SSL-Geprüfte Datei
+                    </div>
                 </div>
             </div>
             
@@ -183,19 +185,15 @@ const seoDescription = "Lerne, wie du mit simplen Handy-Shots und KI (Gemini, Na
             tl.to('.hero-left', {
                 y: 0,
                 opacity: 1,
-                duration: 1.2,
+                duration: 1.0,
                 ease: 'power3.out'
             })
             .to('.funnel-right', {
                 y: 0,
                 opacity: 1,
-                duration: 1.2,
+                duration: 1.0,
                 ease: 'power3.out'
-            }, "-=0.8")
-            .to('.fade-in-delay', {
-                opacity: 1,
-                duration: 1
-            }, "-=0.5");
+            }, "-=0.6");
         });
     </script>
 </BaseLayout>
