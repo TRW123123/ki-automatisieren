@@ -21,3 +21,8 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+
+# CLAW / local tooling
+.claude/
+claw_keyword_inventory.json
+lt.json
