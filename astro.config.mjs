@@ -17,7 +17,9 @@ export default defineConfig({
         !page.includes('/impressum/') &&
         !page.includes('/datenschutz/') &&
         !page.includes('/nutzungsbedingungen/') &&
-        !page.includes('/blog/welcome-to-our-blog/')
+        !page.includes('/blog/welcome-to-our-blog/') &&
+        !page.includes('/b2b-logo-design/') &&
+        !page.includes('/free-guide/')
     })
   ]
 });

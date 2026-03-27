@@ -1,0 +1,181 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { pseoPages } from "../../data/pseoCluster";
+
+export function getStaticPaths() {
+  return pseoPages
+    .filter(p => p.usecase === "angebotserstellung")
+    .map(p => ({ params: { branche: p.branche }, props: { page: p } }));
+}
+
+const { page } = Astro.props;
+
+const serviceSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": page.h1,
+  "description": page.metaDescription,
+  "provider": {
+    "@type": "Organization",
+    "name": "KI Automatisieren",
+    "url": "https://ki-automatisieren.de"
+  },
+  "areaServed": { "@type": "Country", "name": "Deutschland" },
+  "serviceType": "KI-Automatisierung"
+});
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": page.faq.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+});
+---
+
+<BaseLayout title={page.metaTitle} description={page.metaDescription}>
+  <script type="application/ld+json" set:html={serviceSchema} />
+  <script type="application/ld+json" set:html={faqSchema} />
+
+  <section class="max-w-4xl mx-auto px-4 py-20">
+
+    <!-- Breadcrumb -->
+    <nav class="mb-8">
+      <ol class="flex items-center gap-2 text-xs text-muted-foreground">
+        <li><a href="/" class="hover:text-foreground transition-colors">Start</a></li>
+        <li>/</li>
+        <li><a href="/prozesse-automatisieren/" class="hover:text-foreground transition-colors">Prozesse automatisieren</a></li>
+        <li>/</li>
+        <li><a href="/blog/ki-automatisierung-angebotserstellung-mittelstand/" class="hover:text-foreground transition-colors">Angebotserstellung</a></li>
+        <li>/</li>
+        <li class="text-foreground">{page.brancheLabel}</li>
+      </ol>
+    </nav>
+
+    <!-- Hero -->
+    <div class="mb-14">
+      <p class="text-sm font-medium text-primary uppercase tracking-widest mb-3">{page.usecaseLabel}</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-5 leading-tight">
+        {page.h1}
+      </h1>
+      <p class="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+        {page.heroPain}
+      </p>
+    </div>
+
+    <!-- Metrics -->
+    <div class="grid grid-cols-3 gap-4 mb-14">
+      {page.metrics.map(m => (
+        <div class="border border-border rounded-xl p-5 text-center">
+          <p class="text-2xl font-bold text-primary mb-1">{m.value}</p>
+          <p class="text-xs text-muted-foreground leading-tight">{m.label}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Unique Prose Block -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-5">
+        Angebotserstellung im {page.brancheLabel}: Wo Zeit verloren geht
+      </h2>
+      <p class="text-muted-foreground leading-relaxed">
+        {page.uniqueProseBlock}
+      </p>
+    </div>
+
+    <!-- Process Steps -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-6">So funktioniert die Implementierung</h2>
+      <div class="space-y-3">
+        {page.processSteps.map((s, i) => (
+          <div class="flex gap-4 p-4 border border-border rounded-xl">
+            <span class="text-primary font-bold text-lg w-6 shrink-0">{i + 1}</span>
+            <div>
+              <p class="font-semibold text-foreground text-sm mb-1">{s.title}</p>
+              <p class="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-6">Manuell vs. automatisiert</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="border-b border-border">
+              <th class="text-left py-3 px-4 text-muted-foreground font-medium">Aspekt</th>
+              <th class="text-left py-3 px-4 text-muted-foreground font-medium">Ohne KI</th>
+              <th class="text-left py-3 px-4 text-primary font-medium">Mit KI-Automatisierung</th>
+            </tr>
+          </thead>
+          <tbody>
+            {page.comparisonRows.map((row, i) => (
+              <tr class={`border-b border-border/50 ${i % 2 === 0 ? 'bg-muted/10' : ''}`}>
+                <td class="py-3 px-4 font-medium text-foreground text-xs">{row.aspect}</td>
+                <td class="py-3 px-4 text-muted-foreground text-xs">{row.manual}</td>
+                <td class="py-3 px-4 text-primary text-xs font-medium">{row.automated}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Solution Hook -->
+    <div class="mb-14 p-6 border border-primary/20 rounded-xl bg-primary/5">
+      <h2 class="text-xl font-semibold text-foreground mb-3">Unser Ansatz für {page.brancheLabel}</h2>
+      <p class="text-muted-foreground leading-relaxed">{page.solutionHook}</p>
+    </div>
+
+    <!-- FAQ -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-6">Häufige Fragen</h2>
+      <div class="space-y-4">
+        {page.faq.map(f => (
+          <div class="border border-border rounded-xl p-5">
+            <p class="font-semibold text-foreground text-sm mb-2">{f.q}</p>
+            <p class="text-muted-foreground text-sm leading-relaxed">{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Internal Links -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-6">Weiterführende Ressourcen</h2>
+      <div class="space-y-3">
+        {page.internalLinks.map(link => (
+          <a href={link.href} class="flex items-center justify-between p-5 border border-border rounded-xl hover:border-primary/40 transition-colors group">
+            <div>
+              <p class="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">{link.label}</p>
+              <p class="text-xs text-muted-foreground mt-1">{link.desc}</p>
+            </div>
+            <span class="text-primary shrink-0 ml-4">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="bg-primary/5 border border-primary/20 rounded-xl p-8">
+      <h3 class="text-xl font-semibold text-foreground mb-2">
+        Angebotserstellung im {page.brancheLabel} automatisieren lassen?
+      </h3>
+      <p class="text-muted-foreground text-sm mb-6 leading-relaxed">
+        Wir analysieren kostenlos Ihren aktuellen Angebotsprozess und zeigen konkret, was automatisiert werden kann — mit realistischer Kostenschätzung und ROI-Berechnung.
+      </p>
+      <a
+        href="/termin/"
+        class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium text-sm hover:bg-primary/90 transition-colors"
+      >
+        Kostenlose Analyse vereinbaren →
+      </a>
+    </div>
+
+  </section>
+</BaseLayout>

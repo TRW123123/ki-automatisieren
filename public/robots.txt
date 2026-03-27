@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ki-automatisieren.de/sitemap-0.xml
-Sitemap: https://ki-automatisieren.de/sitemap-branchen.xml
+Sitemap: https://ki-automatisieren.de/sitemap-index.xml
