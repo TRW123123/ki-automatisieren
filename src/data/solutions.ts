@@ -31,6 +31,7 @@ export interface SolutionData {
         link: string;
         image: string;
     };
+    faqs: Array<{ question: string; answer: string }>;
 }
 
 export const solutions: SolutionData[] = [
@@ -76,6 +77,13 @@ export const solutions: SolutionData[] = [
             link: "/fallstudien/car-studio-ai",
             image: "/logos/carstudio.avif",
         },
+        faqs: [
+            { question: "Was kostet KI-gestützte Leadgenerierung?", answer: "Die Investition hängt vom Volumen ab. Ein typisches Setup mit Scraping, Enrichment und automatisiertem E-Mail-Versand liegt zwischen 2.000 und 5.000 € einmalig, plus laufende Kosten für Tools wie Instantly.ai (ca. 100–300 €/Monat). Der ROI zeigt sich meist ab dem ersten Monat." },
+            { question: "Wie unterscheidet sich KI-Leadgenerierung von gekauften Adresslisten?", answer: "Gekaufte Listen enthalten veraltete, generische Kontakte mit niedriger Conversion. KI-Leadgenerierung scraped aktuelle Daten direkt von Google Maps oder LinkedIn, reichert sie mit Kontext an und personalisiert jede Ansprache — das ergibt typischerweise 3–5x höhere Antwortquoten." },
+            { question: "Wie lange dauert es, bis ein KI-Leadgenerierungssystem läuft?", answer: "Ein funktionsfähiges System steht in 1–2 Wochen: Scraping-Setup, Enrichment-Pipeline, E-Mail-Infrastruktur mit Warmup. Die ersten qualifizierten Termine kommen meist in Woche 3–4." },
+            { question: "Ist automatisiertes E-Mail-Outreach DSGVO-konform?", answer: "B2B-Kaltakquise per E-Mail ist unter bestimmten Voraussetzungen zulässig (berechtigtes Interesse nach Art. 6 Abs. 1 lit. f DSGVO). Entscheidend sind: klarer Geschäftsbezug, Opt-out-Möglichkeit in jeder Mail und keine Verarbeitung sensibler Daten." },
+            { question: "Welche Branchen profitieren am meisten von KI-Leadgenerierung?", answer: "Besonders B2B-Unternehmen mit klarer Zielgruppe und höheren Auftragswerten: IT-Dienstleister, Maschinenbau, SaaS, Beratungen und Agenturen. Je spezifischer die Zielgruppe, desto besser funktioniert die KI-Personalisierung." },
+        ],
     },
     {
         slug: "vertriebsautomatisierung",
@@ -119,6 +127,13 @@ export const solutions: SolutionData[] = [
             link: "/fallstudien/car-studio-ai",
             image: "/logos/carstudio.avif",
         },
+        faqs: [
+            { question: "Was ist KI-Vertriebsautomatisierung?", answer: "KI-Vertriebsautomatisierung verbindet künstliche Intelligenz mit Ihren bestehenden Vertriebsprozessen: Leads werden automatisch qualifiziert, per Voice-AI angerufen und im CRM gepflegt — ohne manuellen Aufwand. Der Vertrieb fokussiert sich nur noch auf das Closing." },
+            { question: "Welche CRM-Systeme lassen sich anbinden?", answer: "Unsere Systeme integrieren sich mit allen gängigen CRMs: HubSpot, Salesforce, Pipedrive, Zoho und weitere. Die Anbindung erfolgt über APIs und Webhooks via n8n — bidirektional und in Echtzeit." },
+            { question: "Wie schnell reagiert das System auf neue Leads?", answer: "Unter 2 Minuten. Sobald ein Lead über Webformular, LinkedIn oder andere Kanäle eingeht, startet die KI-Qualifizierung sofort. Bei positivem Scoring wird der Lead automatisch per Voice-Agent kontaktiert." },
+            { question: "Ersetzt KI-Vertriebsautomatisierung mein Sales-Team?", answer: "Nein — sie entlastet es. Die KI übernimmt repetitive Aufgaben wie Erstqualifizierung, Datenerfassung und Follow-up. Ihr Team konzentriert sich auf hochwertige Gespräche und Abschlüsse. Typischerweise steigt die Produktivität pro SDR um 40–60%." },
+            { question: "Was kostet Vertriebsautomatisierung mit KI?", answer: "Ein typisches Setup kostet 5.000–15.000 € einmalig, abhängig von Komplexität und Integrationstiefe. Laufende Kosten für Tools und APIs liegen bei 300–800 €/Monat. Bei einem durchschnittlichen B2B-Deal-Value von 10.000 €+ ist der ROI meist nach 1–2 Abschlüssen erreicht." },
+        ],
     },
     {
         slug: "strategieberatung-ki-sales-marketing",
@@ -162,6 +177,12 @@ export const solutions: SolutionData[] = [
             link: "/fallstudien",
             image: "/logos/de-logo.avif",
         },
+        faqs: [
+            { question: "Was unterscheidet KI-Strategieberatung von klassischer Unternehmensberatung?", answer: "Klassische Beratung liefert PowerPoints und Empfehlungen. Wir liefern laufenden Code: Architektur-Design, Implementierung in n8n und Python, Deployment auf Ihren Servern und Source-Code-Übergabe. Sie besitzen das System zu 100%." },
+            { question: "Behalte ich die Eigentumsrechte am entwickelten System?", answer: "Ja, zu 100%. Alle entwickelten Systeme, Workflows und der gesamte Source-Code gehen in Ihr Eigentum über. Keine Lizenzgebühren, kein Vendor Lock-in. Sie können das System jederzeit intern weiterentwickeln." },
+            { question: "Wie läuft ein typisches KI-Strategieprojekt ab?", answer: "Phase 1: Architecture Design (1–2 Wochen) — Blueprint Ihrer Daten-Infrastruktur. Phase 2: Build (2–4 Wochen) — Entwicklung in n8n und Python. Phase 3: Deployment auf Ihren Servern. Phase 4: Handover mit Dokumentation und Schulung." },
+            { question: "Für welche Unternehmensgröße ist KI-Strategieberatung sinnvoll?", answer: "Besonders für Mittelständler mit 20–500 Mitarbeitern, die einen klaren Vertriebsprozess haben und diesen skalieren wollen. Voraussetzung: Ein CRM ist im Einsatz und es gibt mindestens 2–3 Vertriebsmitarbeiter, deren Prozesse automatisierbar sind." },
+        ],
     },
     {
         slug: "marketing-automatisierung",
@@ -205,6 +226,13 @@ export const solutions: SolutionData[] = [
             link: "/fallstudien/salevium",
             image: "/logos/salevium.avif",
         },
+        faqs: [
+            { question: "Was ist Programmatic SEO?", answer: "Programmatic SEO erstellt hunderte oder tausende Landingpages aus strukturierten Daten und Templates — automatisiert statt manuell. Jede Seite zielt auf ein spezifisches Long-Tail-Keyword und wird mit echten, branchenspezifischen Daten befüllt." },
+            { question: "Funktioniert KI-generierter Content für SEO?", answer: "Ja, wenn er richtig gemacht wird. Google straft nicht KI-Content ab, sondern schlechten Content. Unsere Methode: KI generiert den Entwurf aus echten Datenpunkten, dann wird jede Seite auf Einzigartigkeit, Faktengenauigkeit und E-E-A-T geprüft." },
+            { question: "Wie viele Seiten kann Programmatic SEO generieren?", answer: "Technisch unbegrenzt. Praktisch empfehlen wir 50–500 Seiten pro Cluster, basierend auf dem verfügbaren Keyword-Volumen. Qualität vor Quantität: Jede Seite muss echten Mehrwert bieten und ein validiertes Keyword targeten." },
+            { question: "Wie lange dauert es, bis pSEO-Seiten ranken?", answer: "Bei Long-Tail-Keywords mit niedriger Competition sehen wir erste Rankings nach 4–8 Wochen. Für kompetitivere Begriffe dauert es 3–6 Monate. Entscheidend ist die Domain-Authority — junge Domains profitieren am meisten von Long-Tail-Strategien." },
+            { question: "Was kostet Marketing-Automatisierung mit KI?", answer: "Ein pSEO-Setup mit Template-Design, Daten-Pipeline und 50+ Seiten liegt bei 5.000–12.000 €. Content-Automatisierung für Social Media und LinkedIn beginnt ab 2.000 €/Monat. Der ROI zeigt sich durch organischen Traffic, der keine laufenden Werbekosten verursacht." },
+        ],
     },
     {
         slug: "crm-prozessautomatisierung",
@@ -248,6 +276,12 @@ export const solutions: SolutionData[] = [
             link: "/fallstudien/cemkimsan",
             image: "/logos/cemkimsan.avif",
         },
+        faqs: [
+            { question: "Was bringt CRM-Automatisierung im Mittelstand?", answer: "CRM-Automatisierung eliminiert manuelle Datenpflege, synchronisiert Kundendaten zwischen HubSpot, Salesforce und ERP in Echtzeit und verhindert doppelte Einträge. Typisches Ergebnis: 100% Datenkonsistenz und 10+ Stunden Zeitersparnis pro Woche im Vertriebsteam." },
+            { question: "Welche Systeme lassen sich per KI synchronisieren?", answer: "Alle Systeme mit API: HubSpot, Salesforce, Pipedrive, DATEV, SAP, Microsoft Dynamics, Shopify, WooCommerce, Mailchimp und viele mehr. Die Middleware-Schicht über n8n verbindet auch Legacy-Systeme über Webhooks oder CSV-Import." },
+            { question: "Ist CRM-Automatisierung DSGVO-konform?", answer: "Ja, wenn sie richtig implementiert wird. Unsere Systeme verarbeiten Daten ausschließlich auf europäischen Servern, protokollieren alle Verarbeitungen in Audit-Logs und unterstützen automatisierte Löschanfragen. Die Middleware synchronisiert nur freigegebene Datenfelder." },
+            { question: "Wie lange dauert eine CRM-Integration?", answer: "Ein Standard-Setup (2 Systeme, bidirektionale Sync) dauert 2–3 Wochen. Komplexere Integrationen mit 4+ Systemen und Custom-Logik benötigen 4–8 Wochen. Wir starten immer mit einem API-Audit, um Aufwand und Risiken transparent zu machen." },
+        ],
     },
     {
         slug: "kundenservice-automatisierung",
@@ -291,5 +325,12 @@ export const solutions: SolutionData[] = [
             link: "/fallstudien/dkm-coach-bilge",
             image: "/logos/coach-bilge.avif",
         },
+        faqs: [
+            { question: "Was kann ein KI-Kundenservice-Agent mehr als ein Chatbot?", answer: "Ein klassischer Chatbot gibt vorgefertigte Antworten. Unser KI-Agent versteht Kontext, durchsucht Ihre Wissensdatenbank per RAG und führt echte Aktionen aus: Erstattungen veranlassen, Bestellstatus prüfen, Termine buchen oder Tickets eskalieren." },
+            { question: "Wie viel Prozent der Support-Tickets kann KI lösen?", answer: "In der Praxis lösen unsere Systeme 60–80% der Tier-1-Anfragen automatisch. Komplexe oder emotionale Fälle werden nahtlos an menschliche Agenten übergeben — mit vollständigem Kontext, sodass der Kunde nichts wiederholen muss." },
+            { question: "Funktioniert KI-Kundenservice mit Intercom und Zendesk?", answer: "Ja. Wir integrieren KI-Agents direkt in Ihren bestehenden Support-Stack: Intercom, Zendesk, Freshdesk, HubSpot Service Hub und weitere. Die Integration erfolgt über APIs — Ihre bestehenden Workflows bleiben erhalten." },
+            { question: "Wie wird sichergestellt, dass die KI keine falschen Antworten gibt?", answer: "Durch RAG (Retrieval-Augmented Generation): Die KI antwortet ausschließlich aus Ihrer verifizierten Wissensdatenbank. Zusätzlich durchlaufen alle Systeme ein Red-Teaming gegen Halluzinationen. Bei Unsicherheit eskaliert der Agent automatisch an einen Menschen." },
+            { question: "Was kostet KI-Kundenservice-Automatisierung?", answer: "Ein Setup mit Knowledge-Ingestion, Action-APIs und schrittweisem Rollout liegt bei 8.000–20.000 € einmalig. Laufende Kosten für LLM-APIs und Hosting: 200–800 €/Monat. Bei einem Support-Team von 3+ Agents ist der ROI typischerweise nach 2–3 Monaten erreicht." },
+        ],
     },
 ];

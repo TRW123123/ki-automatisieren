@@ -11,19 +11,52 @@ export function getStaticPaths() {
 
 const { solution } = Astro.props;
 
-// Schema Markup for Service
-const serviceSchema = JSON.stringify({
+// Entity-Graph Schema (Organization + Person + Service) — matches branchen template
+const entityGraph = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Service",
-  name: solution.hero.title,
-  description: solution.seo.description,
-  provider: {
-    "@type": "Organization",
-    name: "KI Automatisieren",
-  },
-  areaServed: "DE",
-  serviceType: solution.slug,
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://ki-automatisieren.de/#safak-tepecik",
+      name: "Safak Tepecik",
+      jobTitle: "Gründer & KI-Systemarchitekt",
+      worksFor: { "@id": "https://ki-automatisieren.de/#organization" },
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://ki-automatisieren.de/#organization",
+      name: "KI Automatisieren",
+      url: "https://ki-automatisieren.de",
+      founder: { "@id": "https://ki-automatisieren.de/#safak-tepecik" },
+    },
+    {
+      "@type": "Service",
+      "@id": `https://ki-automatisieren.de/losungen/${solution.slug}/#service`,
+      name: solution.hero.title,
+      description: solution.seo.description,
+      provider: { "@id": "https://ki-automatisieren.de/#organization" },
+      areaServed: "DE",
+      serviceType: solution.slug,
+    },
+  ],
 });
+
+// FAQ Schema
+const faqSchema =
+  solution.faqs && solution.faqs.length > 0
+    ? JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: solution.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      })
+    : null;
 ---
 
 <BaseLayout
@@ -31,7 +64,9 @@ const serviceSchema = JSON.stringify({
   description={solution.seo.description}
   type="article"
 >
-  <script type="application/ld+json" set:html={serviceSchema} />
+  <!-- Entity-Graph JSON-LD (Organization + Person + Service) -->
+  <script type="application/ld+json" set:html={entityGraph} />
+  {faqSchema && <script type="application/ld+json" set:html={faqSchema} />}
 
   <!-- Hero -->
   <section class="py-20 md:py-32 relative overflow-hidden">
@@ -46,9 +81,18 @@ const serviceSchema = JSON.stringify({
         <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
           {solution.hero.title}
         </h1>
-        <p class="text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
+        <p class="text-xl text-muted-foreground mb-4 max-w-2xl leading-relaxed">
           {solution.hero.subtitle}
         </p>
+
+        <!-- E-E-A-T Byline -->
+        <div class="flex items-center gap-2 text-sm text-muted-foreground mb-8">
+          <svg class="w-4 h-4 text-lime-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span>Geprüft von <strong class="text-foreground">Safak Tepecik</strong>, KI-Systemarchitekt</span>
+        </div>
+
         <a
           href="#kontakt"
           class="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-lime-500 text-black font-bold hover:bg-lime-400 transition-colors"
@@ -181,6 +225,32 @@ const serviceSchema = JSON.stringify({
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- FAQs with Accordion (matches branchen template) -->
+  {
+    solution.faqs && solution.faqs.length > 0 && (
+      <section class="py-24 border-t border-white/5" aria-label="Häufig gestellte Fragen">
+        <div class="container mx-auto px-4 max-w-4xl">
+          <h2 class="text-4xl font-bold mb-12 text-center">Häufig gestellte Fragen</h2>
+          <div class="space-y-4">
+            {solution.faqs.map((faq) => (
+              <details class="bg-card border border-white/10 rounded-2xl group">
+                <summary class="flex items-center justify-between p-6 md:p-8 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                  <h3 class="text-xl md:text-2xl font-bold pr-4">{faq.question}</h3>
+                  <svg class="w-6 h-6 text-lime-400 shrink-0 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 md:px-8 md:pb-8">
+                  <p class="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </section>
