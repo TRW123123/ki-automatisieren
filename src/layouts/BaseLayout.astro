@@ -65,9 +65,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       rel="stylesheet"
     />
 
-    <!-- AlpineJS -->
-    <script defer src="https://unpkg.com/alpinejs@3.14.3/dist/cdn.min.js"
-    ></script>
+    <!-- AlpineJS (self-hosted for CWV) -->
+    <script defer src="/js/alpine.min.js"></script>
 
     <!-- Dynamic Head Slot -->
     <slot name="head" />

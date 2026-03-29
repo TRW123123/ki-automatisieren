@@ -17,25 +17,6 @@
   path = "/*"
   function = "url-normalize"
 
-# Note: Additional redirects in public/_redirects
-
-# Security Headers
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    X-XSS-Protection = "1; mode=block"
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
-
-# Asset Caching
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# HTML: kein Cache
-[[headers]]
-  for = "/*.html"
-  [headers.values]
-    Cache-Control = "no-cache, no-store, must-revalidate"
+# Note: All redirects in public/_redirects
+# Note: All headers in public/_headers (single source of truth)
+# Removed duplicate header rules — _headers takes precedence on Netlify

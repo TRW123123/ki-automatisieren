@@ -13,7 +13,7 @@ https://www.ki-automatisieren.de/* https://ki-automatisieren.de/:splat 301!
 /social-media                   /losungen/marketing-automatisierung/         301
 
 # FIX 3: Sitemap is at sitemap-index.xml (Astro naming)
-# Note: robots.txt already references sitemap-index.xml correctly
+/sitemap.xml                    /sitemap-index.xml                           301
 
 # FIX 4: Zombie-URLs aus altem CMS (Ghost/Wix) — GSC indexiert diese noch
 # Alte Blog-Posts → neue Blog-Seiten

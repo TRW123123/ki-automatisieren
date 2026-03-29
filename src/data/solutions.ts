@@ -37,11 +37,11 @@ export const solutions: SolutionData[] = [
     {
         slug: "leadgenerierung-ki",
         seo: {
-            title: "KI Leadgenerierung – 5% Terminquote (Car Studio AI Blueprint)",
-            description: "Keine Listen, sondern Termine. Wir implementieren die Infrastruktur von Car Studio AI: Apify Scraping + Gemini Personalisierung = 5% Conversion.",
+            title: "KI Leadgenerierung B2B – 5% Terminquote automatisiert",
+            description: "B2B-Leads automatisch finden, anreichern und personalisiert ansprechen. Bewiesene 5% Terminquote durch KI-gestützte Akquise-Infrastruktur.",
         },
         hero: {
-            title: "KI Leadgenerierung Infrastructure",
+            title: "KI Leadgenerierung: Automatisierte B2B-Akquise",
             subtitle: "Hören Sie auf, Adressen zu kaufen. Wir bauen Ihnen die Maschine, die Car Studio AI 5% Terminquote brachte.",
         },
         problem: {
@@ -80,11 +80,11 @@ export const solutions: SolutionData[] = [
     {
         slug: "vertriebsautomatisierung",
         seo: {
-            title: "Automatisierte Vertriebs-Infrastruktur – n8n & Vapi.ai",
-            description: "Wir bauen Ihre Sales-Maschine. Eingehende Leads werden in Sekunden von KI qualifiziert, angerufen und im CRM gepflegt.",
+            title: "KI Vertriebsautomatisierung – Leads qualifizieren & CRM pflegen",
+            description: "Leads in Sekunden qualifiziert, in 2 Minuten angerufen, CRM automatisch gepflegt. KI-Vertriebsautomatisierung für B2B mit n8n, Voice-AI und HubSpot.",
         },
         hero: {
-            title: "Autonomous Sales Infrastructure",
+            title: "KI Vertriebsautomatisierung für B2B-Unternehmen",
             subtitle: "Ihr CRM füllt sich von selbst. Wir verbinden n8n, OpenAI und HubSpot zu einem autonomen System.",
         },
         problem: {
@@ -123,11 +123,11 @@ export const solutions: SolutionData[] = [
     {
         slug: "strategieberatung-ki-sales-marketing",
         seo: {
-            title: "System-Architektur statt Beratung – KI-Infrastruktur",
-            description: "Wir liefern keine PowerPoints, sondern Code. Architektur und Implementierung von KI-Systemen für Ihren Vertrieb.",
+            title: "KI Strategieberatung für Sales & Marketing – Code statt Slides",
+            description: "Keine PowerPoints, sondern laufende Systeme. Wir entwerfen und implementieren KI-Infrastruktur für Vertrieb und Marketing — mit Source-Code-Übergabe.",
         },
         hero: {
-            title: "System-Architektur & Bauleitung",
+            title: "KI Strategieberatung: Systeme statt Slides",
             subtitle: "Schluss mit Workshops. Wir entwerfen und bauen die KI-Infrastruktur, die Ihrem Unternehmen gehört.",
         },
         problem: {
@@ -166,11 +166,11 @@ export const solutions: SolutionData[] = [
     {
         slug: "marketing-automatisierung",
         seo: {
-            title: "Content-Factory Automatisierung – Programmatic SEO",
-            description: "Dominieren Sie Ihre Nische mit Programmatic SEO. Tausende Landingpages, generiert aus echten Daten.",
+            title: "KI Marketing-Automatisierung – Programmatic SEO & Content",
+            description: "Dominieren Sie Ihre Nische mit KI-gestütztem Programmatic SEO. Hunderte Landingpages aus echten Daten — automatisiert und conversion-optimiert.",
         },
         hero: {
-            title: "Automated Content Factory",
+            title: "KI Marketing-Automatisierung & Content-Skalierung",
             subtitle: "Programmatic SEO statt manuelles Bloggen. Erstellen Sie 1000 Nischen-Seiten, die ranken.",
         },
         problem: {
@@ -209,11 +209,11 @@ export const solutions: SolutionData[] = [
     {
         slug: "crm-prozessautomatisierung",
         seo: {
-            title: "CRM Automatisierung für den Mittelstand – Keine manuelle Datenpflege mehr",
-            description: "Kundendaten automatisch zwischen HubSpot, Salesforce und ERP synchronisieren. Wir bauen die Middleware — Sie konzentrieren sich auf den Vertrieb.",
+            title: "CRM Prozessautomatisierung mit KI – Daten sauber, Vertrieb frei",
+            description: "HubSpot, Salesforce und ERP automatisch synchronisiert. Schluss mit manueller Datenpflege — KI-Middleware für saubere CRM-Daten im Mittelstand.",
         },
         hero: {
-            title: "Unified Data Infrastructure",
+            title: "CRM Prozessautomatisierung mit KI",
             subtitle: "Verbinden Sie Ihre Software-Inseln. Wir bauen die Pipelines, die Ihre Daten sauber halten.",
         },
         problem: {
@@ -252,11 +252,11 @@ export const solutions: SolutionData[] = [
     {
         slug: "kundenservice-automatisierung",
         seo: {
-            title: "AI-Support Integrationen – Intercom & Zendesk Automation",
-            description: "Reduzieren Sie Ticket-Volumen um 80%. Wir integrieren Custom AI Agents tief in Ihren Support-Stack.",
+            title: "KI Kundenservice-Automatisierung – 80% weniger Tickets",
+            description: "KI-Agents die nicht nur antworten, sondern handeln: Erstattungen, Statusabfragen, Terminbuchung. 80% weniger Support-Tickets durch intelligente Automatisierung.",
         },
         hero: {
-            title: "AI Support Integration",
+            title: "KI Kundenservice-Automatisierung für B2B",
             subtitle: "Nicht nur ein Chatbot. Ein Agent, der in Ihrem System Aktionen ausführt (Erstattungen, Änderungen).",
         },
         problem: {

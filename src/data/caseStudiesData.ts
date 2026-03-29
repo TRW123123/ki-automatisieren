@@ -57,8 +57,8 @@ export const caseStudiesData: CaseStudy[] = [
         category: "Marketingautomatisierung",
         title: "Acilsatis",
         summary: "Schnelles Wachstum und organische Traffic-Steigerung im Immobilien- und Automobilsektor durch KI im Marketing.",
-        metaTitle: "5.000 Anzeigen ohne Werbebudget – Acilsatis KI-Automatisierung Fallstudie",
-        metaDescription: "Wie Acilsatis mit automatisierten Instagram DMs und KI-Anzeigen hunderte Makler erreichte — ohne Werbekosten. Echte Ergebnisse mit KI-Automatisierung.",
+        metaTitle: "5.000 Anzeigen ohne Werbebudget – KI-Marketing Fallstudie Immobilien",
+        metaDescription: "Hunderte Immobilienmakler erreicht, null Werbekosten: Wie automatisierte Instagram-DMs und KI-Anzeigen organisches Wachstum im Immobilienvertrieb auslösten.",
         logo: "/logos/acilsatis.avif",
         logoDimensions: { width: 91, height: 42 },
         kpis: [
