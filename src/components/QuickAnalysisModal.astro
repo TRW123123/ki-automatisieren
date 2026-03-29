@@ -216,6 +216,7 @@
             // Reset form on close
             // @ts-ignore
             form?.reset();
+            successState?.classList.remove("flex");
             successState?.classList.add("hidden");
         }, 300);
     }
@@ -262,6 +263,7 @@
 
             // Show success
             successState?.classList.remove("hidden");
+            successState?.classList.add("flex");
         } catch (error) {
             console.error("Submission error:", error);
             alert(
