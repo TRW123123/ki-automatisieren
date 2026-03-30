@@ -5,20 +5,20 @@ http://ki-automatisieren.de/* https://ki-automatisieren.de/:splat 301!
 # Canonical Domain (non-www)
 https://www.ki-automatisieren.de/* https://ki-automatisieren.de/:splat 301!
 
-# FIX 2: Legacy URL Redirects (P0) - Explicit 301s
-/ueber-mich                     /uber-uns/                                   301
-/automatisierung-mit-ki         /losungen/                                   301
-/ki-sales-automatisierung       /losungen/vertriebsautomatisierung/          301
-/ki-training                    /losungen/strategieberatung-ki-sales-marketing/ 301
-/social-media                   /losungen/marketing-automatisierung/         301
+# Legacy URL Redirects (P0) - Explicit 301s
+# Netlify CDN normalizes trailing slashes before matching, so both /ueber-mich and /ueber-mich/ match
+/ueber-mich/                    /uber-uns/                                   301
+/automatisierung-mit-ki/        /losungen/                                   301
+/ki-sales-automatisierung/      /losungen/vertriebsautomatisierung/          301
+/ki-training/                   /losungen/strategieberatung-ki-sales-marketing/ 301
+/social-media/                  /losungen/marketing-automatisierung/         301
 
-# FIX 3: Sitemap is at sitemap-index.xml (Astro naming)
+# Sitemap alias (Astro generates sitemap-index.xml)
 /sitemap.xml                    /sitemap-index.xml                           301
 
-# FIX 4: Zombie-URLs aus altem CMS (Ghost/Wix) — GSC indexiert diese noch
-# Alte Blog-Posts → neue Blog-Seiten
+# Zombie-URLs aus altem CMS (Ghost/Wix) — GSC indexiert diese noch
 /post/revolution-im-kundenservice-ki-chatbots-als-automatisierungsl%C3%B6sung /blog/kundenservice-chatbot-ki-mittelstand-automatisierung/ 301
-/post/*                                                                        /blog/                                                         301
+/post/*                         /blog/                                       301
 
 # Alte Kategorie-Seiten → Blog-Index
 /blog/categories/*  /blog/  301
@@ -31,4 +31,3 @@ https://www.ki-automatisieren.de/* https://ki-automatisieren.de/:splat 301!
 
 # Clean URLs (Standard Netlify)
 /index.html                     /                                            301
-

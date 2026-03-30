@@ -366,7 +366,7 @@ Die Reaktionszeitverbesserung ist sofort sichtbar. Qualifizierungsrate und Follo
     {
         id: "prozessoptimierung-ki-mittelstand-leitfaden",
         title: "Prozessoptimierung mit KI: Der Leitfaden für den Mittelstand",
-        metaTitle: "Prozessoptimierung mit KI – Methoden & ROI für den Mittelstand | ki-automatisieren.de",
+        metaTitle: "Prozessoptimierung mit KI im Mittelstand – Schritt-für-Schritt Leitfaden",
         metaDescription: "Welche Prozesse zuerst optimiert werden sollten, welche KI-Tools sich wirklich lohnen und was ein realistischer ROI in 12 Monaten ist.",
         excerpt: "Die meisten Optimierungsprojekte scheitern nicht an der Technologie — sondern daran, dass die falschen Prozesse zuerst angegangen werden.",
         content: `

@@ -19,15 +19,15 @@ const relatedPosts = blogPosts
 
 // Parse simple markdown-ish content to HTML (headings, paragraphs, lists, tables, hr)
 function renderContent(md: string): string {
-  return md
+  let html = md
     .trim()
     .split('\n')
-    .reduce((acc: string[], line: string, i: number, arr: string[]) => {
+    .reduce((acc: string[], line: string) => {
       acc.push(line);
       return acc;
     }, [])
     .join('\n')
-    // Tables (must come before other replacements)
+    // Tables: wrap rows in table (must come before other replacements)
     .replace(/^\|(.+)\|$/gm, '<tr><td class="px-4 py-2 border border-border text-sm">$1</td></tr>')
     .replace(/<tr><td[^>]*>\s*[-|: ]+\s*<\/td><\/tr>/g, '')
     // HR
@@ -42,8 +42,6 @@ function renderContent(md: string): string {
     .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-foreground">$1</strong>')
     // Unordered list items
     .replace(/^- (.+)$/gm, '<li class="ml-4 text-muted-foreground text-sm leading-relaxed list-disc">$1</li>')
-    // Table rows cleanup
-    .replace(/\|/g, '')
     // Paragraphs (lines that aren't tags)
     .split('\n\n')
     .map((block: string) => {
@@ -53,6 +51,14 @@ function renderContent(md: string): string {
       return `<p class="text-muted-foreground leading-relaxed mb-4">${b.replace(/\n/g, '<br />')}</p>`;
     })
     .join('\n');
+
+  // Post-processing: Wrap consecutive <li> in <ul>
+  html = html.replace(/((?:<li[^>]*>.*?<\/li>\s*)+)/g, '<ul class="mb-6 space-y-1">$1</ul>');
+
+  // Post-processing: Wrap consecutive <tr> in <table>
+  html = html.replace(/((?:<tr>.*?<\/tr>\s*)+)/g, '<table class="w-full mb-6 border-collapse">$1</table>');
+
+  return html;
 }
 
 const htmlContent = renderContent(post.content);
@@ -77,23 +83,23 @@ const schema = JSON.stringify({
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": `https://ki-automatisieren.de/blog/${post.id}`
+    "@id": `https://ki-automatisieren.de/blog/${post.id}/`
   },
   "keywords": post.tags.join(", ")
 });
 
-const faqSchema = post.content.includes('**') ? JSON.stringify({
+// FAQ Schema: Only match bold lines that END with a question mark inside the bold markers
+const faqMatches = post.content.match(/\*\*([^*]+\?)\*\*\n([^*\n](?:(?!\n\n|\n\*\*).)*)/gs) || [];
+const faqEntries = faqMatches.map(match => {
+  const lines = match.split('\n');
+  const q = lines[0].replace(/\*\*/g, '').trim();
+  const a = lines.slice(1).join(' ').trim();
+  return { "@type": "Question" as const, "name": q, "acceptedAnswer": { "@type": "Answer" as const, "text": a } };
+}).filter(entry => entry.name.length > 10 && entry.acceptedAnswer.text.length > 10);
+const faqSchema = faqEntries.length >= 2 ? JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": post.content
-    .match(/\*\*(.+?)\*\*\n(.+?)(?=\n\n|\n\*\*|$)/gs)
-    ?.filter(m => m.includes('?'))
-    .map(match => {
-      const lines = match.split('\n');
-      const q = lines[0].replace(/\*\*/g, '').trim();
-      const a = lines.slice(1).join(' ').trim();
-      return { "@type": "Question", "name": q, "acceptedAnswer": { "@type": "Answer", "text": a } };
-    }) || []
+  "mainEntity": faqEntries
 }) : null;
 ---
 
@@ -110,7 +116,7 @@ const faqSchema = post.content.includes('**') ? JSON.stringify({
     <ol class="flex items-center gap-2 text-xs text-muted-foreground">
       <li><a href="/" class="hover:text-foreground transition-colors">Start</a></li>
       <li>/</li>
-      <li><a href="/blog" class="hover:text-foreground transition-colors">Blog</a></li>
+      <li><a href="/blog/" class="hover:text-foreground transition-colors">Blog</a></li>
       <li>/</li>
       <li class="text-foreground truncate max-w-[200px]">{post.title}</li>
     </ol>
@@ -186,7 +192,7 @@ const faqSchema = post.content.includes('**') ? JSON.stringify({
         Wir analysieren kostenlos Ihre aktuelle Situation und zeigen konkret, welche Automatisierungen sich für Ihr Unternehmen lohnen.
       </p>
       <a
-        href="/termin"
+        href="/termin/"
         class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium text-sm hover:bg-primary/90 transition-colors"
       >
         Kostenlose Analyse vereinbaren →
@@ -195,7 +201,7 @@ const faqSchema = post.content.includes('**') ? JSON.stringify({
 
     <!-- Back to blog -->
     <div class="mt-8">
-      <a href="/blog" class="text-sm text-muted-foreground hover:text-foreground transition-colors">
+      <a href="/blog/" class="text-sm text-muted-foreground hover:text-foreground transition-colors">
         ← Alle Artikel
       </a>
     </div>

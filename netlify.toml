@@ -1,7 +1,9 @@
 # ===========================================
 # NETLIFY CONFIGURATION - ki-automatisieren.de
-# URL Normalization via Edge Function
-# Last updated: 2026-02-05
+# Trailing Slash + Pretty URLs handled natively by Netlify
+# Edge Function REMOVED (2026-03-30) — was redundant, caused double-redirect chains
+# See Pinecone: astro-netlify-trailing-slash-redirect-loop
+# Last updated: 2026-03-30
 # ===========================================
 
 [build]
@@ -11,12 +13,10 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# Edge Function for URL normalization (SEO)
-# Handles: trailing slashes, lowercase, .html cleanup
-[[edge_functions]]
-  path = "/*"
-  function = "url-normalize"
+# Pretty URLs: Netlify handles trailing slashes + .html cleanup + lowercase natively
+[build.processing.html]
+  pretty_urls = true
 
+# Note: Edge Function url-normalize REMOVED — Netlify Pretty URLs does everything natively
 # Note: All redirects in public/_redirects
 # Note: All headers in public/_headers (single source of truth)
-# Removed duplicate header rules — _headers takes precedence on Netlify
