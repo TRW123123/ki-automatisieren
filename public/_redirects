@@ -29,5 +29,8 @@ https://www.ki-automatisieren.de/* https://ki-automatisieren.de/:splat 301!
 # /de/ Zombie-Pfade (falls historisch indiziert)
 /de/*   /  301
 
+# Prevent Pretty URLs from adding slash to file assets
+/site.webmanifest/              /site.webmanifest                            301!
+
 # Clean URLs (Standard Netlify)
 /index.html                     /                                            301
