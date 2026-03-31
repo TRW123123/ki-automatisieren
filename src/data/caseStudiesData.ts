@@ -24,9 +24,10 @@ export const caseStudiesData: CaseStudy[] = [
         id: 1,
         slug: "car-studio-ai",
         datePublished: "2024-01-15",
+        dateModified: "2026-03-31",
         category: "Vertriebsautomatisierung",
         title: "Car Studio AI",
-        summary: "Aufbau einer nachhaltigen Vertriebsinfrastruktur auf internationalen Märkten ohne Teamvergrößerung durch KI im Vertrieb.",
+        summary: "Car Studio AI ist ein Technologieunternehmen, das KI-gestützte Bildbearbeitung für Autohändler und Fahrzeugfotografie anbietet. Mit dem Ziel, international zu expandieren, benötigte das Unternehmen eine skalierbare Vertriebsinfrastruktur, die ohne Teamvergrößerung auf mehreren Märkten gleichzeitig operieren kann. Durch den Einsatz von KI im Vertrieb wurde ein System aufgebaut, das personalisierte Outreach-Kampagnen über Ländergrenzen hinweg automatisiert — von der Lead-Recherche bis zum Follow-up.",
         metaTitle: "Car Studio AI Fallstudie – KI im Vertrieb | 3000+ personalisierte E-Mails",
         metaDescription: "Erfolgsgeschichte von Car Studio AI: KI im Vertrieb für internationale Expansion. 3000+ personalisierte E-Mails, 20+ Stunden Zeitersparnis monatlich.",
         logo: "/logos/carstudio.avif",
@@ -34,21 +35,31 @@ export const caseStudiesData: CaseStudy[] = [
         kpis: [
             { label: "E-Mail-Versand", value: "3000+" },
             { label: "Zeitersparnis", value: "20+ Std./Monat" },
-            { label: "Setup-Zeit", value: "1 Woche" }
+            { label: "Setup-Zeit", value: "1 Woche" },
+            { label: "Zielmärkte", value: "5+ Länder" }
         ],
         problem: [
-            "Die richtigen Unternehmen und Entscheidungsträger finden",
-            "Individuelle Nachrichten für jedes Unternehmen erstellen",
-            "Ein regelmäßiges Follow-up-System aufbauen"
+            "Die richtigen Unternehmen und Entscheidungsträger auf internationalen Märkten finden — manuell nicht skalierbar bei Tausenden potenziellen Kunden in unterschiedlichen Branchen und Regionen",
+            "Individuelle, kontextbezogene Nachrichten für jedes Unternehmen erstellen, die sich nicht wie Massenmails lesen und die spezifischen Schmerzpunkte des Empfängers ansprechen",
+            "Ein regelmäßiges, mehrstufiges Follow-up-System aufbauen, das automatisch nachfasst ohne aufdringlich zu wirken — mit der richtigen Kadenz und Tonalität pro Markt",
+            "Sprachbarrieren überwinden: Outreach in der Landessprache des Empfängers, ohne für jedes Land ein eigenes Team aufzubauen"
         ],
-        solution: "Das KI-gestützte E-Mail-System erstellte personalisierte Nachrichten basierend auf den Eigenschaften jedes Unternehmens. Mit Informationen aus LinkedIn-Profilen und Unternehmenswebseiten wurden aufmerksamkeitsstarke und vertrauensbildende Inhalte erstellt.",
-        implementationSteps: ["Automatischer E-Mail-Prozess", "KI-gestützte Kaltakquise", "Personalisierte Nachrichtenübermittlung"],
+        solution: "Das KI-gestützte Vertriebssystem kombiniert mehrere Automatisierungsschichten zu einer durchgängigen Pipeline. Im ersten Schritt werden potenzielle Kunden durch automatisiertes Web-Scraping und LinkedIn-Analyse identifiziert — gefiltert nach Branche, Unternehmensgröße und Entscheidungsebene. Die KI analysiert dann das LinkedIn-Profil des Ansprechpartners, die Unternehmenswebseite und aktuelle Branchennachrichten, um hochpersonalisierte E-Mail-Inhalte zu generieren. Jede Nachricht enthält konkrete Bezüge zum Geschäft des Empfängers — kein generischer Pitch, sondern ein maßgeschneiderter Gesprächseinstieg. Das mehrstufige Follow-up-System sendet automatisch bis zu vier Nachfass-E-Mails mit variierenden Ansätzen (Value-Add, Social Proof, Direktansprache), angepasst an das bisherige Engagement des Empfängers. Das gesamte System läuft ohne manuellen Eingriff und skaliert über beliebig viele Zielmärkte.",
+        implementationSteps: [
+            "Lead-Recherche automatisiert: Web-Scraping und LinkedIn-Analyse identifizieren qualifizierte Entscheidungsträger nach Branche, Region und Position",
+            "KI-Personalisierung: Jede E-Mail wird individuell generiert basierend auf Unternehmensdaten, LinkedIn-Profil und Branchenkontext",
+            "Mehrstufiges Follow-up: Automatische Nachfass-Sequenzen mit vier Stufen, angepasst an das Engagement-Verhalten des Empfängers",
+            "Mehrsprachiger Outreach: Automatische Übersetzung und kulturelle Anpassung für fünf Zielmärkte gleichzeitig",
+            "Performance-Monitoring: Echtzeit-Dashboard mit Öffnungs-, Klick- und Antwortquoten pro Kampagne und Zielmarkt"
+        ],
         results: [
-            "Über 3000 personalisierte E-Mails ohne manuelle Arbeit versendet",
-            "Hochwertige potenzielle Kunden durch Kaltakquise gewonnen",
-            "Vertriebsteam spart monatlich über 20 Stunden"
+            "Über 3.000 personalisierte E-Mails ohne manuelle Arbeit versendet — jede einzelne mit individuellen Bezügen zum Empfänger",
+            "Hochwertige potenzielle Kunden durch Kaltakquise gewonnen, die zu konkreten Vertriebsgesprächen und Produktdemos führten",
+            "Vertriebsteam spart monatlich über 20 Stunden, die vorher für manuelle Recherche und E-Mail-Erstellung aufgewendet wurden",
+            "Internationale Expansion in fünf Märkte gleichzeitig ohne zusätzliches Vertriebspersonal",
+            "Antwortquote auf Kaltakquise-E-Mails deutlich über Branchendurchschnitt durch KI-Personalisierung"
         ],
-        quote: "Dank der KI-Automatisierung im Vertrieb sprechen wir jetzt nur noch mit wirklich interessierten Kunden."
+        quote: "Dank der KI-Automatisierung im Vertrieb sprechen wir jetzt nur noch mit wirklich interessierten Kunden. Was vorher ein Vollzeitjob war, läuft jetzt im Hintergrund."
     },
     {
         id: 2,
