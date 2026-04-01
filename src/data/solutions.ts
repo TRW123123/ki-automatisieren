@@ -237,8 +237,8 @@ export const solutions: SolutionData[] = [
     {
         slug: "crm-prozessautomatisierung",
         seo: {
-            title: "CRM Prozessautomatisierung mit KI – Daten sauber, Vertrieb frei",
-            description: "HubSpot, Salesforce und ERP automatisch synchronisiert. Schluss mit manueller Datenpflege — KI-Middleware für saubere CRM-Daten im Mittelstand.",
+            title: "CRM Automatisierung mit KI – HubSpot & Salesforce ohne manuelle Pflege",
+            description: "Schluss mit doppelten Einträgen und manuellen Abgleichen. KI synchronisiert HubSpot, Salesforce und ERP automatisch – für saubere Daten und mehr Zeit im Vertrieb.",
         },
         hero: {
             title: "CRM Prozessautomatisierung mit KI",
@@ -286,8 +286,8 @@ export const solutions: SolutionData[] = [
     {
         slug: "kundenservice-automatisierung",
         seo: {
-            title: "KI Kundenservice-Automatisierung – 80% weniger Tickets",
-            description: "KI-Agents die nicht nur antworten, sondern handeln: Erstattungen, Statusabfragen, Terminbuchung. 80% weniger Support-Tickets durch intelligente Automatisierung.",
+            title: "KI im Kundenservice – Tickets automatisch lösen statt nur beantworten",
+            description: "Kein Bot der nur antwortet: Unser KI-Agent erstattet, bucht und ändert direkt in Ihrem System. Für Mittelstand der seinen Support wirklich entlasten will.",
         },
         hero: {
             title: "KI Kundenservice-Automatisierung für B2B",
