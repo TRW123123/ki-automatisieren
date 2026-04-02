@@ -7,6 +7,7 @@ import SolutionSection from "@/components/SolutionSection.tsx";
 import Cases from "@/components/Cases.tsx";
 import PseoHub from "@/components/PseoHub.astro";
 import IndustrySection from "@/components/IndustrySection.astro";
+import RoiCalculator from "@/components/RoiCalculator.astro";
 
 // Pure Strict Alignment Index Page
 // Structure: Hero -> Agitate -> IndustrySection -> GoToMarketTimeline -> Solution -> Cases
@@ -43,6 +44,7 @@ const websiteSchema = JSON.stringify({
 
   <Hero />
   <Agitate client:visible />
+  <RoiCalculator />
   <IndustrySection />
   <SolutionSection client:visible />
   <GoToMarketTimeline client:visible />
