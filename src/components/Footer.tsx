@@ -49,6 +49,16 @@ export default function Footer() {
                                 </a>
                             </li>
                             <li>
+                                <a href="/blog/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
+                                    Blog
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/ki-statistiken-deutschland/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
+                                    KI-Statistiken 2026
+                                </a>
+                            </li>
+                            <li>
                                 <a href="/uber-uns/" className="text-muted-foreground hover:text-lime-400 transition-colors lime-underline">
                                     Über uns
                                 </a>

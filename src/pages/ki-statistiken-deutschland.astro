@@ -1,0 +1,271 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const lastUpdated = "April 2026";
+
+const stats = [
+  {
+    number: "36%",
+    text: "der deutschen Unternehmen nutzen bereits KI",
+    source: "Bitkom Research",
+    year: "2025",
+    url: "https://www.bitkom.org",
+    context: "Nahezu verdoppelt gegenüber 20% im Vorjahr — der stärkste Anstieg seit Beginn der Erhebung.",
+  },
+  {
+    number: "41%",
+    text: "der Unternehmen mit 20+ Mitarbeitern setzen KI ein",
+    source: "Bitkom Research",
+    year: "März 2026",
+    url: "https://www.bitkom.org",
+    context: "Der Mittelstand holt auf — vor allem in Vertrieb, Marketing und Buchhaltung.",
+  },
+  {
+    number: "67%",
+    text: "der deutschen Bürger nutzen generative KI",
+    source: "Bitkom Research",
+    year: "2025",
+    url: "https://www.bitkom.org",
+    context: "ChatGPT, Copilot und Gemini sind im Alltag angekommen — der B2B-Bereich hinkt hinterher.",
+  },
+  {
+    number: "€7,89 Mrd.",
+    text: "prognostiziertes Marktvolumen für KI in Deutschland bis 2030",
+    source: "IHK / Statista",
+    year: "2025",
+    url: "https://www.destatis.de",
+    context: "2023 lag der Markt noch bei €1,79 Mrd. — ein Wachstum von 340% in 7 Jahren.",
+  },
+  {
+    number: "53%",
+    text: "der Unternehmen nennen rechtliche Hürden als größtes KI-Hindernis",
+    source: "Bitkom Research",
+    year: "2025",
+    url: "https://www.bitkom.org",
+    context: "DSGVO-Unsicherheit und der EU AI Act bremsen die Adoption — obwohl viele Anwendungen unkritisch sind.",
+  },
+  {
+    number: "93%",
+    text: "der Unternehmen bevorzugen einen deutschen KI-Anbieter",
+    source: "Bitkom Research",
+    year: "2025",
+    url: "https://www.bitkom.org",
+    context: "Datensouveränität und DSGVO-Konformität sind die Hauptgründe.",
+  },
+  {
+    number: "17%",
+    text: "der Unternehmen sagen: KI ist kein Thema",
+    source: "Bitkom Research",
+    year: "2025",
+    url: "https://www.bitkom.org",
+    context: "2023 waren es noch 41%. Die Frage ist nicht mehr ob, sondern wann.",
+  },
+  {
+    number: "80%",
+    text: "Zeitersparnis bei der Rechnungsverarbeitung durch KI-Automatisierung",
+    source: "Branchenstudien / Praxiserfahrung",
+    year: "2025",
+    url: "/blog/rechnungsverarbeitung-ki-automatisierung-mittelstand/",
+    context: "Von 8-12 Minuten pro Rechnung auf unter 1 Minute — bei gleichzeitig weniger Fehlern.",
+  },
+  {
+    number: "300–500%",
+    text: "ROI nach 12 Monaten bei KI-gestützter Rechnungsautomatisierung",
+    source: "Mittelstandsprojekte",
+    year: "2025–2026",
+    url: "/blog/rechnungsverarbeitung-ki-automatisierung-mittelstand/",
+    context: "Die Investition amortisiert sich typisch in 6-9 Monaten — danach ist es reiner Gewinn.",
+  },
+  {
+    number: "<0,1%",
+    text: "Fehlerquote bei KI-gestützter Datenerfassung vs. 3-5% manuell",
+    source: "Branchenstudien Finanzwesen",
+    year: "2025",
+    url: "/blog/rechnungsverarbeitung-ki-automatisierung-mittelstand/",
+    context: "Weniger Fehler bedeutet weniger Nacharbeit, weniger Mahnungen und ein sauberes Controlling.",
+  },
+  {
+    number: ">95%",
+    text: "Skonto-Ausschöpfung nach KI-Automatisierung",
+    source: "Praxisprojekte Mittelstand",
+    year: "2025–2026",
+    url: "/losungen/crm-prozessautomatisierung/",
+    context: "Manuell erreichen Unternehmen 60-70%. Die Differenz bedeutet bei 200 Rechnungen/Monat tausende Euro pro Jahr.",
+  },
+  {
+    number: "48%",
+    text: "nennen hohe Datenschutzanforderungen als KI-Barriere",
+    source: "Bitkom Research",
+    year: "2025",
+    url: "https://www.bitkom.org",
+    context: "Die Lösung: Deutsche Rechenzentren, On-Premise-Deployment und DSGVO-konforme Architektur.",
+  },
+];
+
+// Schema.org Dataset
+const datasetSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Dataset",
+      "name": "KI-Statistiken Deutschland 2026",
+      "description": "Umfassende Sammlung aktueller Statistiken zur KI-Nutzung in deutschen Unternehmen. Quellen: Bitkom, Statista, IHK, Destatis.",
+      "url": "https://ki-automatisieren.de/ki-statistiken-deutschland/",
+      "creator": {
+        "@type": "Organization",
+        "name": "KI Automatisieren",
+        "url": "https://ki-automatisieren.de"
+      },
+      "dateModified": "2026-04-02",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "keywords": ["KI Deutschland", "Künstliche Intelligenz Statistiken", "AI Adoption Deutschland", "Bitkom KI", "Mittelstand Digitalisierung"],
+      "temporalCoverage": "2024/2026",
+      "spatialCoverage": {
+        "@type": "Place",
+        "name": "Deutschland"
+      }
+    },
+    {
+      "@type": "Article",
+      "headline": "KI-Statistiken Deutschland 2026: Alle wichtigen Zahlen auf einen Blick",
+      "author": {
+        "@type": "Person",
+        "name": "Safak Tepecik",
+        "jobTitle": "KI-Systemarchitekt"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "KI Automatisieren"
+      },
+      "datePublished": "2026-04-02",
+      "dateModified": "2026-04-02"
+    }
+  ]
+});
+---
+
+<BaseLayout
+  title="KI-Statistiken Deutschland 2026 – Alle wichtigen Zahlen auf einen Blick"
+  description="Aktuelle KI-Statistiken für Deutschland: Nutzung, Marktvolumen, Hürden und ROI-Daten. Quellen: Bitkom, Statista, IHK. Regelmäßig aktualisiert."
+>
+  <script type="application/ld+json" set:html={datasetSchema} />
+
+  <!-- Hero -->
+  <section class="py-20 md:py-28 relative overflow-hidden">
+    <div class="absolute inset-0 bg-lime-500/5 -z-10"></div>
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="text-sm font-medium text-lime-400 mb-4 tracking-wide uppercase">
+        Daten & Fakten
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        KI-Statistiken Deutschland 2026
+      </h1>
+      <p class="text-xl text-muted-foreground mb-4 max-w-2xl leading-relaxed">
+        Alle wichtigen Zahlen zur KI-Nutzung in deutschen Unternehmen — regelmäßig aktualisiert, mit Originalquellen.
+      </p>
+
+      <div class="flex items-center gap-2 text-sm text-muted-foreground mb-8">
+        <svg class="w-4 h-4 text-lime-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <span>Zusammengestellt von <strong class="text-foreground">Safak Tepecik</strong>, KI-Systemarchitekt</span>
+        <span class="mx-2">|</span>
+        <span>Zuletzt aktualisiert: <strong class="text-foreground">{lastUpdated}</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Grid -->
+  <section class="pb-24">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {stats.map((stat, i) => (
+          <div class="relative p-8 rounded-2xl bg-card border border-white/10 hover:border-lime-500/30 transition-all duration-300 group">
+            <div class="absolute top-4 right-4 text-xs text-muted-foreground opacity-60">
+              #{i + 1}
+            </div>
+            <div class="text-4xl md:text-5xl font-bold text-lime-400 mb-3 tracking-tight">
+              {stat.number}
+            </div>
+            <p class="text-lg font-medium text-foreground mb-3 leading-snug">
+              {stat.text}
+            </p>
+            <p class="text-sm text-muted-foreground mb-4 leading-relaxed">
+              {stat.context}
+            </p>
+            <div class="flex items-center gap-2 text-xs text-muted-foreground">
+              <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10">
+                {stat.source}
+              </span>
+              <span>{stat.year}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodik -->
+  <section class="py-16 border-t border-white/5">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-2xl font-bold mb-6">Quellen & Methodik</h2>
+      <div class="prose-custom text-muted-foreground space-y-4 text-sm leading-relaxed">
+        <p>
+          Diese Statistiken stammen aus öffentlich zugänglichen Studien und Berichten von:
+        </p>
+        <ul class="space-y-2 ml-4">
+          <li class="list-disc"><strong class="text-foreground">Bitkom Research</strong> — Bundesverband Informationswirtschaft, Telekommunikation und neue Medien e.V.</li>
+          <li class="list-disc"><strong class="text-foreground">Statista</strong> — Deutschlands größtes Statistik-Portal</li>
+          <li class="list-disc"><strong class="text-foreground">IHK / DIHK</strong> — Industrie- und Handelskammern Deutschland</li>
+          <li class="list-disc"><strong class="text-foreground">Destatis</strong> — Statistisches Bundesamt</li>
+          <li class="list-disc"><strong class="text-foreground">Praxisprojekte</strong> — Eigene Implementierungen bei Mittelstandskunden (50-500 Mitarbeiter)</li>
+        </ul>
+        <p>
+          Alle Daten werden quartalsweise geprüft und bei Erscheinen neuer Studien aktualisiert.
+          Die praxisbezogenen Kennzahlen (ROI, Fehlerquoten, Zeitersparnis) basieren auf realen Automatisierungsprojekten
+          mit deutschen Mittelständlern.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Embed Code -->
+  <section class="py-16 border-t border-white/5 bg-card/30">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-2xl font-bold mb-4">Diese Statistiken auf Ihrer Webseite einbinden</h2>
+      <p class="text-muted-foreground text-sm mb-6">
+        Sie dürfen einzelne Statistiken frei zitieren — wir bitten lediglich um einen Link zu dieser Seite als Quellenangabe.
+      </p>
+      <div class="bg-background border border-white/10 rounded-xl p-6">
+        <p class="text-xs text-muted-foreground mb-2">HTML-Embed-Code:</p>
+        <code class="block text-sm text-lime-400 bg-black/30 rounded-lg p-4 overflow-x-auto whitespace-pre">&lt;p&gt;Laut &lt;a href="https://ki-automatisieren.de/ki-statistiken-deutschland/"&gt;KI-Statistiken Deutschland 2026&lt;/a&gt; nutzen 36% der deutschen Unternehmen bereits KI.&lt;/p&gt;</code>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 border-t border-white/5">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <h2 class="text-3xl font-bold mb-4">
+        Gehört Ihr Unternehmen schon zu den 36%?
+      </h2>
+      <p class="text-muted-foreground mb-8 max-w-xl mx-auto">
+        Wir zeigen Ihnen kostenlos, welche Prozesse in Ihrem Unternehmen durch KI automatisiert werden können — mit konkreten ROI-Zahlen.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/termin/"
+          class="inline-flex items-center justify-center h-12 px-8 rounded-xl bg-lime-500 text-black font-bold hover:bg-lime-400 transition-colors"
+        >
+          Kostenlose Analyse vereinbaren
+        </a>
+        <a
+          href="/losungen/"
+          class="inline-flex items-center justify-center h-12 px-8 rounded-xl border border-white/20 text-foreground font-medium hover:border-lime-500/40 transition-colors"
+        >
+          Unsere Lösungen ansehen
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
