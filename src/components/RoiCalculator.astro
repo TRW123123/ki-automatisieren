@@ -2,6 +2,22 @@
 // ROI-Rechner — statische Astro-Komponente, kein React
 // Eingabe: Mitarbeiter, Stunden/Woche für manuelle Prozesse, Stundensatz
 // Ausgabe: gesparte Stunden/Jahr, gesparte Kosten €, Break-even
+
+interface Props {
+  defaultEmployees?: number;
+  defaultHours?: number;
+  defaultRate?: number;
+  defaultAuto?: number;
+  headline?: string;
+}
+
+const {
+  defaultEmployees = 3,
+  defaultHours = 8,
+  defaultRate = 35,
+  defaultAuto = 70,
+  headline = "Was kostet Sie manuelle Arbeit wirklich?",
+} = Astro.props;
 ---
 
 <section class="py-20 bg-card/30 border-y border-white/5 relative overflow-hidden" aria-label="ROI-Rechner">
@@ -14,7 +30,7 @@
     <div class="text-center mb-12">
       <p class="text-sm font-semibold text-lime-400 uppercase tracking-widest mb-3">Kostenloser Rechner</p>
       <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">
-        Was kostet Sie manuelle Arbeit wirklich?
+        {headline}
       </h2>
       <p class="text-gray-400 max-w-xl mx-auto">
         Berechnen Sie Ihr persönliches Einsparpotenzial durch KI-Automatisierung — in unter 30 Sekunden.
@@ -34,12 +50,12 @@
             <label for="roi-employees" class="text-sm font-medium text-gray-300">
               Mitarbeiter mit manuellen Prozessen
             </label>
-            <span id="roi-employees-val" class="text-lime-400 font-bold text-sm min-w-[2rem] text-right">3</span>
+            <span id="roi-employees-val" class="text-lime-400 font-bold text-sm min-w-[2rem] text-right">{defaultEmployees}</span>
           </div>
           <input
             type="range"
             id="roi-employees"
-            min="1" max="50" value="3" step="1"
+            min="1" max="50" value={defaultEmployees} step="1"
             class="roi-slider w-full h-2 rounded-lg appearance-none cursor-pointer"
           />
           <div class="flex justify-between text-xs text-gray-600">
@@ -53,12 +69,12 @@
             <label for="roi-hours" class="text-sm font-medium text-gray-300">
               Stunden/Woche pro Person für manuelle Aufgaben
             </label>
-            <span id="roi-hours-val" class="text-lime-400 font-bold text-sm min-w-[2rem] text-right">8</span>
+            <span id="roi-hours-val" class="text-lime-400 font-bold text-sm min-w-[2rem] text-right">{defaultHours}</span>
           </div>
           <input
             type="range"
             id="roi-hours"
-            min="1" max="40" value="8" step="1"
+            min="1" max="40" value={defaultHours} step="1"
             class="roi-slider w-full h-2 rounded-lg appearance-none cursor-pointer"
           />
           <div class="flex justify-between text-xs text-gray-600">
@@ -72,12 +88,12 @@
             <label for="roi-rate" class="text-sm font-medium text-gray-300">
               Durchschnittlicher Brutto-Stundensatz (€)
             </label>
-            <span id="roi-rate-val" class="text-lime-400 font-bold text-sm min-w-[3rem] text-right">35 €</span>
+            <span id="roi-rate-val" class="text-lime-400 font-bold text-sm min-w-[3rem] text-right">{defaultRate} €</span>
           </div>
           <input
             type="range"
             id="roi-rate"
-            min="15" max="120" value="35" step="5"
+            min="15" max="120" value={defaultRate} step="5"
             class="roi-slider w-full h-2 rounded-lg appearance-none cursor-pointer"
           />
           <div class="flex justify-between text-xs text-gray-600">
@@ -91,12 +107,12 @@
             <label for="roi-auto" class="text-sm font-medium text-gray-300">
               Automatisierungsgrad (realistisch)
             </label>
-            <span id="roi-auto-val" class="text-lime-400 font-bold text-sm min-w-[2rem] text-right">70%</span>
+            <span id="roi-auto-val" class="text-lime-400 font-bold text-sm min-w-[2rem] text-right">{defaultAuto}%</span>
           </div>
           <input
             type="range"
             id="roi-auto"
-            min="30" max="90" value="70" step="5"
+            min="30" max="90" value={defaultAuto} step="5"
             class="roi-slider w-full h-2 rounded-lg appearance-none cursor-pointer"
           />
           <div class="flex justify-between text-xs text-gray-600">

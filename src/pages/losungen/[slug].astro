@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { solutions } from "../../data/solutions";
+import RoiCalculator from "@/components/RoiCalculator.astro";
 
 export function getStaticPaths() {
   return solutions.map((solution) => ({
@@ -10,6 +11,36 @@ export function getStaticPaths() {
 }
 
 const { solution } = Astro.props;
+
+// ROI-Rechner Voreinstellungen pro Lösungstyp
+const roiDefaults: Record<string, { employees: number; hours: number; rate: number; auto: number; headline: string }> = {
+  "leadgenerierung-ki": {
+    employees: 3, hours: 10, rate: 45, auto: 75,
+    headline: "Was kostet manuelle Lead-Recherche wirklich?",
+  },
+  "vertriebsautomatisierung": {
+    employees: 3, hours: 12, rate: 50, auto: 70,
+    headline: "Was kostet manueller Vertrieb pro Jahr?",
+  },
+  "strategieberatung-ki-sales-marketing": {
+    employees: 2, hours: 8, rate: 70, auto: 60,
+    headline: "Was bringt KI-Strategie in Zahlen?",
+  },
+  "marketing-automatisierung": {
+    employees: 3, hours: 10, rate: 40, auto: 75,
+    headline: "Was kostet manuelle Content-Erstellung wirklich?",
+  },
+  "crm-prozessautomatisierung": {
+    employees: 5, hours: 8, rate: 35, auto: 80,
+    headline: "Was kostet manuelle CRM-Datenpflege pro Jahr?",
+  },
+  "kundenservice-automatisierung": {
+    employees: 4, hours: 15, rate: 30, auto: 70,
+    headline: "Was kostet manueller Kundenservice wirklich?",
+  },
+};
+
+const roi = roiDefaults[solution.slug] ?? { employees: 3, hours: 8, rate: 35, auto: 70, headline: "Was kostet manuelle Arbeit wirklich?" };
 
 // Entity-Graph Schema (Organization + Person + Service) — matches branchen template
 const entityGraph = JSON.stringify({
@@ -165,6 +196,15 @@ const faqSchema =
       </div>
     </div>
   </section>
+
+  <!-- ROI Calculator -->
+  <RoiCalculator
+    defaultEmployees={roi.employees}
+    defaultHours={roi.hours}
+    defaultRate={roi.rate}
+    defaultAuto={roi.auto}
+    headline={roi.headline}
+  />
 
   <!-- Case Study -->
   {
