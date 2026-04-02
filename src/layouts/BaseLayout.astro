@@ -26,7 +26,7 @@ const ogImage = image
   ? image.startsWith("http")
     ? image
     : `https://ki-automatisieren.de${image}`
-  : "https://ki-automatisieren.de/social-image.png";
+  : "https://ki-automatisieren.de/og-homepage.jpg";
 const canonicalURL = canonicalOverride ? new URL(canonicalOverride, Astro.site) : new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -80,7 +80,7 @@ const canonicalURL = canonicalOverride ? new URL(canonicalOverride, Astro.site) 
     <main class="relative z-10">
       <slot />
     </main>
-    <Footer client:visible />
+    <Footer client:load />
     <QuickAnalysisModal />
     <script is:inline src="/js/cookie-consent.js"></script>
   </body>
