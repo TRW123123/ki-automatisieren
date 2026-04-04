@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContactForm from "@/components/ContactForm.astro";
 
 const title = "Kontakt - KI Automatisieren";
 const description =
@@ -86,6 +87,10 @@ const description =
             >
           </div>
         </a>
+      </div>
+
+      <div class="mt-16">
+        <ContactForm sourcePage="/kontakt/" headline="Schreiben Sie uns direkt" />
       </div>
 
       <div class="mt-16 text-center">

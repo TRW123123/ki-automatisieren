@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { pseoBranchen } from "@/data/pseo-branchen";
 import KiEinsparungsrechner from "@/components/react/KiEinsparungsrechner.tsx";
+import ContactForm from "@/components/ContactForm.astro";
 
 export function getStaticPaths() {
     return pseoBranchen.map((industry) => ({
@@ -513,6 +514,13 @@ const faqSchema = industry.faqs && industry.faqs.length > 0 ? JSON.stringify({
             )}
 
         </article>
+
+        <!-- ContactForm -->
+        <section class="py-20 border-t border-gray-800 relative z-20">
+            <div class="container mx-auto px-4 max-w-2xl">
+                <ContactForm sourcePage={Astro.url.pathname} />
+            </div>
+        </section>
 
         <!-- 8. Calendly Embed Section (Outside <article> — not editorial content) -->
         <div class="py-32 relative z-30 text-center bg-[#050505] border-t border-white/5" id="booking-section">

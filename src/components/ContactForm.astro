@@ -1,0 +1,114 @@
+---
+interface Props {
+  sourcePage?: string;
+  headline?: string;
+  cta?: string;
+}
+
+const {
+  sourcePage = '',
+  headline = 'Kostenlose Erstberatung anfragen',
+  cta = 'Anfrage senden'
+} = Astro.props;
+---
+
+<div class="contact-form-wrapper" id="kontaktformular">
+  <h3 class="text-2xl font-bold mb-6">{headline}</h3>
+  <form id="contact-form" class="space-y-4">
+    <input type="hidden" name="source_page" value={sourcePage} />
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div>
+        <label for="cf-name" class="block text-sm text-gray-400 mb-1">Name *</label>
+        <input type="text" id="cf-name" name="name" required
+          class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-colors"
+          placeholder="Ihr Name" />
+      </div>
+      <div>
+        <label for="cf-email" class="block text-sm text-gray-400 mb-1">E-Mail *</label>
+        <input type="email" id="cf-email" name="email" required
+          class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-colors"
+          placeholder="ihre@email.de" />
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div>
+        <label for="cf-company" class="block text-sm text-gray-400 mb-1">Unternehmen</label>
+        <input type="text" id="cf-company" name="company"
+          class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-colors"
+          placeholder="Firmenname" />
+      </div>
+      <div>
+        <label for="cf-phone" class="block text-sm text-gray-400 mb-1">Telefon</label>
+        <input type="text" id="cf-phone" name="phone"
+          class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-colors"
+          placeholder="+49 ..." />
+      </div>
+    </div>
+
+    <div>
+      <label for="cf-message" class="block text-sm text-gray-400 mb-1">Ihre Nachricht</label>
+      <textarea id="cf-message" name="message" rows="4"
+        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-colors resize-y"
+        placeholder="Was möchten Sie automatisieren?"></textarea>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <button type="submit" id="cf-submit"
+        class="px-8 py-3 bg-white text-gray-900 font-medium rounded-lg hover:bg-gray-100 transition-colors">
+        {cta}
+      </button>
+      <span id="cf-status" class="text-sm text-gray-400 hidden"></span>
+    </div>
+
+    <p class="text-xs text-gray-600">
+      Ihre Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.
+      <a href="/datenschutz/" class="underline hover:text-gray-400">Datenschutzerklärung</a>
+    </p>
+  </form>
+</div>
+
+<script is:inline>
+  document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const btn = document.getElementById('cf-submit');
+    const status = document.getElementById('cf-status');
+
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet...';
+    status.classList.add('hidden');
+
+    const data = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      company: form.company.value.trim() || undefined,
+      phone: form.phone.value.trim() || undefined,
+      message: form.message.value.trim() || undefined,
+      source_page: form.source_page.value || window.location.pathname,
+    };
+
+    try {
+      const res = await fetch('https://xipqyfmzjdrjvrfbqfhs.supabase.co/functions/v1/kia-lead-submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error('Server error');
+
+      form.reset();
+      status.textContent = 'Anfrage erfolgreich gesendet! Wir melden uns innerhalb von 24 Stunden.';
+      status.className = 'text-sm text-green-400';
+      status.classList.remove('hidden');
+      btn.textContent = 'Gesendet ✓';
+    } catch (err) {
+      status.textContent = 'Fehler beim Senden. Bitte schreiben Sie uns an s.tepecik@ki-automatisieren.de';
+      status.className = 'text-sm text-red-400';
+      status.classList.remove('hidden');
+      btn.textContent = 'Anfrage senden';
+      btn.disabled = false;
+    }
+  });
+</script>
