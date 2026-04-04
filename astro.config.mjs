@@ -13,6 +13,7 @@ export default defineConfig({
     tailwind({ applyBaseStyles: false }),
     react(),
     sitemap({
+      lastmod: new Date(),
       filter: (page) =>
         !page.includes('/impressum/') &&
         !page.includes('/datenschutz/') &&
