@@ -28,8 +28,8 @@ export const caseStudiesData: CaseStudy[] = [
         category: "Vertriebsautomatisierung",
         title: "Car Studio AI",
         summary: "Car Studio AI ist ein Technologieunternehmen, das KI-gestützte Bildbearbeitung für Autohändler und Fahrzeugfotografie anbietet. Mit dem Ziel, international zu expandieren, benötigte das Unternehmen eine skalierbare Vertriebsinfrastruktur, die ohne Teamvergrößerung auf mehreren Märkten gleichzeitig operieren kann. Durch den Einsatz von KI im Vertrieb wurde ein System aufgebaut, das personalisierte Outreach-Kampagnen über Ländergrenzen hinweg automatisiert — von der Lead-Recherche bis zum Follow-up.",
-        metaTitle: "Car Studio AI Fallstudie – KI im Vertrieb | 3000+ personalisierte E-Mails",
-        metaDescription: "Erfolgsgeschichte von Car Studio AI: KI im Vertrieb für internationale Expansion. 3000+ personalisierte E-Mails, 20+ Stunden Zeitersparnis monatlich.",
+        metaTitle: "KI-Vertriebsautomatisierung: Car Studio AI Fallstudie",
+        metaDescription: "Wie Car Studio AI mit KI 3.000+ personalisierte Outreach-E-Mails automatisierte und monatlich 20 Stunden sparte. Fallstudie lesen.",
         logo: "/logos/carstudio.avif",
         logoDimensions: { width: 200, height: 42 },
         kpis: [
