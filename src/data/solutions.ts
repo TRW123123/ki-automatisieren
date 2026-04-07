@@ -8,6 +8,7 @@ export interface SolutionData {
         title: string;
         subtitle: string;
     };
+    intro?: string;
     problem: {
         title: string;
         items: string[];
@@ -95,6 +96,11 @@ export const solutions: SolutionData[] = [
             title: "KI Vertriebsautomatisierung für B2B-Unternehmen",
             subtitle: "Ihr CRM füllt sich von selbst. Wir verbinden n8n, OpenAI und HubSpot zu einem autonomen System.",
         },
+        intro: `KI-Vertriebsautomatisierung verbindet künstliche Intelligenz mit Ihrem bestehenden B2B-Vertriebsprozess: Eingehende Leads werden automatisch auf Unternehmensgröße, Budget-Indizien und Kaufabsicht geprüft, binnen zwei Minuten per Voice-AI kontaktiert und mit vollständigem Gesprächsprotokoll ins CRM übertragen — ohne manuelle Eingabe Ihres Teams.
+
+Das Ausmaß des Problems ist messbar: Laut einer McKinsey-Studie verbringen B2B-Vertriebsmitarbeiter nur 28% ihrer Arbeitszeit mit aktiven Verkaufsgesprächen. 72% entfallen auf Recherche, Datenpflege, E-Mail-Nachfassen und administrative Tätigkeiten. Bei einem Vertriebsteam von drei Personen und einem Durchschnittsgehalt von 55.000 € bedeutet das über 118.000 € pro Jahr, die in keine Abschlüsse fließen — sondern in Tabellenkalkulationen.
+
+Vertriebsautomatisierung mit KI löst genau dieses Problem. Das System, das wir für Car Studio AI implementiert haben, zeigt den Maßstab: Aus 1.000 kalten Kontakten entstanden 50 qualifizierte Termine — vollautomatisch, ohne SDR-Stunden für Erstqualifizierung. Ihr Vertriebsteam führt nur noch Gespräche, bei denen Kaufbereitschaft bereits bestätigt ist.`,
         problem: {
             title: "Ineffizienz im Vertrieb",
             items: ["Reaktionszeit > 5 Minuten", "Manuelle CRM-Pflege", "Unqualifizierte Erstgespräche"],
@@ -286,8 +292,8 @@ export const solutions: SolutionData[] = [
     {
         slug: "kundenservice-automatisierung",
         seo: {
-            title: "KI im Kundenservice – Tickets automatisch lösen statt nur beantworten",
-            description: "Kein Bot der nur antwortet: Unser KI-Agent erstattet, bucht und ändert direkt in Ihrem System. Für Mittelstand der seinen Support wirklich entlasten will.",
+            title: "KI Kundenservice-Automatisierung – bis zu 80% Tickets automatisch",
+            description: "KI Kundenservice automatisieren im Mittelstand: 60–80% der Tickets automatisch gelöst. Unser Agent erstattet, bucht und ändert direkt in Ihrem System.",
         },
         hero: {
             title: "KI Kundenservice-Automatisierung für B2B",

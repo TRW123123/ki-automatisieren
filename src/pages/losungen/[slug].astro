@@ -134,6 +134,17 @@ const faqSchema =
     </div>
   </section>
 
+  <!-- Optional intro (prose, for SEO content depth) -->
+  {solution.intro && (
+    <section class="py-16 border-b border-white/5">
+      <div class="container mx-auto px-4 max-w-3xl">
+        {solution.intro.split("\n\n").map((paragraph) => (
+          <p class="text-lg text-muted-foreground leading-relaxed mb-5 last:mb-0">{paragraph}</p>
+        ))}
+      </div>
+    </section>
+  )}
+
   <!-- Problems -->
   <section class="py-24 border-y border-white/5 bg-card/30">
     <div class="container mx-auto px-4">
