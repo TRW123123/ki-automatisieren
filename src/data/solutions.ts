@@ -250,6 +250,11 @@ Vertriebsautomatisierung mit KI löst genau dieses Problem. Das System, das wir 
             title: "CRM Prozessautomatisierung mit KI",
             subtitle: "Verbinden Sie Ihre Software-Inseln. Wir bauen die Pipelines, die Ihre Daten sauber halten.",
         },
+        intro: `Deutsche Vertriebsteams verbringen laut Salesforce „State of Sales" 2024 nur 28 Prozent ihrer Arbeitszeit mit aktivem Verkauf — den Rest kostet manuelle Datenpflege. Doppelte CRM-Einträge, veraltete Stammdaten und fehlende Synchronisation zwischen HubSpot, ERP und Buchhaltungssystem sind dabei die häufigsten Ursachen.
+
+KI-gestützte CRM-Automatisierung beseitigt diese Reibung strukturell: Eine Middleware-Schicht synchronisiert Kundendaten in Echtzeit zwischen allen verbundenen Systemen — ohne manuelle Eingriffe. Jede Änderung in HubSpot wird sofort gespiegelt, neue Leads aus Shopify landen automatisch in der richtigen Pipeline, DSGVO-konforme Audit-Logs protokollieren jede Datenbewegung.
+
+Das Ergebnis: Laut einer McKinsey-Analyse aus 2023 erreichen Unternehmen mit sauberer CRM-Datenbasis 20 bis 30 Prozent höhere Vertriebskonversionsraten gegenüber Wettbewerbern mit fragmentierten Systemen. Nicht einzelne Prozesse werden optimiert — die Datenbasis selbst wird dauerhaft zuverlässig.`,
         problem: {
             title: "Daten-Qualität",
             items: ["Veraltete Stammdaten", "Doppelte Einträge", "Manuelle Abgleiche"],
