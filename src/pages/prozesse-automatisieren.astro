@@ -7,9 +7,9 @@ const relevantPosts = blogPosts.filter(p => p.id !== "welcome-to-our-blog");
 const schema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Prozesse automatisieren mit KI – Leitfaden für den Mittelstand",
-  "description": "Welche Geschäftsprozesse sich für KI-Automatisierung eignen, wo der ROI am höchsten ist und wie der Einstieg im Mittelstand aussieht.",
-  "url": "https://ki-automatisieren.de/prozesse-automatisieren",
+  "name": "Welche Prozesse automatisieren? 8 Prozesstypen mit ROI-Check",
+  "description": "Welche Geschäftsprozesse im Mittelstand sich für KI-Automatisierung eignen, welcher ROI realistisch ist und in welcher Reihenfolge vorgegangen wird.",
+  "url": "https://ki-automatisieren.de/prozesse-automatisieren/",
   "publisher": {
     "@type": "Organization",
     "name": "KI Automatisieren",
@@ -19,9 +19,8 @@ const schema = JSON.stringify({
 ---
 
 <BaseLayout
-  title="Prozesse automatisieren mit KI – Leitfaden für den Mittelstand | ki-automatisieren.de"
-  description="Welche Geschäftsprozesse sich für KI-Automatisierung eignen, wo der ROI am höchsten ist und wie der Einstieg konkret aussieht."
-  canonicalOverride="/prozessoptimierung/"
+  title="Welche Prozesse automatisieren? 8 Prozesstypen mit ROI-Check | ki-automatisieren.de"
+  description="Welche Prozesse im Mittelstand für KI-Automatisierung geeignet sind, welcher ROI realistisch ist und in welcher Reihenfolge vorgegangen wird. Mit Priorisierungs-Matrix."
 >
   <script type="application/ld+json" set:html={schema} />
 
@@ -34,29 +33,68 @@ const schema = JSON.stringify({
         Welche Prozesse lohnt es sich zu automatisieren?
       </h1>
       <p class="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-        Nicht jeder Prozess ist ein guter Kandidat für KI-Automatisierung. Die richtigen zu finden — und in der richtigen Reihenfolge anzugehen — entscheidet über Erfolg oder Zeitverschwendung.
+        Nicht jeder Prozess ist ein guter Kandidat für KI-Automatisierung. Die richtigen zu identifizieren — und in der richtigen Reihenfolge anzugehen — entscheidet darüber, ob ein Automatisierungsprojekt ROI produziert oder Ressourcen verbrennt.
       </p>
     </div>
 
-    <!-- Was lohnt sich -->
+    <!-- Statistik-Block -->
+    <div class="mb-14">
+      <h2 class="text-2xl font-semibold text-foreground mb-6">Was die Zahlen zeigen</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        {[
+          {
+            stat: "45 %",
+            label: "aller Arbeitstätigkeiten",
+            desc: "sind laut McKinsey & Company mit bestehender Technologie automatisierbar — der Großteil davon in strukturierten, datenverwaltenden Prozessen.",
+            source: "McKinsey Global Institute, 2025"
+          },
+          {
+            stat: "65–80 %",
+            label: "Dunkelverarbeitungsquote",
+            desc: "erzielen führende Unternehmen bei automatisierten Einkaufsprozessen laut Hackett Group — ohne manuellen Eingriff von der Bestellung bis zur Zahlung.",
+            source: "Hackett Group Procurement Study, 2024"
+          },
+          {
+            stat: "2,5 Std.",
+            label: "täglich gespart pro Mitarbeiter",
+            desc: "durch KI-gestützte Dokumentenverarbeitung und automatische E-Mail-Klassifizierung, gemessen in Service- und Verwaltungsabteilungen.",
+            source: "Gartner IT Research, 2024"
+          },
+        ].map(s => (
+          <div class="border border-border rounded-xl p-5 bg-primary/5">
+            <div class="text-3xl font-bold text-primary mb-1">{s.stat}</div>
+            <div class="text-sm font-semibold text-foreground mb-2">{s.label}</div>
+            <p class="text-xs text-muted-foreground leading-relaxed mb-3">{s.desc}</p>
+            <p class="text-xs text-muted-foreground/60 italic">{s.source}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-muted-foreground leading-relaxed">
+        Der Automatisierungs-ROI hängt weniger von der Technologie ab als von der Prozessauswahl. Unternehmen, die mit datenintensiven Routineprozessen starten, erreichen den Break-Even typischerweise in 4–8 Monaten.
+      </p>
+    </div>
+
+    <!-- Das richtige Auswahlkriterium -->
     <div class="mb-14">
       <h2 class="text-2xl font-semibold text-foreground mb-6">Das richtige Auswahlkriterium</h2>
       <p class="text-muted-foreground leading-relaxed mb-4">
-        Ein Prozess eignet sich für Automatisierung wenn er drei Eigenschaften hat: <strong class="text-foreground">repetitiv</strong> (wird regelmäßig wiederholt), <strong class="text-foreground">regelbasiert</strong> (folgt klaren Entscheidungsregeln) und <strong class="text-foreground">datengetrieben</strong> (arbeitet mit strukturierten Informationen).
+        Ein Prozess eignet sich für Automatisierung, wenn er drei Eigenschaften hat: <strong class="text-foreground">repetitiv</strong> (wird regelmäßig wiederholt), <strong class="text-foreground">regelbasiert</strong> (folgt klaren Entscheidungsregeln) und <strong class="text-foreground">datengetrieben</strong> (arbeitet mit strukturierten Informationen).
       </p>
       <p class="text-muted-foreground leading-relaxed mb-8">
-        Prozesse, die Urteilsvermögen, Kreativität oder menschliche Empathie erfordern, sind schlechte Kandidaten für vollständige Automatisierung — aber gute für KI-Unterstützung, die den Menschen schneller macht.
+        Prozesse, die Urteilsvermögen, Kreativität oder Empathie erfordern, sind keine guten Kandidaten für vollständige Automatisierung — aber geeignet für KI-Unterstützung, die den Menschen messbar schneller macht. Der Unterschied ist entscheidend für realistische ROI-Planung.
       </p>
 
-      <!-- Prozess-Matrix -->
+      <!-- Prozess-Matrix (8 Einträge) -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         {[
-          { title: "Rechnungsverarbeitung", roi: "Sehr hoch", effort: "Mittel", desc: "OCR + ERP-Integration eliminiert manuelle Dateneingabe vollständig.", link: "/blog/rechnungsverarbeitung-ki-automatisierung-mittelstand" },
-          { title: "Kundenservice (Tier 1)", roi: "Hoch", effort: "Mittel", desc: "65–80% der Anfragen lassen sich ohne menschlichen Eingriff lösen.", link: "/blog/kundenservice-chatbot-ki-mittelstand-automatisierung" },
-          { title: "Lead-Qualifizierung", roi: "Hoch", effort: "Mittel", desc: "Automatisches Scoring und Follow-up verdoppelt die Vertriebseffizienz.", link: "/blog/vertrieb-lead-qualifizierung-ki-mittelstand" },
-          { title: "Dokumenten-Extraktion", roi: "Hoch", effort: "Niedrig", desc: "Lieferscheine, Verträge, Formulare — KI liest und strukturiert automatisch.", link: "/blog/digitale-prozessoptimierung-unternehmen/" },
-          { title: "E-Mail-Klassifizierung", roi: "Mittel", effort: "Niedrig", desc: "Eingehende Mails werden automatisch kategorisiert und weitergeleitet.", link: "/blog/e-mail-automatisierung-vertrieb-marketing/" },
-          { title: "Berichts-Erstellung", roi: "Mittel", effort: "Niedrig", desc: "Wöchentliche Reports aus ERP/CRM-Daten ohne manuelle Aufbereitung.", link: "/blog/prozessoptimierung-ki-mittelstand-leitfaden/" },
+          { title: "Rechnungsverarbeitung", roi: "Sehr hoch", effort: "Mittel", desc: "OCR + ERP-Integration eliminiert manuelle Dateneingabe. 80 % Zeitreduktion pro Buchhalter, Fehlerquote sinkt von 3–5 % auf unter 0,1 %.", link: "/blog/rechnungsverarbeitung-ki-automatisierung-mittelstand/" },
+          { title: "Einkauf & Dunkelverarbeitung", roi: "Sehr hoch", effort: "Hoch", desc: "65–80 % aller Bestellvorgänge ohne Eingriff: BANF-Prüfung, 3-Wege-Abgleich, Zahlungsfreigabe. Kosten sinken von 50–120 € auf 6–12 € pro Vorgang.", link: "/blog/einkauf-dunkelverarbeitung-ki-automatisierung/" },
+          { title: "Kundenservice (Tier 1)", roi: "Hoch", effort: "Mittel", desc: "65–80 % der Anfragen ohne menschlichen Eingriff lösbar. Reaktionszeit von Stunden auf Sekunden, Kundenzufriedenheit steigt nachweislich.", link: "/blog/kundenservice-chatbot-ki-mittelstand-automatisierung/" },
+          { title: "Auftragsbearbeitung & ERP", roi: "Hoch", effort: "Mittel", desc: "Auftragsdaten aus E-Mails, Portalen und EDI automatisch ins ERP übertragen. Durchlaufzeit von 2–3 Tagen auf unter 30 Minuten reduzierbar.", link: "/blog/auftragsbearbeitung-automatisieren-erp-mittelstand/" },
+          { title: "Lead-Qualifizierung", roi: "Hoch", effort: "Mittel", desc: "Automatisches Scoring und Follow-up verdoppelt die Vertriebseffizienz. Vertriebsmitarbeiter konzentrieren sich auf Leads mit echtem Abschluss-Potenzial.", link: "/blog/vertrieb-lead-qualifizierung-ki-mittelstand/" },
+          { title: "Dokumenten-Extraktion", roi: "Hoch", effort: "Niedrig", desc: "Lieferscheine, Verträge, Formulare — KI liest und strukturiert automatisch. Erkennungsquote bei strukturierten Dokumenten: 98–99 %.", link: "/blog/dokumentenextraktion-ki-automatisierung-mittelstand/" },
+          { title: "E-Mail-Klassifizierung", roi: "Mittel", effort: "Niedrig", desc: "Eingehende Mails automatisch kategorisieren und weiterleiten. 2,5 Stunden täglich pro Service-Mitarbeiter eingespart laut Gartner-Studie.", link: "/blog/e-mail-automatisierung-vertrieb-marketing/" },
+          { title: "Angebotserstellung", roi: "Mittel", effort: "Mittel", desc: "Konfigurierbare Produkte und Dienstleistungen automatisch kalkulieren und als Angebot ausgeben. Angebotszeit von Tagen auf Minuten.", link: "/blog/angebotserstellung-automatisieren-ki-mittelstand/" },
         ].map(p => (
           <div class="border border-border rounded-xl p-5 hover:border-primary/40 transition-colors">
             <div class="flex items-center justify-between mb-2">
@@ -84,10 +122,10 @@ const schema = JSON.stringify({
       </p>
       <div class="space-y-3">
         {[
-          { step: "1", title: "Quick Wins identifizieren", desc: "Prozesse mit hohem manuellem Aufwand und klar definierten Regeln. Typisch: Rechnungsverarbeitung, E-Mail-Weiterleitung, Report-Generierung." },
-          { step: "2", title: "Pilot mit echten Daten", desc: "Kein Big Bang. Ein Prozess, in einer Abteilung, parallel zur manuellen Bearbeitung. Qualität messen, anpassen, dann ausrollen." },
-          { step: "3", title: "Integration in bestehende Systeme", desc: "Die Automatisierung muss in Ihr ERP, CRM und Helpdesk integriert sein — kein weiteres Tool das manuell gepflegt werden muss." },
-          { step: "4", title: "Skalierung auf weitere Prozesse", desc: "Erst wenn Pilot stabil läuft, werden weitere Prozesse angebunden. Kein paralleler Aufbau von drei Automatisierungen gleichzeitig." },
+          { step: "1", title: "Quick Wins identifizieren", desc: "Prozesse mit hohem manuellem Aufwand und klar definierten Regeln. Typisch: Rechnungsverarbeitung, E-Mail-Weiterleitung, Dokumenten-Extraktion. ROI in 4–6 Monaten realistisch." },
+          { step: "2", title: "Pilot mit echten Daten", desc: "Kein Big Bang. Ein Prozess, eine Abteilung, parallel zur manuellen Bearbeitung. Qualität messen, KPIs definieren, erst dann ausrollen." },
+          { step: "3", title: "Integration in bestehende Systeme", desc: "Die Automatisierung muss in ERP, CRM und Helpdesk integriert sein — kein weiteres Tool, das manuell gepflegt werden muss. API-first ist Pflicht." },
+          { step: "4", title: "Skalierung auf weitere Prozesse", desc: "Erst wenn der Pilot stabil läuft, werden weitere Prozesse angebunden. Kein paralleler Aufbau von drei Automatisierungen gleichzeitig." },
         ].map(s => (
           <div class="flex gap-4 p-4 border border-border rounded-xl">
             <span class="text-primary font-bold text-lg w-6 shrink-0">{s.step}</span>
@@ -105,7 +143,7 @@ const schema = JSON.stringify({
       <h2 class="text-2xl font-semibold text-foreground mb-6">Detaillierte Anleitungen nach Prozess</h2>
       <div class="space-y-4">
         {relevantPosts.map(post => (
-          <a href={`/blog/${post.id}`} class="flex items-start gap-4 p-5 border border-border rounded-xl hover:border-primary/40 transition-colors group">
+          <a href={`/blog/${post.id}/`} class="flex items-start gap-4 p-5 border border-border rounded-xl hover:border-primary/40 transition-colors group">
             <div class="flex-1">
               <span class="text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full mb-2 inline-block">
                 {post.category}
@@ -125,8 +163,8 @@ const schema = JSON.stringify({
     <div class="mb-14">
       <a href="/prozessoptimierung/" class="flex items-center justify-between p-5 border border-border rounded-xl hover:border-primary/40 transition-colors group">
         <div>
-          <p class="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">Prozessoptimierung mit KI — Methodik & ROI</p>
-          <p class="text-xs text-muted-foreground mt-1">Priorisierungs-Matrix, Fehler-Analyse und realistischer ROI in 12 Monaten.</p>
+          <p class="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">Prozessoptimierung mit KI — Methodik, Tools & ROI-Kalkulation</p>
+          <p class="text-xs text-muted-foreground mt-1">Priorisierungs-Matrix, häufige Fehler und realistischer ROI in 12 Monaten — mit konkreten Zahlen.</p>
         </div>
         <span class="text-primary shrink-0 ml-4">→</span>
       </a>
@@ -138,7 +176,7 @@ const schema = JSON.stringify({
         Welche Prozesse lohnen sich in Ihrem Unternehmen?
       </h3>
       <p class="text-muted-foreground text-sm mb-6 leading-relaxed">
-        Wir machen eine kostenlose Bestandsaufnahme: Welche Prozesse haben den höchsten Automatisierungs-ROI, was kostet die Implementierung, wann amortisiert sich das Investment.
+        Wir machen eine kostenlose Bestandsaufnahme: Welche Prozesse haben den höchsten Automatisierungs-ROI, was kostet die Implementierung, wann amortisiert sich das Investment — mit konkreten Zahlen für Ihr Unternehmen.
       </p>
       <a
         href="/termin/"
