@@ -89,8 +89,8 @@ export const solutions: SolutionData[] = [
     {
         slug: "vertriebsautomatisierung",
         seo: {
-            title: "KI Vertriebsautomatisierung – Leads qualifizieren & CRM pflegen",
-            description: "Leads in Sekunden qualifiziert, in 2 Minuten angerufen, CRM automatisch gepflegt. KI-Vertriebsautomatisierung für B2B mit n8n, Voice-AI und HubSpot.",
+            title: "KI Vertriebsautomatisierung: Mehr Deals, weniger Aufwand",
+            description: "Leads in Sekunden qualifiziert, CRM automatisch gepflegt, Follow-ups auf Autopilot. KI-Vertriebsautomatisierung für B2B – live in 2 Wochen.",
         },
         hero: {
             title: "KI Vertriebsautomatisierung für B2B-Unternehmen",
