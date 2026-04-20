@@ -155,8 +155,9 @@ Pillar Page fasst alle Cluster zusammen, baut maximale interne Autorität auf.
 |-------|-------------|-----------------|--------------|-------------|
 | 2026-04-01 | 0 | 16 | 42.0 | 14 |
 | 2026-04-13 | 0 | 17 | 57.5 | 20 |
+| 2026-04-20 | 0 | 64 | 58.6 | 22 |
 
-*Position-Volatilität erwartet auf Low-DR Domain — Kernproblem bleibt Indexierung.*
+*Position-Volatilität erwartet auf Low-DR Domain — Kernproblem bleibt Indexierung. Impressionen-Wachstum durch neue Blog-Artikel sichtbar (+270% vs. 01.04.), aber durchgehend 0 Clicks. Homepage verliert Impressionen (37→14 WoW). Keine Striking-Distance-Opportunities (alle Rankings >Pos 50).*
 
 ---
 
@@ -165,9 +166,9 @@ Pillar Page fasst alle Cluster zusammen, baut maximale interne Autorität auf.
 | KW | Geplant | Status |
 |----|---------|--------|
 | 14 | 3 Artikel (Dokumente) | ✅ erledigt (papierrechnung, datev, dokumentenextraktion) |
-| 15 | 4 Artikel (Angebote/Auftrag) + Hub #1 | 🔶 3/4 live — fehlt: einkauf-dunkelverarbeitung |
-| 16 | 4 Artikel (Förderung) | ⬜ offen |
-| 17 | 4 Artikel (DSGVO/AI Act) | ⬜ offen |
+| 15 | 4 Artikel (Angebote/Auftrag) + Hub #1 | ✅ erledigt (einkauf-dunkelverarbeitung deployed 15.04., Hub #1 aktiv via canonical) |
+| 16 | 4 Artikel (Förderung) | 🔶 1/4 live (bafa-berater-finden deployed ~17.04.) |
+| 17 | 4 Artikel (DSGVO/AI Act) | ⬜ offen — PRIORITÄT DIESE WOCHE |
 | 18 | 5 Artikel (DSGVO Rest + Copilot) | ⬜ offen |
 | 19 | 6 Artikel (HR/Produktion) + Hub #2 | ⬜ offen |
 | 20+ | Pillar Page | ⬜ offen |
@@ -178,12 +179,12 @@ Pillar Page fasst alle Cluster zusammen, baut maximale interne Autorität auf.
 
 ---
 
-## Prioritäten KW16 (14.–18. April 2026)
+## Prioritäten KW17 (21.–25. April 2026)
 
-1. **KW15 Artikel #4:** `einkauf-dunkelverarbeitung-ki-automatisierung` — letzter offener KW15-Artikel
-2. **Hub-Seite #1:** `/prozesse-automatisieren/` — Trigger (≥18 Artikel) ist erfüllt, bauen
-3. **KW16 Artikel x4:** Förderungs-Cluster (bafa-berater-finden, bafa-foerderung-nrw, ki-beratung-kosten, digitalisierung-foerderung-bayern)
-4. **Datenlücke:** keyword_research Tabelle für ki-automatisieren.de ist leer — befüllen
+1. **KW16 Rest (3 Artikel offen):** `bafa-foerderung-unternehmensberatung-nrw-antrag`, `ki-beratung-kosten-foerderung-mittelstand-rechner`, `digitalisierung-foerderung-bayern-mittelstand-ki`
+2. **KW17 Start:** `chatgpt-unternehmen-datenschutz-richtlinie` — hohe Suchnachfrage, AI Act-Aktualität
+3. **Homepage-Drop analysieren:** Impressionen 37→14 WoW, Position volatile 7→95 innerhalb weniger Tage — mögliche Kannibalisierung oder Crawl-Issue prüfen
+4. **Datenlücke:** keyword_research Tabelle für ki-automatisieren.de noch immer leer — befüllen
 
 ---
 
