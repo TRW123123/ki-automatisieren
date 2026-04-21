@@ -5,7 +5,9 @@
     "**/*"
   ],
   "exclude": [
-    "dist"
+    "dist",
+    "supabase",
+    "test_rag.ts"
   ],
   "compilerOptions": {
     "baseUrl": ".",

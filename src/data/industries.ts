@@ -46,6 +46,7 @@ export const industries: SolutionData[] = [
             link: "/fallstudien/car-studio-ai",
             image: "/logos/carstudio.avif",
         },
+        faqs: [],
     },
     {
         slug: "stadion-event",
@@ -88,6 +89,7 @@ export const industries: SolutionData[] = [
             link: "/fallstudien/erpa-teknoloji",
             image: "/logos/erpa.avif", // Placeholder, ensure exists or fallback
         },
+        faqs: [],
     },
     {
         slug: "industrie-fertigung",
@@ -130,5 +132,6 @@ export const industries: SolutionData[] = [
             link: "/fallstudien/cemkimsan",
             image: "/logos/cemkimsan.avif",
         },
+        faqs: [],
     },
 ];
