@@ -1,0 +1,62 @@
+---
+// GeoBlock: TLDR-Capsule + Definition + Stats — direkt nach H1 platzieren
+// Forschungsbasis: 44,2% aller ChatGPT-Citations aus erstem Drittel der Seite (Indig 2026)
+import type { GeoData } from "@/lib/geoSchema";
+
+interface Props {
+  geo?: GeoData;
+}
+
+const { geo } = Astro.props;
+---
+
+{geo && (
+  <section class="bg-card/30 border-y border-lime-500/10 py-10" aria-label="Antwort und Kontext">
+    <div class="container mx-auto px-4 max-w-3xl">
+      {/* Answer-Capsule (40-60 Wörter, direkt zitierbar) */}
+      <div class="answer-capsule mb-6" itemscope itemtype="https://schema.org/Answer">
+        <p class="text-lg md:text-xl leading-relaxed text-foreground font-medium" itemprop="text">
+          {geo.tldr}
+        </p>
+      </div>
+
+      {/* Definition-Block ("X ist Y"-Pattern) */}
+      {geo.definition && (
+        <div class="border-l-2 border-lime-500/40 pl-4 mb-6">
+          <p class="text-base text-muted-foreground leading-relaxed">
+            {geo.definition}
+          </p>
+        </div>
+      )}
+
+      {/* Stats-Box (mit Datum + Quelle) */}
+      {geo.stats && geo.stats.length > 0 && (
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+          {geo.stats.map((stat) => (
+            <aside
+              class="rounded-xl bg-background/60 border border-white/10 p-5"
+              itemscope
+              itemtype="https://schema.org/Claim"
+            >
+              <div class="text-2xl font-bold text-lime-400 mb-1" itemprop="value">
+                {stat.value}
+              </div>
+              <div class="text-sm text-foreground mb-3 leading-snug" itemprop="claimReviewed">
+                {stat.claim}
+              </div>
+              <div class="text-xs text-muted-foreground">
+                Quelle: {stat.sourceUrl ? (
+                  <a href={stat.sourceUrl} class="underline hover:text-lime-400" rel="nofollow noopener">
+                    {stat.source}
+                  </a>
+                ) : (
+                  <span>{stat.source}</span>
+                )} ({stat.year})
+              </div>
+            </aside>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+)}

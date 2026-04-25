@@ -2,6 +2,9 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { solutions } from "../../data/solutions";
 import RoiCalculator from "@/components/RoiCalculator.astro";
+import GeoBlock from "@/components/seo/GeoBlock.astro";
+import { buildGeoGraph } from "@/lib/geoSchema";
+import { solutionGeo } from "../../data/geoEnhancements";
 
 export function getStaticPaths() {
   return solutions.map((solution) => ({
@@ -11,6 +14,9 @@ export function getStaticPaths() {
 }
 
 const { solution } = Astro.props;
+const geo = solutionGeo[solution.slug];
+const pageUrl = `https://ki-automatisieren.de/losungen/${solution.slug}/`;
+const today = new Date().toISOString().split("T")[0];
 
 // ROI-Rechner Voreinstellungen pro Lösungstyp
 const roiDefaults: Record<string, { employees: number; hours: number; rate: number; auto: number; headline: string }> = {
@@ -42,52 +48,18 @@ const roiDefaults: Record<string, { employees: number; hours: number; rate: numb
 
 const roi = roiDefaults[solution.slug] ?? { employees: 3, hours: 8, rate: 35, auto: 70, headline: "Was kostet manuelle Arbeit wirklich?" };
 
-// Entity-Graph Schema (Organization + Person + Service) — matches branchen template
-const entityGraph = JSON.stringify({
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": "https://ki-automatisieren.de/#safak-tepecik",
-      name: "Safak Tepecik",
-      jobTitle: "Gründer & KI-Systemarchitekt",
-      worksFor: { "@id": "https://ki-automatisieren.de/#organization" },
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://ki-automatisieren.de/#organization",
-      name: "KI Automatisieren",
-      url: "https://ki-automatisieren.de",
-      founder: { "@id": "https://ki-automatisieren.de/#safak-tepecik" },
-    },
-    {
-      "@type": "Service",
-      "@id": `https://ki-automatisieren.de/losungen/${solution.slug}/#service`,
-      name: solution.hero.title,
-      description: solution.seo.description,
-      provider: { "@id": "https://ki-automatisieren.de/#organization" },
-      areaServed: "DE",
-      serviceType: solution.slug,
-    },
-  ],
+// Konsolidierter GEO-Graph (Organization + Person + Service + Article + FAQPage)
+const geoGraph = buildGeoGraph({
+  type: "Service",
+  url: pageUrl,
+  headline: solution.hero.title,
+  description: solution.seo.description,
+  datePublished: "2024-06-01",
+  dateModified: today,
+  faqs: solution.faqs,
+  geo: geo,
+  serviceSlug: solution.slug,
 });
-
-// FAQ Schema
-const faqSchema =
-  solution.faqs && solution.faqs.length > 0
-    ? JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: solution.faqs.map((faq) => ({
-          "@type": "Question",
-          name: faq.question,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: faq.answer,
-          },
-        })),
-      })
-    : null;
 ---
 
 <BaseLayout
@@ -95,9 +67,11 @@ const faqSchema =
   description={solution.seo.description}
   type="article"
 >
-  <!-- Entity-Graph JSON-LD (Organization + Person + Service) -->
-  <script type="application/ld+json" set:html={entityGraph} />
-  {faqSchema && <script type="application/ld+json" set:html={faqSchema} />}
+  <!-- GEO-Graph JSON-LD: Organization + Person + Service + Article + FAQPage -->
+  <script type="application/ld+json" set:html={geoGraph} />
+
+  <!-- GEO-Block: TLDR (40-60 Wörter) + Definition + Stats — direkt nach Hero für Top-of-Page-Citation -->
+  <GeoBlock geo={geo} />
 
   <!-- Hero -->
   <section class="py-20 md:py-32 relative overflow-hidden">

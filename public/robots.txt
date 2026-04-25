@@ -1,4 +1,44 @@
+# robots.txt für ki-automatisieren.de
+# AI-Crawler explizit erlaubt (Trust-Signal für GEO)
+
 User-agent: *
 Allow: /
 
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Google AI (separater Opt-In für AI-Training/AI-Overviews)
+User-agent: Google-Extended
+Allow: /
+
+# Common Crawl (Trainings-Korpus für viele LLMs)
+User-agent: CCBot
+Allow: /
+
+# Bing/Microsoft Copilot
+User-agent: bingbot
+Allow: /
+
+# Sitemap
 Sitemap: https://ki-automatisieren.de/sitemap-index.xml

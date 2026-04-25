@@ -1,10 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import CaseStudyDetail from "../../components/react/CaseStudyDetail";
+import GeoBlock from "@/components/seo/GeoBlock.astro";
 import {
   caseStudiesData,
   getAdjacentCaseStudies,
 } from "../../data/caseStudiesData";
+import { caseStudyGeo } from "../../data/geoEnhancements";
+import { buildGeoGraph } from "@/lib/geoSchema";
 
 export function getStaticPaths() {
   return caseStudiesData.map((caseStudy) => ({
@@ -18,33 +21,20 @@ const { prev, next } = getAdjacentCaseStudies(caseStudy.slug);
 
 const currentLanguage = "de";
 
-// Schema Markup
-const schema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Article",
+const geo = caseStudyGeo[caseStudy.slug];
+const pageUrl = `https://ki-automatisieren.de/fallstudien/${caseStudy.slug}/`;
+const today = new Date().toISOString().split("T")[0];
+
+// Konsolidierter GEO-Graph (Article + Person + Organization + optional FAQ)
+const geoGraph = buildGeoGraph({
+  type: "Article",
+  url: pageUrl,
   headline: caseStudy.title,
   description: caseStudy.summary,
-  image: caseStudy.ogImage
-    ? `https://ki-automatisieren.de${caseStudy.ogImage}`
-    : "https://ki-automatisieren.de/og-homepage.jpg",
   datePublished: caseStudy.datePublished || "2024-01-15",
-  dateModified: caseStudy.dateModified || caseStudy.datePublished || "2024-06-15",
-  author: {
-    "@type": "Person",
-    name: "Safak Tepecik",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "KI Automatisieren",
-    logo: {
-      "@type": "ImageObject",
-      url: "https://ki-automatisieren.de/logo.png",
-    },
-  },
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": `https://ki-automatisieren.de/fallstudien/${caseStudy.slug}/`,
-  },
+  dateModified: caseStudy.dateModified || today,
+  image: caseStudy.ogImage,
+  geo: geo,
 });
 ---
 
@@ -54,10 +44,66 @@ const schema = JSON.stringify({
   image={caseStudy.ogImage}
   type="article"
 >
-  <!-- Schema.org markup -->
-  <script type="application/ld+json" set:html={schema} />
+  <!-- GEO-Graph JSON-LD: Organization + Person + Article -->
+  <script type="application/ld+json" set:html={geoGraph} />
 
-  <!-- Page Content -->
+  <!-- Statische SSR-Hero-Sektion: garantiert sichtbar für LLM-Crawler ohne JS-Render -->
+  <section class="relative overflow-hidden py-16 md:py-24" style="background-color: #0B0F14;">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="text-sm font-medium text-lime-400 mb-4 tracking-wide uppercase">
+        Fallstudie · {caseStudy.category}
+      </div>
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white">
+        {caseStudy.title}
+      </h1>
+      <p class="text-xl text-muted-foreground mb-6 max-w-3xl leading-relaxed">
+        {caseStudy.summary}
+      </p>
+
+      {/* E-E-A-T Byline + Datum */}
+      <div class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-lime-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span>Dokumentiert von <strong class="text-foreground">Safak Tepecik</strong></span>
+        </div>
+        {caseStudy.datePublished && (
+          <span>· Veröffentlicht: {caseStudy.datePublished}</span>
+        )}
+        {caseStudy.dateModified && (
+          <span>· Aktualisiert: {caseStudy.dateModified}</span>
+        )}
+      </div>
+
+      {/* KPIs als statisches Markup (sichtbar ohne JS) */}
+      {caseStudy.kpis && caseStudy.kpis.length > 0 && (
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+          {caseStudy.kpis.map((kpi) => (
+            <div class="rounded-xl bg-card border border-white/10 p-5">
+              <div class="text-2xl md:text-3xl font-bold text-lime-400 mb-1">{kpi.value}</div>
+              <div class="text-xs text-muted-foreground uppercase tracking-wide">{kpi.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- GEO-Block: TLDR + Definition + Stats — direkt nach Hero für Top-of-Page-Citation -->
+  <GeoBlock geo={geo} />
+
+  <!-- Statische Solution-Section (für Google sichtbar ohne React) -->
+  {caseStudy.solution && (
+    <section class="py-16 border-t border-white/5">
+      <div class="container mx-auto px-4 max-w-3xl">
+        <h2 class="text-3xl font-bold mb-6">Wie wurde das Problem gelöst?</h2>
+        <p class="text-lg text-muted-foreground leading-relaxed">{caseStudy.solution}</p>
+      </div>
+    </section>
+  )}
+
+  <!-- Interaktive Tabs (React) — kommt NACH dem statischen Content -->
   <CaseStudyDetail
     client:load
     caseStudy={caseStudy}

@@ -1,8 +1,9 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { blogPosts } from "../../data/blogData";
-
-
+import GeoBlock from "@/components/seo/GeoBlock.astro";
+import { buildGeoGraph } from "@/lib/geoSchema";
+import { blogGeo } from "../../data/geoEnhancements";
 
 export function getStaticPaths() {
   return blogPosts.map((post) => ({
@@ -12,6 +13,9 @@ export function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const geo = blogGeo[post.id];
+const pageUrl = `https://ki-automatisieren.de/blog/${post.id}/`;
+const today = new Date().toISOString().split("T")[0];
 
 const relatedPosts = blogPosts
   .filter(p => p.id !== post.id && (p.category === post.category || p.tags.some(t => post.tags.includes(t))))
@@ -63,44 +67,27 @@ function renderContent(md: string): string {
 
 const htmlContent = renderContent(post.content);
 
-const schema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": post.metaTitle || post.title,
-  "description": post.metaDescription || post.excerpt,
-  "datePublished": post.date,
-  "author": {
-    "@type": "Person",
-    "name": post.author
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "KI Automatisieren",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://ki-automatisieren.de/logo.png"
-    }
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": `https://ki-automatisieren.de/blog/${post.id}/`
-  },
-  "keywords": post.tags.join(", ")
-});
-
-// FAQ Schema: Only match bold lines that END with a question mark inside the bold markers
+// FAQ-Extraktion aus Content (Bold-Lines mit Questionmark)
 const faqMatches = post.content.match(/\*\*([^*]+\?)\*\*\n([^*\n](?:(?!\n\n|\n\*\*).)*)/gs) || [];
 const faqEntries = faqMatches.map(match => {
   const lines = match.split('\n');
   const q = lines[0].replace(/\*\*/g, '').trim();
   const a = lines.slice(1).join(' ').trim();
-  return { "@type": "Question" as const, "name": q, "acceptedAnswer": { "@type": "Answer" as const, "text": a } };
-}).filter(entry => entry.name.length > 10 && entry.acceptedAnswer.text.length > 10);
-const faqSchema = faqEntries.length >= 2 ? JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqEntries
-}) : null;
+  return { question: q, answer: a };
+}).filter(entry => entry.question.length > 10 && entry.answer.length > 10);
+
+// Konsolidierter GEO-Graph (Article + Person + Organization + optional HowTo + FAQ)
+const geoGraph = buildGeoGraph({
+  type: "Article",
+  url: pageUrl,
+  headline: post.metaTitle || post.title,
+  description: post.metaDescription || post.excerpt,
+  datePublished: post.date,
+  dateModified: today,
+  image: post.image,
+  faqs: faqEntries,
+  geo: geo,
+});
 ---
 
 <BaseLayout
@@ -108,8 +95,11 @@ const faqSchema = faqEntries.length >= 2 ? JSON.stringify({
   description={post.metaDescription || post.excerpt}
   type="article"
 >
-  <script type="application/ld+json" set:html={schema} />
-  {faqSchema && <script type="application/ld+json" set:html={faqSchema} />}
+  <!-- GEO-Graph JSON-LD: Organization + Person + Article + optional HowTo + FAQ -->
+  <script type="application/ld+json" set:html={geoGraph} />
+
+  <!-- GEO-Block: TLDR + Definition + Stats — direkt nach Header-Section, im ersten Drittel -->
+  <GeoBlock geo={geo} />
 
   <!-- Breadcrumb -->
   <nav class="max-w-3xl mx-auto px-4 pt-8 pb-2">

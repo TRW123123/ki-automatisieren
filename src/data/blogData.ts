@@ -3439,6 +3439,128 @@ DSGVO-Compliance bei KI-Systemen ist handhabbar, wenn man strukturiert vorgeht. 
         tags: ["DSGVO", "Datenschutz", "KI-Einführung", "Compliance", "AI Act", "Mittelstand", "Auftragsverarbeitung", "Datenschutz-Folgenabschätzung"],
         readTime: 9,
         image: "/og-homepage.jpg"
+    },
+    {
+        id: "ki-richtlinie-unternehmen-erstellen-vorlage",
+        title: "KI-Richtlinie für Unternehmen: Vorlage und 8 Pflicht-Bausteine nach AI Act",
+        metaTitle: "KI-Richtlinie erstellen: Vorlage für Mittelstand – AI Act konform 2026",
+        metaDescription: "Jedes Unternehmen braucht eine KI-Richtlinie — spätestens ab August 2026 schreibt der EU AI Act sie für Hochrisiko-Systeme vor. Unsere Vorlage zeigt die 8 Pflicht-Bausteine, die kein Mittelständler weglassen darf.",
+        excerpt: "Ohne schriftliche KI-Richtlinie läuft Schatten-KI unkontrolliert durch Ihre Prozesse. Ab August 2026 ist sie für Hochrisiko-Systeme gesetzlich Pflicht. Wir zeigen die 8 Bausteine, die eine solide Vorlage abdecken muss.",
+        content: `
+Einer von drei Mitarbeitern nutzt KI-Tools im Berufsalltag — oft ohne dass die Geschäftsführung es weiß. Das zeigen Umfragen aus dem deutschen Mittelstand aus 2024. Wenn ein Vertriebsmitarbeiter Kundendaten in ChatGPT eingibt, um ein Angebot zu schreiben, oder die Personalabteilung Bewerbungen durch ein KI-Tool filtert, läuft das ohne schriftliche Regelung im rechtlichen Graubereich.
+
+Eine KI-Richtlinie schafft Klarheit: Was ist erlaubt, was nicht, wer ist verantwortlich, wie werden Daten geschützt. Sie schützt das Unternehmen vor Haftung — und die Mitarbeiter vor Unsicherheit.
+
+Ab August 2026 ist sie für bestimmte Systeme gesetzlich verpflichtend.
+
+---
+
+## Was der EU AI Act von Unternehmen konkret verlangt
+
+Der EU AI Act gilt seit dem 1. August 2024. Für die meisten Unternehmen gelten die Pflichten gestaffelt:
+
+- **Februar 2025:** Verbotene KI-Praktiken (z. B. manipulative Systeme, Echtzeit-Biometrie im öffentlichen Raum) sind untersagt.
+- **August 2026:** Hochrisiko-KI-Systeme müssen technisch dokumentiert, konformitätsbewertet und registriert sein.
+
+Was als Hochrisiko gilt: KI-Systeme, die bei Personalentscheidungen eingesetzt werden (z. B. Bewerber-Ranking, Leistungsbewertung), Kreditwürdigkeitsprüfung, biometrische Identifikation oder Einschätzungen in Bildung und kritischer Infrastruktur. Für die meisten Mittelständler, die KI für Dokumentenautomation, E-Mail-Klassifizierung oder Chatbots nutzen, gelten die Hochrisiko-Pflichten nicht.
+
+Dennoch schreibt der AI Act für **alle Anwender von KI-Systemen** vor, die Mitarbeiter, die mit KI arbeiten, angemessen zu schulen und die KI-Nutzung intern zu dokumentieren. Eine fehlende KI-Richtlinie ist ab 2026 ein nachweisbares Compliance-Gap — mit Bußgeldern bis zu **3% des weltweiten Jahresumsatzes** für allgemeine Verstöße.
+
+Parallel gilt die DSGVO weiter: Jedes KI-System, das personenbezogene Daten verarbeitet, braucht Auftragsverarbeitungsverträge und in vielen Fällen eine Datenschutz-Folgenabschätzung. Mehr dazu lesen Sie im Artikel zu [DSGVO-konformer KI-Einführung](/blog/dsgvo-konforme-ki-einfuehrung-mittelstand/).
+
+---
+
+## Die 8 Bausteine einer soliden KI-Richtlinie — die Vorlage
+
+Keine Richtlinie muss ein 50-seitiges Handbuch sein. Eine praxistaugliche Vorlage für den Mittelstand deckt acht Bausteine ab:
+
+### 1. Geltungsbereich und Definition
+
+Welche Systeme fallen unter die Richtlinie? Definieren Sie KI weit genug: Nicht nur eigenentwickelte Systeme, sondern auch SaaS-Tools mit KI-Funktionen (z. B. Copilot, ChatGPT, CRM mit Lead-Scoring). Legen Sie fest, welche Mitarbeitergruppen und Abteilungen betroffen sind.
+
+### 2. Erlaubte und verbotene Nutzung
+
+Konkrete Liste: Welche KI-Anwendungen sind genehmigt (mit welchem Anbieter, welchem Vertrag), welche sind ohne Genehmigung verboten? Schatten-KI — die Nutzung nicht freigegebener Tools mit Unternehmensdaten — muss explizit untersagt sein.
+
+### 3. Datenschutz und Datenkategorien
+
+Welche Daten dürfen in welche Systeme eingegeben werden? Unterscheidung: öffentliche Daten, interne Betriebsdaten, personenbezogene Daten, Geschäftsgeheimnisse. Für jeden Datentyp klare Regel: erlaubt / nur nach Freigabe / grundsätzlich verboten.
+
+### 4. Menschliche Kontrolle und Letztentscheidung
+
+KI-Systeme dürfen keine autonomen Entscheidungen mit erheblicher Auswirkung auf Personen treffen — weder bei Personalentscheidungen noch bei Kreditvergaben oder Vertragsabschlüssen über einen definierten Schwellenwert. Die Richtlinie muss regeln, wann ein Mensch die finale Entscheidung trifft.
+
+### 5. Transparenzpflichten
+
+Wenn Kunden oder Mitarbeiter mit KI-Systemen interagieren (z. B. Chatbot, automatisch generierte E-Mails), muss das offengelegt werden. Art. 52 EU AI Act schreibt das für bestimmte Systeme explizit vor.
+
+### 6. Schulung und Zuständigkeiten
+
+Wer ist KI-Verantwortlicher im Unternehmen? Wer genehmigt neue Tools? Welche Mitarbeiter brauchen welche Schulungen? Ohne namentliche Zuständigkeiten ist die Richtlinie wertlos — weil niemand verantwortlich ist.
+
+### 7. Beschaffungsprozess für neue KI-Tools
+
+Neue KI-Tools dürfen nicht einfach per Kreditkarte abonniert werden. Die Richtlinie sollte einen einfachen Freigabeprozess definieren: IT-Sicherheitsprüfung, Datenschutzcheck, Auftragsverarbeitungsvertrag, Kostenfreigabe. Ziel: Schatten-KI verhindern, ohne Innovation zu bremsen.
+
+### 8. Revision und Aktualisierung
+
+Der EU AI Act entwickelt sich weiter. Legen Sie fest, wer die Richtlinie in welchem Intervall (empfohlen: jährlich, bei wesentlichen Gesetzesänderungen sofort) überprüft und aktualisiert.
+
+---
+
+## Typische Fehler beim Erstellen einer KI-Richtlinie
+
+**Zu allgemein formuliert:** "KI-Tools sollen verantwortungsvoll eingesetzt werden" schützt niemanden. Die Richtlinie muss konkrete Regeln, konkrete Systeme und konkrete Verantwortliche benennen.
+
+**Nur auf Hochrisiko-Systeme fokussiert:** Viele Mittelständler glauben, der AI Act betreffe sie nicht, weil sie keine Hochrisiko-KI einsetzen. Dabei gelten die allgemeinen Schulungs- und Dokumentationspflichten ab August 2026 für alle.
+
+**Datenschutz nicht integriert:** KI-Richtlinie und DSGVO-Compliance werden oft in getrennten Silos behandelt. Beides muss zusammenpassen — wer legt fest, welche Daten in welche KI fließen dürfen?
+
+**Keine Mitarbeiterbeteiligung:** Eine Richtlinie, die ohne Rücksicht auf tatsächliche Arbeitsabläufe erstellt wurde, wird nicht eingehalten. Praxisrelevante Regeln entstehen im Dialog mit den Abteilungen.
+
+---
+
+## Umsetzung in vier Schritten
+
+**Schritt 1 — Bestandsaufnahme (2 Tage):** Welche KI-Tools werden bereits genutzt — offiziell und inoffiziell? Eine anonyme Mitarbeiterbefragung fördert Schatten-KI zutage.
+
+**Schritt 2 — Risikobewertung (3 Tage):** Welche Tools verarbeiten personenbezogene Daten? Welche könnten als Hochrisiko klassifiziert werden? Datenschutzbeauftragten einbeziehen.
+
+**Schritt 3 — Richtlinie schreiben (1 Woche):** Auf Basis der 8 Bausteine. Keine Bibliothekssprache — klare, kurze Sätze. Mitarbeiter müssen die Regeln ohne juristisches Vorwissen verstehen können.
+
+**Schritt 4 — Schulung und Rollout (1 Woche):** Schriftliche Kenntnisnahme durch alle betroffenen Mitarbeiter dokumentieren. Das ist im Fall einer Prüfung der Nachweis, dass die Richtlinie gelebt wird.
+
+Fördergelder für Digitalisierungsprojekte — unter anderem für Compliance-Beratung zur KI-Einführung — sind verfügbar. Eine Übersicht finden Sie im Artikel zu [Fördermitteln für die Digitalisierung im Mittelstand](/blog/foerdermittel-digitalisierung-mittelstand-2026/).
+
+---
+
+## Häufige Fragen
+
+**Braucht jedes Unternehmen eine KI-Richtlinie, auch wenn wir KI noch kaum nutzen?**
+Sobald auch nur einzelne Mitarbeiter KI-Tools mit Unternehmensdaten nutzen — und das ist in fast jedem Betrieb der Fall — ist eine Richtlinie sinnvoll. Sie müssen nicht mit einem 20-seitigen Dokument beginnen: Eine einseitige "Grundregel"-Liste zu erlaubten und verbotenen Nutzungen reicht als Ausgangspunkt.
+
+**Ab wann ist eine KI-Richtlinie gesetzlich Pflicht?**
+Für Hochrisiko-KI-Systeme nach EU AI Act Annex III ab August 2026. Für alle Unternehmen, die KI-Systeme einsetzen, gelten ab diesem Datum auch Schulungspflichten (Art. 4 EU AI Act). Eine schriftliche Richtlinie ist der einfachste Nachweis, dass diese Pflicht erfüllt wird.
+
+**Wer sollte die KI-Richtlinie im Unternehmen verantworten?**
+Typischerweise eine Kombination: IT (technische Prüfung neuer Tools), Datenschutz (DSGVO-Konformität) und Geschäftsführung (Genehmigung, Kommunikation). In kleineren Unternehmen liegt das oft bei einer Person — wichtig ist, dass es schriftlich geregelt ist.
+
+**Wie detailliert muss die Liste erlaubter Tools sein?**
+Detailliert genug, um Grenzfälle zu entscheiden. Empfehlung: Tools namentlich freigeben (z. B. "Microsoft 365 Copilot — freigegeben unter Einhaltung der Datenkategorien in Abschnitt 3"), nicht nur Kategorien ("Textgeneratoren erlaubt").
+
+**Gilt die KI-Richtlinie auch für externe Dienstleister, die KI für uns nutzen?**
+Ja — wenn ein Dienstleister in Ihrem Auftrag personenbezogene Daten mit KI verarbeitet, sind Sie als Auftraggeber verantwortlich. Das muss im Auftragsverarbeitungsvertrag geregelt sein. Fragen Sie aktiv nach, welche KI-Systeme Ihr Dienstleister einsetzt.
+
+---
+
+Eine KI-Richtlinie ist kein bürokratisches Hemmnis — sie gibt Mitarbeitern Orientierung und schützt das Unternehmen vor unkontrollierter Datenverarbeitung. Wer jetzt strukturiert vorgeht, hat bis August 2026 ausreichend Zeit für eine praxistaugliche Umsetzung. Wenn Sie wissen möchten, welche konkreten Schritte für Ihr Unternehmen prioritär sind: Sprechen Sie uns an.
+        `,
+        author: "Safak Tepecik",
+        date: "2026-04-23",
+        category: "Compliance & Datenschutz",
+        tags: ["KI-Richtlinie", "AI Act", "Compliance", "Vorlage", "Mittelstand", "DSGVO", "Schatten-KI", "EU AI Act"],
+        readTime: 8,
+        image: "/og-homepage.jpg"
     }
 ];
 
