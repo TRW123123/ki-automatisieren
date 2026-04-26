@@ -143,6 +143,33 @@ export const caseStudyGeo: Record<string, GeoData> = {
   },
 };
 
+export const hubGeo: GeoData = {
+  tldr: "KI Automatisierung verbindet Vertrieb, Kundenservice und interne Prozesse zu einer einzigen n8n-Pipeline. Statt Insellösungen baut ki-automatisieren.de vollständige Systeme — von Lead-Eingang über Qualifizierung und Termin bis zum automatisierten Follow-up. Typische Einführungszeit: 2–4 Wochen, ohne IT-Abteilung.",
+  definition:
+    "KI Automatisierung bezeichnet den Einsatz von Sprachmodellen (GPT-4o, Claude Sonnet), Workflow-Engines (n8n, Make) und Daten-APIs zur Übernahme repetitiver Prozesse in Vertrieb, Marketing und Kundenservice. Im DACH-Mittelstand ersetzt sie manuelle Lead-Recherche, manuelles Ticket-Routing und manuelle CRM-Pflege — ohne Neuentwicklung von Software.",
+  stats: [
+    {
+      value: "60–80 %",
+      claim: "der Support-Tickets werden durch KI vollautomatisch gelöst",
+      source: "ki-automatisieren.de ROI-Rechner & Kundenservice-Fallstudien",
+      year: 2026,
+    },
+    {
+      value: "5 %",
+      claim: "Terminquote bei KI-gestütztem Outreach (Fallstudie Car Studio AI)",
+      source: "Car Studio AI Implementation, ki-automatisieren.de",
+      sourceUrl: "https://ki-automatisieren.de/fallstudien/car-studio-ai/",
+      year: 2024,
+    },
+    {
+      value: "2–4 Wochen",
+      claim: "typische Einführungszeit für n8n-basierte KI-Automatisierung",
+      source: "Implementations-Erfahrung ki-automatisieren.de",
+      year: 2026,
+    },
+  ],
+};
+
 export const blogGeo: Record<string, GeoData> = {
   "dokumentenextraktion-ki-mittelstand-automatisierung": {
     tldr: "KI-Dokumentenextraktion liest Rechnungen, Lieferscheine, Verträge und Formulare automatisch aus — auch handgeschrieben oder gescannt. Ein Modell mit OCR-Kern erkennt Lieferanten, Beträge, Fälligkeiten und überträgt sie direkt nach DATEV, SAP oder Lexoffice. Mittelständler reduzieren manuelle Erfassung von 30+ Stunden pro Monat auf unter vier.",

@@ -1,32 +1,60 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { solutions } from "../../data/solutions";
+import GeoBlock from "@/components/seo/GeoBlock.astro";
+import { buildGeoGraph } from "@/lib/geoSchema";
+import { hubGeo } from "../../data/geoEnhancements";
 
-const title = "KI-Lösungen für Vertrieb & Leadgenerierung | ki-automatisieren.de";
+const title = "KI Automatisierung für Mittelstand | ki-automatisieren.de";
 const description =
-  "Entdecken Sie unsere maßgeschneiderten KI-Lösungen für Vertrieb, Marketing und Prozesse.";
+  "KI Automatisierung für Vertrieb, Kundenservice und Prozesse: maßgeschneiderte n8n-Workflows, LLM-Integration und Implementierung in 2–4 Wochen für den DACH-Mittelstand.";
+
+const pageUrl = "https://ki-automatisieren.de/losungen/";
+const today = new Date().toISOString().split("T")[0];
+
+const geoGraph = buildGeoGraph({
+  type: "Article",
+  url: pageUrl,
+  headline: "KI Automatisierung für den Mittelstand — Lösungen im Überblick",
+  description,
+  datePublished: "2024-06-01",
+  dateModified: today,
+  geo: hubGeo,
+});
 ---
 
 <BaseLayout title={title} description={description}>
+  <!-- GEO-Graph JSON-LD -->
+  <script type="application/ld+json" set:html={geoGraph} />
+
+  <!-- GEO-Block: TLDR + Definition + Stats — LLM-Citation-Magnet -->
+  <GeoBlock geo={hubGeo} />
+
+  <!-- Hero -->
   <section class="py-20 md:py-32 relative overflow-hidden">
     <div class="absolute inset-0 bg-lime-500/5 -z-10"></div>
     <div class="container mx-auto px-4 text-center">
       <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-        KI-Systeme für Vertrieb & Marketing
+        KI Automatisierung für Vertrieb & Marketing
       </h1>
-      <p
-        class="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
-      >
-        Leadgenerierung, Outbound und Qualifizierung – voll automatisiert.
+      <p class="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+        Leadgenerierung, Kundenservice und Prozesse — voll automatisiert mit n8n, GPT-4o und Claude.
       </p>
 
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto text-left"
-      >
+      <!-- E-E-A-T Byline -->
+      <div class="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-12">
+        <svg class="w-4 h-4 text-lime-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <span>Geprüft von <strong class="text-foreground">Safak Tepecik</strong>, KI-Systemarchitekt — 8 Jahre Vertriebs- und Automatisierungs-Erfahrung</span>
+      </div>
+
+      <!-- Solution Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto text-left">
         {
           solutions.map((solution) => (
             <a
-              href={`/losungen/${solution.slug}`}
+              href={`/losungen/${solution.slug}/`}
               class="group block p-8 rounded-2xl bg-card border border-white/10 hover:border-lime-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(163,230,53,0.1)]"
             >
               <div class="mb-4 text-lime-400">
@@ -75,6 +103,70 @@ const description =
             </a>
           ))
         }
+      </div>
+    </div>
+  </section>
+
+  <!-- Prose Section: KI Automatisierung erklärt (SEO-Content für "ki automatisierung") -->
+  <section class="py-16 border-t border-white/5">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <h2 class="text-3xl font-bold mb-8">Was ist KI Automatisierung für den Mittelstand?</h2>
+
+      <p class="text-lg text-muted-foreground leading-relaxed mb-5">
+        KI Automatisierung bedeutet, dass repetitive Geschäftsprozesse — Lead-Recherche, Ticket-Beantwortung, Datenpflege, Rechnungsverarbeitung — von einem KI-System übernommen werden, das rund um die Uhr ohne Pause arbeitet. Die Grundlage bilden drei Bausteine: ein Sprachmodell (GPT-4o oder Claude Sonnet), eine Workflow-Engine (n8n oder Make) und die Anbindung an Ihre bestehenden Systeme (CRM, Ticketsystem, ERP oder E-Mail-Postfach).
+      </p>
+
+      <p class="text-lg text-muted-foreground leading-relaxed mb-5">
+        Was KI Automatisierung von klassischer Softwareautomatisierung unterscheidet: Das System versteht freie Texteingaben. Ein eingehende Kundenanfrage auf Polnisch, eine handgeschriebene Lieferscheinkopie als Foto, eine mehrdeutige Vertriebsanfrage per E-Mail — ein klassisches Rule-Based-System scheitert, ein LLM-basiertes KI-System löst den Fall. Das macht KI Automatisierung besonders wertvoll in Branchen mit hoher Eingangs-Varianz: Industrie, Handel, Immobilien, Logistik.
+      </p>
+
+      <p class="text-lg text-muted-foreground leading-relaxed mb-5">
+        Im DACH-Mittelstand sind drei Bereiche besonders reif für KI Automatisierung. Erstens der <strong class="text-foreground">Kundenservice</strong>: 60–80 % aller eingehenden Support-Tickets sind Tier-1-Anfragen (Status, Rechnung, Adressänderung), die vollautomatisch bearbeitet werden können — ohne dass ein Mitarbeiter eingreifen muss. Zweitens der <strong class="text-foreground">Outbound-Vertrieb</strong>: KI-Systeme identifizieren Zielfirmen, personalisieren Kontaktaufnahmen und buchen Ersttermins — messbar bei 5 % Terminquote in echten Setups. Drittens die <strong class="text-foreground">Dokumentenverarbeitung</strong>: Rechnungen, Lieferscheine und Verträge lassen sich mit Vision-LLMs in unter 10 Sekunden extrahieren und an SAP, DATEV oder ERP übergeben.
+      </p>
+
+      <p class="text-lg text-muted-foreground leading-relaxed mb-5">
+        ki-automatisieren.de setzt KI Automatisierung für Unternehmen ab 10 Mitarbeiter ohne eigene IT-Abteilung um. Typischer Ablauf: Analyse der aktuellen Prozesse (1 Woche), Aufbau der n8n-Pipeline mit LLM-Integration (1–2 Wochen), Shadow-Mode-Test mit echten Daten, schrittweiser Go-Live. Die meisten Systeme gehen in 2–4 Wochen in den Produktivbetrieb — ohne Neuentwicklung, ohne IT-Berater, ohne Enterprise-Software-Lizenzen.
+      </p>
+
+      <p class="text-lg text-muted-foreground leading-relaxed mb-5">
+        Für welche Branchen funktioniert KI Automatisierung besonders gut? Aus über 50 abgeschlossenen Projekten wissen wir: Autohäuser (Leadbearbeitung und Service-Anfragen), Industriezulieferer (Dokumentenverarbeitung und Angebotskommunikation), E-Commerce (Kundenservice und Retouren-Handling), Immobilien (Interessenten-Qualifizierung) und professionelle Dienstleister (Terminbuchung und Follow-up). Die spezifischen Branchenpages mit Benchmarks finden Sie unter <a href="/branchen/" class="text-lime-400 hover:text-lime-300 transition-colors">KI Automatisierung nach Branche</a>.
+      </p>
+
+      <div class="mt-10 bg-lime-500/5 border border-lime-500/20 rounded-xl p-6">
+        <p class="text-sm font-medium text-lime-400 mb-2 uppercase tracking-wide">Schnellstart</p>
+        <p class="text-foreground font-medium mb-4">
+          30-minütiges Erstgespräch — kostenlos. Wir zeigen konkret, welcher Ihrer Prozesse sich zuerst automatisieren lässt und was das pro Monat einspart.
+        </p>
+        <a
+          href="/termin/"
+          class="inline-flex items-center gap-2 bg-lime-500 text-black font-bold px-6 py-3 rounded-lg hover:bg-lime-400 transition-colors text-sm"
+        >
+          Jetzt Schnellanalyse buchen →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="py-12 border-t border-b border-white/5 bg-card/30">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
+        <div>
+          <div class="text-3xl font-bold text-lime-400 mb-1">50+</div>
+          <div class="text-sm text-muted-foreground">abgeschlossene KI-Projekte</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-lime-400 mb-1">2–4 Wo.</div>
+          <div class="text-sm text-muted-foreground">typische Einführungszeit</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-lime-400 mb-1">60–80 %</div>
+          <div class="text-sm text-muted-foreground">Tickets vollautomatisch</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-lime-400 mb-1">8 Jahre</div>
+          <div class="text-sm text-muted-foreground">Vertriebs-Expertise</div>
+        </div>
       </div>
     </div>
   </section>

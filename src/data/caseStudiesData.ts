@@ -68,7 +68,7 @@ export const caseStudiesData: CaseStudy[] = [
         category: "Marketingautomatisierung",
         title: "Acilsatis",
         summary: "Schnelles Wachstum und organische Traffic-Steigerung im Immobilien- und Automobilsektor durch KI im Marketing.",
-        metaTitle: "Fallstudie: Wie KI 5.000 Immobilienmakler automatisch erreichte – 0€ Budget",
+        metaTitle: "KI-Outreach: 5.000 Makler ohne Budget | ki-automatisieren.de",
         metaDescription: "Kein Werbebudget, hunderte neue Kunden: Wie automatisierte KI-Nachrichten den Vertrieb für Immobilienmakler komplett übernehmen – und was das für Ihr Unternehmen bedeutet.",
         logo: "/logos/acilsatis.avif",
         logoDimensions: { width: 91, height: 42 },

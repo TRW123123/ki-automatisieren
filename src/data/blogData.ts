@@ -2082,7 +2082,7 @@ Die manuelle Dateneingabe in DATEV ist das größte Effizienzproblem in deutsche
     {
         id: "dokumentenextraktion-ki-mittelstand-automatisierung",
         title: "Dokumentenextraktion mit KI: Wie der Mittelstand Rechnungen, Verträge und Lieferscheine in Sekunden verarbeitet",
-        metaTitle: "Dokumentenextraktion mit KI – Automatisierung für den Mittelstand | ki-automatisieren.de",
+        metaTitle: "KI-Dokumentenextraktion für Mittelstand | ki-automatisieren.de",
         metaDescription: "Von OCR zu Intelligent Document Processing: Wie Mittelständler mit KI-gestützter Dokumentenextraktion 98–99% Erkennungsrate erreichen — DSGVO-konform und ohne Cloud-Abhängigkeit.",
         excerpt: "Deutsche Mittelständler verarbeiten täglich hunderte Dokumente manuell: Rechnungen, Verträge, Lieferscheine, Auftragsbestätigungen. KI-gestützte Dokumentenextraktion erledigt das in Sekunden — mit 98–99% Genauigkeit bei strukturierten Dokumenten.",
         content: `
