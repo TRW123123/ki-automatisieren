@@ -297,37 +297,54 @@ Das Ergebnis: Laut einer McKinsey-Analyse aus 2023 erreichen Unternehmen mit sau
     {
         slug: "kundenservice-automatisierung",
         seo: {
-            title: "KI Kundenservice-Automatisierung – bis zu 80% Tickets automatisch",
-            description: "KI Kundenservice automatisieren im Mittelstand: 60–80% der Tickets automatisch gelöst. Unser Agent erstattet, bucht und ändert direkt in Ihrem System.",
+            title: "Kundenservice automatisieren mit KI — 60–80 % Tickets ohne Agent",
+            description: "Kundenservice automatisieren im Mittelstand: KI-Agent löst Tier-1-Tickets vollautomatisch — Status, Rechnung, Adressänderung in Sekunden. Integriert in Zendesk, Intercom, Freshdesk. Setup in 2–4 Wochen.",
         },
         hero: {
-            title: "KI Kundenservice-Automatisierung für B2B",
-            subtitle: "Nicht nur ein Chatbot. Ein Agent, der in Ihrem System Aktionen ausführt (Erstattungen, Änderungen).",
+            title: "Kundenservice automatisieren mit KI",
+            subtitle: "Kein klassischer Chatbot — ein Agent, der echte Aktionen in Ihrem System ausführt: Erstattungen, Adressänderungen, Statusabfragen, Terminbuchungen.",
         },
+        intro: `Kundenservice-Automatisierung mit KI verbindet einen LLM-basierten Agenten mit Ihrem Ticketsystem (Zendesk, Intercom, Freshdesk) und Ihren internen Wissensquellen wie Confluence, SharePoint oder Help-Center-Artikeln. Der Agent versteht freie Texteingaben in deutscher Sprache, durchsucht die Wissensbasis per Vektor-Suche und führt definierte Aktionen direkt im System aus — von Bestellungs-Status über Rechnungs-Reklamationen bis zur Terminverlegung.
+
+Im Unterschied zu klassischen Chatbots oder Decision-Tree-Bots arbeitet ein KI-Agent ohne starre Pfade: Er bewertet jede Anfrage neu, kombiniert mehrere Wissensquellen und übergibt komplexe oder emotionale Fälle mit vollständigem Gesprächsprotokoll an menschliche Agents — ohne dass der Kunde Informationen wiederholen muss.
+
+Im DACH-Mittelstand werden typischerweise 60-80 % der eingehenden Tier-1-Anfragen vollautomatisch gelöst. Wiederkehrende Themen wie Lieferstatus, Rechnungsfrage, Adressänderung, Öffnungszeiten oder Produkt-Information sind für KI-Agenten heute Standard. Komplexe technische Diagnose, Vertrags-Verhandlung oder Beschwerde-Eskalation bleiben beim Menschen.
+
+Der Stack: GPT-4o oder Claude Sonnet als LLM-Kern, Pinecone oder Supabase pgvector für die Wissens-Vektorisierung, n8n oder LangChain für die Workflow-Orchestrierung, Anbindung an das vorhandene Ticketsystem per API. Setup-Zeit liegt bei 2-4 Wochen je nach Daten-Hygiene.`,
         problem: {
-            title: "Ticket-Backlog",
-            items: ["Tier-1 Fragen blockieren Team", "Lange Antwortzeiten", "Teurer 24/7 Support"],
+            title: "Was kostet manueller Kundenservice wirklich",
+            items: [
+                "Wiederkehrende Tier-1-Fragen wie Status, Rechnung oder Adressänderung machen 60-80 % aller Tickets aus und blockieren Mitarbeiter für komplexe Fälle",
+                "Antwortzeiten von 4-24 Stunden bei E-Mail-Support führen zu Eskalationen, Folge-Tickets und niedrigerer NPS",
+                "24/7-Erreichbarkeit kostet im DACH-Mittelstand 80.000-150.000 € pro Jahr für Schichtbesetzung — bei oft niedriger Auslastung in Randzeiten",
+                "Mehrsprachiger Support skaliert nicht: Türkisch, Französisch oder Polnisch erfordern eigene Agenten oder teure Übersetzungs-Workflows",
+            ],
         },
         process: {
-            title: "Deployment",
+            title: "Wie wir KI-Kundenservice in 2-4 Wochen einführen",
             steps: [
-                { title: "Knowledge-Ingestion", description: "Vektorisierung Ihrer Help-Center Artikel" },
-                { title: "Action-Setup", description: "API-Anbindung für Aktionen (z.B. Status prüfen)" },
-                { title: "Testing", description: "Red-Teaming gegen Halluzinationen" },
-                { title: "Go-Live", description: "Schrittweiser Rollout" },
+                { title: "Wissens-Ingestion", description: "Help-Center, Confluence, FAQs, PDFs werden chunked und in Pinecone oder Supabase pgvector vektorisiert. Inkl. Synonym-Mapping deutsch/englisch." },
+                { title: "Action-Setup", description: "API-Anbindungen für die Top-10 Aktionen Ihres Ticket-Aufkommens (Status prüfen, Rechnung neu senden, Adresse ändern, Termin buchen, Erstattung anstoßen)." },
+                { title: "Red-Teaming", description: "Adversarial Testing gegen Halluzinationen, Prompt-Injection und Edge-Cases. Min. 200 reale Test-Anfragen aus Ihrem Ticket-Archiv." },
+                { title: "Schrittweiser Go-Live", description: "Erst Schatten-Modus (Antworten-Vorschläge nur für Agents), dann 10 % Auto-Antworten, dann Full-Rollout. Eskalations-Schwellen dynamisch justiert." },
             ],
         },
         features: {
-            title: "Fähigkeiten",
+            title: "Was der Agent kann (und was bewusst nicht)",
             items: [
-                { title: "RAG-System", description: "Antworten nur aus Ihrer Doku" },
-                { title: "Function Calling", description: "Der Bot kann Software bedienen" },
-                { title: "Human-Handoff", description: "Eskalation bei Komplexität" },
+                { title: "RAG mit Quellenangabe", description: "Antworten ausschließlich aus Ihrer verifizierten Wissensbasis. Jede Antwort enthält die Quelle (Help-Article-ID), damit Agents bei Eskalation den Kontext sofort sehen." },
+                { title: "Function-Calling für echte Aktionen", description: "Der Agent ruft Ihre internen APIs: Bestellstatus, Rechnungs-Versand, Adress-Update, Termin-Verlegung, Mitgliedschafts-Pause. Aktions-Logs sind audit-fähig." },
+                { title: "Human-Handoff mit Kontext", description: "Bei Unsicherheit, emotionalen Eskalationen oder definierten Schwellen (z.B. Erstattung > 500 €) übergibt der Agent mit vollständigem Gesprächsprotokoll und Vorschlag an einen Agent." },
+                { title: "Mehrsprachigkeit nativ", description: "Deutsch, Englisch, Türkisch, Französisch, Polnisch, Spanisch — gleiche Wissensbasis, automatische Sprach-Erkennung. Kein separater Setup pro Sprache." },
             ],
         },
         benefits: {
-            title: "Effizienz",
-            items: ["Support-Kosten senken", "Sofortige Lösung", "Zufriedene Kunden"],
+            title: "Was sich messbar verändert",
+            items: [
+                "60-80 % weniger Tier-1-Tickets",
+                "24/7 ohne Schichtbesetzung",
+                "First-Response-Time unter 30 Sekunden",
+            ],
         },
         caseStudy: {
             company: "Coach Bilge",
@@ -337,11 +354,18 @@ Das Ergebnis: Laut einer McKinsey-Analyse aus 2023 erreichen Unternehmen mit sau
             image: "/logos/coach-bilge.avif",
         },
         faqs: [
-            { question: "Was kann ein KI-Kundenservice-Agent mehr als ein Chatbot?", answer: "Ein klassischer Chatbot gibt vorgefertigte Antworten. Unser KI-Agent versteht Kontext, durchsucht Ihre Wissensdatenbank per RAG und führt echte Aktionen aus: Erstattungen veranlassen, Bestellstatus prüfen, Termine buchen oder Tickets eskalieren." },
-            { question: "Wie viel Prozent der Support-Tickets kann KI lösen?", answer: "In der Praxis lösen unsere Systeme 60–80% der Tier-1-Anfragen automatisch. Komplexe oder emotionale Fälle werden nahtlos an menschliche Agenten übergeben — mit vollständigem Kontext, sodass der Kunde nichts wiederholen muss." },
-            { question: "Funktioniert KI-Kundenservice mit Intercom und Zendesk?", answer: "Ja. Wir integrieren KI-Agents direkt in Ihren bestehenden Support-Stack: Intercom, Zendesk, Freshdesk, HubSpot Service Hub und weitere. Die Integration erfolgt über APIs — Ihre bestehenden Workflows bleiben erhalten." },
-            { question: "Wie wird sichergestellt, dass die KI keine falschen Antworten gibt?", answer: "Durch RAG (Retrieval-Augmented Generation): Die KI antwortet ausschließlich aus Ihrer verifizierten Wissensdatenbank. Zusätzlich durchlaufen alle Systeme ein Red-Teaming gegen Halluzinationen. Bei Unsicherheit eskaliert der Agent automatisch an einen Menschen." },
-            { question: "Was kostet KI-Kundenservice-Automatisierung?", answer: "Ein Setup mit Knowledge-Ingestion, Action-APIs und schrittweisem Rollout liegt bei 8.000–20.000 € einmalig. Laufende Kosten für LLM-APIs und Hosting: 200–800 €/Monat. Bei einem Support-Team von 3+ Agents ist der ROI typischerweise nach 2–3 Monaten erreicht." },
+            { question: "Was ist KI-Kundenservice-Automatisierung?", answer: "KI-Kundenservice-Automatisierung ist die Verbindung eines LLM-basierten Agenten (GPT-4o, Claude Sonnet) mit Ihrem Ticketsystem (Zendesk, Intercom, Freshdesk) und Ihren internen Wissensquellen. Der Agent versteht freie Texteingaben, antwortet aus der Wissensbasis und führt definierte Aktionen wie Statusabfragen oder Adressänderungen direkt im System aus — ohne menschlichen Eingriff." },
+            { question: "Was kann ein KI-Kundenservice-Agent mehr als ein klassischer Chatbot?", answer: "Ein klassischer Chatbot folgt einem vordefinierten Decision-Tree und kann nur vorgefertigte Antworten geben. Ein KI-Agent versteht den Kontext einer Anfrage, kombiniert mehrere Wissensquellen per RAG (Retrieval-Augmented Generation) und führt echte Aktionen aus — Erstattungen veranlassen, Bestellstatus prüfen, Termine buchen oder Tickets mit vollständigem Kontext eskalieren." },
+            { question: "Wie viel Prozent der Support-Tickets kann KI lösen?", answer: "Im DACH-Mittelstand lösen produktive Systeme 60-80 % der Tier-1-Anfragen vollautomatisch. Tier-1 sind wiederkehrende Themen wie Lieferstatus, Rechnungsfragen, Adressänderungen, Passwort-Reset oder Öffnungszeiten. Komplexe oder emotionale Fälle werden mit vollständigem Gesprächsprotokoll an menschliche Agents übergeben." },
+            { question: "Welches Tool eignet sich für KI-Kundenservice — Zendesk, Intercom oder eigener n8n-Stack?", answer: "Zendesk und Intercom haben native KI-Funktionen (Zendesk AI, Fin) — gut für Standardfälle, monatliche Lizenzkosten von 19-99 € pro Agent. Ein eigener Stack auf n8n + OpenAI/Claude + Pinecone ist günstiger im laufenden Betrieb (200-800 € pro Monat unabhängig von Agent-Zahl), bietet aber mehr Flexibilität bei Custom-Aktionen und DSGVO-konformer EU-Hosting-Wahl. Für Mittelständler mit eigener Infrastruktur ist der n8n-Stack typischerweise die wirtschaftlichere Wahl." },
+            { question: "Funktioniert KI-Kundenservice mit Intercom, Zendesk und Freshdesk?", answer: "Ja. Die Integration erfolgt über die jeweiligen APIs der Ticketsysteme — Intercom, Zendesk, Freshdesk, HubSpot Service Hub, Salesforce Service Cloud, ServiceNow. Bestehende Workflows, SLAs und Eskalations-Regeln bleiben erhalten; der KI-Agent agiert als zusätzliche First-Line." },
+            { question: "Wie wird sichergestellt, dass die KI keine falschen Antworten gibt?", answer: "Drei Mechanismen kombiniert: Erstens RAG mit verifizierten Quellen — die KI darf nur aus Ihrer Wissensbasis antworten, nicht aus Trainingsdaten. Zweitens Red-Teaming vor Launch mit min. 200 realen Test-Anfragen aus Ihrem Ticket-Archiv. Drittens dynamische Eskalations-Schwellen: Bei niedrigem Confidence-Score, emotionalen Anfragen oder definierten Trigger-Wörtern eskaliert der Agent automatisch an einen Menschen." },
+            { question: "Ist KI-Kundenservice DSGVO-konform?", answer: "Ja, wenn das Setup richtig gewählt wird. Drei Hebel: EU-Hosting der LLM-API (OpenAI hat seit 2024 EU-Data-Residency-Option, Claude via AWS Bedrock Frankfurt, Mistral La Plateforme nativ EU). Zweitens Auftragsverarbeitungs-Vertrag mit allen Subdienstleistern. Drittens Pseudonymisierung von PII vor LLM-Call wenn möglich. Der KI-Agent darf nicht zur Trainingsdaten-Generierung genutzt werden — das wird vertraglich ausgeschlossen." },
+            { question: "Was kostet KI-Kundenservice-Automatisierung?", answer: "Setup mit Knowledge-Ingestion, Action-APIs, Red-Teaming und schrittweisem Rollout liegt bei 8.000-20.000 € einmalig. Laufende Kosten für LLM-APIs (GPT-4o oder Claude Sonnet) plus Hosting der Vektor-DB: 200-800 € pro Monat unabhängig von Agent-Zahl. Bei einem Support-Team ab 3 Agents ist der Break-Even typischerweise nach 2-3 Monaten erreicht." },
+            { question: "Wie lange dauert die Einführung?", answer: "Standard-Setup für DACH-Mittelständler: 2-4 Wochen. Woche 1: Wissens-Ingestion und Vektorisierung. Woche 2: Action-Setup und API-Anbindung. Woche 3: Red-Teaming mit Test-Anfragen. Woche 4: Schatten-Modus und schrittweiser Rollout. Bei sehr unsauberen Help-Center-Daten verlängert sich Phase 1 um 1-2 Wochen für Daten-Hygiene." },
+            { question: "Funktioniert das auch mehrsprachig — Türkisch, Französisch, Polnisch?", answer: "Ja. Moderne LLMs (GPT-4o, Claude Sonnet) erkennen die Eingabesprache automatisch und antworten in derselben Sprache. Wichtig ist, dass die Wissensbasis selbst nicht für jede Sprache separat gepflegt werden muss — die KI übersetzt zur Laufzeit aus dem deutschen Quell-Content. Das skaliert deutlich besser als getrennte Agenten-Teams pro Sprache." },
+            { question: "Was passiert wenn der KI-Agent nicht weiterweiß?", answer: "Drei Fallback-Stufen: Erstens Klärungsfrage stellen wenn Anfrage mehrdeutig ist. Zweitens Eskalation an menschlichen Agent mit vollständigem Gesprächsprotokoll und Lösungsvorschlag — der Agent muss nicht von Null anfangen. Drittens proaktive Übergabe bei definierten Trigger-Wörtern wie Beschwerde, Kündigung, Erstattung über Schwellwert. Der Kunde erlebt einen nahtlosen Übergang ohne Wiederholungs-Aufwand." },
+            { question: "Kann der Agent mit Sprachsteuerung kombiniert werden — also als Voice-Agent?", answer: "Ja. Voice-Agents nutzen denselben LLM-Kern plus Speech-to-Text (z.B. Whisper) und Text-to-Speech (z.B. ElevenLabs). Use-Case ist typischerweise eingehende Service-Hotline oder ausgehende Termin-Erinnerungen. Setup-Zeit liegt bei 4-6 Wochen statt 2-4 Wochen wegen zusätzlicher Latenz-Optimierung und Voice-Quality-Tests." },
         ],
     },
 ];
