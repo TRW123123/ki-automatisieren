@@ -93,12 +93,78 @@ const geoGraph = buildGeoGraph({
   <!-- GEO-Block: TLDR + Definition + Stats — direkt nach Hero für Top-of-Page-Citation -->
   <GeoBlock geo={geo} />
 
+  <!-- Statische Problem-Section (SSR für Google + LLM-Crawler) -->
+  {caseStudy.problem && caseStudy.problem.length > 0 && (
+    <section class="py-16 border-t border-white/5">
+      <div class="container mx-auto px-4 max-w-3xl">
+        <h2 class="text-3xl font-bold mb-6">Die Ausgangslage</h2>
+        <ul class="space-y-3">
+          {caseStudy.problem.map((p) => (
+            <li class="flex items-start gap-3 text-lg text-muted-foreground leading-relaxed">
+              <span class="w-2 h-2 rounded-full bg-red-500 mt-2.5 shrink-0"></span>
+              <span>{p}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
   <!-- Statische Solution-Section (für Google sichtbar ohne React) -->
   {caseStudy.solution && (
     <section class="py-16 border-t border-white/5">
       <div class="container mx-auto px-4 max-w-3xl">
         <h2 class="text-3xl font-bold mb-6">Wie wurde das Problem gelöst?</h2>
-        <p class="text-lg text-muted-foreground leading-relaxed">{caseStudy.solution}</p>
+        <p class="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">{caseStudy.solution}</p>
+      </div>
+    </section>
+  )}
+
+  <!-- Statische Implementation-Section (SSR für Google + LLM-Crawler) -->
+  {caseStudy.implementationSteps && caseStudy.implementationSteps.length > 0 && (
+    <section class="py-16 border-t border-white/5">
+      <div class="container mx-auto px-4 max-w-3xl">
+        <h2 class="text-3xl font-bold mb-6">Implementierungsschritte</h2>
+        <ol class="space-y-4">
+          {caseStudy.implementationSteps.map((step, index) => (
+            <li class="flex items-start gap-4 text-lg text-muted-foreground leading-relaxed">
+              <span class="flex-shrink-0 w-8 h-8 rounded-full bg-lime-500/20 border border-lime-500/40 text-lime-400 font-bold flex items-center justify-center text-sm mt-0.5">
+                {index + 1}
+              </span>
+              <span>{step}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  )}
+
+  <!-- Statische Results-Section (SSR für Google + LLM-Crawler) -->
+  {caseStudy.results && caseStudy.results.length > 0 && (
+    <section class="py-16 border-t border-white/5 bg-card/30">
+      <div class="container mx-auto px-4 max-w-3xl">
+        <h2 class="text-3xl font-bold mb-6">Erzielte Ergebnisse</h2>
+        <ul class="space-y-3">
+          {caseStudy.results.map((r) => (
+            <li class="flex items-start gap-3 text-lg text-muted-foreground leading-relaxed">
+              <svg class="w-5 h-5 text-lime-400 mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>{r}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- Statisches Quote/Testimonial (SSR für Google + LLM-Crawler) -->
+  {caseStudy.quote && (
+    <section class="py-16 border-t border-white/5">
+      <div class="container mx-auto px-4 max-w-3xl">
+        <blockquote class="text-xl md:text-2xl italic text-foreground leading-relaxed border-l-4 border-lime-500 pl-6">
+          „{caseStudy.quote}"
+        </blockquote>
       </div>
     </section>
   )}

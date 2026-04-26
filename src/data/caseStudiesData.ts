@@ -82,12 +82,30 @@ export const caseStudiesData: CaseStudy[] = [
             "Die Plattform potenziellen Nutzern persönlich und direkt vorstellen",
             "Organisches Wachstum ohne hohe Werbekosten realisieren"
         ],
-        solution: "Potenzielle Nutzer wurden über Instagram-Accounts automatisch identifiziert. Für jeden Nutzer wurden individuell zugeschnittene Nachrichten erstellt und sowohl per Instagram DM als auch SMS versendet.",
-        implementationSteps: ["Datenerfassung (Scraping)", "Automatischer Nachrichtenversand", "KI-Video-Produktion"],
+        solution: `Acilsatis stand vor der klassischen Herausforderung einer neuen Plattform in einem etablierten Markt: Wie erreicht man tausende Branchen-Insider in kurzer Zeit, ohne ein Werbebudget zu verbrennen? Die Antwort war eine durchgängige KI-Outreach-Pipeline, die in wenigen Tagen aufgebaut und mehrere Wochen lang skaliert wurde.
+
+Das System bestand aus vier Hauptkomponenten. Erstens identifizierte ein Apify-basiertes Instagram-Scraping-Modul zielgruppen-relevante Profile von Immobilienmaklern und Autohändlern in den DACH- und türkischen Märkten. Die Filterkriterien umfassten Hashtags, Geo-Lokation, Profilbeschreibung und Aktivitäts-Frequenz — so wurden Privatpersonen und inaktive Accounts automatisch ausgeschlossen.
+
+Zweitens analysierte ein OpenAI-basiertes Personalisierungs-Modul jedes identifizierte Profil und erstellte individuelle Erstansprachen, die auf die letzten Postings, die regionale Spezialisierung und das Geschäftsmodell des Empfängers Bezug nahmen. Statt einer generischen "Hallo, schauen Sie sich Acilsatis an"-Nachricht erhielt jeder Empfänger eine kontextspezifische Mitteilung, die den konkreten Nutzen für sein Geschäft beschrieb.
+
+Drittens lief der Versand über zwei parallele Kanäle: Instagram-DMs für direkte Plattform-Interaktion und SMS für Empfänger mit öffentlich verfügbarer Mobilnummer. Die Kanal-Auswahl erfolgte automatisch nach Datenverfügbarkeit. Eine n8n-Workflow-Engine orchestrierte das gesamte Sending mit Rate-Limiting (kein Spam-Trigger) und automatisierter Antwort-Erkennung.
+
+Viertens wurde ein KI-Video-Produktions-Modul ergänzt, das für ausgewählte Hochwert-Empfänger personalisierte Kurz-Videos generierte — mit Bezug zum konkreten Markt der jeweiligen Branche. Diese Videos wurden manuell freigegeben und als Follow-up-Trigger eingesetzt, wenn die erste DM keine Antwort erhielt.
+
+Innerhalb weniger Tage waren über 5.000 Branchen-Insider direkt angesprochen — mit hochpersonalisierten Nachrichten, die in klassischer Marketing-Logik bezahlte Anzeigen-Creatives erfordert hätten. Der wöchentliche manuelle Marketing-Aufwand sank gegen Null, der Plattform-Traffic stieg messbar und die ersten Hundert Plattform-Registrierungen erfolgten ohne einen einzigen Werbe-Euro.`,
+        implementationSteps: [
+            "Datenerfassung via Apify Instagram-Scraping (Filter: Hashtags, Geo, Aktivität)",
+            "KI-Personalisierung via OpenAI (individuelle Erstansprache pro Profil)",
+            "Multi-Channel-Versand via n8n (Instagram-DM + SMS, Rate-Limiting)",
+            "KI-Video-Produktion für Hochwert-Empfänger (Manual-Approval-Loop)",
+            "Antwort-Erkennung & Hand-off ins manuelle Sales-Team"
+        ],
         results: [
+            "5.000+ Branchen-Insider direkt angesprochen in wenigen Tagen",
             "Persönliche Kommunikation mit Hunderten Immobilienmaklern und Autohändlern",
             "Deutliche Steigerung des Website-Traffics und der Plattformbekanntheit",
-            "Wöchentlicher Zeitaufwand für Marketing erheblich reduziert"
+            "Erste Hundert Plattform-Registrierungen ohne einen Werbe-Euro",
+            "Wöchentlicher manueller Marketing-Aufwand gegen Null reduziert"
         ],
         quote: "Dank KI im Marketing kennen uns Branchenprofis jetzt und vertrauen uns."
     },
