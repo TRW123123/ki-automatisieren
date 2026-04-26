@@ -17,7 +17,7 @@ export const blogPosts: BlogPost[] = [
     {
         id: "rechnungsverarbeitung-ki-automatisierung-mittelstand",
         title: "Rechnungseingang automatisieren: Wie Mittelständler 80% der Buchhalter-Zeit zurückgewinnen",
-        metaTitle: "Rechnungseingang automatisieren – KI-Lösung für den Mittelstand | ki-automatisieren.de",
+        metaTitle: "Rechnungseingang automatisieren mit KI | ki-automatisieren.de",
         metaDescription: "Manuelle Rechnungsverarbeitung kostet Mittelständler 26–40 Stunden pro Buchhalter monatlich. So funktioniert KI-gestützte Automatisierung mit DATEV, Lexoffice & SAP.",
         excerpt: "Ein Buchhalter im Mittelstand verbringt bis zu 40 Stunden pro Monat nur mit der manuellen Erfassung von Rechnungen. KI-Automatisierung reduziert das auf unter 4 Stunden — ohne Qualitätsverlust.",
         content: `
@@ -146,7 +146,7 @@ Wenn Sie wissen wollen, wie das konkret für Ihre Buchhaltungsstruktur aussieht:
     {
         id: "kundenservice-chatbot-ki-mittelstand-automatisierung",
         title: "Kundenservice automatisieren: Wie KI-Chatbots den Mittelstand entlasten",
-        metaTitle: "Kundenservice automatisieren mit KI – Chatbot für den Mittelstand | ki-automatisieren.de",
+        metaTitle: "KI-Kundenservice & Chatbot für Mittelstand | ki-automatisieren.de",
         metaDescription: "Wie Mittelständler mit KI-Chatbots 70–80% der Supportanfragen automatisch lösen — ohne Qualitätsverlust und ohne externes Callcenter.",
         excerpt: "Ein Drittel aller Kundenanfragen im Mittelstand betrifft dieselben fünf Themen: Lieferstatus, Reklamation, Rechnungsfrage, Öffnungszeiten, Produktinfo. KI beantwortet alle fünf — sofort, rund um die Uhr, ohne Ticket-Rückstand.",
         content: `
@@ -256,7 +256,7 @@ Website-Chat, E-Mail, WhatsApp Business, und auf Anfrage Telefon (Voice-AI via V
     {
         id: "vertrieb-lead-qualifizierung-ki-mittelstand",
         title: "B2B Leadgenerierung mit KI: Weniger Leads, mehr Abschlüsse",
-        metaTitle: "B2B Leadgenerierung mit KI – Automatische Qualifizierung für den Mittelstand | ki-automatisieren.de",
+        metaTitle: "B2B Leadgenerierung mit KI für Mittelstand | ki-automatisieren.de",
         metaDescription: "Warum mehr Leads das Vertriebsproblem im Mittelstand selten lösen — und wie KI-gestützte Qualifizierung die Abschlussrate verdoppelt.",
         excerpt: "Das Vertriebsproblem im Mittelstand ist selten ein Mangel an Leads. Es ist ein Qualifizierungsproblem: zu viele unqualifizierte Kontakte, zu wenig Zeit für die Richtigen. KI löst das nicht durch mehr Volumen, sondern durch bessere Filterung.",
         content: `
@@ -751,7 +751,7 @@ Einfache Automatisierungen (E-Mail-Sequences, Social-Scheduling): 2–4 Wochen. 
     {
         id: "logistik-automatisierung-ki-mittelstand",
         title: "Logistik automatisieren: Wie KI Lieferketten und Lagerhaltung optimiert",
-        metaTitle: "Logistik Automatisierung mit KI – Lager, Lieferkette & Disposition | ki-automatisieren.de",
+        metaTitle: "Logistik-Automatisierung mit KI für DACH | ki-automatisieren.de",
         metaDescription: "Wie KI die Logistik im Mittelstand optimiert: Lagerhaltung, Disposition, Lieferketten-Management und Routenplanung — konkrete Anwendungen mit ROI.",
         excerpt: "Logistik lebt von Wiederholung und Mustern. Genau das macht sie zum idealen Feld für KI-Automatisierung.",
         content: `
@@ -1374,7 +1374,7 @@ Nein. Moderne KI-Automatisierung läuft über Cloud-Dienste und No-Code-Plattfor
     {
         id: "foerdermittel-digitalisierung-mittelstand-2026",
         title: "Förderung für Digitalisierung: Bis zu 15.000 € Zuschuss für KI-Projekte im Mittelstand",
-        metaTitle: "Förderung Digitalisierung Mittelstand 2026 – BAFA, MID, Digitalbonus | ki-automatisieren.de",
+        metaTitle: "BAFA & Digitalbonus 2026 für Mittelstand | ki-automatisieren.de",
         metaDescription: "BAFA, MID NRW, Digitalbonus Bayern: Welche Förderprogramme 2026 aktiv sind, was sie zahlen und wie Mittelständler den Antrag korrekt stellen — bevor das Projekt startet.",
         excerpt: "Die meisten KMU lassen staatliche Fördergelder auf dem Tisch liegen. BAFA, MID-Digitalisierung, Digitalbonus — wir zeigen, welche Programme 2026 aktiv sind, was sie konkret zahlen und was der häufigste Fehler beim Antrag ist.",
         content: `
@@ -1519,7 +1519,7 @@ BAFA: typisch 4–6 Wochen. Länderprogramme wie MID NRW: 6–10 Wochen. Planen 
     {
         id: "crm-lead-verlust-stoppen-automatisierung",
         title: "Lead-Verlust im CRM stoppen: Automatisierte Follow-ups steigern die Abschlussquote um 66%",
-        metaTitle: "CRM Lead-Verlust stoppen – Automatisierte Follow-ups für den Mittelstand | ki-automatisieren.de",
+        metaTitle: "CRM Lead-Verlust stoppen mit Auto-Follow-ups | ki-automatisieren.de",
         metaDescription: "Ein Lead füllt das Kontaktformular aus — und wartet 48 Stunden. Dann unterschreibt er beim Mitbewerber. Wie automatisierte CRM-Prozesse die Reaktionszeit auf 4 Stunden senken und Abschlussquoten um 66% steigern.",
         excerpt: "Nur 24% der Unternehmen mit 10–49 Mitarbeitern nutzen CRM-Software. Die anderen verlieren Leads in Outlook-Postfächern. Wie Mittelständler CRM-Lecks schließen und die Lead-zu-Auftrag-Quote von 35% auf 58% heben.",
         content: `
@@ -1641,7 +1641,7 @@ Alle automatisierten B2B-Kontaktstrecken müssen UWG- und DSGVO-konform sein. Da
     {
         id: "outlook-postfach-automatisieren-ki-sortierung",
         title: "Outlook-Postfach automatisieren: Wie KI täglich bis zu 45 Minuten Sortierarbeit eliminiert",
-        metaTitle: "Outlook Postfach automatisieren mit KI – E-Mail-Sortierung für Unternehmen | ki-automatisieren.de",
+        metaTitle: "Outlook automatisieren mit KI – E-Mail-Sortierung | ki-automatisieren.de",
         metaDescription: "117 E-Mails pro Tag bei Wissensarbeitern. 28% der Arbeitswoche für E-Mail-Management. Wie KI das info@-Postfach automatisch sortiert, weiterleitet und Antworten vorbereitet.",
         excerpt: "Berufstätige verbringen 28% ihrer Arbeitswoche mit E-Mail-Management. Im info@-Postfach vermischen sich Bewerbungen, Rechnungen, Spam und VIP-Anfragen. Wie KI-Klassifizierung das Chaos in 5 Minuten sortiert — was für den Menschen 45 Minuten dauert.",
         content: `
@@ -1930,7 +1930,7 @@ Wenn Sie wissen möchten, wie viel Einsparpotenzial in Ihren Papierrechnungen st
     {
         id: "manuelle-dateneingabe-datev-automatisieren",
         title: "Manuelle Dateneingabe in DATEV automatisieren: So sparen Kanzleien 80% der Erfassungszeit",
-        metaTitle: "Manuelle Dateneingabe DATEV automatisieren – KI-Lösung für Kanzleien | ki-automatisieren.de",
+        metaTitle: "DATEV-Dateneingabe automatisieren mit KI | ki-automatisieren.de",
         metaDescription: "Manuelle Belegerfassung in DATEV kostet 8-12 Minuten pro Rechnung. Mit KI-Automatisierung unter 1 Minute — direkt in Unternehmen Online und Kanzlei-Rechnungswesen.",
         excerpt: "Jede manuell erfasste Rechnung in DATEV kostet 8-12 Minuten. Bei 300 Belegen im Monat sind das über 50 Stunden reine Tipparbeit. KI-gestützte Automatisierung reduziert das auf unter 5 Stunden — ohne Systemwechsel.",
         content: `
@@ -2230,7 +2230,7 @@ Wenn Sie wissen wollen, welche Dokumente in Ihrem Unternehmen das größte Autom
     {
         id: "angebote-schreiben-zu-lange-automatisierung",
         title: "Angebote schreiben dauert zu lange? So halbieren Sie die Zeit mit Automatisierung",
-        metaTitle: "Angebotserstellung automatisieren – Zeit halbieren im Mittelstand | ki-automatisieren.de",
+        metaTitle: "Angebotserstellung automatisieren mit KI | ki-automatisieren.de",
         metaDescription: "Angebote schreiben kostet Mittelständler 2–4 Stunden pro Vorgang. Wie Automatisierung die Erstellungszeit auf unter 20 Minuten senkt — mit konkreten Tools und Zahlen.",
         excerpt: "Ein handwerklicher Betrieb mit 15 Mitarbeitern schreibt 40 Angebote pro Monat. Jedes dauert im Schnitt 2,5 Stunden. Das sind 100 Stunden Chefzeit — für Formulare. KI-gestützte Angebotserstellung löst dieses Problem strukturell.",
         content: `
@@ -2627,7 +2627,7 @@ Typisch 3–6 Wochen: Analyse der Eingangsformate und ERP-Schnittstelle (1 Woche
     {
         id: "einkauf-dunkelverarbeitung-ki-automatisierung",
         title: "Dunkelverarbeitung im Einkauf: Wie KI 80% aller Bestellvorgänge ohne menschlichen Eingriff abwickelt",
-        metaTitle: "Dunkelverarbeitung im Einkauf – KI-Automatisierung für den Mittelstand | ki-automatisieren.de",
+        metaTitle: "Dunkelverarbeitung im Einkauf mit KI | ki-automatisieren.de",
         metaDescription: "Ein manueller Bestellvorgang kostet im deutschen Mittelstand 50–120 €. KI-basierte Dunkelverarbeitung reduziert das auf unter 8 € — bei 80% aller Routinebestellungen vollautomatisch.",
         excerpt: "Im deutschen Mittelstand kostet ein manuell verarbeiteter Bestellvorgang laut BME zwischen 50 und 120 Euro — gerechnet auf Personalzeit, Systemzugang und Fehlerkorrektur. Dunkelverarbeitung bedeutet: Diese Vorgänge laufen vollständig automatisch ab, ohne dass ein Mensch sie anfasst.",
         content: `
@@ -3322,7 +3322,7 @@ Die Antragsstellung selbst dauert unter 30 Minuten. Was länger dauert, ist die 
     {
         id: "dsgvo-konforme-ki-einfuehrung-mittelstand",
         title: "DSGVO-konforme KI-Einführung: Was Mittelständler vor dem ersten Rollout klären müssen",
-        metaTitle: "DSGVO-konforme KI-Einführung Mittelstand – Checkliste & Pflichten | ki-automatisieren.de",
+        metaTitle: "DSGVO-konforme KI-Einführung im Mittelstand | ki-automatisieren.de",
         metaDescription: "Vor jeder KI-Einführung im Mittelstand lauern 3 DSGVO-Pflichten, die häufig übersehen werden. Dieser Leitfaden zeigt, was vor dem Rollout geregelt sein muss.",
         excerpt: "Wer KI in Geschäftsprozessen einführt, ohne Auftragsverarbeitungsvertrag, Datenschutz-Folgenabschätzung und Mitarbeiterdokumentation zu klären, riskiert Bußgelder bis 20 Millionen Euro. Drei Pflichten, die kein Mittelständler übersehen sollte.",
         content: `
