@@ -8,39 +8,38 @@ import Cases from "@/components/Cases.tsx";
 import PseoHub from "@/components/PseoHub.astro";
 import IndustrySection from "@/components/IndustrySection.astro";
 import RoiCalculator from "@/components/RoiCalculator.astro";
+import GeoBlock from "@/components/seo/GeoBlock.astro";
+import { buildGeoGraph } from "@/lib/geoSchema";
+import { hubGeo } from "../data/geoEnhancements";
 
 // Pure Strict Alignment Index Page
-// Structure: Hero -> Agitate -> IndustrySection -> GoToMarketTimeline -> Solution -> Cases
+// Structure: GeoBlock -> Hero -> Agitate -> IndustrySection -> GoToMarketTimeline -> Solution -> Cases
 
-// Organization + WebSite Schema (required for homepage)
-const organizationSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "KI Automatisieren",
-  url: "https://ki-automatisieren.de",
-  logo: "https://ki-automatisieren.de/logo.png",
+const pageUrl = "https://ki-automatisieren.de/";
+const today = new Date().toISOString().split("T")[0];
+
+// Konsolidierter GEO-Graph: Organization + Person + Article (homepage als Service-Hub)
+const geoGraph = buildGeoGraph({
+  type: "Article",
+  url: pageUrl,
+  headline: "KI Automatisierung für Vertrieb, Kundenservice und Marketing",
   description:
-    "Durchgängige KI-Automatisierung vom Lead bis zum Meeting. Vertriebs- und Marketingautomatisierung für B2B-Unternehmen.",
-  sameAs: [
-    "https://www.linkedin.com/company/ki-automatisieren"
-  ],
-});
-
-const websiteSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "KI Automatisieren",
-  url: "https://ki-automatisieren.de",
+    "KI Automatisierung im DACH-Mittelstand: vollständige Pipelines für Lead-Generierung, Kundenservice und Dokumentenverarbeitung. Setup in 2–4 Wochen, ohne IT-Abteilung.",
+  datePublished: "2024-01-15",
+  dateModified: today,
+  geo: hubGeo,
 });
 ---
 
 <BaseLayout
-  title="KI Automatisieren – Vertriebs- und Marketingautomatisierung"
-  description="Durchgängige KI-Automatisierung vom Lead bis zum Meeting. Steigern Sie Ihren Umsatz mit Outbound & Inbound, Content- und Social-Media-Automatisierung."
+  title="KI Automatisierung für Mittelstand & B2B | ki-automatisieren.de"
+  description="KI Automatisierung im Mittelstand: vollständige Lead-, Vertriebs- und Marketing-Pipelines mit n8n, GPT-4o und Claude. 60–80 % weniger manuelle Arbeit, Setup in 2–4 Wochen — Beratung von ki-automatisieren.de."
 >
-  <!-- Organization + WebSite Schema -->
-  <script type="application/ld+json" set:html={organizationSchema} />
-  <script type="application/ld+json" set:html={websiteSchema} />
+  <!-- GEO-Graph JSON-LD: Organization + Person + Article -->
+  <script type="application/ld+json" set:html={geoGraph} />
+
+  <!-- GEO-Block: TLDR + Definition + Stats — LLM-Citation-Magnet ganz oben -->
+  <GeoBlock geo={hubGeo} />
 
   <Hero />
   <Agitate client:load />
